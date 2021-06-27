@@ -15,14 +15,13 @@ On the other hand, it can also be used by people who do not have an ASD but have
 
 ### Screenshots
 
-<p align="center">  
-    <img src="screenshots/img_categories.png" alt="categories" width="150px"hspace="10"/>
-    <img src="screenshots/img_category_config.png" alt="category config" width="150px" hspace="10"/>
-    <img src="screenshots/img_config_select.png" alt="config select" width="150px" hspace="10"/>
-    <img src="screenshots/img_config.png" alt="CMI config" width="150px" hspace="10"/>  
-    <img src="screenshots/img_intro.png" alt="CMI intro" width="150px" hspace="10"/>
-    <img src="screenshots/img_pecs.png" alt="CMI PECS" width="150px" hspace="10"/>
-</p>
+Name | Description | Image
+--- | --- | ---
+Intro | Intro for CMI - PECS App | <img src="screenshots/img_intro.png" width="90%"> 
+Categories | Available Categories in CMI, these categories and other pictograms are from [ARASAAC](https://arasaac.org) | <img src="screenshots/img_categories.png" width="90%"> 
+PECS | PECS Screen where you can select pictograms and interact with it | <img src="screenshots/img_pecs.png" alt="CMI PECS" width="90%"/>
+Config | Screen where you can init a configuration for Category or pictograms| <img src="screenshots/img_config.png" alt="CMI PECS" width="90%"/>
+Category Config | Options for Category Configurations( Select, Remove, Edit and Add) | <img src="screenshots/img_category_config.png" alt="CMI PECS" width="90%"/>
 
 ## Features
 
