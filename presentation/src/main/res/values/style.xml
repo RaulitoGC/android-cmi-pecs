@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Button -->
+    <style name="Widget.Cmi.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorTextButton</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="Widget.Cmi.Button.Primary">
+        <item name="backgroundTint">@color/button_primary_colored</item>
+    </style>
+
+
+    <!-- Text view -->
+    <style name="Widget.Cmi.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="Widget.Cmi.TextView.Bold">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="Widget.Cmi.TextView.Black">
+        <item name="android:fontFamily">@font/poppins_black</item>
+    </style>
+
+</resources>

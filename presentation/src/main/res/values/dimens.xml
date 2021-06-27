@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- common -->
+    <dimen name="margin_4dp">4dp</dimen>
+
+    <!-- Toolbar Configuration -->
+    <dimen name="toolbar_image_size">32dp</dimen>
+    <dimen name="toolbar_title_text_size">18sp</dimen>
+
+    <!-- Configuration -->
+    <dimen name="configuration_subtitle_text_size">18sp</dimen>
+    <dimen name="configuration_option_text_size">16sp</dimen>
+    <dimen name="configuration_card_view_text_size">24sp</dimen>
+
+    <!-- Add Category -->
+    <dimen name="add_category_view_pager_size_height">128dp</dimen>
+
+    <!-- Phase -->
+    <dimen name="phase_button_size_width">128dp</dimen>
+
+
+    <!-- Pictogram -->
+    <dimen name="pecs_card_view_size">96dp</dimen>
+
+    <dimen name="pictogram_stripe_phrase_main">108dp</dimen>
+    <dimen name="pictogram_stripe_phrase_action">96dp</dimen>
+    <dimen name="pictogram_stripe_phrase_attribute">78dp</dimen>
+
+    <dimen name="pictogram_stripe_phrase_close">24dp</dimen>
+    <dimen name="pecs_text_size">12sp</dimen>
+    <dimen name="pecs_stripe_size_height">16dp</dimen>
+    <dimen name="pecs_play_icon_size">48dp</dimen>
+
+    <!-- Stripe Phrase -->
+    <dimen name="stripe_view_corner_radius">16dp</dimen>
+
+    <dimen name="pecs_stripe_pictogram_main_card_view_size">128dp</dimen>
+    <dimen name="pecs_stripe_pictogram_action_card_view_size">108dp</dimen>
+    <dimen name="pecs_stripe_pictogram_attribute_card_view_size">88dp</dimen>
+
+    <dimen name="pecs_stripe_pictogram_text_size">12sp</dimen>
+    <dimen name="pecs_stripe_megaphone_size">72dp</dimen>
+
+    <dimen name="pictogram_main_text_size">14sp</dimen>
+
+    <!-- Category -->
+    <dimen name="item_category_text_size">12sp</dimen>
+    <dimen name="item_select_category_text_size">12sp</dimen>
+    <dimen name="item_select_pictogram_text_size">12sp</dimen>
+
+    <!-- Common Image Size -->
+    <dimen name="upload_image_option_size_width">64dp</dimen>
+    <dimen name="upload_image_option_size_height">48dp</dimen>
+
+    <dimen name="upload_image_option_text_size">14sp</dimen>
+
+    <dimen name="text_input_edit_text_size">16sp</dimen>
+
+    <dimen name="picture_preview_size_width">156dp</dimen>
+    <dimen name="picture_preview_size_height">156dp</dimen>
+
+    <dimen name="button_width_size">200dp</dimen>
+    <dimen name="button_text_size">12sp</dimen>
+
+    <dimen name="floating_button_size">42dp</dimen>
+    <dimen name="floating_button_elevation">16dp</dimen>
+
+    <dimen name="card_view_small_corner_radius">8dp</dimen>
+    <dimen name="card_view_corner_radius">16dp</dimen>
+    <dimen name="card_view_elevation">16dp</dimen>
+
+    <dimen name="image_boy_width_size">82dp</dimen>
+    <dimen name="image_boy_height_size">106dp</dimen>
+    <dimen name="text_size_short_name">32sp</dimen>
+    <dimen name="text_size_large_name">16sp</dimen>
+
+    <dimen name="settings_size">32dp</dimen>
+
+
+    <dimen name="activityPadding">16dp</dimen>
+    <dimen name="placeholderImage">60dp</dimen>
+    <dimen name="placeholderTextHeight">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+
+</resources>

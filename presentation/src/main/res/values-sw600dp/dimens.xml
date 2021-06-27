@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Toolbar Configuration -->
+    <dimen name="toolbar_image_size">48dp</dimen>
+    <dimen name="toolbar_title_text_size">24sp</dimen>
+
+    <!-- Configuration -->
+    <dimen name="configuration_subtitle_text_size">24sp</dimen>
+    <dimen name="configuration_option_text_size">20sp</dimen>
+    <dimen name="configuration_card_view_text_size">28sp</dimen>
+
+    <!-- Add Category -->
+    <dimen name="add_category_view_pager_size_height">256dp</dimen>
+
+    <!-- Phase -->
+    <dimen name="phase_button_size_width">256dp</dimen>
+
+    <!-- Pictogram -->
+    <dimen name="pecs_card_view_size">128dp</dimen>
+
+    <dimen name="pictogram_stripe_phrase_main">128dp</dimen>
+    <dimen name="pictogram_stripe_phrase_action">128dp</dimen>
+    <dimen name="pictogram_stripe_phrase_attribute">96dp</dimen>
+
+    <dimen name="pictogram_stripe_phrase_close">28dp</dimen>
+
+    <dimen name="pecs_text_size">18sp</dimen>
+    <dimen name="pecs_stripe_size_height">32dp</dimen>
+    <dimen name="pecs_play_icon_size">72dp</dimen>
+
+    <dimen name="pecs_stripe_pictogram_main_card_view_size">184dp</dimen>
+    <dimen name="pecs_stripe_pictogram_action_card_view_size">170dp</dimen>
+    <dimen name="pecs_stripe_pictogram_attribute_card_view_size">128dp</dimen>
+
+    <dimen name="pecs_stripe_pictogram_text_size">16sp</dimen>
+    <dimen name="pecs_stripe_megaphone_size">72dp</dimen>
+
+    <dimen name="pictogram_main_text_size">22sp</dimen>
+
+    <!-- Category -->
+    <dimen name="item_category_text_size">18sp</dimen>
+    <dimen name="item_select_category_text_size">18sp</dimen>
+    <dimen name="item_select_pictogram_text_size">14sp</dimen>
+
+    <!-- Common Image Size -->
+    <dimen name="upload_image_option_size_width">84dp</dimen>
+    <dimen name="upload_image_option_size_height">64dp</dimen>
+
+    <dimen name="upload_image_option_text_size">18sp</dimen>
+
+    <dimen name="text_input_edit_text_size">22sp</dimen>
+
+    <dimen name="picture_preview_size_width">256dp</dimen>
+    <dimen name="picture_preview_size_height">256dp</dimen>
+    <dimen name="button_width_size">384dp</dimen>
+    <dimen name="button_text_size">16sp</dimen>
+    <dimen name="floating_button_size">64dp</dimen>
+    <dimen name="image_boy_width_size">130dp</dimen>
+    <dimen name="image_boy_height_size">167dp</dimen>
+    <dimen name="text_size_short_name">64sp</dimen>
+    <dimen name="text_size_large_name">32sp</dimen>
+
+    <dimen name="settings_size">48dp</dimen>
+
+</resources>

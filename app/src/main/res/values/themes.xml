@@ -1,0 +1,41 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="CmiTheme">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/orange</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!--- Tertiary brand color -->
+        <item name="colorTertiary">@color/turquoise</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <!-- Customize your theme here. -->
+        <item name="colorTextButton">@color/white</item>
+        <item name="colorSecondaryButton">@color/dark_blue</item>
+        <item name="colorPrimaryButton">@color/orange</item>
+
+        <item name="colorPrimaryText">@color/white</item>
+        <item name="colorToolbar">@color/dark_blue</item>
+        <item name="colorIconPecsNavigation">@color/white</item>
+        <item name="colorPecsNavigation">@color/orange</item>
+        <item name="colorDivider">@color/gray</item>
+        <item name="colorPictogramBorder">@color/gray_light</item>
+
+        <item name="windowBackground">@color/white</item>
+
+    </style>
+
+    <style name="AppTheme.Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#2B3652</item>
+        <item name="colorPrimaryDark">#2B3652</item>
+
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
+</resources>

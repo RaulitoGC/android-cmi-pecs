@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-cmi.iml" filepath="$PROJECT_DIR$/.idea/modules/android-cmi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-cmi.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-cmi.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/android-cmi.data.iml" filepath="$PROJECT_DIR$/.idea/modules/data/android-cmi.data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/android-cmi.domain.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/android-cmi.domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/android-cmi.presentation.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/android-cmi.presentation.iml" />
+    </modules>
+  </component>
+</project>

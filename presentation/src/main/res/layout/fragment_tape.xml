@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowBackground">
+
+    <include
+        android:id="@+id/ly_toolbar"
+        layout="@layout/toolbar_pecs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_first_action_pictogram"
+        android:layout_width="@dimen/pecs_stripe_pictogram_attribute_card_view_size"
+        android:layout_height="@dimen/pecs_stripe_pictogram_attribute_card_view_size"
+        android:visibility="invisible"
+        app:cardCornerRadius="@dimen/card_view_small_corner_radius"
+        app:cardElevation="@dimen/card_view_elevation"
+        app:cardBackgroundColor="@color/cardViewBackground"
+        android:layout_marginStart="8dp"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card_view_second_action_pictogram"
+        app:layout_constraintStart_toStartOf="@id/view_strip_phrase"
+        app:layout_constraintTop_toBottomOf="@id/ly_toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_view_small_border">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_first_action_pictogram"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toTopOf="@id/txt_first_action_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:src="@drawable/image_noodles" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_first_action_description"
+                style="@style/Widget.Cmi.TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/pecs_stripe_pictogram_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_first_action_pictogram"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Sopa" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_second_action_pictogram"
+        android:layout_width="@dimen/pecs_stripe_pictogram_attribute_card_view_size"
+        android:layout_height="@dimen/pecs_stripe_pictogram_attribute_card_view_size"
+        android:visibility="invisible"
+        app:cardCornerRadius="@dimen/card_view_small_corner_radius"
+        app:cardElevation="@dimen/card_view_elevation"
+        app:cardBackgroundColor="@color/cardViewBackground"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card_view_main_pictogram"
+        app:layout_constraintStart_toEndOf="@id/card_view_first_action_pictogram"
+        app:layout_constraintTop_toBottomOf="@id/ly_toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_view_small_border">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_second_action_pictogram"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toTopOf="@id/txt_second_action_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:src="@drawable/image_noodles" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_second_action_description"
+                style="@style/Widget.Cmi.TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/pecs_stripe_pictogram_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_second_action_pictogram"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Utensilios de cocina" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_main_pictogram"
+        android:layout_width="@dimen/pecs_stripe_pictogram_attribute_card_view_size"
+        android:layout_height="@dimen/pecs_stripe_pictogram_attribute_card_view_size"
+        android:visibility="invisible"
+        app:cardCornerRadius="@dimen/card_view_small_corner_radius"
+        app:cardElevation="@dimen/card_view_elevation"
+        app:cardBackgroundColor="@color/cardViewBackground"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card_view_first_attribute_pictogram"
+        app:layout_constraintStart_toEndOf="@id/card_view_second_action_pictogram"
+        app:layout_constraintTop_toBottomOf="@id/ly_toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_view_small_border">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_main_pictogram"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toTopOf="@id/txt_main_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:src="@drawable/image_noodles" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_main_description"
+                style="@style/Widget.Cmi.TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/pecs_stripe_pictogram_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_main_pictogram"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Sopa" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_first_attribute_pictogram"
+        android:layout_width="@dimen/pecs_stripe_pictogram_attribute_card_view_size"
+        android:layout_height="@dimen/pecs_stripe_pictogram_attribute_card_view_size"
+        android:visibility="invisible"
+        app:cardCornerRadius="@dimen/card_view_small_corner_radius"
+        app:cardElevation="@dimen/card_view_elevation"
+        app:cardBackgroundColor="@color/cardViewBackground"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card_view_second_attribute_pictogram"
+        app:layout_constraintStart_toEndOf="@id/card_view_main_pictogram"
+        app:layout_constraintTop_toBottomOf="@id/ly_toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_view_small_border">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_first_attribute_pictogram"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toTopOf="@id/txt_first_attribute_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:src="@drawable/image_noodles" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_first_attribute_description"
+                style="@style/Widget.Cmi.TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/pecs_stripe_pictogram_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_first_attribute_pictogram"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Utensilios de cocina" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_second_attribute_pictogram"
+        android:layout_width="@dimen/pecs_stripe_pictogram_attribute_card_view_size"
+        android:layout_height="@dimen/pecs_stripe_pictogram_attribute_card_view_size"
+        android:visibility="invisible"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="@dimen/card_view_small_corner_radius"
+        app:cardElevation="@dimen/card_view_elevation"
+        app:cardBackgroundColor="@color/cardViewBackground"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/view_strip_phrase"
+        app:layout_constraintStart_toEndOf="@id/card_view_first_attribute_pictogram"
+        app:layout_constraintTop_toBottomOf="@id/ly_toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_view_small_border">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_second_attribute_pictogram"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toTopOf="@id/txt_second_attribute_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:src="@drawable/image_noodles" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_second_attribute_description"
+                style="@style/Widget.Cmi.TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/pecs_stripe_pictogram_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_second_attribute_pictogram"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Utensilios de cocina" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/view_strip_phrase"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/pecs_stripe_size_height"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/background_strip_phrase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/img_play"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ly_toolbar"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_play"
+        android:layout_width="@dimen/pecs_stripe_megaphone_size"
+        android:layout_height="@dimen/pecs_stripe_megaphone_size"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_strip_phrase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_strip_phrase"
+        app:layout_constraintTop_toTopOf="@id/view_strip_phrase"
+        app:srcCompat="@drawable/ic_volume_up" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

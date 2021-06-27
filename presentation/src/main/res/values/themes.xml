@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CmiTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+
+        <item name="android:textViewStyle">@style/Widget.Cmi.TextView</item>
+
+        <item name="colorTextButton">@color/colorTextButton</item>
+        <item name="colorPrimaryButton">@color/colorPrimaryButton</item>
+        <item name="colorSecondaryButton">@color/colorSecondaryButton</item>
+        <item name="colorPrimaryText">@color/colorPrimaryText</item>
+        <item name="colorToolbar">@color/colorToolbar</item>
+
+        <item name="colorPecsNavigation">@color/colorPecsNavigation</item>
+        <item name="colorIconPecsNavigation">@color/colorIconPecsNavigation</item>
+        <item name="colorDivider">@color/colorDivider</item>
+        <item name="colorPictogramBorder">@color/colorPictogramBorder</item>
+
+        <item name="windowBackground">@color/windowBackground</item>
+        <item name="cardViewBackground">@color/cardViewBackground</item>
+    </style>
+
+    <style name="AppThemeOverlay.Toolbar" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
+        <item name="android:background">@color/colorToolbar</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+        <item name="android:textColorSecondary">@color/colorPrimaryText</item>
+        <item name="actionMenuTextColor">@color/colorPrimaryText</item>
+        <item name="iconTint">@color/colorPrimaryText</item>
+    </style>
+
+</resources>

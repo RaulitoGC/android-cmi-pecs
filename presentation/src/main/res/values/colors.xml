@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#FF364768</color>
+    <color name="colorPrimaryDark">#FF1B2B4A</color>
+    <color name="colorSecondary">#FFFF6400</color>
+
+    <color name="colorTextButton">#FFFFFFFF</color>
+
+    <color name="colorPrimaryButton">#FFFF6400</color>
+    <color name="colorSecondaryButton">#FF012A51</color>
+
+    <color name="colorPrimaryText">#FFFFFFFF</color>
+    <color name="colorPrimaryTextDisable">#858585</color>
+    <color name="colorToolbar">#FF012A51</color>
+
+    <color name="colorPecsNavigation">#FFFF6400</color>
+    <color name="colorIconPecsNavigation">#FFFFFFFF</color>
+    <color name="colorPictogramBorder">#FF7B7B7B</color>
+    <color name="colorDivider">#FFD5D5D5</color>
+
+    <color name="colorTertiary">#FF009F96</color>
+
+    <color name="windowBackground">#FFFFFFFF</color>
+    <color name="cardViewBackground">#FFFFFFFF</color>
+    <color name="colorRed">#B10101</color>
+
+    <color name="background">#dddddd</color>
+</resources>

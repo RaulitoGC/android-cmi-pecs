@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorPrimaryButton" format="color" />
+    <attr name="colorSecondaryButton" format="color" />
+    <attr name="colorTextButton" format="color" />
+    <attr name="colorDivider" format="color"/>
+    <attr name="colorPrimaryText" format="color"/>
+
+    <attr name="colorToolbar" format="color"/>
+
+    <attr name="colorIconPecsNavigation" format="color"/>
+    <attr name="colorPecsNavigation" format="color"/>
+    <attr name="colorPictogramBorder" format="color"/>
+
+    <attr name="colorTertiary" format="color"/>
+
+    <attr name="windowBackground" format="color"/>
+    <attr name="cardViewBackground" format="color"/>
+
+</resources>

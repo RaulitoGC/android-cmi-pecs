@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_cmi"
+    app:startDestination="@id/introFragment">
+
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.cmi.presentation.intro.IntroFragment"
+        android:label="IntroFragment"
+        tools:layout="@layout/fragment_intro">
+
+        <action
+            android:id="@+id/action_introFragment_to_configurationFragment"
+            app:destination="@id/configurationFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_down" />
+
+        <action
+            android:id="@+id/action_introFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.cmi.presentation.pecs.category.CategoryFragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/fragment_category">
+
+        <action
+            android:id="@+id/action_categoryFragment_to_pictogramFragment"
+            app:destination="@id/pictogramFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/configurationFragment"
+        android:name="com.cmi.presentation.config.ConfigurationFragment"
+        android:label="ConfigurationFragment"
+        tools:layout="@layout/fragment_configuration">
+        <action
+            android:id="@+id/action_configurationFragment_to_configurationOptionFragment"
+            app:destination="@id/configurationOptionFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_down"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/addPictogramFragment"
+        android:name="com.cmi.presentation.config.add.pictogram.AddPictogramFragment"
+        android:label="AddPictogramFragment"
+        tools:layout="@layout/fragment_add_pictogram" />
+
+    <fragment
+        android:id="@+id/addCategoryFragment"
+        android:name="com.cmi.presentation.config.add.category.AddCategoryFragment"
+        android:label="AddCategoryFragment"
+        tools:layout="@layout/fragment_add_category" />
+
+    <fragment
+        android:id="@+id/selectCategoryFragment"
+        android:name="com.cmi.presentation.config.edit.SelectCategoryFragment"
+        android:label="SelectCategoryFragment"
+        tools:layout="@layout/fragment_select_category">
+
+        <action
+            android:id="@+id/action_selectCategoryFragment_to_selectPictogramFragment"
+            app:destination="@id/selectPictogramFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/action_selectCategoryFragment_to_editCategoryFragment"
+            app:destination="@id/editCategoryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_selectCategoryFragment_to_selectPictogramForPecsFragment"
+            app:destination="@id/selectPictogramForPecsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_selectCategoryFragment_to_deletePictogramFragment"
+            app:destination="@id/deletePictogramFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="categorySelectOptions"
+            app:argType="com.cmi.presentation.config.edit.CategorySelectOptions" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/selectPictogramFragment"
+        android:name="com.cmi.presentation.config.edit.pictogram.select.SelectPictogramFragment"
+        android:label="SelectPictogramFragment"
+        tools:layout="@layout/fragment_select_pictogram">
+        <action
+            android:id="@+id/action_selectPictogramFragment_to_editPictogramFragment"
+            app:destination="@id/editPictogramFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="categoryModel"
+            app:argType="com.cmi.presentation.model.CategoryModel" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editCategoryFragment"
+        android:name="com.cmi.presentation.config.edit.category.EditCategoryFragment"
+        android:label="EditCategoryFragment"
+        tools:layout="@layout/fragment_edit_picture">
+
+        <argument
+            android:name="categoryModel"
+            app:argType="com.cmi.presentation.model.CategoryModel" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/editPictogramFragment"
+        android:name="com.cmi.presentation.config.edit.pictogram.EditPictogramFragment"
+        android:label="EditPictogramFragment"
+        tools:layout="@layout/fragment_edit_picture">
+
+        <argument
+            android:name="pictogramModel"
+            app:argType="com.cmi.presentation.model.PictogramModel" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/configurationOptionFragment"
+        android:name="com.cmi.presentation.config.ConfigurationOptionFragment"
+        android:label="ConfigurationOptionFragment"
+        tools:layout="@layout/fragment_configuration_option">
+        <action
+            android:id="@+id/action_configurationOptionFragment_to_addCategoryFragment"
+            app:destination="@id/addCategoryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_configurationOptionFragment_to_addPictogramFragment"
+            app:destination="@id/addPictogramFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_configurationOptionFragment_to_selectCategoryFragment"
+            app:destination="@id/selectCategoryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="flow"
+            app:argType="com.cmi.presentation.config.FLOW" />
+        <action
+            android:id="@+id/action_configurationOptionFragment_to_selectCategoryForPecsFragment"
+            app:destination="@id/selectCategoryForPecsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_configurationOptionFragment_to_deleteCategoryFragment"
+            app:destination="@id/deleteCategoryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/selectCategoryForPecsFragment"
+        android:name="com.cmi.presentation.config.select.category.SelectCategoryForPecsFragment"
+        android:label="SelectCategoryForPecsFragment"
+        tools:layout="@layout/fragment_select" />
+    <fragment
+        android:id="@+id/selectPictogramForPecsFragment"
+        android:name="com.cmi.presentation.config.select.pictogram.SelectPictogramForPecsFragment"
+        android:label="SelectPictogramForPecsFragment"
+        tools:layout="@layout/fragment_select" >
+        <argument
+            android:name="categoryModel"
+            app:argType="com.cmi.presentation.model.CategoryModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteCategoryFragment"
+        android:name="com.cmi.presentation.config.delete.category.DeleteCategoryFragment"
+        android:label="DeleteCategoryFragment"
+        tools:layout="@layout/fragment_select" />
+    <fragment
+        android:id="@+id/deletePictogramFragment"
+        android:name="com.cmi.presentation.config.delete.pictogram.DeletePictogramFragment"
+        android:label="DeletePictogramFragment"
+        tools:layout="@layout/fragment_select" >
+        <argument
+            android:name="categoryModel"
+            app:argType="com.cmi.presentation.model.CategoryModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/pictogramFragment"
+        android:name="com.cmi.presentation.pecs.pictogram.PictogramFragment"
+        android:label="PictogramFragment" >
+        <action
+            android:id="@+id/action_pictogramFragment_to_stripePhraseFragment"
+            app:destination="@id/stripePhraseFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <argument
+            android:name="categoryModel"
+            app:argType="com.cmi.presentation.model.CategoryModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/stripePhraseFragment"
+        android:name="com.cmi.presentation.pecs.tape.TapeFragment"
+        android:label="StripePhraseFragment" />
+
+
+</navigation>
