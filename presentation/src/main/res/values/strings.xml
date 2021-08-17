@@ -103,6 +103,15 @@
     <string name="text_configuration_error_empty_image">Debe seleccionar una imagen</string>
     <string name="text_configuration_error_empty_category">Debe seleccionar una categoría</string>
 
+    <!-- Survey -->
+    <string name="text_author_presentation">Hola! Soy Raul Guzman, autor de CMI. Esta herramienta fue creada de manera gratuita pensando en apoyar a la comunidad TEA y en las familias que día a día luchan para salir adelante. Si quieres de alguna manera apoyarme, te agradecería que realices las siguientes encuentas.</string>
+    <string name="text_title_start_survey"> Encuesta de Entrada</string>
+    <string name="text_message_start_survey"> Encuesta para recaudar la opinión de las familias antes de utilizar CMI</string>
+    <string name="text_title_end_survey">Encuesta de Salida</string>
+    <string name="text_message_end_survey">Encuesta para recaudar la opinión de las familias luego de utilizar CMI</string>
+    <string name="text_btn_start_survey">Encuesta de Entrada</string>
+    <string name="text_btn_end_survey">Encuesta de Salida</string>
+
     <!-- Alert -->
     <string name="text_accept">Aceptar</string>
     <string name="text_survey_title">Apoyemos a la Comunidad CMI</string>

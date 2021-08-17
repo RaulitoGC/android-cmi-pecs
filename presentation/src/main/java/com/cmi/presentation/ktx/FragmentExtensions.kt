@@ -45,3 +45,7 @@ fun Fragment.showAlertMessage(
             .show()
     }
 }
+
+fun Fragment.openURL(URL: String) {
+    this.context?.openUrl(url = URL)
+}

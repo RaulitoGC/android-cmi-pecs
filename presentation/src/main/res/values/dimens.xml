@@ -8,6 +8,9 @@
     <dimen name="toolbar_image_size">32dp</dimen>
     <dimen name="toolbar_title_text_size">18sp</dimen>
 
+    <!-- Survey -->
+    <dimen name="survey_text_size">14sp</dimen>
+
     <!-- Configuration -->
     <dimen name="configuration_subtitle_text_size">18sp</dimen>
     <dimen name="configuration_option_text_size">16sp</dimen>

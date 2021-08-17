@@ -3,7 +3,6 @@ package com.cmi.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cmi.presentation.manager.TextToSpeechManager
-import timber.log.Timber
 
 class CmiActivity : AppCompatActivity() {
 

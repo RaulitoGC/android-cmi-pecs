@@ -27,6 +27,14 @@
             app:popEnterAnim="@anim/no_animation"
             app:popExitAnim="@anim/slide_out_right"/>
 
+        <action
+            android:id="@+id/action_introFragment_to_surveyFragment"
+            app:destination="@id/surveyFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/no_animation"
+            app:popEnterAnim="@anim/no_animation"
+            app:popExitAnim="@anim/slide_down"/>
+
     </fragment>
 
     <fragment
@@ -228,8 +236,8 @@
         android:name="com.cmi.presentation.pecs.pictogram.PictogramFragment"
         android:label="PictogramFragment" >
         <action
-            android:id="@+id/action_pictogramFragment_to_stripePhraseFragment"
-            app:destination="@id/stripePhraseFragment"
+            android:id="@+id/action_pictogramFragment_to_tapeFragment"
+            app:destination="@id/tapeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/no_animation"
             app:popEnterAnim="@anim/no_animation"
@@ -239,10 +247,16 @@
             android:name="categoryModel"
             app:argType="com.cmi.presentation.model.CategoryModel" />
     </fragment>
-    <fragment
-        android:id="@+id/stripePhraseFragment"
-        android:name="com.cmi.presentation.pecs.tape.TapeFragment"
-        android:label="StripePhraseFragment" />
 
+    <fragment
+        android:id="@+id/tapeFragment"
+        android:name="com.cmi.presentation.pecs.tape.TapeFragment"
+        android:label="TapeFragment" />
+
+    <fragment
+        android:id="@+id/surveyFragment"
+        android:name="com.cmi.presentation.survey.SurveyFragment"
+        android:label="SurveyFragment"
+        tools:layout="@layout/fragment_survey"/>
 
 </navigation>

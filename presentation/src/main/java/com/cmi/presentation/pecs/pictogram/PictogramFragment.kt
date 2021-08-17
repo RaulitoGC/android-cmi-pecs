@@ -105,7 +105,7 @@ class PictogramFragment : Fragment(), PictogramAdapter.ItemListener {
 
         imgPlay.setSafeOnClickListener {
             if (launchStripScreen()) {
-                findNavController().navigate(R.id.action_pictogramFragment_to_stripePhraseFragment)
+                findNavController().navigate(R.id.action_pictogramFragment_to_tapeFragment)
             }
         }
     }

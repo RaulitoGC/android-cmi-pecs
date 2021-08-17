@@ -7,7 +7,7 @@ ext {
     targetVersion = 30
 
     // Kotlin
-    kotlinCoroutinesVersion = "1.3.9"
+    kotlinCoroutinesVersion = "1.5.1"
 
     // Android
     coreKtxVersion = "1.3.2"
@@ -17,7 +17,7 @@ ext {
     materialComponentsVersion = "1.4.0-alpha01"
     navigationComponentVersion = "2.3.1"
     preferenceVersion = "1.1.1"
-    roomVersion = "2.2.5"
+    roomVersion = "2.3.0"
 
     // Third-party libraries
     retrofitVersion = "2.9.0"
@@ -28,7 +28,7 @@ ext {
     koinVersion = "2.2.0"
     pickitVersion = "0.1.14"
     dexterVersion = "6.2.2"
-    facebookShimmerVersion = "0.5.0"
+    circleImageViewVersion = "3.1.0"
 
     // Test
     junitVersion = "4.12"
@@ -61,7 +61,7 @@ ext {
             "com.github.bumptech.glide:glide:$glideVersion",
             "com.github.HBiSoft:PickiT:$pickitVersion",
             "com.karumi:dexter:$dexterVersion",
-            "com.facebook.shimmer:shimmer:$facebookShimmerVersion"
+            "de.hdodenhof:circleimageview:$circleImageViewVersion"
     ]
 
     roomCompiler = "androidx.room:room-compiler:$roomVersion"

@@ -36,6 +36,18 @@
         app:srcCompat="@drawable/ic_cmi_boy" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_survey"
+        android:layout_width="@dimen/settings_size"
+        android:layout_height="@dimen/settings_size"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:padding="4dp"
+        app:layout_constraintEnd_toStartOf="@id/img_settings"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_survey"
+        app:tint="@android:color/white" />
+
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_settings"
         android:layout_width="@dimen/settings_size"
         android:layout_height="@dimen/settings_size"
