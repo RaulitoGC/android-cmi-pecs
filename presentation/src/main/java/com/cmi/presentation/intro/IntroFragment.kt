@@ -1,5 +1,6 @@
 package com.cmi.presentation.intro
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,11 +12,12 @@ import androidx.navigation.fragment.findNavController
 import com.cmi.presentation.Constants.SURVEY_URL
 import com.cmi.presentation.Constants.YOUTUBE_GUIDE
 import com.cmi.presentation.R
+import com.cmi.presentation.common.BaseFragment
 import com.cmi.presentation.databinding.FragmentIntroBinding
 import com.cmi.presentation.ktx.openURL
 import com.cmi.presentation.ktx.setSafeOnClickListener
 
-class IntroFragment : Fragment() {
+class IntroFragment : BaseFragment() {
 
     private var _binding: FragmentIntroBinding? = null
     private val binding get() = _binding!!

@@ -1,4 +1,4 @@
-package com.cmi.presentation.di
+package com.cmi.presentation.di.glide
 
 import android.content.Context
 import android.util.Log

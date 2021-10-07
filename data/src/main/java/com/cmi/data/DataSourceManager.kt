@@ -7,7 +7,7 @@ import com.cmi.data.local.mapper.toPictogram
 import com.cmi.data.local.mapper.toPictogramEntity
 import com.cmi.domain.entity.Category
 import com.cmi.domain.entity.Pictogram
-import com.cmi.domain.system.System
+import com.cmi.domain.system.CmiSystem
 import com.cmi.domain.usecase.SavePictogramPecsIdUseCase.Companion.PICTOGRAM_ATTRIBUTE
 import com.cmi.domain.usecase.SavePictogramPecsIdUseCase.Companion.PICTOGRAM_FIRST_ACTION
 import com.cmi.domain.usecase.SavePictogramPecsIdUseCase.Companion.PICTOGRAM_INVALID_ID
@@ -17,9 +17,8 @@ import com.cmi.domain.usecase.SavePictogramPecsIdUseCase.Companion.PICTOGRAM_SEC
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import timber.log.Timber
 
-class DataSourceManager(private val localDataSource: LocalDataSource) : System {
+class DataSourceManager(private val localDataSource: LocalDataSource) : CmiSystem {
 
     override fun getCategories() = flow {
         localDataSource.getCategories()

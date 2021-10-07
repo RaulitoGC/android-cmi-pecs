@@ -1,16 +1,16 @@
 package com.cmi.domain.usecase
 
 import com.cmi.domain.entity.Category
-import com.cmi.domain.system.System
+import com.cmi.domain.system.CmiSystem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class UpdateCategoryUseCase(private val system: System) {
+class UpdateCategoryUseCase(private val cmiSystem: CmiSystem) {
 
     suspend operator fun invoke(category: Category) = flow {
-        return@flow system.updateCategory(category = category).collect { none ->
+        return@flow cmiSystem.updateCategory(category = category).collect { none ->
             emit(none)
         }
     }.flowOn(Dispatchers.IO)

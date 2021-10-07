@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.hbisoft.pickit.PickiT
 import com.hbisoft.pickit.PickiTCallbacks
 
-abstract class PickitFragment: Fragment(), PickiTCallbacks {
+abstract class PickitFragment: BaseFragment(), PickiTCallbacks {
 
     abstract fun onStartLoadingImage()
     abstract fun onProgressUpdate(progress: Int)

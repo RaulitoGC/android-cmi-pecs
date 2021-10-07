@@ -1,6 +1,7 @@
 package com.cmi.presentation.config.add.pictogram
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -8,10 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.cmi.presentation.R
 import com.cmi.presentation.common.PickitFragment
+import com.cmi.presentation.common.ViewModelFactory
+import com.cmi.presentation.config.add.category.AddCategoryViewModel
 import com.cmi.presentation.config.contract.ChoosePictureContract
 import com.cmi.presentation.config.contract.TakePictureContract
 import com.cmi.presentation.databinding.FragmentAddPictogramBinding
@@ -21,19 +25,29 @@ import com.cmi.presentation.model.CategorySelectableModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
+import javax.inject.Inject
 
 class AddPictogramFragment : PickitFragment(), CategoryAdapter.ItemListener {
 
     private var _binding: FragmentAddPictogramBinding? = null
     private val binding get() = _binding!!
 
-    private val addPictogramViewModel: AddPictogramViewModel by viewModel {
-        parametersOf(
-            CategoryAdapter.getItemsPerScreen()
-        )
-    }
+    lateinit var addPictogramViewModel: AddPictogramViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private var categoryAdapter: CategoryAdapter? = null
     private var lastUriPathUploaded: String? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@AddPictogramFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        addPictogramViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddPictogramViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

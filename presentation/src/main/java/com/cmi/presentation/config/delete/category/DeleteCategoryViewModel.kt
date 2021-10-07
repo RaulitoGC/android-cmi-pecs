@@ -17,8 +17,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
-class DeleteCategoryViewModel(
+class DeleteCategoryViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val deleteCategoriesUseCase: DeleteCategoriesUseCase
 ) : ViewModel() {

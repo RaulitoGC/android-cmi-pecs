@@ -11,8 +11,9 @@ import com.cmi.presentation.model.mapper.toCategory
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AddCategoryViewModel(private val addCategoryUseCase: AddCategoryUseCase) : ViewModel() {
+class AddCategoryViewModel @Inject constructor(private val addCategoryUseCase: AddCategoryUseCase) : ViewModel() {
 
     private val _showMessage: MutableLiveData<Int> by lazy {
         MutableLiveData<Int>()

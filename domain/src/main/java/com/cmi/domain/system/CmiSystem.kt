@@ -4,7 +4,7 @@ import com.cmi.domain.entity.Category
 import com.cmi.domain.entity.Pictogram
 import kotlinx.coroutines.flow.Flow
 
-interface System {
+interface CmiSystem {
 
     fun getCategories(): Flow<List<Category>>
 

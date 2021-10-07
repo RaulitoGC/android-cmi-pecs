@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -39,5 +40,13 @@ dependencies {
     implementation rootProject.ext.debugDependencies
 
     implementation project(":presentation")
+    implementation project(":data")
+    implementation project(":domain")
+
+    kapt rootProject.ext.roomCompiler
+
     testImplementation rootProject.ext.unitTestDependencies
+
+    implementation 'com.google.dagger:dagger:2.39.1'
+    kapt 'com.google.dagger:dagger-compiler:2.39.1'
 }

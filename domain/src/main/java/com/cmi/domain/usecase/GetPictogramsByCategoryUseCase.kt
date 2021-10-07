@@ -1,12 +1,12 @@
 package com.cmi.domain.usecase
 
-import com.cmi.domain.system.System
+import com.cmi.domain.system.CmiSystem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class GetPictogramsByCategoryUseCase(private val system: System) {
+class GetPictogramsByCategoryUseCase(private val cmiSystem: CmiSystem) {
 
     companion object{
         private const val ATTRIBUTE_CATEGORY_ID = 2
@@ -22,7 +22,7 @@ class GetPictogramsByCategoryUseCase(private val system: System) {
     }
 
     suspend operator fun invoke(categoryId: Int) = flow {
-        return@flow system.getPictogramsByCategory(categoryId = categoryId).collect { pictograms ->
+        return@flow cmiSystem.getPictogramsByCategory(categoryId = categoryId).collect { pictograms ->
             emit(pictograms)
         }
     }.flowOn(Dispatchers.IO)

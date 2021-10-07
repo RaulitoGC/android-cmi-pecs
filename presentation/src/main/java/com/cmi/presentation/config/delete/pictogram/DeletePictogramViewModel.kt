@@ -18,8 +18,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
-class DeletePictogramViewModel(
+class DeletePictogramViewModel @Inject constructor(
     private val getPictogramsByCategoryUseCase: GetPictogramsByCategoryUseCase,
     private val deletePictogramsUseCase: DeletePictogramsUseCase
 ) : ViewModel() {

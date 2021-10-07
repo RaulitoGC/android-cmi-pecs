@@ -10,8 +10,9 @@ import com.cmi.presentation.model.PictogramModel
 import com.cmi.presentation.model.mapper.toPictogramModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TapeViewModel(
+class TapeViewModel @Inject constructor(
     private val getLastPecsPictogramsUseCase: GetLastPecsPictogramsUseCase
 ) : ViewModel() {
 

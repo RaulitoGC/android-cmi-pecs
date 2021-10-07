@@ -5,8 +5,9 @@ import android.speech.tts.TextToSpeech
 import androidx.core.os.bundleOf
 import timber.log.Timber
 import java.util.*
+import javax.inject.Inject
 
-class TextToSpeechManager(context: Context) {
+class TextToSpeechManager @Inject constructor(context: Context) {
 
     companion object {
         private const val LANGUAGE = "es"

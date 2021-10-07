@@ -53,4 +53,7 @@ dependencies {
     androidTestImplementation rootProject.ext.instrumentedTestDependencies
 
     debugImplementation "androidx.fragment:fragment-testing:1.3.2"
+
+    implementation 'com.google.dagger:dagger:2.39.1'
+    kapt 'com.google.dagger:dagger-compiler:2.39.1'
 }

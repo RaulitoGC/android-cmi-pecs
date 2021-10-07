@@ -13,8 +13,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
-class EditPictogramViewModel(private val updatePictogramUseCase: UpdatePictogramUseCase) :
+class EditPictogramViewModel @Inject constructor(private val updatePictogramUseCase: UpdatePictogramUseCase) :
     ViewModel() {
 
     private val _uiState: MutableLiveData<EditPictogramUiState> by lazy {

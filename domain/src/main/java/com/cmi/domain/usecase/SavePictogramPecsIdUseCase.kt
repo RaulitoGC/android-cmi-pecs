@@ -1,12 +1,12 @@
 package com.cmi.domain.usecase
 
-import com.cmi.domain.system.System
+import com.cmi.domain.system.CmiSystem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class SavePictogramPecsIdUseCase(private val system: System) {
+class SavePictogramPecsIdUseCase(private val cmiSystem: CmiSystem) {
 
     companion object {
         const val PICTOGRAM_MAIN = "com.cmi.domain.usecase.PICTOGRAM_MAIN_ID"
@@ -22,7 +22,7 @@ class SavePictogramPecsIdUseCase(private val system: System) {
     }
 
     suspend operator fun invoke(type: String, pictogramId: Int) = flow {
-        return@flow system.savePictogramPecsId(
+        return@flow cmiSystem.savePictogramPecsId(
             type = type,
             pictogramId = pictogramId
         ).collect { none ->

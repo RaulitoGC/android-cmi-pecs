@@ -1,30 +1,31 @@
 package com.rguzman.cmi
 
 import android.app.Application
-import com.cmi.presentation.di.presentationModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
+import com.cmi.presentation.di.PresentationComponentProvider
+import com.cmi.presentation.di.activity.ActivityComponent
+import com.rguzman.cmi.di.AppComponent
+import com.rguzman.cmi.di.AppModule
+import com.rguzman.cmi.di.DaggerAppComponent
 import timber.log.Timber
 
-class CmiApplication : Application() {
+class CmiApplication : Application(), PresentationComponentProvider {
+
+    private val appComponent: AppComponent by lazy {
+        DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
+    }
 
     override fun onCreate() {
         super.onCreate()
         initLogger()
-        initInjector()
-    }
-
-    private fun initInjector() {
-        startKoin {
-            androidLogger(Level.NONE)
-            androidContext(this@CmiApplication)
-            modules(presentationModule)
-        }
     }
 
     private fun initLogger() {
         Timber.plant(TimberLoggingTree())
+    }
+
+    override fun provideActivityComponent(): ActivityComponent {
+        return appComponent.newActivityComponentBuilder().build()
     }
 }

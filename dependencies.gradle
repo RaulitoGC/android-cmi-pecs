@@ -39,7 +39,9 @@ ext {
             "androidx.core:core-ktx:$coreKtxVersion",
             "androidx.appcompat:appcompat:$appCompatVersion",
             "com.google.android.material:material:$materialComponentsVersion",
-            "org.koin:koin-android:$koinVersion"
+            "org.koin:koin-android:$koinVersion",
+            "androidx.room:room-runtime:$roomVersion",
+            "androidx.room:room-ktx:$roomVersion"
     ]
 
     glideCompiler = "com.github.bumptech.glide:compiler:$glideVersion"

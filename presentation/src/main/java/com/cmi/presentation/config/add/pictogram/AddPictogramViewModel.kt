@@ -15,9 +15,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
-class AddPictogramViewModel(
-    private val itemsPerScreen: Int,
+class AddPictogramViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val addPictogramUseCase: AddPictogramUseCase) : ViewModel() {
 
@@ -45,11 +45,7 @@ class AddPictogramViewModel(
         this.takePicturePath = path
     }
 
-    init {
-        getCategories()
-    }
-
-    private fun getCategories() = viewModelScope.launch {
+    fun getCategories(itemsPerScreen: Int) = viewModelScope.launch {
         getCategoriesUseCase()
             .catch { exception ->
                 Timber.e(exception)

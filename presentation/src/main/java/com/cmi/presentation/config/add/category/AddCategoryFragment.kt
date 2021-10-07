@@ -1,6 +1,7 @@
 package com.cmi.presentation.config.add.category
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -8,26 +9,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.cmi.presentation.R
 import com.cmi.presentation.common.PickitFragment
+import com.cmi.presentation.common.ViewModelFactory
 import com.cmi.presentation.config.contract.ChoosePictureContract
 import com.cmi.presentation.config.contract.TakePictureContract
 import com.cmi.presentation.databinding.FragmentAddCategoryBinding
 import com.cmi.presentation.ktx.*
 import com.cmi.presentation.manager.DexterManager
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
+import javax.inject.Inject
 
 class AddCategoryFragment : PickitFragment() {
 
     private var _binding: FragmentAddCategoryBinding? = null
     private val binding get() = _binding!!
 
-    private val addCategoryViewModel: AddCategoryViewModel by viewModel()
-
     private var lastUriPathUploaded: String? = null
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var addCategoryViewModel: AddCategoryViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@AddCategoryFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        addCategoryViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddCategoryViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -20,8 +20,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
-open class PictogramViewModel(
+open class PictogramViewModel @Inject constructor(
     private val categoryModel: CategoryModel,
     private val getPictogramsByCategoryUseCase: GetPictogramsByCategoryUseCase,
     private val updatePictogramPriorityUseCase: UpdatePictogramPriorityUseCase,

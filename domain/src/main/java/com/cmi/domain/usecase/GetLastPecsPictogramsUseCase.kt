@@ -1,12 +1,12 @@
 package com.cmi.domain.usecase
 
-import com.cmi.domain.system.System
+import com.cmi.domain.system.CmiSystem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class GetLastPecsPictogramsUseCase(private val system: System) {
+class GetLastPecsPictogramsUseCase(private val cmiSystem: CmiSystem) {
 
     companion object{
 
@@ -16,7 +16,7 @@ class GetLastPecsPictogramsUseCase(private val system: System) {
     }
 
     suspend operator fun invoke() = flow {
-        return@flow system.getLastPecsPictograms().collect { pictogramMap ->
+        return@flow cmiSystem.getLastPecsPictograms().collect { pictogramMap ->
             emit(pictogramMap)
         }
     }.flowOn(Dispatchers.IO)

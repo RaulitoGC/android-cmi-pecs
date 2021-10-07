@@ -13,8 +13,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
-class SelectCategoryViewModel(private val getCategoriesUseCase: GetCategoriesUseCase) : ViewModel() {
+class SelectCategoryViewModel @Inject constructor(private val getCategoriesUseCase: GetCategoriesUseCase) : ViewModel() {
 
     private val _categories: MutableLiveData<List<CategoryModel>> by lazy {
         MutableLiveData<List<CategoryModel>>().also {

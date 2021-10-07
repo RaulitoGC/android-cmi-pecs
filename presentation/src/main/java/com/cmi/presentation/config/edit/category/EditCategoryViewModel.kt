@@ -13,8 +13,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
-class EditCategoryViewModel(private val updateCategoryUseCase: UpdateCategoryUseCase) :
+class EditCategoryViewModel @Inject constructor(private val updateCategoryUseCase: UpdateCategoryUseCase) :
     ViewModel() {
 
     private val _uiState: MutableLiveData<EditCategoryUiState> by lazy {
