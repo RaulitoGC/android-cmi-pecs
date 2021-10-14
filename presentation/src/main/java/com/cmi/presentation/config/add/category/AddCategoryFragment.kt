@@ -28,8 +28,6 @@ class AddCategoryFragment : PickitFragment() {
     private val binding get() = _binding!!
 
     private var lastUriPathUploaded: String? = null
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
     lateinit var addCategoryViewModel: AddCategoryViewModel
 
     override fun onAttach(context: Context) {

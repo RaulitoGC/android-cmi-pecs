@@ -1,26 +1,41 @@
 package com.cmi.presentation.pecs.tape
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.cmi.presentation.CmiActivity
 import com.cmi.presentation.R
+import com.cmi.presentation.common.BaseFragment
 import com.cmi.presentation.databinding.FragmentTapeBinding
 import com.cmi.presentation.ktx.loadImage
 import com.cmi.presentation.ktx.setSafeOnClickListener
 import com.cmi.presentation.ktx.setUpNavigation
 import com.cmi.presentation.model.PictogramModel
+import com.cmi.presentation.pecs.pictogram.PictogramViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TapeFragment : Fragment() {
+class TapeFragment : BaseFragment() {
 
     private var _binding: FragmentTapeBinding? = null
     private val binding get() = _binding!!
 
-    private val tapeViewModel: TapeViewModel by viewModel()
+    private lateinit var tapeViewModel: TapeViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@TapeFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        tapeViewModel =
+            ViewModelProvider(this, viewModelFactory).get(TapeViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

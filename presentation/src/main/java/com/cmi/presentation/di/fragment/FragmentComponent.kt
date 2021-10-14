@@ -1,6 +1,8 @@
 package com.cmi.presentation.di.fragment
 
 import androidx.fragment.app.Fragment
+import com.cmi.data.di.DataModule
+import com.cmi.domain.di.UseCaseModule
 import com.cmi.presentation.config.ConfigurationFragment
 import com.cmi.presentation.config.add.category.AddCategoryFragment
 import com.cmi.presentation.config.add.pictogram.AddPictogramFragment
@@ -21,7 +23,7 @@ import com.cmi.presentation.pecs.tape.TapeFragment
 import dagger.Subcomponent
 
 @FragmentScope
-@Subcomponent(modules = [ViewModelModule::class])
+@Subcomponent(modules = [ViewModelModule::class, UseCaseModule::class, DataModule::class])
 interface FragmentComponent {
 
     fun inject(addCategoryFragment: AddCategoryFragment)

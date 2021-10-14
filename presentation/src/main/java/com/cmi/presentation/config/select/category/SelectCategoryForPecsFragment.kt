@@ -1,13 +1,17 @@
 package com.cmi.presentation.config.select.category
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cmi.presentation.R
+import com.cmi.presentation.common.BaseFragment
+import com.cmi.presentation.config.edit.SelectCategoryViewModel
 import com.cmi.presentation.databinding.FragmentSelectBinding
 import com.cmi.presentation.ktx.setSafeOnClickListener
 import com.cmi.presentation.ktx.setUpNavigation
@@ -17,7 +21,7 @@ import com.cmi.presentation.model.CategorySelectableModel
 import com.cmi.presentation.utils.MarginItemDecorator
 import org.koin.android.ext.android.inject
 
-class SelectCategoryForPecsFragment : Fragment(), SelectableCategoryAdapter.ItemListener {
+class SelectCategoryForPecsFragment : BaseFragment(), SelectableCategoryAdapter.ItemListener {
 
     companion object {
         private const val SELECT_CATEGORY_SPAN_COUNT = 5
@@ -27,7 +31,18 @@ class SelectCategoryForPecsFragment : Fragment(), SelectableCategoryAdapter.Item
     private val binding get() = _binding!!
 
     private var selectableCategoryAdapter: SelectableCategoryAdapter? = null
-    private val selectCategoryForPecsViewModel: SelectCategoryForPecsViewModel by inject()
+    private lateinit var selectCategoryForPecsViewModel: SelectCategoryForPecsViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@SelectCategoryForPecsFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        selectCategoryForPecsViewModel =
+            ViewModelProvider(this, viewModelFactory).get(SelectCategoryForPecsViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

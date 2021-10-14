@@ -19,8 +19,7 @@ import javax.inject.Inject
 
 class CategoryViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase,
-    private val cleanLastPictogramsUseCase: CleanLastPictogramsUseCase,
-    private val itemsPerScreen: Int
+    private val cleanLastPictogramsUseCase: CleanLastPictogramsUseCase
 ) : ViewModel() {
 
     private val _categories: MutableLiveData<Map<Int, List<CategoryModel>>> by lazy {
@@ -32,10 +31,10 @@ class CategoryViewModel @Inject constructor(
 
     init {
         cleanLastPecsPictograms()
-        getCategories()
+        getCategories(itemsPerScreen = CategoryAdapter.getItemsPerScreen())
     }
 
-    private fun getCategories() = viewModelScope.launch {
+    private fun getCategories(itemsPerScreen: Int) = viewModelScope.launch {
         delay(Constants.SHIMMER_EFFECT_DELAY) //Delay for show shimmer effect
         getCategoriesUseCase()
             .catch { exception ->

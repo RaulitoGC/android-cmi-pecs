@@ -1,15 +1,19 @@
 package com.cmi.presentation.config.edit
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cmi.presentation.Constants
 import com.cmi.presentation.R
+import com.cmi.presentation.common.BaseFragment
+import com.cmi.presentation.config.edit.pictogram.EditPictogramViewModel
 import com.cmi.presentation.databinding.FragmentSelectCategoryBinding
 import com.cmi.presentation.ktx.setUpNavigation
 import com.cmi.presentation.model.CategoryModel
@@ -24,7 +28,7 @@ enum class CategorySelectOptions {
     EDIT_PICTOGRAM
 }
 
-class SelectCategoryFragment : Fragment(), SelectCategoryAdapter.ItemListener {
+class SelectCategoryFragment : BaseFragment(), SelectCategoryAdapter.ItemListener {
 
     companion object {
         private const val CATEGORY_SPAN_COUNT = 5
@@ -33,9 +37,20 @@ class SelectCategoryFragment : Fragment(), SelectCategoryAdapter.ItemListener {
     private var _binding: FragmentSelectCategoryBinding? = null
     private val binding get() = _binding!!
 
-    private val selectCategoryViewModel: SelectCategoryViewModel by viewModel()
+    private lateinit var selectCategoryViewModel: SelectCategoryViewModel
     private val args: SelectCategoryFragmentArgs by navArgs()
     private var adapter: SelectCategoryAdapter? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@SelectCategoryFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        selectCategoryViewModel =
+            ViewModelProvider(this, viewModelFactory).get(SelectCategoryViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

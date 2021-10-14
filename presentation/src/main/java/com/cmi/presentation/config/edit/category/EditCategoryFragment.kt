@@ -1,6 +1,7 @@
 package com.cmi.presentation.config.edit.category
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -18,18 +20,27 @@ import com.cmi.presentation.config.contract.TakePictureContract
 import com.cmi.presentation.databinding.FragmentEditPictureBinding
 import com.cmi.presentation.ktx.*
 import com.cmi.presentation.manager.DexterManager
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class EditCategoryFragment : PickitFragment() {
 
     private var _binding: FragmentEditPictureBinding? = null
     private val binding get() = _binding!!
 
-    private val editCategoryViewModel: EditCategoryViewModel by viewModel()
+    private lateinit var editCategoryViewModel: EditCategoryViewModel
     private val args: EditCategoryFragmentArgs by navArgs()
 
     private var lastUriPathUploaded: String? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@EditCategoryFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        editCategoryViewModel =
+            ViewModelProvider(this, viewModelFactory).get(EditCategoryViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

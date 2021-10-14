@@ -1,6 +1,7 @@
 package com.cmi.presentation.config.edit.pictogram
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -15,6 +17,7 @@ import com.cmi.presentation.R
 import com.cmi.presentation.common.PickitFragment
 import com.cmi.presentation.config.contract.ChoosePictureContract
 import com.cmi.presentation.config.contract.TakePictureContract
+import com.cmi.presentation.config.edit.pictogram.select.SelectPictogramViewModel
 import com.cmi.presentation.databinding.FragmentEditPictureBinding
 import com.cmi.presentation.ktx.*
 import com.cmi.presentation.manager.DexterManager
@@ -26,10 +29,21 @@ class EditPictogramFragment : PickitFragment() {
     private var _binding: FragmentEditPictureBinding? = null
     private val binding get() = _binding!!
 
-    private val editPictogramViewModel: EditPictogramViewModel by viewModel()
+    private lateinit var editPictogramViewModel: EditPictogramViewModel
     private val args: EditPictogramFragmentArgs by navArgs()
 
     private var lastUriPathUploaded: String? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@EditPictogramFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        editPictogramViewModel =
+            ViewModelProvider(this, viewModelFactory).get(EditPictogramViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

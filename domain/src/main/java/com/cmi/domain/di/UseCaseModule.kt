@@ -33,10 +33,13 @@ class UseCaseModule {
     fun provideSavePictogramsPecsUseCase(cmiSystem: CmiSystem) = SavePictogramPecsIdUseCase(cmiSystem)
 
     @Provides
-    fun provideUpdateCategoryUseCase(cmiSystem: CmiSystem) = UpdateCategoriesUseCase(cmiSystem)
+    fun provideUpdateCategoriesUseCase(cmiSystem: CmiSystem) = UpdateCategoriesUseCase(cmiSystem)
 
     @Provides
-    fun provideUpdateCategoriesUseCase(cmiSystem: CmiSystem) = UpdateCategoriesUseCase(cmiSystem)
+    fun provideGetPictogramsByCategoryUseCase( cmiSystem: CmiSystem) = GetPictogramsByCategoryUseCase(cmiSystem)
+
+    @Provides
+    fun provideUpdateCategoryUseCase(cmiSystem: CmiSystem) = UpdateCategoryUseCase(cmiSystem)
 
     @Provides
     fun provideUpdatePictogramPriorityUseCase(cmiSystem: CmiSystem) = UpdatePictogramPriorityUseCase(cmiSystem)

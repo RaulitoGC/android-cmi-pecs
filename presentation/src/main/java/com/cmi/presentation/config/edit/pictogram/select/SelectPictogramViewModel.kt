@@ -17,7 +17,6 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class SelectPictogramViewModel @Inject constructor(
-    private val categoryModel: CategoryModel,
     private val getPictogramsByCategoryUseCase: GetPictogramsByCategoryUseCase
 ) : ViewModel() {
 
@@ -28,7 +27,7 @@ class SelectPictogramViewModel @Inject constructor(
     }
     val pictograms: LiveData<List<PictogramModel>> = _pictograms
 
-    fun getPictogramsByCategory() = viewModelScope.launch {
+    fun getPictogramsByCategory(categoryModel: CategoryModel) = viewModelScope.launch {
 
         val timeForDelay = pictograms.value?.size ?: 0
         if(timeForDelay == 0){

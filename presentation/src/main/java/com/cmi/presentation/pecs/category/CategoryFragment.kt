@@ -1,12 +1,16 @@
 package com.cmi.presentation.pecs.category
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.cmi.presentation.R
+import com.cmi.presentation.common.BaseFragment
+import com.cmi.presentation.config.select.pictogram.SelectPictogramForPecsViewModel
 import com.cmi.presentation.databinding.FragmentCategoryBinding
 import com.cmi.presentation.ktx.setUpNavigation
 import com.cmi.presentation.model.CategoryModel
@@ -14,14 +18,25 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
-class CategoryFragment : Fragment(), CategoryAdapter.ItemListener {
+class CategoryFragment : BaseFragment(), CategoryAdapter.ItemListener {
 
     private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
 
-    private val categoryViewModel: CategoryViewModel by viewModel { parametersOf(CategoryAdapter.getItemsPerScreen()) }
+    private lateinit var categoryViewModel: CategoryViewModel
 
     private var categoryAdapter: CategoryAdapter? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@CategoryFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        categoryViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CategoryViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

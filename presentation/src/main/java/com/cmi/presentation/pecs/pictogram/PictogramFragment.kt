@@ -1,38 +1,49 @@
 package com.cmi.presentation.pecs.pictogram
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cmi.domain.usecase.GetLastPecsPictogramsUseCase
 import com.cmi.domain.usecase.GetPictogramsByCategoryUseCase
 import com.cmi.presentation.R
+import com.cmi.presentation.common.BaseFragment
 import com.cmi.presentation.databinding.FragmentPictogramBinding
 import com.cmi.presentation.ktx.loadImage
 import com.cmi.presentation.ktx.setSafeOnClickListener
 import com.cmi.presentation.ktx.setUpNavigation
 import com.cmi.presentation.model.PictogramModel
+import com.cmi.presentation.pecs.category.CategoryViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class PictogramFragment : Fragment(), PictogramAdapter.ItemListener {
+class PictogramFragment : BaseFragment(), PictogramAdapter.ItemListener {
 
     private var _binding: FragmentPictogramBinding? = null
     private val binding get() = _binding!!
 
     private val args: PictogramFragmentArgs by navArgs()
-    private val pictogramViewModel: PictogramViewModel by viewModel {
-        parametersOf(
-            args.categoryModel
-        )
-    }
+    private lateinit var pictogramViewModel: PictogramViewModel
     private var pictogramAdapter: PictogramAdapter? = null
 
     private var setupAttributeFlag: Boolean = false
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@PictogramFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        pictogramViewModel =
+            ViewModelProvider(this, viewModelFactory).get(PictogramViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -138,6 +149,7 @@ class PictogramFragment : Fragment(), PictogramAdapter.ItemListener {
             }
         })
 
+        getPictogramsByCategory(args.categoryModel)
         loadInformation()
     }
 

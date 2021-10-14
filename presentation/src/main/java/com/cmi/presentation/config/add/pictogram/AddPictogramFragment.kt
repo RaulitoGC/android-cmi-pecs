@@ -33,8 +33,6 @@ class AddPictogramFragment : PickitFragment(), CategoryAdapter.ItemListener {
     private val binding get() = _binding!!
 
     lateinit var addPictogramViewModel: AddPictogramViewModel
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
     private var categoryAdapter: CategoryAdapter? = null
     private var lastUriPathUploaded: String? = null
 

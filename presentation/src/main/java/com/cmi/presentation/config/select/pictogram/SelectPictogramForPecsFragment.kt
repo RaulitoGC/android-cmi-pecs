@@ -1,14 +1,18 @@
 package com.cmi.presentation.config.select.pictogram
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cmi.presentation.R
+import com.cmi.presentation.common.BaseFragment
+import com.cmi.presentation.config.select.category.SelectCategoryForPecsViewModel
 import com.cmi.presentation.databinding.FragmentSelectBinding
 import com.cmi.presentation.ktx.setSafeOnClickListener
 import com.cmi.presentation.ktx.setUpNavigation
@@ -19,7 +23,7 @@ import com.cmi.presentation.utils.MarginItemDecorator
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class SelectPictogramForPecsFragment : Fragment(), SelectablePictogramAdapter.ItemListener {
+class SelectPictogramForPecsFragment : BaseFragment(), SelectablePictogramAdapter.ItemListener {
 
     companion object {
         private const val SELECT_PICTOGRAM_SPAN_COUNT = 5
@@ -30,10 +34,18 @@ class SelectPictogramForPecsFragment : Fragment(), SelectablePictogramAdapter.It
 
     private var selectablPictogramAdapter: SelectablePictogramAdapter? = null
     private val args: SelectPictogramForPecsFragmentArgs by navArgs()
-    private val selectPictogramForPecsViewModel: SelectPictogramForPecsViewModel by inject{
-        parametersOf(args.categoryModel)
+    private lateinit var selectPictogramForPecsViewModel: SelectPictogramForPecsViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@SelectPictogramForPecsFragment)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        selectPictogramForPecsViewModel =
+            ViewModelProvider(this, viewModelFactory).get(SelectPictogramForPecsViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -98,6 +110,8 @@ class SelectPictogramForPecsFragment : Fragment(), SelectablePictogramAdapter.It
                 findNavController().popBackStack()
             }
         })
+
+        getPictogramsByCategory(args.categoryModel)
     }
 
     override fun onItemClick(data: PictogramSelectableModel) {

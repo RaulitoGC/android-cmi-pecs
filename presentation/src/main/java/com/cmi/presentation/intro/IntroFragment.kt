@@ -17,7 +17,7 @@ import com.cmi.presentation.databinding.FragmentIntroBinding
 import com.cmi.presentation.ktx.openURL
 import com.cmi.presentation.ktx.setSafeOnClickListener
 
-class IntroFragment : BaseFragment() {
+class IntroFragment : Fragment() {
 
     private var _binding: FragmentIntroBinding? = null
     private val binding get() = _binding!!

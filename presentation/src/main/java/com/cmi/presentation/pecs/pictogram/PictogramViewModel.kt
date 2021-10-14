@@ -23,7 +23,6 @@ import timber.log.Timber
 import javax.inject.Inject
 
 open class PictogramViewModel @Inject constructor(
-    private val categoryModel: CategoryModel,
     private val getPictogramsByCategoryUseCase: GetPictogramsByCategoryUseCase,
     private val updatePictogramPriorityUseCase: UpdatePictogramPriorityUseCase,
     private val savePictogramPecsIdUseCase: SavePictogramPecsIdUseCase,
@@ -42,11 +41,7 @@ open class PictogramViewModel @Inject constructor(
     }
     val uiState: LiveData<PictogramUiState> = _uiState
 
-    init {
-        getPictogramsByCategory()
-    }
-
-    private fun getPictogramsByCategory() = viewModelScope.launch {
+    fun getPictogramsByCategory(categoryModel: CategoryModel) = viewModelScope.launch {
         getPictogramsByCategoryUseCase(categoryId = categoryModel.categoryId ?: 0)
             .catch { throwable ->
                 Timber.e(throwable)

@@ -15,14 +15,17 @@ import timber.log.Timber
 @Module
 class AppModule(private val application: Application) {
 
+    @AppScope
     @Provides
     fun provideContext(): Context = application.applicationContext
 
+    @AppScope
     @Provides
     fun provideCmiPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences("cmi_pecs_shared_preferences", MODE_PRIVATE)
     }
 
+    @AppScope
     @Provides
     fun provideDataBase(context: Context): CmiDataBase {
         return Room.databaseBuilder(context, CmiDataBase::class.java, "cmi_pecs_db")

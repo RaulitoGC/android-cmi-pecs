@@ -20,7 +20,6 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class SelectPictogramForPecsViewModel @Inject constructor(
-    private val categoryModel: CategoryModel,
     private val getPictogramsByCategoryUseCase: GetPictogramsByCategoryUseCase,
     private val updatePictogramsUseCase: UpdatePictogramsUseCase
 ) : ViewModel() {
@@ -35,11 +34,7 @@ class SelectPictogramForPecsViewModel @Inject constructor(
     }
     val uiState: LiveData<SelectPictogramUiState> = _uiState
 
-    init {
-        getPictogramsByCategory()
-    }
-
-    private fun getPictogramsByCategory() = viewModelScope.launch {
+    fun getPictogramsByCategory(categoryModel: CategoryModel) = viewModelScope.launch {
         delay(Constants.SHIMMER_EFFECT_DELAY) //Delay for show shimmer effect
         getPictogramsByCategoryUseCase(categoryId = categoryModel.categoryId ?: 0)
             .catch { throwable ->

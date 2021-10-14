@@ -1,13 +1,15 @@
 package com.cmi.presentation.config.delete.category
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cmi.presentation.R
+import com.cmi.presentation.common.BaseFragment
 import com.cmi.presentation.config.select.category.SelectableCategoryAdapter
 import com.cmi.presentation.databinding.FragmentSelectBinding
 import com.cmi.presentation.ktx.setSafeOnClickListener
@@ -16,9 +18,8 @@ import com.cmi.presentation.ktx.showAlertMessage
 import com.cmi.presentation.ktx.showMessage
 import com.cmi.presentation.model.CategorySelectableModel
 import com.cmi.presentation.utils.MarginItemDecorator
-import org.koin.android.ext.android.inject
 
-class DeleteCategoryFragment : Fragment(), SelectableCategoryAdapter.ItemListener {
+class DeleteCategoryFragment : BaseFragment(), SelectableCategoryAdapter.ItemListener {
 
     companion object {
         private const val SELECT_CATEGORY_SPAN_COUNT = 5
@@ -28,7 +29,18 @@ class DeleteCategoryFragment : Fragment(), SelectableCategoryAdapter.ItemListene
     private val binding get() = _binding!!
 
     private var selectableCategoryAdapter: SelectableCategoryAdapter? = null
-    private val deleteCategoryViewModel: DeleteCategoryViewModel by inject()
+    private lateinit var deleteCategoryViewModel: DeleteCategoryViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@DeleteCategoryFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        deleteCategoryViewModel =
+            ViewModelProvider(this, viewModelFactory).get(DeleteCategoryViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

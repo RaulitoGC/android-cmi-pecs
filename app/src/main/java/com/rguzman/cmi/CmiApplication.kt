@@ -25,7 +25,9 @@ class CmiApplication : Application(), PresentationComponentProvider {
         Timber.plant(TimberLoggingTree())
     }
 
-    override fun provideActivityComponent(): ActivityComponent {
-        return appComponent.newActivityComponentBuilder().build()
+    override fun provideActivityComponent(): ActivityComponent.Builder {
+        return appComponent.newActivityComponentBuilder()
     }
+
+
 }

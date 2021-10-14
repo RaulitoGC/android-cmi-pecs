@@ -1,14 +1,18 @@
 package com.cmi.presentation.config.delete.pictogram
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cmi.presentation.R
+import com.cmi.presentation.common.BaseFragment
+import com.cmi.presentation.config.delete.category.DeleteCategoryViewModel
 import com.cmi.presentation.config.select.pictogram.SelectablePictogramAdapter
 import com.cmi.presentation.databinding.FragmentSelectBinding
 import com.cmi.presentation.ktx.setSafeOnClickListener
@@ -19,7 +23,7 @@ import com.cmi.presentation.model.PictogramSelectableModel
 import com.cmi.presentation.utils.MarginItemDecorator
 import org.koin.android.ext.android.inject
 
-class DeletePictogramFragment : Fragment(), SelectablePictogramAdapter.ItemListener {
+class DeletePictogramFragment : BaseFragment(), SelectablePictogramAdapter.ItemListener {
 
     companion object {
         private const val SELECT_PICTOGRAM_SPAN_COUNT = 5
@@ -29,8 +33,19 @@ class DeletePictogramFragment : Fragment(), SelectablePictogramAdapter.ItemListe
     private val binding get() = _binding!!
 
     private var selectablPictogramAdapter: SelectablePictogramAdapter? = null
-    private val deletePictogramViewModel: DeletePictogramViewModel by inject()
+    private lateinit var deletePictogramViewModel: DeletePictogramViewModel
     private val args: DeletePictogramFragmentArgs by navArgs()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this@DeletePictogramFragment)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        deletePictogramViewModel =
+            ViewModelProvider(this, viewModelFactory).get(DeletePictogramViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
