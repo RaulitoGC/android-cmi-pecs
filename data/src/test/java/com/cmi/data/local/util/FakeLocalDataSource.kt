@@ -12,18 +12,28 @@ class FakeLocalDataSource : LocalDataSource {
         const val SIZE_FOR_LIST = 10
         const val INVALID_ID = -1
 
-        val categoryFromDisk = TestDataUtil.getCategoryEntity()
-        val categoriesFromDisk = TestDataUtil.getCategoriesEntities(SIZE_FOR_LIST).toMutableList()
+        var categoryFromDisk = TestDataUtil.getCategoryEntity()
+        var categoriesFromDisk = TestDataUtil.getCategoriesEntities(SIZE_FOR_LIST).toMutableList()
 
-        val pictogramFromDisk = TestDataUtil.getPictogramEntity()
-        val pictogramsFromDisk = TestDataUtil.getPictogramEntities(SIZE_FOR_LIST).toMutableList()
+        var pictogramFromDisk = TestDataUtil.getPictogramEntity()
+        var pictogramsFromDisk = TestDataUtil.getPictogramEntities(SIZE_FOR_LIST).toMutableList()
 
-        val cacheId = HashMap<String, Int>()
+        var cacheId = HashMap<String, Int>()
         private const val MAIN_ID_KEY = "main_id_key"
         private const val FIRST_ACTION_ID_KEY = "first_action_id_key"
         private const val SECOND_ACTION_ID_KEY = "second_action_id_key"
         private const val ATTRIBUTE_ID_KEY = "attribute_id_key"
         private const val SECOND_PICTOGRAM_ID_KEY = "second_pictogram_id_key"
+
+        fun reset() {
+            categoryFromDisk = TestDataUtil.getCategoryEntity()
+            categoriesFromDisk = TestDataUtil.getCategoriesEntities(SIZE_FOR_LIST).toMutableList()
+
+            pictogramFromDisk = TestDataUtil.getPictogramEntity()
+            pictogramsFromDisk = TestDataUtil.getPictogramEntities(SIZE_FOR_LIST).toMutableList()
+
+            cacheId = HashMap<String, Int>()
+        }
     }
 
     override suspend fun getCategories() = flow {
