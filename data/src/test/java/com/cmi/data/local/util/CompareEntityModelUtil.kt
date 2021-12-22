@@ -1,12 +1,13 @@
-package com.cmi.data.local.mapper
+package com.cmi.data.local.util
 
 import com.cmi.data.local.database.entity.CategoryEntity
 import com.cmi.data.local.database.entity.PictogramEntity
 import com.cmi.domain.entity.Category
 import com.cmi.domain.entity.Pictogram
 
-open class BaseMapperTest {
-    protected fun compareCategoryEntityToCategory(
+object CompareEntityModelUtil {
+
+    fun compareCategoryEntityToCategory(
         category: Category,
         categoryEntity: CategoryEntity
     ): Boolean {
@@ -19,7 +20,7 @@ open class BaseMapperTest {
                 category.isSelected == (categoryEntity.isSelected == 1)
     }
 
-    protected fun comparePictogramEntityToPictogram(
+    fun comparePictogramEntityToPictogram(
         pictogram: Pictogram,
         pictogramEntity: PictogramEntity
     ): Boolean {
