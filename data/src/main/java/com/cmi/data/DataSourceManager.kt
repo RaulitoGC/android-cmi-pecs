@@ -1,5 +1,6 @@
 package com.cmi.data
 
+import com.cmi.data.local.DefaultLocalDataSource
 import com.cmi.data.local.LocalDataSource
 import com.cmi.data.local.mapper.toCategory
 import com.cmi.data.local.mapper.toCategoryEntity
@@ -17,7 +18,6 @@ import com.cmi.domain.usecase.SavePictogramPecsIdUseCase.Companion.PICTOGRAM_SEC
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import timber.log.Timber
 
 class DataSourceManager(private val localDataSource: LocalDataSource) : System {
 

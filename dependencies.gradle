@@ -32,7 +32,9 @@ ext {
 
     // Test
     junitVersion = "4.12"
-    androidJunitVersion = "1.1.2"
+    androidTestCoreVersion = "1.4.0"
+    androidJunitVersion = "1.1.3"
+    robolectricVersion = "4.6"
     espressoCoreVersion = "3.1.0"
 
     applicationDependencies = [
@@ -91,11 +93,18 @@ ext {
     ]
 
     unitTestDependencies = [
-            "junit:junit:$junitVersion"
+            "androidx.test.ext:junit:$androidJunitVersion",
+            "androidx.test.ext:junit-ktx:$androidJunitVersion",
+            "androidx.test:core-ktx:$androidTestCoreVersion",
+            "androidx.test:core:$androidTestCoreVersion",
+            "org.robolectric:robolectric:$robolectricVersion"
     ]
 
     instrumentedTestDependencies = [
             "androidx.test.ext:junit:$androidJunitVersion",
-            "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+            "androidx.test.ext:junit-ktx:$androidJunitVersion",
+            "androidx.test:core-ktx:$androidTestCoreVersion",
+            "androidx.test:core:$androidTestCoreVersion",
+            "org.robolectric:robolectric:$robolectricVersion"
     ]
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="text_app_short_name">CMI</string>
+    <string name="text_app_short_name">CMI-PECS</string>
     <string name="text_app_long_name">Comunicándonos Mediante Imágenes</string>
     <string name="text_toolbar_name_format">%1$s | %2$s</string>
 
@@ -105,12 +105,12 @@
 
     <!-- Survey -->
     <string name="text_author_presentation">Hola! Soy Raul Guzman, autor de CMI. Esta herramienta fue creada de manera gratuita pensando en apoyar a la comunidad TEA y en las familias que día a día luchan para salir adelante. Si quieres de alguna manera apoyarme, te agradecería que realices las siguientes encuentas.</string>
-    <string name="text_title_start_survey"> Encuesta de Entrada</string>
+    <string name="text_title_start_survey"> Pre Encuesta</string>
     <string name="text_message_start_survey"> Encuesta para recaudar la opinión de las familias antes de utilizar CMI</string>
-    <string name="text_title_end_survey">Encuesta de Salida</string>
+    <string name="text_title_end_survey">Post Encuesta</string>
     <string name="text_message_end_survey">Encuesta para recaudar la opinión de las familias luego de utilizar CMI</string>
-    <string name="text_btn_start_survey">Encuesta de Entrada</string>
-    <string name="text_btn_end_survey">Encuesta de Salida</string>
+    <string name="text_btn_start_survey">Relizar Pre Encuesta</string>
+    <string name="text_btn_end_survey">Realizar Post Encuesta</string>
 
     <!-- Alert -->
     <string name="text_accept">Aceptar</string>
