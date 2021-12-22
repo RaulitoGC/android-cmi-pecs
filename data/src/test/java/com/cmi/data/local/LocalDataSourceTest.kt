@@ -10,7 +10,7 @@ import org.junit.Assert.assertArrayEquals
 import org.junit.Before
 import org.junit.Test
 
-class DefaultLocalDataSourceTest {
+class LocalDataSourceTest {
 
     private lateinit var localDataSource: LocalDataSource
 
@@ -21,6 +21,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `get categories from local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val categories = FakeLocalDataSource.categoriesFromDisk
 
         val categoriesFromDisk = localDataSource.getCategories().single()
@@ -30,7 +31,8 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `get pictograms by category from local data source`() = runBlocking {
-        val categoryId = 10
+        FakeLocalDataSource.reset()
+        val categoryId = 10:
         val pictograms = FakeLocalDataSource.pictogramsFromDisk.map {
             it.copy(categoryId = categoryId)
         }
@@ -42,6 +44,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `get pictograms from local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val pictograms = FakeLocalDataSource.pictogramsFromDisk
 
         val pictogramsFromDisk = localDataSource.getPictograms().single()
@@ -51,6 +54,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `get pictogram from local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val pictogramId = 21
         val pictogram = FakeLocalDataSource.pictogramFromDisk.copy(pictogramId = pictogramId)
 
@@ -61,6 +65,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `add pictogram to local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val pictogramId = 1001
         val pictogramToAdd = FakeLocalDataSource.pictogramFromDisk.copy(pictogramId = pictogramId)
 
@@ -73,6 +78,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `add category to local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val categoryId = 2001
         val categoryToAdd = FakeLocalDataSource.categoryFromDisk.copy(categoryId = categoryId)
 
@@ -85,6 +91,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `update pictogram to local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val pictogramId = 1020
         val pictogramToAdd = FakeLocalDataSource.pictogramFromDisk.copy(pictogramId = pictogramId)
 
@@ -100,6 +107,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `update category to local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val categoryId = 1021
         val categoryToAdd = FakeLocalDataSource.categoryFromDisk.copy(categoryId = categoryId)
 
@@ -115,6 +123,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `update pictogram priority to local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val pictogramId = 1022
         val pictogramToAdd = FakeLocalDataSource.pictogramFromDisk.copy(pictogramId = pictogramId)
 
@@ -130,6 +139,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `set and get main pictogram id from local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val mainPictogramId = 1093
 
         localDataSource.setMainPictogramId(pictogramId = mainPictogramId).single()
@@ -140,6 +150,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `set and get first action pictogram id from local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val firstActionPictogramId = 1094
 
         localDataSource.setFirstActionPictogramId(pictogramId = firstActionPictogramId).single()
@@ -150,6 +161,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `set and get second action pictogram id from local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val secondActionPictogramId = 1095
 
         localDataSource.setSecondActionPictogramId(pictogramId = secondActionPictogramId).single()
@@ -160,6 +172,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `set and get attribute pictogram id from local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val attributePictogramId = 1096
 
         localDataSource.setAttributePictogramId(pictogramId = attributePictogramId).single()
@@ -170,6 +183,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `set and get second attribute pictogram id from local data source`() = runBlocking {
+        FakeLocalDataSource.reset()
         val secondAttributePictogramId = 1097
 
         localDataSource.setSecondAttributePictogramId(pictogramId = secondAttributePictogramId).single()
@@ -180,7 +194,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `update categories in local data source`() = runBlocking {
-
+        FakeLocalDataSource.reset()
         val categoriesAdded = FakeLocalDataSource.categoriesFromDisk
 
         val newName = "category_new_name"
@@ -195,7 +209,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `update pictograms in local data source`() = runBlocking {
-
+        FakeLocalDataSource.reset()
         val pictogramsAdded = FakeLocalDataSource.pictogramsFromDisk
 
         val newName = "new_pictogram_name"
@@ -215,7 +229,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `delete pictograms from local data source`() = runBlocking {
-
+        FakeLocalDataSource.reset()
         val pictogramsAdded = FakeLocalDataSource.pictogramsFromDisk
 
         localDataSource.deletePictograms(pictogramsAdded)
@@ -228,7 +242,7 @@ class DefaultLocalDataSourceTest {
 
     @Test
     fun `delete categories from local data source`() = runBlocking {
-
+        FakeLocalDataSource.reset()
         val categoriesAdded = FakeLocalDataSource.categoriesFromDisk
 
         localDataSource.deleteCategories(categoriesAdded)
