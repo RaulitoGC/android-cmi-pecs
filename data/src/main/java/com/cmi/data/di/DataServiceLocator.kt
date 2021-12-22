@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.cmi.data.DataSourceManager
-import com.cmi.data.local.LocalDataSource
+import com.cmi.data.local.DefaultLocalDataSource
 import com.cmi.data.local.database.CmiDataBase
 import com.cmi.data.local.preferences.CmiPreferences
 import com.cmi.domain.system.System
@@ -33,7 +33,7 @@ object DataServiceLocator {
 
     private fun createSystem(context: Context): System {
         return DataSourceManager(
-            localDataSource = LocalDataSource(
+            localDataSource = DefaultLocalDataSource(
                 cmiDataBase = provideDataBase(context),
                 cmiPreferences = providePreferences(context)
             )
