@@ -23,8 +23,8 @@ object TestDataUtil {
         path = PATH,
         name = NAME,
         priority = PRIORITY,
-        isSelected = if(IS_SELECTED) 1 else 0,
-        external = if(IS_EXTERNAL) 1 else 0
+        isSelected = if (IS_SELECTED) 1 else 0,
+        external = if (IS_EXTERNAL) 1 else 0
     )
 
     private val category = Category(
@@ -43,9 +43,9 @@ object TestDataUtil {
         path = PATH,
         name = NAME,
         priority = PRIORITY,
-        isSelected = if(IS_SELECTED) 1 else 0,
+        isSelected = if (IS_SELECTED) 1 else 0,
         categoryId = CATEGORY_ID,
-        external = if(IS_EXTERNAL) 1 else 0
+        external = if (IS_EXTERNAL) 1 else 0
     )
 
     private val pictogram = Pictogram(
@@ -59,14 +59,15 @@ object TestDataUtil {
         isExternal = IS_EXTERNAL
     )
 
-    fun getCategory(categoryId: Int? = null) : Category{
+    fun getCategory(categoryId: Int? = null): Category {
         return categoryId?.let {
             category.copy(categoryId = categoryId)
         } ?: run {
             category
         }
     }
-    fun getCategoryEntity(categoryId: Int? = null) : CategoryEntity {
+
+    fun getCategoryEntity(categoryId: Int? = null): CategoryEntity {
         return categoryId?.let {
             categoryEntity.copy(categoryId = categoryId)
         } ?: run {
@@ -74,36 +75,49 @@ object TestDataUtil {
         }
     }
 
-    fun getPictogram() = pictogram
-    fun getPictogramEntity() = pictogramEntity
+    fun getPictogram(pictogramId: Int? = null): Pictogram {
+        return pictogramId?.let {
+            pictogram.copy(pictogramId = pictogramId)
+        } ?: run {
+            pictogram
+        }
+    }
 
-    fun getPictograms(size: Int) : List<Pictogram> {
+    fun getPictogramEntity(pictogramId: Int? = null): PictogramEntity {
+        return pictogramId?.let {
+            pictogramEntity.copy(pictogramId = pictogramId)
+        } ?: run {
+            pictogramEntity
+        }
+    }
+
+    fun getPictograms(size: Int): List<Pictogram> {
         val list = mutableListOf<Pictogram>()
-        repeat(size) {
-            list.add(getPictogram())
+        for (pictogramId in 1..size) {
+            list.add(getPictogram().copy(pictogramId = pictogramId))
         }
         return list
     }
 
-    fun getPictogramEntities(size: Int) : List<PictogramEntity> {
+    fun getPictogramEntities(size: Int): List<PictogramEntity> {
         val list = mutableListOf<PictogramEntity>()
-        repeat(size) {
-            list.add(getPictogramEntity())
+        for (pictogramId in 1..size) {
+            list.add(getPictogramEntity().copy(pictogramId = pictogramId))
         }
         return list
     }
 
-    fun getCategories(size: Int) : List<Category> {
+    fun getCategories(size: Int): List<Category> {
         val list = mutableListOf<Category>()
-        for(categoryId in 1..size) {
+        for (categoryId in 1..size) {
             list.add(getCategory().copy(categoryId = categoryId))
         }
         return list
     }
 
-    fun getCategoriesEntities(size: Int) : List<CategoryEntity> {
+    fun getCategoriesEntities(size: Int): List<CategoryEntity> {
         val list = mutableListOf<CategoryEntity>()
-        for(categoryId in 1..size) {
+        for (categoryId in 1..size) {
             list.add(getCategoryEntity().copy(categoryId = categoryId))
         }
         return list
