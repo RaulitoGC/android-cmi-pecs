@@ -32,7 +32,7 @@ class LocalDataSourceTest {
     @Test
     fun `get pictograms by category from local data source`() = runBlocking {
         FakeLocalDataSource.reset()
-        val categoryId = 10:
+        val categoryId = 10
         val pictograms = FakeLocalDataSource.pictogramsFromDisk.map {
             it.copy(categoryId = categoryId)
         }
