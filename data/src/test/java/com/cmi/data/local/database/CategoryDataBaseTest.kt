@@ -35,7 +35,7 @@ class CategoryDataBaseTest {
 
         categoryDao.insertCategory(categoryEntity = categoryEntityToInsert)
 
-        val categoryEntity = categoryDao.getCategories().firstOrNull { it.categoryId == categoryId }
+        val categoryEntity = categoryDao.getCategoriesEntities().firstOrNull { it.categoryId == categoryId }
         assert(categoryEntityToInsert == categoryEntity)
     }
 
@@ -49,7 +49,7 @@ class CategoryDataBaseTest {
             categoryDao.insertCategory(categoryEntity = categoriesToInsert[idx])
         }
 
-        val categoriesEntities = categoryDao.getCategories()
+        val categoriesEntities = categoryDao.getCategoriesEntities()
         assert(categoriesToInsert == categoriesEntities)
     }
 
@@ -63,7 +63,7 @@ class CategoryDataBaseTest {
         categoryDao.insertCategory(categoryEntity = categoryEntityToInsert)
         categoryDao.updateCategoryPriority(categoryId = categoryId, 100)
 
-        val categoryEntity = categoryDao.getCategories().firstOrNull { it.categoryId == categoryId }
+        val categoryEntity = categoryDao.getCategoriesEntities().firstOrNull { it.categoryId == categoryId }
         assert(categoryEntity != null && categoryEntity.priority == newPriority) {
             print("categoryEntity from database is null or ${categoryEntity?.priority} != $newPriority")
         }
@@ -87,7 +87,7 @@ class CategoryDataBaseTest {
             )
         )
 
-        val categoryEntity = categoryDao.getCategories().firstOrNull { it.categoryId == categoryId }
+        val categoryEntity = categoryDao.getCategoriesEntities().firstOrNull { it.categoryId == categoryId }
         assert(categoryEntity != null) {
             print("categoryEntity from database is null")
         }
@@ -122,7 +122,7 @@ class CategoryDataBaseTest {
         }
         categoryDao.updateCategories(categoriesToUpdate)
 
-        val categoriesEntities = categoryDao.getCategories()
+        val categoriesEntities = categoryDao.getCategoriesEntities()
         assert(categoriesEntities == categoriesToUpdate)
     }
 
@@ -134,12 +134,12 @@ class CategoryDataBaseTest {
 
         categoryDao.insertCategory(categoryEntity = categoryEntityToInsert)
         val categoryFromDataBaseInserted =
-            categoryDao.getCategories().firstOrNull { it.categoryId == categoryId }
+            categoryDao.getCategoriesEntities().firstOrNull { it.categoryId == categoryId }
         assert(categoryFromDataBaseInserted != null)
 
         categoryDao.delete(categoryEntityToInsert)
         val categoryFromDataBaseDeleted =
-            categoryDao.getCategories().firstOrNull { it.categoryId == categoryId }
+            categoryDao.getCategoriesEntities().firstOrNull { it.categoryId == categoryId }
         assert(categoryFromDataBaseDeleted == null)
     }
 

@@ -1,10 +1,8 @@
 package com.cmi.data.local
 
 import com.cmi.data.local.util.FakeLocalDataSource
-import com.cmi.data.local.util.FakeLocalDataSource.Companion.SIZE_FOR_LIST
-import kotlinx.coroutines.flow.firstOrNull
+import com.cmi.domain.system.LocalDataSource
 import kotlinx.coroutines.flow.single
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertArrayEquals
 import org.junit.Before
@@ -69,8 +67,9 @@ class LocalDataSourceTest {
         val pictogramId = 1001
         val pictogramToAdd = FakeLocalDataSource.pictogramFromDisk.copy(pictogramId = pictogramId)
 
-        localDataSource.addPictogramEntity(pictogramToAdd).single()
-        val pictogramFromDisk = localDataSource.getPictograms().single().firstOrNull { it.pictogramId == pictogramId }
+        localDataSource.addPictogram(pictogramToAdd).single()
+        val pictogramFromDisk =
+            localDataSource.getPictograms().single().firstOrNull { it.pictogramId == pictogramId }
         assert(pictogramFromDisk != null)
 
         assert(pictogramFromDisk == pictogramFromDisk)
@@ -82,8 +81,9 @@ class LocalDataSourceTest {
         val categoryId = 2001
         val categoryToAdd = FakeLocalDataSource.categoryFromDisk.copy(categoryId = categoryId)
 
-        localDataSource.addCategoryEntity(categoryToAdd).single()
-        val categoryFromDisk = localDataSource.getCategories().single().firstOrNull { it.categoryId == categoryId }
+        localDataSource.addCategory(categoryToAdd).single()
+        val categoryFromDisk =
+            localDataSource.getCategories().single().firstOrNull { it.categoryId == categoryId }
         assert(categoryFromDisk != null)
 
         assert(categoryToAdd == categoryFromDisk)
@@ -95,11 +95,12 @@ class LocalDataSourceTest {
         val pictogramId = 1020
         val pictogramToAdd = FakeLocalDataSource.pictogramFromDisk.copy(pictogramId = pictogramId)
 
-        localDataSource.addPictogramEntity(pictogramToAdd).single()
+        localDataSource.addPictogram(pictogramToAdd).single()
         val newName = "pictogram_new_name"
         val pictogramToUpdate = pictogramToAdd.copy(name = newName)
-        localDataSource.updatePictogramEntity(pictogramToUpdate).single()
-        val pictogramFromDisk = localDataSource.getPictograms().single().firstOrNull { it.pictogramId == pictogramId }
+        localDataSource.updatePictogram(pictogramToUpdate).single()
+        val pictogramFromDisk =
+            localDataSource.getPictograms().single().firstOrNull { it.pictogramId == pictogramId }
         assert(pictogramFromDisk != null)
 
         assert(pictogramToUpdate == pictogramFromDisk)
@@ -111,30 +112,15 @@ class LocalDataSourceTest {
         val categoryId = 1021
         val categoryToAdd = FakeLocalDataSource.categoryFromDisk.copy(categoryId = categoryId)
 
-        localDataSource.addCategoryEntity(categoryToAdd).single()
+        localDataSource.addCategory(categoryToAdd).single()
         val newName = "category_new_name"
         val categoryToUpdate = categoryToAdd.copy(name = newName)
-        localDataSource.updateCategoryEntity(categoryToUpdate).single()
-        val categoryFromDisk = localDataSource.getCategories().single().firstOrNull { it.categoryId == categoryId }
+        localDataSource.updateCategory(categoryToUpdate).single()
+        val categoryFromDisk =
+            localDataSource.getCategories().single().firstOrNull { it.categoryId == categoryId }
         assert(categoryFromDisk != null)
 
         assert(categoryToUpdate == categoryFromDisk)
-    }
-
-    @Test
-    fun `update pictogram priority to local data source`() = runBlocking {
-        FakeLocalDataSource.reset()
-        val pictogramId = 1022
-        val pictogramToAdd = FakeLocalDataSource.pictogramFromDisk.copy(pictogramId = pictogramId)
-
-        localDataSource.addPictogramEntity(pictogramToAdd).single()
-        localDataSource.updatePictogramPriority(pictogramToAdd).single()
-        val pictogramFromDisk = localDataSource.getPictograms().single().firstOrNull { it.pictogramId == pictogramId }
-        assert(pictogramFromDisk != null)
-
-        val pictogramPriorityAdded = (pictogramToAdd.priority ?: 0).plus(1)
-        val pictogramPriorityFromDisk = pictogramFromDisk?.priority ?: 0
-        assert(pictogramPriorityAdded == pictogramPriorityFromDisk)
     }
 
     @Test
@@ -186,7 +172,8 @@ class LocalDataSourceTest {
         FakeLocalDataSource.reset()
         val secondAttributePictogramId = 1097
 
-        localDataSource.setSecondAttributePictogramId(pictogramId = secondAttributePictogramId).single()
+        localDataSource.setSecondAttributePictogramId(pictogramId = secondAttributePictogramId)
+            .single()
         val secondAttributePictogramIdFromDisk = localDataSource.getSecondPictogramAttributeId()
 
         assert(secondAttributePictogramId == secondAttributePictogramIdFromDisk)
@@ -201,7 +188,7 @@ class LocalDataSourceTest {
         val categoriesToUpdate = categoriesAdded.map {
             it.copy(name = newName)
         }
-        localDataSource.updateCategories(categoriesToUpdate)
+        localDataSource.updateCategories(categoriesToUpdate).single()
         val categoriesFromDisk = localDataSource.getCategories().single()
 
         assert(categoriesToUpdate == categoriesFromDisk)
@@ -218,7 +205,7 @@ class LocalDataSourceTest {
         }
         println("FIRST SIZE = ${pictogramsToUpdate.size}")
         println("SECOND SIZE = ${localDataSource.getPictograms().single().size}")
-        localDataSource.updatePictograms(pictogramsToUpdate)
+        localDataSource.updatePictograms(pictogramsToUpdate).single()
         val pictogramsFromDisk = localDataSource.getPictograms().single().intersect(
             pictogramsToUpdate.toSet()
         )
@@ -232,7 +219,7 @@ class LocalDataSourceTest {
         FakeLocalDataSource.reset()
         val pictogramsAdded = FakeLocalDataSource.pictogramsFromDisk
 
-        localDataSource.deletePictograms(pictogramsAdded)
+        localDataSource.deletePictograms(pictogramsAdded).single()
         val pictogramsFromDisk = localDataSource.getPictograms().single()
 
         val intersection = pictogramsFromDisk.intersect(pictogramsAdded.toSet())
@@ -245,7 +232,7 @@ class LocalDataSourceTest {
         FakeLocalDataSource.reset()
         val categoriesAdded = FakeLocalDataSource.categoriesFromDisk
 
-        localDataSource.deleteCategories(categoriesAdded)
+        localDataSource.deleteCategories(categoriesAdded).single()
         val categoriesFromDisk = localDataSource.getCategories().single()
 
         val intersection = categoriesFromDisk.intersect(categoriesAdded.toSet())

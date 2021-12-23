@@ -5,11 +5,10 @@ import android.content.Context.MODE_PRIVATE
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.cmi.data.DataSourceManager
 import com.cmi.data.local.DefaultLocalDataSource
 import com.cmi.data.local.database.CmiDataBase
 import com.cmi.data.local.preferences.CmiPreferences
-import com.cmi.domain.system.System
+import com.cmi.domain.system.LocalDataSource
 import timber.log.Timber
 
 object DataServiceLocator {
@@ -17,7 +16,7 @@ object DataServiceLocator {
     private val lock = Any()
 
     @Volatile
-    private var system: System? = null
+    private var localDataSource: LocalDataSource? = null
 
     @Volatile
     private var cmiDataBase: CmiDataBase? = null
@@ -25,20 +24,18 @@ object DataServiceLocator {
     @Volatile
     private var cmiPreferences: CmiPreferences? = null
 
-    fun provideSystem(context: Context): System = system ?: synchronized(lock) {
-        system ?: createSystem(context)
+    fun provideLocalDataSource(context: Context): LocalDataSource = localDataSource ?: synchronized(lock) {
+        localDataSource ?: createLocalDataSource(context)
     }
 
     fun provideSharedPreferences(context: Context, name: String) = context.getSharedPreferences(name, MODE_PRIVATE)
 
-    private fun createSystem(context: Context): System {
-        return DataSourceManager(
-            localDataSource = DefaultLocalDataSource(
-                cmiDataBase = provideDataBase(context),
-                cmiPreferences = providePreferences(context)
-            )
+    private fun createLocalDataSource(context: Context): LocalDataSource {
+        return DefaultLocalDataSource(
+            cmiDataBase = provideDataBase(context),
+            cmiPreferences = providePreferences(context)
         ).also {
-            system = it
+            localDataSource = it
         }
     }
 

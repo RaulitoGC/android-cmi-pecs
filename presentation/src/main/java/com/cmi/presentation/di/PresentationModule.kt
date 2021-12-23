@@ -28,10 +28,10 @@ val presentationModule = module {
         CategoryViewModel(
             itemsPerScreen = itemsPerScreen,
             cleanLastPictogramsUseCase = CleanLastPictogramsUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             getCategoriesUseCase = GetCategoriesUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
@@ -40,24 +40,26 @@ val presentationModule = module {
         AddPictogramViewModel(
             itemsPerScreen = itemsPerScreen,
             getCategoriesUseCase = GetCategoriesUseCase(
-                DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             addPictogramUseCase = AddPictogramUseCase(
-                DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
 
     viewModel {
         AddCategoryViewModel(
-            addCategoryUseCase = AddCategoryUseCase(DataServiceLocator.provideSystem(androidContext()))
+            addCategoryUseCase = AddCategoryUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
         )
     }
 
     viewModel {
         SelectCategoryViewModel(
             getCategoriesUseCase = GetCategoriesUseCase(
-                DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
@@ -65,7 +67,7 @@ val presentationModule = module {
     viewModel {
         EditCategoryViewModel(
             updateCategoryUseCase = UpdateCategoryUseCase(
-                DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
@@ -74,7 +76,7 @@ val presentationModule = module {
         SelectPictogramViewModel(
             categoryModel = categoryModel,
             getPictogramsByCategoryUseCase = GetPictogramsByCategoryUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
@@ -82,7 +84,7 @@ val presentationModule = module {
     viewModel {
         EditPictogramViewModel(
             updatePictogramUseCase = UpdatePictogramUseCase(
-                DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
@@ -90,10 +92,10 @@ val presentationModule = module {
     viewModel {
         SelectCategoryForPecsViewModel(
             getCategoriesUseCase = GetCategoriesUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             updateCategoriesUseCase = UpdateCategoriesUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
@@ -102,10 +104,10 @@ val presentationModule = module {
         SelectPictogramForPecsViewModel(
             categoryModel = categoryModel,
             getPictogramsByCategoryUseCase = GetPictogramsByCategoryUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             updatePictogramsUseCase = UpdatePictogramsUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
@@ -113,10 +115,10 @@ val presentationModule = module {
     viewModel {
         DeleteCategoryViewModel(
             getCategoriesUseCase = GetCategoriesUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             deleteCategoriesUseCase = DeleteCategoriesUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
@@ -124,10 +126,10 @@ val presentationModule = module {
     viewModel {
         DeletePictogramViewModel(
             getPictogramsByCategoryUseCase = GetPictogramsByCategoryUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             deletePictogramsUseCase = DeletePictogramsUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
@@ -136,16 +138,16 @@ val presentationModule = module {
         PictogramViewModel(
             categoryModel = categoryModel,
             getPictogramsByCategoryUseCase = GetPictogramsByCategoryUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             updatePictogramPriorityUseCase = UpdatePictogramPriorityUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             savePictogramPecsIdUseCase = SavePictogramPecsIdUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             getLastPecsPictogramsUseCase = GetLastPecsPictogramsUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }
@@ -153,7 +155,7 @@ val presentationModule = module {
     viewModel {
         TapeViewModel(
             getLastPecsPictogramsUseCase = GetLastPecsPictogramsUseCase(
-                system = DataServiceLocator.provideSystem(androidContext())
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )
     }

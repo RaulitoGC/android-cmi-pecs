@@ -35,7 +35,7 @@ class PictogramDataBaseTest {
 
         pictogramDao.insertPictogram(pictogramEntity = pictogramEntityToInsert)
 
-        val pictogramEntityFromDataBase = pictogramDao.getPictogram(pictogramId = pictogramId)
+        val pictogramEntityFromDataBase = pictogramDao.getPictogramEntity(pictogramId = pictogramId)
         assert(pictogramEntityFromDataBase == pictogramEntityToInsert)
     }
 
@@ -49,7 +49,7 @@ class PictogramDataBaseTest {
             pictogramDao.insertPictogram(pictogramEntity = pictogramsEntitiesToInsert[idx])
         }
 
-        val pictogramsEntitiesFromDataBase = pictogramDao.getPictograms()
+        val pictogramsEntitiesFromDataBase = pictogramDao.getPictogramsEntities()
         assert(pictogramsEntitiesToInsert == pictogramsEntitiesFromDataBase)
     }
 
@@ -67,24 +67,8 @@ class PictogramDataBaseTest {
         }
 
         val pictogramsEntitiesFromDataBase =
-            pictogramDao.getPictogramsByCategory(categoryId = categoryId)
+            pictogramDao.getPictogramsEntitiesByCategory(categoryId = categoryId)
         assert(pictogramsEntitiesToInsert == pictogramsEntitiesFromDataBase)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun `update pictogram priority property in database`() = runBlocking {
-        val pictogramId = 1
-        val pictogramEntityToInsert = TestDataUtil.getPictogramEntity(pictogramId = pictogramId)
-
-        val newPriority = 100
-        pictogramDao.insertPictogram(pictogramEntity = pictogramEntityToInsert)
-        pictogramDao.updatePictogramPriority(pictogramId = pictogramId, newPriority = newPriority)
-
-        val pictogramEntity = pictogramDao.getPictogram(pictogramId = pictogramId)
-        assert(pictogramEntity.priority == newPriority) {
-            print(" ${pictogramEntity.priority} != $newPriority")
-        }
     }
 
     @Test
@@ -105,7 +89,7 @@ class PictogramDataBaseTest {
             )
         )
 
-        val pictogramEntityFromDataBase = pictogramDao.getPictogram(pictogramId = pictogramId)
+        val pictogramEntityFromDataBase = pictogramDao.getPictogramEntity(pictogramId = pictogramId)
 
         assert(pictogramEntityFromDataBase.folder == newFolderName) {
             print("pictogramEntityFromDataBase's folder != $newFolderName")
@@ -137,7 +121,7 @@ class PictogramDataBaseTest {
         }
         pictogramDao.updatePictograms(pictogramsToUpdate)
 
-        val pictogramEntitiesFromDataBase = pictogramDao.getPictograms()
+        val pictogramEntitiesFromDataBase = pictogramDao.getPictogramsEntities()
         assert(pictogramsToUpdate == pictogramEntitiesFromDataBase)
     }
 
@@ -148,12 +132,12 @@ class PictogramDataBaseTest {
         val pictogramEntityToInsert = TestDataUtil.getPictogramEntity(pictogramId = pictogramId)
 
         pictogramDao.insertPictogram(pictogramEntityToInsert)
-        val pictogramFromDataBaseInserted = pictogramDao.getPictogram(pictogramId)
+        val pictogramFromDataBaseInserted = pictogramDao.getPictogramEntity(pictogramId)
         assert(pictogramFromDataBaseInserted != null)
         pictogramDao.delete(pictogramFromDataBaseInserted)
 
         val pictogramFromDataBaseDeleted =
-            pictogramDao.getPictogram(pictogramId)
+            pictogramDao.getPictogramEntity(pictogramId)
         assert(pictogramFromDataBaseDeleted == null)
     }
 

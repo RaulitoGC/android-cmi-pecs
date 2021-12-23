@@ -10,16 +10,13 @@ interface PictogramDao {
     suspend fun insertPictogram(pictogramEntity: PictogramEntity)
 
     @Query("SELECT * FROM pictogram ORDER BY priority DESC")
-    suspend fun getPictograms(): List<PictogramEntity>
+    suspend fun getPictogramsEntities(): List<PictogramEntity>
 
     @Query("SELECT * FROM pictogram WHERE pictogramId=:pictogramId")
-    suspend fun getPictogram(pictogramId: Int): PictogramEntity
+    suspend fun getPictogramEntity(pictogramId: Int): PictogramEntity
 
     @Query("SELECT * FROM pictogram WHERE categoryId=:categoryId ORDER BY priority DESC")
-    suspend fun getPictogramsByCategory(categoryId: Int): List<PictogramEntity>
-
-    @Query("UPDATE pictogram SET priority=:newPriority WHERE pictogramId=:pictogramId")
-    suspend fun updatePictogramPriority(pictogramId: Int, newPriority: Int)
+    suspend fun getPictogramsEntitiesByCategory(categoryId: Int): List<PictogramEntity>
 
     @Update
     suspend fun updatePictogram(pictogramEntity: PictogramEntity)
