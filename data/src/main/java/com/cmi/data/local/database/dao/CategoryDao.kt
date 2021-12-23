@@ -10,7 +10,7 @@ interface CategoryDao {
     suspend fun insertCategory(categoryEntity: CategoryEntity)
 
     @Query("SELECT * FROM category ORDER BY priority DESC")
-    suspend fun getCategories(): List<CategoryEntity>
+    suspend fun getCategoriesEntities(): List<CategoryEntity>
 
     @Query("UPDATE category SET priority=:newPriority WHERE categoryId=:categoryId")
     suspend fun updateCategoryPriority(categoryId: Int, newPriority: Int)

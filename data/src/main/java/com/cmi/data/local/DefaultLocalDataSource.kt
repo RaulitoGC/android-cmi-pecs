@@ -1,9 +1,14 @@
 package com.cmi.data.local
 
 import com.cmi.data.local.database.CmiDataBase
-import com.cmi.data.local.database.entity.CategoryEntity
-import com.cmi.data.local.database.entity.PictogramEntity
+import com.cmi.data.local.mapper.toCategory
+import com.cmi.data.local.mapper.toCategoryEntity
+import com.cmi.data.local.mapper.toPictogram
+import com.cmi.data.local.mapper.toPictogramEntity
 import com.cmi.data.local.preferences.CmiPreferences
+import com.cmi.domain.entity.Category
+import com.cmi.domain.entity.Pictogram
+import com.cmi.domain.system.LocalDataSource
 import kotlinx.coroutines.flow.flow
 
 class DefaultLocalDataSource(
@@ -12,49 +17,54 @@ class DefaultLocalDataSource(
 ) : LocalDataSource {
 
     override suspend fun getCategories() = flow {
-        emit(cmiDataBase.categoryDao.getCategories())
+        val categories = cmiDataBase
+            .categoryDao
+            .getCategoriesEntities()
+            .map {
+                it.toCategory()
+            }
+
+        emit(categories)
     }
 
     override suspend fun getPictogramsByCategory(categoryId: Int) = flow {
-        val pictograms = cmiDataBase.pictogramDao.getPictogramsByCategory(categoryId = categoryId)
+        val pictograms = cmiDataBase.pictogramDao
+            .getPictogramsEntitiesByCategory(categoryId = categoryId)
+            .map {
+                it.toPictogram()
+            }
         emit(pictograms)
     }
 
     override suspend fun getPictograms() = flow {
-        emit(cmiDataBase.pictogramDao.getPictograms())
+        val pictograms = cmiDataBase
+            .pictogramDao
+            .getPictogramsEntities()
+            .map {
+                it.toPictogram()
+            }
+
+        emit(pictograms)
     }
 
-    override suspend fun getPictogram(pictogramId: Int): PictogramEntity {
-        return cmiDataBase.pictogramDao.getPictogram(pictogramId = pictogramId)
+    override suspend fun getPictogram(pictogramId: Int): Pictogram {
+        return cmiDataBase.pictogramDao.getPictogramEntity(pictogramId = pictogramId).toPictogram()
     }
 
-    override suspend fun addPictogramEntity(pictogramEntity: PictogramEntity) = flow {
-        emit(cmiDataBase.pictogramDao.insertPictogram(pictogramEntity = pictogramEntity))
+    override suspend fun addPictogram(pictogram: Pictogram) = flow {
+        emit(cmiDataBase.pictogramDao.insertPictogram(pictogramEntity = pictogram.toPictogramEntity()))
     }
 
-    override suspend fun addCategoryEntity(categoryEntity: CategoryEntity) = flow {
-        emit(cmiDataBase.categoryDao.insertCategory(categoryEntity = categoryEntity))
+    override suspend fun addCategory(category: Category) = flow {
+        emit(cmiDataBase.categoryDao.insertCategory(categoryEntity = category.toCategoryEntity()))
     }
 
-    override suspend fun updatePictogramEntity(pictogramEntity: PictogramEntity) = flow {
-        emit(cmiDataBase.pictogramDao.updatePictogram(pictogramEntity = pictogramEntity))
+    override suspend fun updatePictogram(pictogram: Pictogram) = flow {
+        emit(cmiDataBase.pictogramDao.updatePictogram(pictogramEntity = pictogram.toPictogramEntity()))
     }
 
-    override suspend fun updateCategoryEntity(categoryEntity: CategoryEntity) = flow {
-        emit(cmiDataBase.categoryDao.updateCategory(categoryEntity = categoryEntity))
-    }
-
-    // TODO (rguzmanc ) : Remove / Move increment priority logic to domain layer
-    override suspend fun updatePictogramPriority(pictogramEntity: PictogramEntity) = flow {
-        val pictogramId = pictogramEntity.pictogramId ?: 0
-        val newPriority = (pictogramEntity.priority ?: 0) + 1
-
-        emit(
-            cmiDataBase.pictogramDao.updatePictogramPriority(
-                pictogramId = pictogramId,
-                newPriority = newPriority
-            )
-        )
+    override suspend fun updateCategory(category: Category) = flow {
+        emit(cmiDataBase.categoryDao.updateCategory(categoryEntity = category.toCategoryEntity()))
     }
 
     override fun getMainPictogramId(): Int = cmiPreferences.getPictogramMainId()
@@ -84,30 +94,39 @@ class DefaultLocalDataSource(
         emit(cmiPreferences.setSecondPictogramAttributeId(pictogramId = pictogramId))
     }
 
-    override suspend fun updateCategories(categoriesEntities: List<CategoryEntity>) {
-        cmiDataBase.categoryDao.updateCategories(categoriesEntities = categoriesEntities)
-    }
-
-    override suspend fun updatePictograms(pictogramsEntities: List<PictogramEntity>) {
-        cmiDataBase.pictogramDao.updatePictograms(pictogramsEntities = pictogramsEntities)
-    }
-
-    override suspend fun deletePictograms(pictogramEntities: List<PictogramEntity>) {
-        pictogramEntities.forEach { pictogramEntity ->
-            cmiDataBase.pictogramDao.delete(pictogramEntity = pictogramEntity)
+    override suspend fun updateCategories(categories: List<Category>) = flow {
+        val categoriesEntities = categories.map {
+            it.toCategoryEntity()
         }
+        emit(cmiDataBase.categoryDao.updateCategories(categoriesEntities = categoriesEntities))
     }
 
-    override suspend fun deleteCategories(categoriesEntities: List<CategoryEntity>) {
-        categoriesEntities.forEach { categoryEntity ->
-            cmiDataBase.categoryDao.delete(categoryEntity = categoryEntity)
-            if (categoryEntity.categoryId != null) {
-                val pictograms =
-                    cmiDataBase.pictogramDao.getPictogramsByCategory(categoryId = categoryEntity.categoryId)
-                pictograms.forEach { pictogramEntity ->
+    override suspend fun updatePictograms(pictograms: List<Pictogram>) = flow {
+        val pictogramsEntities = pictograms.map {
+            it.toPictogramEntity()
+        }
+        emit(cmiDataBase.pictogramDao.updatePictograms(pictogramsEntities = pictogramsEntities))
+    }
+
+    override suspend fun deletePictograms(pictograms: List<Pictogram>) = flow {
+        pictograms.forEach { pictogram ->
+            cmiDataBase.pictogramDao.delete(pictogramEntity = pictogram.toPictogramEntity())
+        }
+        emit(Unit)
+    }
+
+    override suspend fun deleteCategories(categories: List<Category>) = flow {
+        categories.forEach { category ->
+            cmiDataBase.categoryDao.delete(categoryEntity = category.toCategoryEntity())
+            val categoryId = category.categoryId
+            if (categoryId != null) {
+                val pictogramsEntities =
+                    cmiDataBase.pictogramDao.getPictogramsEntitiesByCategory(categoryId = categoryId)
+                pictogramsEntities.forEach { pictogramEntity ->
                     cmiDataBase.pictogramDao.delete(pictogramEntity = pictogramEntity)
                 }
             }
         }
+        emit(Unit)
     }
 }
