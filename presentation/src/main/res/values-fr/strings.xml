@@ -1,3 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="text_app_short_name">CMI-PECS</string>
+    <string name="text_app_long_name">Communications par images</string>
+    <string name="text_toolbar_name_format">%1$s | %2$s</string>
+
+    <!-- Intro -->
+    <string name="text_start">Commencer</string>
+    <string name="text_guide">Guíde</string>
+    <string name="text_settings">Configurations</string>
+
+    <!-- Phase -->
+    <string name="text_phase_one">Phase 1</string>
+    <string name="text_phase_two">Phase 2</string>
+    <string name="text_phase_three">Phase 3</string>
+    <string name="text_phase_four">Phase 4</string>
+    <string name="text_phase_five">Phase 5</string>
+    <string name="text_phase_six">Phase 6</string>
+    <string name="text_phase">PHASE</string>
+
+    <!-- Categories -->
+    <string name="text_categories">Categories</string>
+
+    <!-- Pictograms -->
+    <string name="text_pictograms">Pictogrammes</string>
+
+    <!-- Tape -->
+    <string name="text_tape">Phrase d\\\'accroche</string>
+
+    <!-- Categories content description -->
+    <string name="text_content_description_icon_back">Arrière</string>
+    <string name="text_content_description_icon_front">Avant</string>
+
+    <!-- Navigate To Settings -->
+    <string name="text_title_permission_permanently_denied">Permissions nécessaires</string>
+    <string name="text_message_permission_permanently_denied"> CMI necessites des permissions pour acceder aux images. Vous pouvez autoriser les permissions de CMI dans la configuration du téléphone.</string>
+    <string name="text_navigate_to_settings">Configuration</string>
+    <string name="text_cancel">Annuler</string>
+
+    <!-- Generic Error Messages -->
+    <string name="text_generic_error">Un erreur est survenue, attendez une minute :)</string>
+
+    <!-- Configuration -->
+    <string name="text_configuration_option_message">Sellectionnez une option</string>
+    <string name="text_configuration_category">Catégories</string>
+    <string name="text_configuration_pictogram">Pictogrammes</string>
+
+    <string name="text_hint_name">Nom</string>
+    <string name="text_camera">Caméra</string>
+    <string name="text_gallery">Galeríe</string>
+
+    <string name="text_add_pictogram">Ajouter un pictogramme</string>
+    <string name="text_upload_pictogram">Téléverser un pictogramme</string>
+    <string name="text_pictogram_added_success">Pictogramme ajouté avec succès</string>
+    <string name="text_select_category">Selectionner une catégorie</string>
+
+    <string name="text_add_category">Ajouter une catégorie</string>
+    <string name="text_upload_category">Téléverser une catégorie</string>
+    <string name="text_category_add_success">Catégorie ajoutée avec succès</string>
+
+    <string name="text_edit_pictogram">Modifier un pictogramme</string>
+    <string name="text_edit_pictogram_success">Pictogramme modifié avec succès</string>
+    <string name="text_select_pictogram">Sélectionner un pictogramme</string>
+    <string name="text_update_pictogram">Actualiser un pictogramme</string>
+
+    <string name="text_edit_category">Modifier une catégorie</string>
+    <string name="text_update_category">Actualiser une catégorie</string>
+    <string name="text_edit_category_success">Catégorie actualisée avec succès</string>
+
+    <string name="text_select_format">Sélectionner %1$s</string>
+    <string name="text_add_format">Ajouter %1$s</string>
+    <string name="text_edit_format">Modifier %1$s</string>
+    <string name="text_delete_format">Supprimer %1$s</string>
+
+    <string name="text_pictogram">Pictogramme</string>
+    <string name="text_category">Catégorie</string>
+    <string name="text_delete">Supprimer</string>
+    <string name="text_select">Seleccionner</string>
+    <string name="text_edit">Modifier</string>
+    <string name="text_add">Ajouter</string>
+
+    <string name="text_select_category_for_pecs">Seleccionner une catégorie pour PECS </string>
+    <string name="text_select_category_for_pecs_description">Les catégories sélectionnées seront affichées lors de l\\\'utilisation de PECS.</string>
+
+    <string name="text_select_pictogram_for_pecs">Seleccionar pictogramas para PECS</string>
+    <string name="text_select_pictogram_for_pecs_description">Los pictogramas seleccionadas se mostrarán cuando se utilice PECS</string>
+
+    <string name="text_select_pictograms_size_format">(%1$s)</string>
+    <string name="text_select_category_size_format">(%1$s)</string>
+
+    <string name="text_update">Actualiser</string>
+
+    <string name="text_select_pictograms_success">Les pictogrammes ont été mis à jour !</string>
+    <string name="text_select_categories_success">Les catégories ont été mis à jour !</string>
+
+    <string name="text_delete_pictograms_success">Les pictogrammes ont été supprimés !</string>
+    <string name="text_delete_pictograms_description">Les pictogrammes sélectionnés seront supprimés !</string>
+    <string name="text_delete_categories_success">Les catégories sélectionnés ont été supprimées !</string>
+    <string name="text_delete_categories_description">Les catégories sélectionnés seront supprimées !</string>
+
+    <string name="text_configuration_error_empty_name">Vous devez entrer un nom</string>
+    <string name="text_configuration_error_empty_image">Vous devez entere une image</string>
+    <string name="text_configuration_error_empty_category">Vous devez sélectionner une catégorie</string>
+
+    <!-- Survey -->
+    <string name="text_author_presentation">Bonjour, je suis Raul Guzman, auteur de CMI. Cet outil a été créé gratuitement dans le but de soutenir la communauté des personnes atteintes de TSA et les familles qui luttent chaque jour pour s\\\'en sortir. Si vous souhaitez me soutenir de quelque manière que ce soit, je vous serais reconnaissant de bien vouloir répondre aux enquêtes suivantes. (en enspagnol)</string>
+    <string name="text_title_start_survey"> Pré-enquête :</string>
+    <string name="text_message_start_survey"> Enquête pour recueillir les réactions des familles avant de recourir au CMI</string>
+    <string name="text_title_end_survey">Post-enquête :</string>
+    <string name="text_message_end_survey">Enquête pour recueillir les réactions des familles après avoir utilisé le CMI</string>
+    <string name="text_btn_start_survey">Commencer la pré-enquête</string>
+    <string name="text_btn_end_survey">Commencer la post-enquête</string>
+
+    <!-- Alert -->
+    <string name="text_accept">Acepter</string>
+    <string name="text_survey_title">Soutenir la fraternité du COE</string>
+    <string name="text_second_survey_description">Merci de votre soutien au CMI ! Avec votre aide, nous continuerons à créer des produits. C\\\'est pourquoi nous vous demandons de répondre à la même enquête après un certain temps et de nous laisser comparer les résultats :)</string>
+    <string name="text_first_survey_description">Notre principale motivation est la recherche et le soutien à la communauté des TSA. Aidez-nous à continuer à créer des super produits en répondant à l\\\'enquête ci-dessous :)</string>
+    <string name="text_survey">Aller à l\\\'enquête</string>
+    <string name="text_remember_survey_later"> Me rappeler de répondre à l\\\'enquête plus tard</string>
+
+    <!-- Messages -->
+    <string name="text_message_empty_categories">Aucune catégorie ne peut être supprimée. Seules les catégories externes peuvent être supprimées.</string>
+    <string name="text_message_empty_categories_for_pecs">Aucune catégorie disponible pour la sélection.</string>
+    <string name="text_message_empty_pictograms">Vous n\\\'avez aucun pictogramme disponible dans cette catégorie à supprimer. Seuls les pictogrammes externes de cette catégorie peuvent être supprimés.</string>
+    <string name="text_message_empty_pictograms_for_pecs">Vous n\\\'avez aucun pictogramme disponible dans cette catégorie à sélectionner.</string>
+
 </resources>
