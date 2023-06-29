@@ -27,6 +27,7 @@
         <activity
             android:name=".splash.SplashActivity"
             android:theme="@style/AppTheme.Splash"
+            android:exported="true"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
