@@ -19,6 +19,11 @@ ext {
     preferenceVersion = "1.1.1"
     roomVersion = "2.5.0"
 
+    composeBoomVersion = "2023.01.00"
+    composeRuntimeVersion = "1.0.0"
+    activityComposeVersion = "1.6.1"
+    viewModelComposeVersion = "2.5.1"
+
     // Third-party libraries
     retrofitVersion = "2.9.0"
     okHttpVersion = "4.9.0"
@@ -29,6 +34,7 @@ ext {
     pickitVersion = "0.1.14"
     dexterVersion = "6.2.2"
     circleImageViewVersion = "3.1.0"
+    shimmerVersion = "0.5.0"
 
     // Test
     junitVersion = "4.12"
@@ -45,6 +51,7 @@ ext {
     ]
 
     glideCompiler = "com.github.bumptech.glide:compiler:$glideVersion"
+    composeBomLibrary = "androidx.compose:compose-bom:$composeBoomVersion"
     presentationDependencies = [
             "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion",
@@ -63,7 +70,16 @@ ext {
             "com.github.bumptech.glide:glide:$glideVersion",
             "com.github.HBiSoft:PickiT:$pickitVersion",
             "com.karumi:dexter:$dexterVersion",
-            "de.hdodenhof:circleimageview:$circleImageViewVersion"
+            "de.hdodenhof:circleimageview:$circleImageViewVersion",
+            "com.facebook.shimmer:shimmer:$shimmerVersion",
+
+            "androidx.compose.runtime:runtime:$composeRuntimeVersion",
+            "androidx.activity:activity-compose:$activityComposeVersion",
+            "androidx.lifecycle:lifecycle-viewmodel-compose:$viewModelComposeVersion",
+            "androidx.compose.runtime:runtime-livedata",
+            "androidx.compose.foundation:foundation",
+            "androidx.compose.ui:ui",
+            "androidx.compose.material3:material3"
     ]
 
     roomCompiler = "androidx.room:room-compiler:$roomVersion"
