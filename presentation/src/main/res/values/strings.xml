@@ -104,6 +104,7 @@
     <string name="text_configuration_error_empty_category">Debe seleccionar una categoría</string>
 
     <!-- Survey -->
+    <string name="content_description_img_author">Autor de CMI PECS: Raul Guzman</string>
     <string name="text_author_presentation">Hola! Soy Raul Guzman, autor de CMI. Esta herramienta fue creada de manera gratuita pensando en apoyar a la comunidad TEA y en las familias que día a día luchan para salir adelante. Si quieres de alguna manera apoyarme, te agradecería que realices las siguientes encuentas.</string>
     <string name="text_title_start_survey"> Pre Encuesta</string>
     <string name="text_message_start_survey"> Encuesta para recaudar la opinión de las familias antes de utilizar CMI</string>

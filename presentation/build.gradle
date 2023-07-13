@@ -61,6 +61,9 @@ dependencies {
     implementation rootProject.ext.presentationDependencies
     kapt rootProject.ext.glideCompiler
 
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+
     implementation project(":data")
 
     testImplementation rootProject.ext.unitTestDependencies

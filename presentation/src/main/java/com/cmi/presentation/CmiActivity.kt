@@ -13,9 +13,6 @@ class CmiActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cmi)
-        setContent {
-            Text("Hello World")
-        }
         textToSpeechManager = TextToSpeechManager(this)
     }
 
