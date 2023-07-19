@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.setViewTreeLifecycleOwner
 import com.cmi.presentation.Constants.END_SURVEY_URL
 import com.cmi.presentation.Constants.START_SURVEY_URL
 import com.cmi.presentation.databinding.FragmentSurveyBinding
@@ -31,13 +33,18 @@ class SurveyFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
-        btnStartSurvey.setSafeOnClickListener {
-            openURL(URL = START_SURVEY_URL)
+        composeSurveyScreen.setViewTreeLifecycleOwner(this@SurveyFragment)
+        composeSurveyScreen.setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+        composeSurveyScreen.setContent {
+            SurveyScreen()
         }
-
-        btnEndSurvey.setSafeOnClickListener {
-            openURL(URL = END_SURVEY_URL)
-        }
+//        btnStartSurvey.setSafeOnClickListener {
+//            openURL(URL = START_SURVEY_URL)
+//        }
+//
+//        btnEndSurvey.setSafeOnClickListener {
+//            openURL(URL = END_SURVEY_URL)
+//        }
     }
 
     override fun onDestroyView() {
