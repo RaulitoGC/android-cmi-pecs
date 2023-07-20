@@ -34,6 +34,11 @@ android {
 
     buildFeatures {
         viewBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.8"
     }
 
     kotlinOptions {
@@ -49,9 +54,15 @@ android {
 
 dependencies {
 
+    def composeBom = platform(rootProject.ext.composeBomLibrary)
+    implementation composeBom
+    androidTestImplementation composeBom
+
     implementation rootProject.ext.presentationDependencies
-    implementation 'com.facebook.shimmer:shimmer:0.5.0'
     kapt rootProject.ext.glideCompiler
+
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation("androidx.compose.ui:ui-tooling-preview")
 
     implementation project(":data")
 

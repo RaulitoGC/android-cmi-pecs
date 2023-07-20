@@ -1,13 +1,13 @@
 ext {
     // Android Project Config
     applicationId = "com.rguzman.cmi"
-    compileVersion = 30
-    buildToolsVersion = "30.0.3"
+    compileVersion = 33
+    buildToolsVersion = "33.0.2"
     minVersion = 23
-    targetVersion = 30
+    targetVersion = 33
 
     // Kotlin
-    kotlinCoroutinesVersion = "1.5.1"
+    kotlinCoroutinesVersion = "1.7.2"
 
     // Android
     coreKtxVersion = "1.3.2"
@@ -15,9 +15,14 @@ ext {
     fragmentVersion = "1.3.0"
     constraintLayoutVersion = "2.0.4"
     materialComponentsVersion = "1.4.0-alpha01"
-    navigationComponentVersion = "2.3.1"
+    navigationComponentVersion = "2.6.0"
     preferenceVersion = "1.1.1"
-    roomVersion = "2.3.0"
+    roomVersion = "2.5.0"
+
+    composeBoomVersion = "2023.01.00"
+    composeRuntimeVersion = "1.0.0"
+    activityComposeVersion = "1.6.1"
+    viewModelComposeVersion = "2.5.1"
 
     // Third-party libraries
     retrofitVersion = "2.9.0"
@@ -29,6 +34,7 @@ ext {
     pickitVersion = "0.1.14"
     dexterVersion = "6.2.2"
     circleImageViewVersion = "3.1.0"
+    shimmerVersion = "0.5.0"
 
     // Test
     junitVersion = "4.12"
@@ -45,6 +51,7 @@ ext {
     ]
 
     glideCompiler = "com.github.bumptech.glide:compiler:$glideVersion"
+    composeBomLibrary = "androidx.compose:compose-bom:$composeBoomVersion"
     presentationDependencies = [
             "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion",
@@ -63,7 +70,16 @@ ext {
             "com.github.bumptech.glide:glide:$glideVersion",
             "com.github.HBiSoft:PickiT:$pickitVersion",
             "com.karumi:dexter:$dexterVersion",
-            "de.hdodenhof:circleimageview:$circleImageViewVersion"
+            "de.hdodenhof:circleimageview:$circleImageViewVersion",
+            "com.facebook.shimmer:shimmer:$shimmerVersion",
+
+            "androidx.compose.runtime:runtime:$composeRuntimeVersion",
+            "androidx.activity:activity-compose:$activityComposeVersion",
+            "androidx.lifecycle:lifecycle-viewmodel-compose:$viewModelComposeVersion",
+            "androidx.compose.runtime:runtime-livedata",
+            "androidx.compose.foundation:foundation",
+            "androidx.compose.ui:ui",
+            "androidx.compose.material3:material3"
     ]
 
     roomCompiler = "androidx.room:room-compiler:$roomVersion"

@@ -22,6 +22,7 @@
     <application>
         <activity android:name=".CmiActivity"
             android:screenOrientation="landscape"
+            android:exported="true"
             android:theme="@style/CmiTheme"/>
     </application>
 </manifest>
