@@ -80,7 +80,7 @@ fun SurveyScreen() {
                     )
                     Button(
                         onClick = {
-                            openEndSurvey(localUriHandler)
+                            openStartSurvey(localUriHandler)
                         }
                     ) {
                         Text(text = stringResource(id = R.string.text_btn_start_survey))

@@ -33,8 +33,6 @@ class SurveyFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
-        composeSurveyScreen.setViewTreeLifecycleOwner(this@SurveyFragment)
-        composeSurveyScreen.setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
         composeSurveyScreen.setContent {
             SurveyScreen()
         }

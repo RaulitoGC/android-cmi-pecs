@@ -11,7 +11,8 @@ ext {
 
     // Android
     coreKtxVersion = "1.3.2"
-    appCompatVersion = "1.2.0"
+    // This version should be major than 1.3.0 to use the compose and avoid getting ViewLifecycle Error
+    appCompatVersion = "1.6.0"
     fragmentVersion = "1.3.0"
     constraintLayoutVersion = "2.0.4"
     materialComponentsVersion = "1.4.0-alpha01"
