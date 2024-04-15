@@ -4,14 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.setViewTreeLifecycleOwner
-import com.cmi.presentation.Constants.END_SURVEY_URL
-import com.cmi.presentation.Constants.START_SURVEY_URL
 import com.cmi.presentation.databinding.FragmentSurveyBinding
-import com.cmi.presentation.ktx.openURL
-import com.cmi.presentation.ktx.setSafeOnClickListener
 
 class SurveyFragment : Fragment() {
 
