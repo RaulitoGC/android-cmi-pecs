@@ -2,9 +2,9 @@ apply from: 'dependencies.gradle'
 
 buildscript {
 
-    ext.androidGradlePluginVersion = '7.4.2'
-    ext.kotlinVersion = "1.8.22"
-    ext.navigationComponentVersion = '2.4.1'
+    ext.androidGradlePluginVersion = '8.3.2'
+    ext.kotlinVersion = "1.9.23"
+    ext.navigationComponentVersion = '2.5.0'
 
     repositories {
         google()
