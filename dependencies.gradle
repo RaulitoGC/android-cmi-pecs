@@ -1,10 +1,9 @@
 ext {
     // Android Project Config
     applicationId = "com.rguzman.cmi"
-    compileVersion = 33
-    buildToolsVersion = "33.0.2"
-    minVersion = 23
-    targetVersion = 33
+    compileVersion = 34
+    minVersion = 26
+    targetVersion = 34
 
     // Kotlin
     kotlinCoroutinesVersion = "1.7.2"
@@ -18,7 +17,7 @@ ext {
     materialComponentsVersion = "1.4.0-alpha01"
     navigationComponentVersion = "2.6.0"
     preferenceVersion = "1.1.1"
-    roomVersion = "2.5.0"
+    roomVersion = "2.6.1"
 
     composeBoomVersion = "2023.01.00"
     composeRuntimeVersion = "1.0.0"

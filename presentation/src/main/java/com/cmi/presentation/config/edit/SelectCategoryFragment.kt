@@ -111,27 +111,20 @@ class SelectCategoryFragment : Fragment(), SelectCategoryAdapter.ItemListener {
     override fun onItemClick(data: CategoryModel) {
         val directions = when (args.categorySelectOptions) {
             CategorySelectOptions.SELECT_PICTOGRAM_FOR_PECS -> {
-                SelectCategoryFragmentDirections.actionSelectCategoryFragmentToSelectPictogramForPecsFragment(
-                    categoryModel = data
-                )
+
+                SelectCategoryFragmentDirections.actionSelectCategoryFragmentToSelectPictogramForPecsFragment(data)
             }
 
             CategorySelectOptions.EDIT_PICTOGRAM -> {
-                SelectCategoryFragmentDirections.actionSelectCategoryFragmentToSelectPictogramFragment(
-                    categoryModel = data
-                )
+                SelectCategoryFragmentDirections.actionSelectCategoryFragmentToSelectPictogramFragment(data)
             }
 
             CategorySelectOptions.EDIT_CATEGORY -> {
-                SelectCategoryFragmentDirections.actionSelectCategoryFragmentToEditCategoryFragment(
-                    categoryModel = data
-                )
+                SelectCategoryFragmentDirections.actionSelectCategoryFragmentToEditCategoryFragment(data)
             }
 
             CategorySelectOptions.DELETE_PICTOGRAM -> {
-                SelectCategoryFragmentDirections.actionSelectCategoryFragmentToDeletePictogramFragment(
-                    categoryModel = data
-                )
+                SelectCategoryFragmentDirections.actionSelectCategoryFragmentToDeletePictogramFragment(data)
             }
         }
 

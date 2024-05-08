@@ -4,13 +4,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion rootProject.ext.compileVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    namespace 'com.rguzman.cmi'
+    compileSdk 34
 
     defaultConfig {
-        applicationId rootProject.ext.applicationId
-        minSdkVersion rootProject.ext.minVersion
-        targetSdkVersion rootProject.ext.targetVersion
+        applicationId "com.rguzman.cmi"
+        minSdkVersion 26
+        targetSdkVersion 34
         versionCode 12
         versionName "1.0.1"
 
@@ -24,20 +25,31 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 }
 
 dependencies {
 
-    implementation rootProject.ext.applicationDependencies
-    implementation rootProject.ext.debugDependencies
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.google.material
+    implementation libs.jakewharton.timber
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.android)
 
     implementation project(":presentation")
-    testImplementation rootProject.ext.unitTestDependencies
+
+    testImplementation libs.androidx.test.junit
+    testImplementation libs.androidx.test.junit.ktx
+    testImplementation libs.androidx.test.core
+    testImplementation libs.androidx.test.core.ktx
+    testImplementation libs.robolectric
 }

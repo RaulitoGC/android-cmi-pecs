@@ -4,12 +4,18 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
-    implementation rootProject.ext.domainDependencies
 
-    testImplementation rootProject.ext.unitTestDependencies
+    implementation libs.kotlinx.coroutines.core
+    implementation libs.kotlinx.coroutines.android
+
+    testImplementation libs.androidx.test.junit
+    testImplementation libs.androidx.test.junit.ktx
+    testImplementation libs.androidx.test.core
+    testImplementation libs.androidx.test.core.ktx
+    testImplementation libs.robolectric
 }

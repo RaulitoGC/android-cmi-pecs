@@ -89,9 +89,7 @@ class SelectPictogramFragment : Fragment(), SelectPictogramAdapter.ItemListener 
 
     override fun onItemClick(data: PictogramModel) {
         val directions =
-            SelectPictogramFragmentDirections.actionSelectPictogramFragmentToEditPictogramFragment(
-                pictogramModel = data
-            )
+            SelectPictogramFragmentDirections.actionSelectPictogramFragmentToEditPictogramFragment(data)
         findNavController().navigate(directions)
     }
 

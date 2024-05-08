@@ -12,7 +12,6 @@ import com.cmi.presentation.ktx.setUpNavigation
 import com.cmi.presentation.model.CategoryModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 
 class CategoryFragment : Fragment(), CategoryAdapter.ItemListener {
 
@@ -86,9 +85,7 @@ class CategoryFragment : Fragment(), CategoryAdapter.ItemListener {
     }
 
     override fun onItemClick(data: CategoryModel) {
-        val directions = CategoryFragmentDirections.actionCategoryFragmentToPictogramFragment(
-            categoryModel = data
-        )
+        val directions = CategoryFragmentDirections.actionCategoryFragmentToPictogramFragment(data)
         findNavController().navigate(directions)
     }
 
