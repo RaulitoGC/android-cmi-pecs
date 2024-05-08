@@ -8,11 +8,11 @@ android {
 
     namespace 'com.cmi.data'
 
-    compileSdk rootProject.ext.compileVersion
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minVersion
-        targetSdkVersion rootProject.ext.targetVersion
+        minSdkVersion 26
+        targetSdkVersion 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -42,10 +42,24 @@ android {
 }
 
 dependencies {
-    implementation rootProject.ext.dataDependencies
-    kapt rootProject.ext.roomCompiler
+
+    implementation libs.kotlinx.coroutines.core
+    implementation libs.kotlinx.coroutines.android
+    implementation libs.jakewharton.timber
+    implementation libs.square.retrofit
+    implementation libs.square.converter.gson
+    implementation libs.square.okhttp.interceptor
+    implementation libs.androidx.preference.ktx
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
+
+    kapt libs.androidx.room.compiler
 
     api project(":domain")
 
-    testImplementation rootProject.ext.unitTestDependencies
+    testImplementation libs.androidx.test.junit
+    testImplementation libs.androidx.test.junit.ktx
+    testImplementation libs.androidx.test.core
+    testImplementation libs.androidx.test.core.ktx
+    testImplementation libs.robolectric
 }

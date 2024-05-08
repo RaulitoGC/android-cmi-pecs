@@ -1,10 +1,8 @@
 package com.cmi.presentation
 
 import android.os.Bundle
-import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.cmi.presentation.manager.TextToSpeechManager
-import androidx.compose.material3.Text
 
 class CmiActivity : AppCompatActivity() {
 
