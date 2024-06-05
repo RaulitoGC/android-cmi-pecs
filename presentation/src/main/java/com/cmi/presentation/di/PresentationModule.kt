@@ -3,6 +3,7 @@ package com.cmi.presentation.di
 import com.cmi.data.di.DataServiceLocator
 import com.cmi.data.local.preferences.SurveyPreferences
 import com.cmi.domain.usecase.*
+import com.cmi.presentation.components.category.CategorySelectableViewModel
 import com.cmi.presentation.config.add.category.AddCategoryViewModel
 import com.cmi.presentation.config.add.pictogram.AddPictogramViewModel
 import com.cmi.presentation.config.delete.category.DeleteCategoryViewModel
@@ -173,4 +174,12 @@ val presentationModule = module {
         )
     }
 
+    // Category Selectable
+    viewModel {
+        CategorySelectableViewModel(
+            getCategoriesUseCase = GetCategoriesUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
+        )
+    }
 }

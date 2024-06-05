@@ -12,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.cmi.presentation.R
 import com.cmi.presentation.common.PickitFragment
+import com.cmi.presentation.components.category.CategorySelectable
+import com.cmi.presentation.config.add.PictureLoader
 import com.cmi.presentation.config.contract.ChoosePictureContract
 import com.cmi.presentation.config.contract.TakePictureContract
 import com.cmi.presentation.databinding.FragmentAddCategoryBinding
@@ -47,63 +49,67 @@ class AddCategoryFragment : PickitFragment() {
     private fun initView() = with(binding) {
         val context = context
         if (context != null) {
-
-            lyToolbar.txtTitle.text = getString(R.string.text_add_category)
-            lyToolbar.toolbar.setUpNavigation {
-                findNavController().popBackStack()
-            }
-
-            if (TakePictureContract.resolveActivity(context)) {
-                imgCamera.visibility = View.VISIBLE
-                txtCameraLabel.visibility = View.VISIBLE
-                imgCamera.setSafeOnClickListener {
-                    requestCameraPermission()
+            pictureLoaderScreen.setContent {
+                CategorySelectable { itemSelected ->
+                    Timber.d("Item selected: $itemSelected")
                 }
-            } else {
-                imgCamera.visibility = View.GONE
-                txtCameraLabel.visibility = View.GONE
             }
-
-            if (ChoosePictureContract.resolveActivity(context)) {
-                imgGallery.visibility = View.VISIBLE
-                txtGalleryLabel.visibility = View.VISIBLE
-                imgGallery.setSafeOnClickListener {
-                    requestStoragePermission()
-                }
-            } else {
-                imgGallery.visibility = View.GONE
-                txtGalleryLabel.visibility = View.GONE
-            }
-
-            if (!ChoosePictureContract.resolveActivity(context)
-                && !TakePictureContract.resolveActivity(context)
-            ) {
-                cardViewPreview.visibility = View.GONE
-            }
-
-            btnAddCategory.setSafeOnClickListener {
-                addCategoryViewModel.addCategory(
-                    pictogramName = etName.text.toString(),
-                    pictureFileName = lastUriPathUploaded
-                )
-            }
+//            lyToolbar.txtTitle.text = getString(R.string.text_add_category)
+//            lyToolbar.toolbar.setUpNavigation {
+//                findNavController().popBackStack()
+//            }
+//
+//            if (TakePictureContract.resolveActivity(context)) {
+//                imgCamera.visibility = View.VISIBLE
+//                txtCameraLabel.visibility = View.VISIBLE
+//                imgCamera.setSafeOnClickListener {
+//                    requestCameraPermission()
+//                }
+//            } else {
+//                imgCamera.visibility = View.GONE
+//                txtCameraLabel.visibility = View.GONE
+//            }
+//
+//            if (ChoosePictureContract.resolveActivity(context)) {
+//                imgGallery.visibility = View.VISIBLE
+//                txtGalleryLabel.visibility = View.VISIBLE
+//                imgGallery.setSafeOnClickListener {
+//                    requestStoragePermission()
+//                }
+//            } else {
+//                imgGallery.visibility = View.GONE
+//                txtGalleryLabel.visibility = View.GONE
+//            }
+//
+//            if (!ChoosePictureContract.resolveActivity(context)
+//                && !TakePictureContract.resolveActivity(context)
+//            ) {
+//                cardViewPreview.visibility = View.GONE
+//            }
+//
+//            btnAddCategory.setSafeOnClickListener {
+//                addCategoryViewModel.addCategory(
+//                    pictogramName = etName.text.toString(),
+//                    pictureFileName = lastUriPathUploaded
+//                )
+//            }
         }
     }
 
     private fun initViewModel() = with(addCategoryViewModel) {
 
-        showMessage.observe(viewLifecycleOwner, { resource ->
+        showMessage.observe(viewLifecycleOwner) { resource ->
             showMessage(getString(resource))
-        })
+        }
 
-        showSuccess.observe(viewLifecycleOwner, { success ->
+        showSuccess.observe(viewLifecycleOwner) { success ->
             if (success) {
                 showMessage(getString(R.string.text_category_add_success))
                 findNavController().popBackStack()
             } else {
                 showMessage(getString(R.string.text_generic_error))
             }
-        })
+        }
     }
 
     private fun requestCameraPermission() {
@@ -131,32 +137,32 @@ class AddCategoryFragment : PickitFragment() {
     }
 
     override fun onStartLoadingImage() {
-        val context = context
-        if (context != null) {
-            binding.imgPreview.setBackgroundColor(
-                ContextCompat.getColor(context, R.color.windowBackground)
-            )
-            binding.progressIndicator.visibility = View.VISIBLE
-        }
+//        val context = context
+//        if (context != null) {
+//            binding.imgPreview.setBackgroundColor(
+//                ContextCompat.getColor(context, R.color.windowBackground)
+//            )
+//            binding.progressIndicator.visibility = View.VISIBLE
+//        }
     }
 
     override fun onProgressUpdate(progress: Int) {
-        binding.progressIndicator.progress = progress
+//        binding.progressIndicator.progress = progress
     }
 
     override fun onImageLoaded(wasSuccessful: Boolean, path: String?) {
-        val context = context
-        if (context != null) {
-            binding.progressIndicator.visibility = View.GONE
-            if (wasSuccessful) {
-                lastUriPathUploaded = path
-                binding.imgPreview.background = null
-                Glide.with(context).load(path).into(binding.imgPreview)
-            } else {
-                binding.imgPreview.background =
-                    ContextCompat.getDrawable(context, R.drawable.ic_image_preview)
-            }
-        }
+//        val context = context
+//        if (context != null) {
+//            binding.progressIndicator.visibility = View.GONE
+//            if (wasSuccessful) {
+//                lastUriPathUploaded = path
+//                binding.imgPreview.background = null
+//                Glide.with(context).load(path).into(binding.imgPreview)
+//            } else {
+//                binding.imgPreview.background =
+//                    ContextCompat.getDrawable(context, R.drawable.ic_image_preview)
+//            }
+//        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

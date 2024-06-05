@@ -42,6 +42,9 @@
     <string name="text_generic_error">Un error ha ocurrido, inténtalo en unos minutos :)</string>
 
     <!-- Configuration -->
+    <string name="text_content_description_camera">Camara</string>
+    <string name="text_content_description_upload">Subir imagen</string>
+    <string name="text_content_description_loading">Cargando</string>
     <string name="text_configuration_option_message">Seleccione una opción</string>
     <string name="text_configuration_category">Categoría</string>
     <string name="text_configuration_pictogram">Pictograma</string>

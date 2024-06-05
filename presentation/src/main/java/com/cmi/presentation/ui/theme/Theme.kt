@@ -1,7 +1,7 @@
 package com.cmi.presentation.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 
 
@@ -12,7 +12,6 @@ fun CmiAppTheme(
 ) {
 
     MaterialTheme(
-        typography = CmiTypography,
         content = content
     )
 }

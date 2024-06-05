@@ -80,6 +80,10 @@
 
     <dimen name="settings_size">32dp</dimen>
 
+    <!-- Commons margins and paddings -->
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_medium">32dp</dimen>
+    <dimen name="margin_high">64dp</dimen>
 
     <dimen name="activityPadding">16dp</dimen>
     <dimen name="placeholderImage">60dp</dimen>

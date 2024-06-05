@@ -11,10 +11,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.Divider
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.Button
+import androidx.compose.material.Divider
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import com.cmi.presentation.Constants
 import com.cmi.presentation.R
 import com.cmi.presentation.ktx.openURL
-import com.cmi.presentation.ui.theme.CmiTypography
 
 @Composable
 fun SurveyScreen() {
@@ -56,8 +55,7 @@ fun SurveyScreen() {
             Text(
                 text = stringResource(id = R.string.text_author_presentation),
                 modifier = Modifier.padding(start = 32.dp, end = 32.dp),
-                textAlign = TextAlign.Center,
-                style = CmiTypography.bodyMedium
+                textAlign = TextAlign.Center
             )
             Row(modifier = Modifier
                 .padding(start = 32.dp, end = 32.dp, top = 16.dp)
@@ -70,13 +68,11 @@ fun SurveyScreen() {
                 ) {
                     val localUriHandler = LocalUriHandler.current
                     Text(
-                        text = stringResource(id = R.string.text_title_start_survey),
-                        style = CmiTypography.titleMedium
+                        text = stringResource(id = R.string.text_title_start_survey)
                     )
                     Text(
                         text = stringResource(id = R.string.text_message_start_survey),
-                        textAlign = TextAlign.Center,
-                        style = CmiTypography.bodyMedium
+                        textAlign = TextAlign.Center
                     )
                     Button(
                         onClick = {
@@ -100,13 +96,11 @@ fun SurveyScreen() {
                 ) {
                     val localUriHandler = LocalUriHandler.current
                     Text(
-                        text = stringResource(id = R.string.text_title_end_survey),
-                        style = CmiTypography.titleMedium
+                        text = stringResource(id = R.string.text_title_end_survey)
                     )
                     Text(
                         text = stringResource(id = R.string.text_message_end_survey),
-                        textAlign = TextAlign.Center,
-                        style = CmiTypography.bodyMedium
+                        textAlign = TextAlign.Center
                     )
                     Button(
                         onClick = { openEndSurvey(localUriHandler)

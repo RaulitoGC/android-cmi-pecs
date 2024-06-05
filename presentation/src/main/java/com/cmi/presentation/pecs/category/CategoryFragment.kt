@@ -71,9 +71,9 @@ class CategoryFragment : Fragment(), CategoryAdapter.ItemListener {
     }
 
     private fun initViewModel() = with(categoryViewModel) {
-        categories.observe(viewLifecycleOwner, { items ->
+        categories.observe(viewLifecycleOwner) { items ->
             loadCategories(categories = items)
-        })
+        }
     }
 
     private fun loadCategories(categories: Map<Int, List<CategoryModel>>) = with(binding) {
