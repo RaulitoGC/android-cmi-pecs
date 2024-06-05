@@ -50,7 +50,10 @@ class AddCategoryFragment : PickitFragment() {
         val context = context
         if (context != null) {
             pictureLoaderScreen.setContent {
-                CategorySelectable { itemSelected ->
+                CategorySelectable(
+                    title = R.string.text_selectable_category_title,
+                    subTitle = R.string.text_selectable_category_subtitle
+                ) { itemSelected ->
                     Timber.d("Item selected: $itemSelected")
                 }
             }

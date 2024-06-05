@@ -29,6 +29,7 @@ hbisoftPickit = "0.1.14"
 karumiDexter = "6.2.2"
 hdodenhofCircleimageview = "3.1.0"
 facebookShimmer = "0.5.0"
+coil = "2.6.0"
 
 androidxTestJunit = "1.1.3"
 androidxTestCore = "1.4.0"
@@ -70,6 +71,7 @@ androidx-compose-material = { module = "androidx.compose.material:material" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 google-accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "googleAccompanistPermissions" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
 square-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "squareRetrofit" }

@@ -130,4 +130,8 @@
     <string name="text_message_empty_pictograms">No tiene pictogramas disponibles en esta categoría para eliminar. Solo los pictogramas externos de esta categoría se pueden eliminar.</string>
     <string name="text_message_empty_pictograms_for_pecs">No tiene pictogramas disponibles en esta categoría para seleccionar.</string>
 
+    <!-- Selectable Category -->
+    <string name="text_selectable_category_title">Seleccionar Categoría</string>
+    <string name="text_selectable_category_subtitle">Seleccione la categoría a la que pertence la imagen</string>
+
 </resources>

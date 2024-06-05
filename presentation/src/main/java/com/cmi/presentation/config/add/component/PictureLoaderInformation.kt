@@ -39,9 +39,7 @@ fun PictureLoaderInformation(
                 }
             )
             DefaultVerticalSpacer()
-            PictureImageSources(
-                handleEvent = handleEvent
-            )
+            PictureImageSources()
         }
         Column(
             modifier = modifier

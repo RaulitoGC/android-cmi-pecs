@@ -86,6 +86,7 @@ dependencies {
     implementation libs.androidx.compose.ui
     implementation libs.androidx.compose.material
     implementation libs.google.accompanist.permissions
+    implementation libs.coil.compose
 
     kapt libs.bumptech.glide.compiler
 
