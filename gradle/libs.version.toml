@@ -62,7 +62,7 @@ karumi-dexter = { group = "com.karumi", name = "dexter", version.ref = "karumiDe
 hdodenhof-circleimageview = { group = "de.hdodenhof", name = "circleimageview", version.ref = "hdodenhofCircleimageview" }
 facebook-shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "facebookShimmer" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "composeRuntime" }
-androidx-compose-activity = { group = "androidx.activity", name = "activity", version.ref = "composeActivity" }
+androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
 androidx-compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "composeViewmodel" }
 androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }

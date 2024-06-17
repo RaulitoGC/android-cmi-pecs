@@ -52,6 +52,14 @@
     <dimen name="item_select_category_text_size">12sp</dimen>
     <dimen name="item_select_pictogram_text_size">12sp</dimen>
 
+    <!-- Picture -->
+    <dimen name="picture_card_size">120dp</dimen>
+    <dimen name="picture_card_image_height_size">50dp</dimen>
+    <dimen name="picture_card_text_height_size">16dp</dimen>
+
+    <!-- Shimmer -->
+    <dimen name="picture_shimmer_size">120dp</dimen>
+
     <!-- Common Image Size -->
     <dimen name="upload_image_option_size_width">64dp</dimen>
     <dimen name="upload_image_option_size_height">48dp</dimen>
@@ -70,6 +78,7 @@
     <dimen name="floating_button_elevation">16dp</dimen>
 
     <dimen name="card_view_small_corner_radius">8dp</dimen>
+    <dimen name="card_view_border_stroke">2dp</dimen>
     <dimen name="card_view_corner_radius">16dp</dimen>
     <dimen name="card_view_elevation">16dp</dimen>
 

@@ -2,23 +2,15 @@ package com.cmi.presentation.components.category
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.cmi.presentation.config.add.component.PictureLoaderSubTitle
 import com.cmi.presentation.config.add.component.PictureLoaderTitle
@@ -68,7 +60,6 @@ fun CategorySelectableContent(
         DefaultVerticalSpacer()
 
         CategorySelectableGrid(
-            modifier = modifier,
             state = state,
             onItemSelected = onItemSelected
         )
@@ -77,24 +68,19 @@ fun CategorySelectableContent(
 
 @Composable
 fun CategorySelectableGrid(
-    modifier: Modifier,
     state: CategorySelectableState,
     onItemSelected: (Int) -> Unit
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(3),
+        columns = GridCells.Fixed(5),
         contentPadding = PaddingValues(16.dp),
         content = {
             val categories = state.categories
-            items(categories.size) { item ->
-                val category = categories[item]
+            val size = state.getCategoriesSize()
+            items(size) { index ->
                 CategorySelectableItem(
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .height(200.dp)
-                        .padding(8.dp),
                     isLoading = state.isLoading,
-                    categoryModel = category,
+                    categoryModel = categories.getOrNull(index),
                     onItemSelected = onItemSelected
                 )
             }

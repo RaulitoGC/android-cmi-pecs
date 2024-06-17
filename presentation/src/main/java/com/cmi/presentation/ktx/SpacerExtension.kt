@@ -15,6 +15,8 @@ fun DefaultHorizontalSpacer(width: Dp = 16.dp) {
 }
 
 @Composable
-fun DefaultVerticalSpacer() {
-    Spacer(modifier = Modifier.height(16.dp))
+fun DefaultVerticalSpacer(
+    height: Dp = 16.dp
+) {
+    Spacer(modifier = Modifier.height(height = height))
 }
