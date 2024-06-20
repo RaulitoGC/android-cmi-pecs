@@ -11,11 +11,14 @@ import com.google.accompanist.permissions.shouldShowRationale
 @Composable
 fun PermissionManager(
     permissionState: PermissionState,
+    acceptedContent: @Composable () -> Unit,
     deniedContent: @Composable () -> Unit,
 ) {
     Log.d("TEST", "PermissionManager: ${permissionState.status}")
 
     if(permissionState.status is PermissionStatus.Denied){
         deniedContent()
+    } else {
+        acceptedContent()
     }
 }

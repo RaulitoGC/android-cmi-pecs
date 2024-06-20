@@ -4,270 +4,275 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/ly_toolbar"
-        layout="@layout/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.core.widget.NestedScrollView
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/picture_loader_screen"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ly_toolbar">
+        android:layout_height="match_parent"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+<!--    <include-->
+<!--        android:id="@+id/ly_toolbar"-->
+<!--        layout="@layout/toolbar"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txt_upload_pictogram"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="64dp"
-                android:contentDescription="@string/text_upload_pictogram"
-                android:text="@string/text_upload_pictogram"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/configuration_subtitle_text_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:background="@color/windowBackground"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/ly_toolbar">-->
 
-            <View
-                android:id="@+id/view_divider_title"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginEnd="64dp"
-                android:background="@color/colorDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_upload_pictogram" />
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:hint="@string/text_hint_name"
-                android:textColorHint="@color/colorPrimaryTextDisable"
-                app:hintTextColor="@color/colorPrimaryTextDisable"
-                app:boxStrokeColor="@color/colorPrimaryTextDisable"
-                app:layout_constraintEnd_toEndOf="@id/guideline"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_divider_title">
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:id="@+id/txt_upload_pictogram"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="64dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="64dp"-->
+<!--                android:contentDescription="@string/text_upload_pictogram"-->
+<!--                android:text="@string/text_upload_pictogram"-->
+<!--                android:textColor="@color/colorPrimaryDark"-->
+<!--                android:textSize="@dimen/configuration_subtitle_text_size"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_input_edit_text_size"
-                    android:imeOptions="actionDone"
-                    android:singleLine="true"
-                    android:maxLines="1" />
+<!--            <View-->
+<!--                android:id="@+id/view_divider_title"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginStart="64dp"-->
+<!--                android:layout_marginEnd="64dp"-->
+<!--                android:background="@color/colorDivider"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/txt_upload_pictogram" />-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/til_name"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="64dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:hint="@string/text_hint_name"-->
+<!--                android:textColorHint="@color/colorPrimaryTextDisable"-->
+<!--                app:hintTextColor="@color/colorPrimaryTextDisable"-->
+<!--                app:boxStrokeColor="@color/colorPrimaryTextDisable"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/guideline"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/view_divider_title">-->
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_camera"
-                android:layout_width="@dimen/upload_image_option_size_width"
-                android:layout_height="@dimen/upload_image_option_size_height"
-                android:adjustViewBounds="true"
-                android:layout_marginTop="32dp"
-                app:layout_constraintEnd_toStartOf="@id/img_gallery"
-                app:layout_constraintStart_toStartOf="@id/til_name"
-                app:layout_constraintTop_toBottomOf="@id/til_name"
-                app:srcCompat="@drawable/ic_camera" />
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/et_name"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:inputType="text"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:textSize="@dimen/text_input_edit_text_size"-->
+<!--                    android:imeOptions="actionDone"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:maxLines="1" />-->
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txt_camera_label"
-                style="@style/Widget.Cmi.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_camera"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/upload_image_option_text_size"
-                app:layout_constraintEnd_toEndOf="@id/img_camera"
-                app:layout_constraintStart_toStartOf="@id/img_camera"
-                app:layout_constraintTop_toBottomOf="@id/img_camera" />
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_gallery"
-                android:layout_width="@dimen/upload_image_option_size_width"
-                android:layout_height="@dimen/upload_image_option_size_height"
-                android:adjustViewBounds="true"
-                android:layout_marginTop="32dp"
-                app:layout_constraintEnd_toEndOf="@id/til_name"
-                app:layout_constraintStart_toEndOf="@id/img_camera"
-                app:layout_constraintTop_toBottomOf="@id/til_name"
-                app:srcCompat="@drawable/ic_upload" />
+<!--            <androidx.appcompat.widget.AppCompatImageView-->
+<!--                android:id="@+id/img_camera"-->
+<!--                android:layout_width="@dimen/upload_image_option_size_width"-->
+<!--                android:layout_height="@dimen/upload_image_option_size_height"-->
+<!--                android:adjustViewBounds="true"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/img_gallery"-->
+<!--                app:layout_constraintStart_toStartOf="@id/til_name"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/til_name"-->
+<!--                app:srcCompat="@drawable/ic_camera" />-->
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txt_gallery_label"
-                style="@style/Widget.Cmi.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_gallery"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/upload_image_option_text_size"
-                app:layout_constraintEnd_toEndOf="@id/img_gallery"
-                app:layout_constraintStart_toStartOf="@id/img_gallery"
-                app:layout_constraintTop_toBottomOf="@id/img_gallery" />
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:id="@+id/txt_camera_label"-->
+<!--                style="@style/Widget.Cmi.TextView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/text_camera"-->
+<!--                android:textColor="@color/colorPrimaryDark"-->
+<!--                android:textSize="@dimen/upload_image_option_text_size"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/img_camera"-->
+<!--                app:layout_constraintStart_toStartOf="@id/img_camera"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/img_camera" />-->
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_preview"
-                android:layout_width="@dimen/picture_preview_size_width"
-                android:layout_height="@dimen/picture_preview_size_height"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="64dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="@dimen/card_view_corner_radius"
-                app:cardElevation="@dimen/card_view_elevation"
-                app:cardBackgroundColor="@color/cardViewBackground"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/view_divider_title">
+<!--            <androidx.appcompat.widget.AppCompatImageView-->
+<!--                android:id="@+id/img_gallery"-->
+<!--                android:layout_width="@dimen/upload_image_option_size_width"-->
+<!--                android:layout_height="@dimen/upload_image_option_size_height"-->
+<!--                android:adjustViewBounds="true"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/til_name"-->
+<!--                app:layout_constraintStart_toEndOf="@id/img_camera"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/til_name"-->
+<!--                app:srcCompat="@drawable/ic_upload" />-->
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/card_view_border" />
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:id="@+id/txt_gallery_label"-->
+<!--                style="@style/Widget.Cmi.TextView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/text_gallery"-->
+<!--                android:textColor="@color/colorPrimaryDark"-->
+<!--                android:textSize="@dimen/upload_image_option_text_size"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/img_gallery"-->
+<!--                app:layout_constraintStart_toStartOf="@id/img_gallery"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/img_gallery" />-->
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_preview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/ic_image_preview" />
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/card_view_preview"-->
+<!--                android:layout_width="@dimen/picture_preview_size_width"-->
+<!--                android:layout_height="@dimen/picture_preview_size_height"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="64dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                app:cardCornerRadius="@dimen/card_view_corner_radius"-->
+<!--                app:cardElevation="@dimen/card_view_elevation"-->
+<!--                app:cardBackgroundColor="@color/cardViewBackground"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toEndOf="@id/guideline"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/view_divider_title">-->
 
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/progress_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:layout_gravity="center"/>
+<!--                <FrameLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@drawable/card_view_border" />-->
 
-            </androidx.cardview.widget.CardView>
+<!--                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                    android:id="@+id/img_preview"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_margin="8dp"-->
+<!--                    android:background="@drawable/ic_image_preview" />-->
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+<!--                <com.google.android.material.progressindicator.CircularProgressIndicator-->
+<!--                    android:id="@+id/progress_indicator"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:layout_gravity="center"/>-->
 
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="txt_camera_label,txt_gallery_label,card_view_preview" />
+<!--            </androidx.cardview.widget.CardView>-->
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txt_select_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="64dp"
-                android:contentDescription="@string/text_select_category"
-                android:text="@string/text_select_category"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/configuration_subtitle_text_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/barrier" />
+<!--            <androidx.constraintlayout.widget.Guideline-->
+<!--                android:id="@+id/guideline"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                app:layout_constraintGuide_percent="0.5" />-->
 
-            <View
-                android:id="@+id/view_divider_subtitle"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginEnd="64dp"
-                android:background="@color/colorDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_select_category" />
+<!--            <androidx.constraintlayout.widget.Barrier-->
+<!--                android:id="@+id/barrier"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:barrierDirection="bottom"-->
+<!--                app:constraint_referenced_ids="txt_camera_label,txt_gallery_label,card_view_preview" />-->
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fb_back"
-                android:layout_width="@dimen/floating_button_size"
-                android:layout_height="@dimen/floating_button_size"
-                android:layout_marginStart="32dp"
-                android:contentDescription="@string/text_content_description_icon_back"
-                android:src="@drawable/ic_navigation_arrow_back"
-                app:backgroundTint="@color/colorPecsNavigation"
-                app:borderWidth="0dp"
-                app:elevation="@dimen/floating_button_elevation"
-                app:fabCustomSize="@dimen/floating_button_size"
-                app:layout_constraintBottom_toTopOf="@id/btn_add_pictogram"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_divider_subtitle"
-                app:tint="@color/colorIconPecsNavigation" />
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:id="@+id/txt_select_category"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="64dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="64dp"-->
+<!--                android:contentDescription="@string/text_select_category"-->
+<!--                android:text="@string/text_select_category"-->
+<!--                android:textColor="@color/colorPrimaryDark"-->
+<!--                android:textSize="@dimen/configuration_subtitle_text_size"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/barrier" />-->
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/add_category_view_pager_size_height"
-                android:layout_marginStart="@dimen/margin_4dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="@dimen/margin_4dp"
-                app:layout_constraintEnd_toStartOf="@id/fb_front"
-                app:layout_constraintStart_toEndOf="@id/fb_back"
-                app:layout_constraintTop_toBottomOf="@id/view_divider_subtitle" />
+<!--            <View-->
+<!--                android:id="@+id/view_divider_subtitle"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginStart="64dp"-->
+<!--                android:layout_marginEnd="64dp"-->
+<!--                android:background="@color/colorDivider"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/txt_select_category" />-->
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fb_front"
-                android:layout_width="@dimen/floating_button_size"
-                android:layout_height="@dimen/floating_button_size"
-                android:layout_marginEnd="32dp"
-                android:contentDescription="@string/text_content_description_icon_front"
-                android:src="@drawable/ic_navigation_arrow_front"
-                app:backgroundTint="@color/colorPecsNavigation"
-                app:borderWidth="0dp"
-                app:elevation="@dimen/floating_button_elevation"
-                app:fabCustomSize="@dimen/floating_button_size"
-                app:layout_constraintBottom_toTopOf="@id/btn_add_pictogram"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_divider_subtitle"
-                app:tint="@color/colorIconPecsNavigation" />
+<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                android:id="@+id/fb_back"-->
+<!--                android:layout_width="@dimen/floating_button_size"-->
+<!--                android:layout_height="@dimen/floating_button_size"-->
+<!--                android:layout_marginStart="32dp"-->
+<!--                android:contentDescription="@string/text_content_description_icon_back"-->
+<!--                android:src="@drawable/ic_navigation_arrow_back"-->
+<!--                app:backgroundTint="@color/colorPecsNavigation"-->
+<!--                app:borderWidth="0dp"-->
+<!--                app:elevation="@dimen/floating_button_elevation"-->
+<!--                app:fabCustomSize="@dimen/floating_button_size"-->
+<!--                app:layout_constraintBottom_toTopOf="@id/btn_add_pictogram"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/view_divider_subtitle"-->
+<!--                app:tint="@color/colorIconPecsNavigation" />-->
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_add_pictogram"
-                style="@style/Widget.Cmi.Button.Primary"
-                android:layout_width="@dimen/button_width_size"
-                android:textSize="@dimen/button_text_size"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="32dp"
-                android:text="@string/text_add_pictogram"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_pager"
-                app:layout_constraintVertical_bias="0.0" />
+<!--            <androidx.viewpager2.widget.ViewPager2-->
+<!--                android:id="@+id/view_pager"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="@dimen/add_category_view_pager_size_height"-->
+<!--                android:layout_marginStart="@dimen/margin_4dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="@dimen/margin_4dp"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/fb_front"-->
+<!--                app:layout_constraintStart_toEndOf="@id/fb_back"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/view_divider_subtitle" />-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                android:id="@+id/fb_front"-->
+<!--                android:layout_width="@dimen/floating_button_size"-->
+<!--                android:layout_height="@dimen/floating_button_size"-->
+<!--                android:layout_marginEnd="32dp"-->
+<!--                android:contentDescription="@string/text_content_description_icon_front"-->
+<!--                android:src="@drawable/ic_navigation_arrow_front"-->
+<!--                app:backgroundTint="@color/colorPecsNavigation"-->
+<!--                app:borderWidth="0dp"-->
+<!--                app:elevation="@dimen/floating_button_elevation"-->
+<!--                app:fabCustomSize="@dimen/floating_button_size"-->
+<!--                app:layout_constraintBottom_toTopOf="@id/btn_add_pictogram"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/view_divider_subtitle"-->
+<!--                app:tint="@color/colorIconPecsNavigation" />-->
 
-    </androidx.core.widget.NestedScrollView>
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/btn_add_pictogram"-->
+<!--                style="@style/Widget.Cmi.Button.Primary"-->
+<!--                android:layout_width="@dimen/button_width_size"-->
+<!--                android:textSize="@dimen/button_text_size"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginBottom="32dp"-->
+<!--                android:text="@string/text_add_pictogram"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/view_pager"-->
+<!--                app:layout_constraintVertical_bias="0.0" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </androidx.core.widget.NestedScrollView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

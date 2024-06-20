@@ -14,6 +14,7 @@ import com.cmi.presentation.R
 import com.cmi.presentation.common.PickitFragment
 import com.cmi.presentation.components.category.CategorySelectable
 import com.cmi.presentation.config.add.PictureLoader
+import com.cmi.presentation.config.add.model.PictureLoaderContentType
 import com.cmi.presentation.config.contract.ChoosePictureContract
 import com.cmi.presentation.config.contract.TakePictureContract
 import com.cmi.presentation.databinding.FragmentAddCategoryBinding
@@ -50,12 +51,7 @@ class AddCategoryFragment : PickitFragment() {
         val context = context
         if (context != null) {
             pictureLoaderScreen.setContent {
-                CategorySelectable(
-                    title = R.string.text_selectable_category_title,
-                    subTitle = R.string.text_selectable_category_subtitle
-                ) { itemSelected ->
-                    Timber.d("Item selected: $itemSelected")
-                }
+                PictureLoader(PictureLoaderContentType.CategoryImage)
             }
 //            lyToolbar.txtTitle.text = getString(R.string.text_add_category)
 //            lyToolbar.toolbar.setUpNavigation {

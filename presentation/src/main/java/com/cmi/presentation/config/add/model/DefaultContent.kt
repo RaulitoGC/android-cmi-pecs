@@ -34,6 +34,9 @@ sealed class PictureLoaderContentType(
     @StringRes val uploadText: Int
 ) {
 
+    fun isSingleImage() = this is SingleImage
+    fun isCategoryImage() = this is CategoryImage
+
     data object  SingleImage : PictureLoaderContentType(
         title = R.string.text_add_pictogram,
         subTitle = R.string.text_upload_pictogram,

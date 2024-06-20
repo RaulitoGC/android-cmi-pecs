@@ -1,6 +1,9 @@
 package com.cmi.presentation.components.common
 
-import android.util.Log
+import android.content.Context
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,78 +25,87 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.FileProvider
 import com.cmi.presentation.R
 import com.cmi.presentation.components.permission.PermissionExplainer
 import com.cmi.presentation.components.permission.PermissionManager
+import com.cmi.presentation.components.permission.rememberPermissionStateSafe
 import com.cmi.presentation.config.add.model.ImageSourceContent
-import com.cmi.presentation.config.add.model.ImageSourcePermission
-import com.cmi.presentation.config.add.model.PictureLoaderEvent
 import com.cmi.presentation.ktx.DefaultHorizontalSpacer
+import com.cmi.presentation.ktx.createImageFile
+import com.cmi.presentation.ktx.isTrue
 import com.cmi.presentation.ktx.startSettingActivity
+import com.cmi.presentation.manager.FileProviderManager
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.rememberPermissionState
+import timber.log.Timber
 
-@OptIn(ExperimentalPermissionsApi::class)
+
 @Composable
-fun PictureImageSources() {
+fun PictureImageSources(
+    onPictureTaken: (Uri) -> Unit
+) {
 
-    val cameraPermissionState =
-        rememberPermissionState(permission = ImageSourceContent.CAMERA.permissionName)
-    val galleryPermissionState =
-        rememberPermissionState(permission = ImageSourceContent.GALLERY.permissionName)
+    val context = LocalContext.current
 
     Row(
         modifier = Modifier
             .padding(horizontal = dimensionResource(id = R.dimen.margin_high)),
         horizontalArrangement = Arrangement.Center
     ) {
-        PictureImageSource(
+        CameraPictureImageSource(
             modifier = Modifier,
-            content = ImageSourceContent.CAMERA,
-            permissionState = cameraPermissionState,
-            permissionStateRequest = {
-                cameraPermissionState.launchPermissionRequest()
-            }
+            context = context,
+            onPictureTaken = onPictureTaken
         )
         DefaultHorizontalSpacer(width = 32.dp)
-        PictureImageSource(
+        GalleryPictureImageSource(
             modifier = Modifier,
-            content = ImageSourceContent.GALLERY,
-            permissionState = galleryPermissionState,
-            permissionStateRequest = {
-                galleryPermissionState.launchPermissionRequest()
-            }
+            context = context,
+            onPictureSelected = onPictureTaken
         )
     }
 }
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun PictureImageSource(
+fun GalleryPictureImageSource(
     modifier: Modifier,
-    content: ImageSourceContent,
-    permissionStateRequest: () -> Unit,
-    permissionState: PermissionState
+    context: Context,
+    onPictureSelected: (Uri) -> Unit
 ) {
 
-    val context = LocalContext.current
-    var executePermissionManager by remember {
+    val galleryPermissionState =
+        rememberPermissionStateSafe(permission = ImageSourceContent.GALLERY.permissionName)
+
+    Timber.d("CameraPictureImageSource: ")
+    val galleryLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            if (uri != null) {
+                onPictureSelected(uri)
+            }
+        }
+
+    var launchPermissionManager by remember {
         mutableStateOf(false)
     }
 
     PictureImageSourceContent(
         modifier = modifier,
-        imageSourceContent = content ,
+        imageSourceContent = ImageSourceContent.GALLERY,
         permissionStateRequest = {
-            executePermissionManager = true
-            permissionStateRequest()
+            galleryPermissionState.launchPermissionRequest()
+            launchPermissionManager = true
         }
     )
 
-    if(executePermissionManager) {
+    if (launchPermissionManager) {
         PermissionManager(
-            permissionState = permissionState,
+            permissionState = galleryPermissionState,
+            acceptedContent = {
+                galleryLauncher.launch("image/*")
+                launchPermissionManager = false
+            },
             deniedContent = {
                 PermissionExplainer(
                     modifier = modifier,
@@ -101,7 +113,71 @@ fun PictureImageSource(
                         context.startSettingActivity()
                     },
                     onDismissRequest = {
-                        executePermissionManager = false
+                        launchPermissionManager = false
+                    }
+                )
+            }
+        )
+    }
+}
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun CameraPictureImageSource(
+    modifier: Modifier,
+    context: Context,
+    onPictureTaken: (Uri) -> Unit
+) {
+
+    val cameraPermissionState =
+        rememberPermissionStateSafe(permission = ImageSourceContent.CAMERA.permissionName)
+
+    val file by remember {
+        mutableStateOf(context.createImageFile())
+    }
+
+    val uri = FileProvider.getUriForFile(
+        context,
+        FileProviderManager.AUTHORITY,
+        file
+    )
+
+    Timber.d("CameraPictureImageSource: ")
+    val cameraLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) { result ->
+            if (result.isTrue) {
+                onPictureTaken(uri)
+            }
+        }
+
+    var launchPermissionManager by remember {
+        mutableStateOf(false)
+    }
+
+    PictureImageSourceContent(
+        modifier = modifier,
+        imageSourceContent = ImageSourceContent.CAMERA,
+        permissionStateRequest = {
+            cameraPermissionState.launchPermissionRequest()
+            launchPermissionManager = true
+        }
+    )
+
+    if (launchPermissionManager) {
+        PermissionManager(
+            permissionState = cameraPermissionState,
+            acceptedContent = {
+                cameraLauncher.launch(uri)
+                launchPermissionManager = false
+            },
+            deniedContent = {
+                PermissionExplainer(
+                    modifier = modifier,
+                    handleLaunchSettings = {
+                        context.startSettingActivity()
+                    },
+                    onDismissRequest = {
+                        launchPermissionManager = false
                     }
                 )
             }
@@ -114,7 +190,8 @@ fun PictureImageSourceContent(
     modifier: Modifier,
     imageSourceContent: ImageSourceContent,
     permissionStateRequest: () -> Unit
-){
+) {
+
     Column(
         modifier = modifier.clickable {
             permissionStateRequest()

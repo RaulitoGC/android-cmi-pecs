@@ -2,14 +2,18 @@ package com.cmi.presentation.config.add.model
 
 import android.Manifest
 import android.media.Image
+import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.cmi.presentation.R
+import com.cmi.presentation.model.CategorySelectableModel
 
 data class PictureLoaderState(
-    val isLoading: Boolean = false,
+    val contentType: PictureLoaderContentType = PictureLoaderContentType.SingleImage,
     val pictureName: String = "",
-    val contentType: PictureLoaderContentType = PictureLoaderContentType.SingleImage
+    val imageUri: Uri? = null,
+    val showErrorMessage: Boolean = false,
+    val categories: List<CategorySelectableModel> = emptyList()
 )
 
 sealed class ImageSourcePermission(

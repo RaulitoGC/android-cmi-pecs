@@ -12,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.cmi.presentation.R
 import com.cmi.presentation.common.PickitFragment
+import com.cmi.presentation.config.add.PictureLoader
+import com.cmi.presentation.config.add.model.PictureLoaderContentType
 import com.cmi.presentation.config.contract.ChoosePictureContract
 import com.cmi.presentation.config.contract.TakePictureContract
 import com.cmi.presentation.databinding.FragmentAddPictogramBinding
@@ -54,63 +56,67 @@ class AddPictogramFragment : PickitFragment(), CategoryAdapter.ItemListener {
         val context = context
         if (context != null) {
 
-            lyToolbar.txtTitle.text = getString(R.string.text_add_pictogram)
-            lyToolbar.toolbar.setUpNavigation {
-                findNavController().popBackStack()
+            pictureLoaderScreen.setContent {
+                PictureLoader(PictureLoaderContentType.SingleImage)
             }
 
-            if (TakePictureContract.resolveActivity(context)) {
-                imgCamera.visibility = View.VISIBLE
-                txtCameraLabel.visibility = View.VISIBLE
-                imgCamera.setSafeOnClickListener {
-                    requestCameraPermission()
-                }
-            } else {
-                imgCamera.visibility = View.GONE
-                txtCameraLabel.visibility = View.GONE
-            }
-
-            Timber.d(" chooser picture -> ${ChoosePictureContract.resolveActivity(context.applicationContext)}")
-
-            if (ChoosePictureContract.resolveActivity(context)) {
-                imgGallery.visibility = View.VISIBLE
-                txtGalleryLabel.visibility = View.VISIBLE
-                imgGallery.setSafeOnClickListener {
-                    requestStoragePermission()
-                }
-            } else {
-                imgGallery.visibility = View.GONE
-                txtGalleryLabel.visibility = View.GONE
-            }
-
-            if (!ChoosePictureContract.resolveActivity(context) &&
-                !TakePictureContract.resolveActivity(context)
-            ) {
-                cardViewPreview.visibility = View.GONE
-            }
-
-            fbBack.setOnClickListener {
-                val currentItem = viewPager.currentItem
-                if (currentItem - 1 >= 0) {
-                    viewPager.currentItem = currentItem - 1
-                }
-            }
-
-            fbFront.setOnClickListener {
-                val currentItem = viewPager.currentItem
-                val size = categoryAdapter?.itemCount ?: 0
-                if (currentItem + 1 < size) {
-                    viewPager.currentItem = currentItem + 1
-                }
-            }
-
-            btnAddPictogram.setSafeOnClickListener {
-                addPictogramViewModel.addPictogram(
-                    pictogramName = etName.text,
-                    pictureFileName = lastUriPathUploaded,
-                    categorySelected = categoryAdapter?.getCategorySelected()
-                )
-            }
+//            lyToolbar.txtTitle.text = getString(R.string.text_add_pictogram)
+//            lyToolbar.toolbar.setUpNavigation {
+//                findNavController().popBackStack()
+//            }
+//
+//            if (TakePictureContract.resolveActivity(context)) {
+//                imgCamera.visibility = View.VISIBLE
+//                txtCameraLabel.visibility = View.VISIBLE
+//                imgCamera.setSafeOnClickListener {
+//                    requestCameraPermission()
+//                }
+//            } else {
+//                imgCamera.visibility = View.GONE
+//                txtCameraLabel.visibility = View.GONE
+//            }
+//
+//            Timber.d(" chooser picture -> ${ChoosePictureContract.resolveActivity(context.applicationContext)}")
+//
+//            if (ChoosePictureContract.resolveActivity(context)) {
+//                imgGallery.visibility = View.VISIBLE
+//                txtGalleryLabel.visibility = View.VISIBLE
+//                imgGallery.setSafeOnClickListener {
+//                    requestStoragePermission()
+//                }
+//            } else {
+//                imgGallery.visibility = View.GONE
+//                txtGalleryLabel.visibility = View.GONE
+//            }
+//
+//            if (!ChoosePictureContract.resolveActivity(context) &&
+//                !TakePictureContract.resolveActivity(context)
+//            ) {
+//                cardViewPreview.visibility = View.GONE
+//            }
+//
+//            fbBack.setOnClickListener {
+//                val currentItem = viewPager.currentItem
+//                if (currentItem - 1 >= 0) {
+//                    viewPager.currentItem = currentItem - 1
+//                }
+//            }
+//
+//            fbFront.setOnClickListener {
+//                val currentItem = viewPager.currentItem
+//                val size = categoryAdapter?.itemCount ?: 0
+//                if (currentItem + 1 < size) {
+//                    viewPager.currentItem = currentItem + 1
+//                }
+//            }
+//
+//            btnAddPictogram.setSafeOnClickListener {
+//                addPictogramViewModel.addPictogram(
+//                    pictogramName = etName.text,
+//                    pictureFileName = lastUriPathUploaded,
+//                    categorySelected = categoryAdapter?.getCategorySelected()
+//                )
+//            }
         }
     }
 
@@ -138,7 +144,7 @@ class AddPictogramFragment : PickitFragment(), CategoryAdapter.ItemListener {
             if (categories.isNotEmpty()) {
                 categoryAdapter = CategoryAdapter(categories)
                 categoryAdapter?.setListener(this@AddPictogramFragment)
-                viewPager.adapter = categoryAdapter
+//                viewPager.adapter = categoryAdapter
             }
         }
 
@@ -176,29 +182,29 @@ class AddPictogramFragment : PickitFragment(), CategoryAdapter.ItemListener {
     override fun onStartLoadingImage() {
         val context = context
         if (context != null) {
-            binding.imgPreview.setBackgroundColor(
-                ContextCompat.getColor(context, R.color.windowBackground)
-            )
-            binding.progressIndicator.visibility = View.VISIBLE
+//            binding.imgPreview.setBackgroundColor(
+//                ContextCompat.getColor(context, R.color.windowBackground)
+//            )
+//            binding.progressIndicator.visibility = View.VISIBLE
         }
     }
 
     override fun onProgressUpdate(progress: Int) {
-        binding.progressIndicator.progress = progress
+//        binding.progressIndicator.progress = progress
     }
 
     override fun onImageLoaded(wasSuccessful: Boolean, path: String?) {
         val context = context
         if (context != null) {
-            binding.progressIndicator.visibility = View.GONE
-            if (wasSuccessful) {
-                lastUriPathUploaded = path
-                binding.imgPreview.background = null
-                Glide.with(context).load(path).into(binding.imgPreview)
-            } else {
-                binding.imgPreview.background =
-                    ContextCompat.getDrawable(context, R.drawable.ic_image_preview)
-            }
+//            binding.progressIndicator.visibility = View.GONE
+//            if (wasSuccessful) {
+//                lastUriPathUploaded = path
+//                binding.imgPreview.background = null
+//                Glide.with(context).load(path).into(binding.imgPreview)
+//            } else {
+//                binding.imgPreview.background =
+//                    ContextCompat.getDrawable(context, R.drawable.ic_image_preview)
+//            }
         }
     }
 

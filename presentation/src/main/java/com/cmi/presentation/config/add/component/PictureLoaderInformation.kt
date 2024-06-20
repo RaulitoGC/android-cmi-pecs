@@ -8,10 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.PictureImageSources
 import com.cmi.presentation.components.common.PictureNameTextField
 import com.cmi.presentation.components.common.PicturePreview
+import com.cmi.presentation.components.permission.PermissionExplainer
 import com.cmi.presentation.config.add.model.PictureLoaderEvent
 import com.cmi.presentation.config.add.model.PictureLoaderState
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
@@ -39,7 +41,11 @@ fun PictureLoaderInformation(
                 }
             )
             DefaultVerticalSpacer()
-            PictureImageSources()
+            PictureImageSources(
+                onPictureTaken = {
+                    handleEvent(PictureLoaderEvent.ImageUriUpdated(it))
+                }
+            )
         }
         Column(
             modifier = modifier
@@ -47,8 +53,18 @@ fun PictureLoaderInformation(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             PicturePreview(
-                isLoading = state.isLoading
+                imageUri = state.imageUri
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Preview_PictureLoaderInformation() {
+    PictureLoaderInformation(
+        modifier = Modifier.fillMaxWidth(),
+        state = PictureLoaderState(),
+        handleEvent = {}
+    )
 }

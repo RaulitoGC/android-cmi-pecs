@@ -14,20 +14,26 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.cmi.presentation.R
+import com.cmi.presentation.config.add.component.CarouselWithButtons
 import com.cmi.presentation.config.add.component.PictureLoaderInformation
 import com.cmi.presentation.config.add.component.PictureLoaderSubTitle
 import com.cmi.presentation.config.add.component.PictureLoaderSubmit
 import com.cmi.presentation.config.add.component.PictureLoaderTitle
+import com.cmi.presentation.config.add.model.PictureLoaderContentType
 import com.cmi.presentation.config.add.model.PictureLoaderEvent
 import com.cmi.presentation.config.add.model.PictureLoaderState
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
+import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
-fun PictureLoader() {
+fun PictureLoader(contentType: PictureLoaderContentType) {
 
-    val viewModel: PictureLoaderViewModel = viewModel()
+    val viewModel: PictureLoaderViewModel = koinViewModel{
+        parametersOf(contentType)
+    }
+
 
     MaterialTheme {
         val state = viewModel.uiState.collectAsState().value
@@ -74,7 +80,12 @@ private fun PictureLoaderContent(
             handleEvent = handleEvent
         )
 
+        if(state.contentType.isSingleImage()) {
+            CarouselWithButtons(items = state.categories)
+        }
+
         PictureLoaderSubmit(modifier = modifier, state = state)
+
     }
 }
 
@@ -85,5 +96,5 @@ private fun PictureLoaderContent(
 )
 @Composable
 fun PictureLoaderScreenPreview() {
-    PictureLoader()
+    PictureLoader(PictureLoaderContentType.SingleImage)
 }
