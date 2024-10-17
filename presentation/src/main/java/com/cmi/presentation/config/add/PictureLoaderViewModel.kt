@@ -4,9 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cmi.domain.usecase.GetCategoriesUseCase
-import com.cmi.presentation.R
-import com.cmi.presentation.config.add.model.ImageSourcePermission
-import com.cmi.presentation.config.add.model.PictureLoaderContentType
+import com.cmi.presentation.components.common.add.PictureLoaderContentType
 import com.cmi.presentation.config.add.model.PictureLoaderEvent
 import com.cmi.presentation.config.add.model.PictureLoaderState
 import com.cmi.presentation.model.CategorySelectableModel
@@ -16,7 +14,6 @@ import com.cmi.presentation.model.mapper.toCategorySelectableModelUnChecked
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.get
 import timber.log.Timber
 
 class PictureLoaderViewModel(

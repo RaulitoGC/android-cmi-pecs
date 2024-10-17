@@ -13,16 +13,23 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.cmi.presentation.config.add.component.PictureLoaderSubTitle
-import com.cmi.presentation.config.add.component.PictureLoaderTitle
+import com.cmi.presentation.components.common.title.DefaultTitle
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import org.koin.androidx.compose.koinViewModel
 
+/**
+ * This composable is used to display a list of categories that can be selected.
+ * @param categorySelectableViewModel the view model that contains the logic for this composable.
+ * @param title the title of the category selectable screen.
+ * @param subTitle the subtitle of the category selectable screen.
+ * @param onItemSelected the callback that is called when a category is selected.
+ */
 @Composable
 fun CategorySelectable(
     categorySelectableViewModel: CategorySelectableViewModel = koinViewModel(),
     @StringRes title: Int,
     @StringRes subTitle: Int,
-    onItemSelected: (Int) -> Unit
+    onItemSelected: (Boolean, Int) -> Unit
 ) {
 
     MaterialTheme {
@@ -43,7 +50,7 @@ fun CategorySelectableContent(
     state: CategorySelectableState,
     @StringRes title: Int,
     @StringRes subTitle: Int,
-    onItemSelected: (Int) -> Unit
+    onItemSelected: (Boolean, Int) -> Unit
 ) {
 
     Column(
@@ -51,7 +58,7 @@ fun CategorySelectableContent(
             .background(color = MaterialTheme.colors.background)
     ) {
 
-        PictureLoaderTitle(title = title)
+        DefaultTitle(title = title)
 
         DefaultVerticalSpacer()
 
@@ -69,7 +76,7 @@ fun CategorySelectableContent(
 @Composable
 fun CategorySelectableGrid(
     state: CategorySelectableState,
-    onItemSelected: (Int) -> Unit
+    onItemSelected: (Boolean, Int) -> Unit
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(5),

@@ -7,21 +7,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.cmi.presentation.R
 import com.cmi.presentation.common.PickitFragment
-import com.cmi.presentation.components.category.CategorySelectable
 import com.cmi.presentation.config.add.PictureLoader
-import com.cmi.presentation.config.add.model.PictureLoaderContentType
+import com.cmi.presentation.components.common.add.PictureLoaderContentType
 import com.cmi.presentation.config.contract.ChoosePictureContract
 import com.cmi.presentation.config.contract.TakePictureContract
 import com.cmi.presentation.databinding.FragmentAddCategoryBinding
 import com.cmi.presentation.ktx.*
 import com.cmi.presentation.manager.DexterManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class AddCategoryFragment : PickitFragment() {
 
@@ -48,11 +44,14 @@ class AddCategoryFragment : PickitFragment() {
     }
 
     private fun initView() = with(binding) {
-        val context = context
-        if (context != null) {
-            pictureLoaderScreen.setContent {
-                PictureLoader(PictureLoaderContentType.CategoryImage)
-            }
+        pictureLoaderScreen.setContent {
+            PictureLoader(
+                contentType = PictureLoaderContentType.CategoryImage,
+            )
+        }
+//        val context = context
+//        if (context != null) {
+//
 //            lyToolbar.txtTitle.text = getString(R.string.text_add_category)
 //            lyToolbar.toolbar.setUpNavigation {
 //                findNavController().popBackStack()
@@ -92,7 +91,7 @@ class AddCategoryFragment : PickitFragment() {
 //                    pictureFileName = lastUriPathUploaded
 //                )
 //            }
-        }
+//        }
     }
 
     private fun initViewModel() = with(addCategoryViewModel) {

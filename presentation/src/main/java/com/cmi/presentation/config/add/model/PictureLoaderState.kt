@@ -1,11 +1,8 @@
 package com.cmi.presentation.config.add.model
 
 import android.Manifest
-import android.media.Image
 import android.net.Uri
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
-import com.cmi.presentation.R
+import com.cmi.presentation.components.common.add.PictureLoaderContentType
 import com.cmi.presentation.model.CategorySelectableModel
 
 data class PictureLoaderState(

@@ -30,27 +30,28 @@ import com.cmi.presentation.R
 import com.cmi.presentation.components.permission.PermissionExplainer
 import com.cmi.presentation.components.permission.PermissionManager
 import com.cmi.presentation.components.permission.rememberPermissionStateSafe
-import com.cmi.presentation.config.add.model.ImageSourceContent
+import com.cmi.presentation.components.common.add.ImageSourceContent
 import com.cmi.presentation.ktx.DefaultHorizontalSpacer
+import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.ktx.createImageFile
 import com.cmi.presentation.ktx.isTrue
 import com.cmi.presentation.ktx.startSettingActivity
 import com.cmi.presentation.manager.FileProviderManager
+import com.cmi.presentation.ui.theme.CmiThemeExtensions
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.rememberPermissionState
 import timber.log.Timber
 
 
 @Composable
 fun PictureImageSources(
+    modifier: Modifier = Modifier,
     onPictureTaken: (Uri) -> Unit
 ) {
 
     val context = LocalContext.current
 
     Row(
-        modifier = Modifier
-            .padding(horizontal = dimensionResource(id = R.dimen.margin_high)),
+        modifier = modifier,
         horizontalArrangement = Arrangement.Center
     ) {
         CameraPictureImageSource(
@@ -142,7 +143,6 @@ fun CameraPictureImageSource(
         file
     )
 
-    Timber.d("CameraPictureImageSource: ")
     val cameraLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) { result ->
             if (result.isTrue) {
@@ -207,6 +207,11 @@ fun PictureImageSourceContent(
             contentScale = ContentScale.Crop,
             contentDescription = stringResource(id = imageSourceContent.contentDescription)
         )
-        Text(text = stringResource(id = imageSourceContent.title))
+        DefaultVerticalSpacer(height = 8.dp)
+        Text(
+            text = stringResource(id = imageSourceContent.title),
+            color = CmiThemeExtensions.colors.primaryColorDark,
+            style = CmiThemeExtensions.typography.body
+        )
     }
 }

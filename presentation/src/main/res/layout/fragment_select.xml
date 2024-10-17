@@ -6,54 +6,59 @@
     android:background="@color/windowBackground"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        android:id="@+id/ly_toolbar"
-        layout="@layout/toolbar_select"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <include-->
+<!--        android:id="@+id/ly_toolbar"-->
+<!--        layout="@layout/toolbar_select"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_select_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="@string/text_select_pictogram"
-        android:text="@string/text_select_pictogram"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/configuration_subtitle_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ly_toolbar"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/compose_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_select_description"
-        tools:listitem="@layout/item_select"
-        tools:itemCount="5"/>
+        android:layout_height="match_parent"/>
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        android:background="@color/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_select_description">
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/txt_select_description"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:contentDescription="@string/text_select_pictogram"-->
+<!--        android:text="@string/text_select_pictogram"-->
+<!--        android:textColor="@color/colorPrimaryDark"-->
+<!--        android:textSize="@dimen/configuration_subtitle_text_size"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/ly_toolbar"/>-->
 
-        <include layout="@layout/list_selectable_preview" />
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recycler_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_margin="16dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/txt_select_description"-->
+<!--        tools:listitem="@layout/item_select"-->
+<!--        tools:itemCount="5"/>-->
 
-    </com.facebook.shimmer.ShimmerFrameLayout>
+<!--    <com.facebook.shimmer.ShimmerFrameLayout-->
+<!--        android:id="@+id/shimmer_container"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_margin="8dp"-->
+<!--        android:background="@color/windowBackground"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/txt_select_description">-->
+
+<!--        <include layout="@layout/list_selectable_preview" />-->
+
+<!--    </com.facebook.shimmer.ShimmerFrameLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

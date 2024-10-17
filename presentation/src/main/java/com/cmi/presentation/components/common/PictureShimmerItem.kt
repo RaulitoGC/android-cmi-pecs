@@ -30,10 +30,12 @@ fun PictureShimmerItem(
         PictureCardView(
             modifier = modifier,
             cardViewConfig = cardViewConfig,
-            onItemSelected = {}
+            onItemSelected = { _, _ ->
+
+            }
         ) {
             Column {
-                DefaultVerticalSpacer(16.dp)
+                DefaultVerticalSpacer(height = 16.dp)
                 Box(
                     modifier = modifier
                         .fillMaxWidth()
@@ -43,7 +45,7 @@ fun PictureShimmerItem(
                         )
                         .shimmerEffect()
                 )
-                DefaultVerticalSpacer(8.dp)
+                DefaultVerticalSpacer(height = 8.dp)
                 Box(
                     modifier = modifier
                         .fillMaxWidth()
@@ -53,7 +55,7 @@ fun PictureShimmerItem(
                         )
                         .shimmerEffect()
                 )
-                DefaultVerticalSpacer(16.dp)
+                DefaultVerticalSpacer(height = 16.dp)
             }
         }
     } else {

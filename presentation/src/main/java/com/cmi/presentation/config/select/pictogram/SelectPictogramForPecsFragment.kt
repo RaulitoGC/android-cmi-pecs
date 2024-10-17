@@ -54,29 +54,29 @@ class SelectPictogramForPecsFragment : Fragment(), SelectablePictogramAdapter.It
 
         val context = context
         if (context != null) {
-            lyToolbar.txtTitle.text = getString(R.string.text_select_pictogram_for_pecs)
-            lyToolbar.txtAction.text = getString(R.string.text_update)
-            lyToolbar.toolbar.setUpNavigation {
-                findNavController().popBackStack()
-            }
-
-            txtSelectDescription.text =
-                getString(R.string.text_select_pictogram_for_pecs_description)
-
-            selectablPictogramAdapter = SelectablePictogramAdapter()
-            selectablPictogramAdapter?.setListener(this@SelectPictogramForPecsFragment)
-
-            val layoutManager = GridLayoutManager(context, SELECT_PICTOGRAM_SPAN_COUNT)
-            recyclerView.layoutManager = layoutManager
-            recyclerView.setHasFixedSize(true)
-            recyclerView.addItemDecoration(
-                MarginItemDecorator(context = context, marginInDp = R.dimen.margin_4dp)
-            )
-            recyclerView.adapter = selectablPictogramAdapter
-
-            lyToolbar.txtAction.setSafeOnClickListener {
-                selectPictogramForPecsViewModel.updatePictogramsForPecs(selectablPictogramAdapter?.getItems().orEmpty())
-            }
+//            lyToolbar.txtTitle.text = getString(R.string.text_select_pictogram_for_pecs)
+//            lyToolbar.txtAction.text = getString(R.string.text_update)
+//            lyToolbar.toolbar.setUpNavigation {
+//                findNavController().popBackStack()
+//            }
+//
+//            txtSelectDescription.text =
+//                getString(R.string.text_select_pictogram_for_pecs_description)
+//
+//            selectablPictogramAdapter = SelectablePictogramAdapter()
+//            selectablPictogramAdapter?.setListener(this@SelectPictogramForPecsFragment)
+//
+//            val layoutManager = GridLayoutManager(context, SELECT_PICTOGRAM_SPAN_COUNT)
+//            recyclerView.layoutManager = layoutManager
+//            recyclerView.setHasFixedSize(true)
+//            recyclerView.addItemDecoration(
+//                MarginItemDecorator(context = context, marginInDp = R.dimen.margin_4dp)
+//            )
+//            recyclerView.adapter = selectablPictogramAdapter
+//
+//            lyToolbar.txtAction.setSafeOnClickListener {
+//                selectPictogramForPecsViewModel.updatePictogramsForPecs(selectablPictogramAdapter?.getItems().orEmpty())
+//            }
         }
     }
 
@@ -117,22 +117,22 @@ class SelectPictogramForPecsFragment : Fragment(), SelectablePictogramAdapter.It
                 }
             )
         }
-        binding.shimmerContainer.hideShimmer()
-        binding.shimmerContainer.visibility = View.GONE
+//        binding.shimmerContainer.hideShimmer()
+//        binding.shimmerContainer.visibility = View.GONE
     }
 
     private fun setupToolbar(itemsSelected: Int) {
         var title = getString(R.string.text_select_pictogram_for_pecs)
-        if (itemsSelected > 0) {
-            title += getString(
-                R.string.text_select_pictograms_size_format,
-                itemsSelected.toString()
-            )
-            binding.lyToolbar.txtAction.isEnabled = true
-        } else {
-            binding.lyToolbar.txtAction.isEnabled = false
-        }
-        binding.lyToolbar.txtTitle.text = title
+//        if (itemsSelected > 0) {
+//            title += getString(
+//                R.string.text_select_pictograms_size_format,
+//                itemsSelected.toString()
+//            )
+//            binding.lyToolbar.txtAction.isEnabled = true
+//        } else {
+//            binding.lyToolbar.txtAction.isEnabled = false
+//        }
+//        binding.lyToolbar.txtTitle.text = title
     }
 
     override fun onDestroyView() {

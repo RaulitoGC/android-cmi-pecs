@@ -60,16 +60,16 @@
     <!-- Shimmer -->
     <dimen name="picture_shimmer_size">120dp</dimen>
 
-    <!-- Common Image Size -->
-    <dimen name="upload_image_option_size_width">64dp</dimen>
-    <dimen name="upload_image_option_size_height">48dp</dimen>
+    <!-- Common Image Size  / Initial size = 64, 48-->
+    <dimen name="upload_image_option_size_width">84dp</dimen>
+    <dimen name="upload_image_option_size_height">62dp</dimen>
 
     <dimen name="upload_image_option_text_size">14sp</dimen>
 
     <dimen name="text_input_edit_text_size">16sp</dimen>
 
-    <dimen name="picture_preview_size_width">156dp</dimen>
-    <dimen name="picture_preview_size_height">156dp</dimen>
+    <dimen name="picture_preview_size_width">172dp</dimen>
+    <dimen name="picture_preview_size_height">172dp</dimen>
 
     <dimen name="button_width_size">200dp</dimen>
     <dimen name="button_text_size">12sp</dimen>

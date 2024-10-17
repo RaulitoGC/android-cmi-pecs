@@ -11,7 +11,8 @@ data class CategoryModel(
     val name: String?,
     val priority: Int?,
     val isExternal: Boolean?,
-    val isSelected: Boolean?
+    val isSelected: Boolean?,
+    val isSelectedUiEnabled: Boolean = false
 ) : Parcelable
 
 @Parcelize

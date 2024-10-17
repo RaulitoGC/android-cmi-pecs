@@ -1,41 +1,41 @@
 package com.cmi.presentation.config.add
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.cmi.presentation.R
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstrainedLayoutReference
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.ConstraintLayoutScope
+import com.cmi.presentation.components.common.PictureImageSources
+import com.cmi.presentation.components.common.PictureNameTextField
+import com.cmi.presentation.components.common.PicturePreview
+import com.cmi.presentation.components.common.add.PictureLoaderContentType
+import com.cmi.presentation.components.common.add.PictureLoaderUploadButton
+import com.cmi.presentation.components.common.title.DefaultTitle
 import com.cmi.presentation.config.add.component.CarouselWithButtons
-import com.cmi.presentation.config.add.component.PictureLoaderInformation
-import com.cmi.presentation.config.add.component.PictureLoaderSubTitle
-import com.cmi.presentation.config.add.component.PictureLoaderSubmit
-import com.cmi.presentation.config.add.component.PictureLoaderTitle
-import com.cmi.presentation.config.add.model.PictureLoaderContentType
 import com.cmi.presentation.config.add.model.PictureLoaderEvent
 import com.cmi.presentation.config.add.model.PictureLoaderState
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
+import com.cmi.presentation.ktx.centerHorizontallyFromParentTo
+import com.cmi.presentation.ktx.centerHorizontallyToParent
+import com.cmi.presentation.ktx.centerHorizontallyToParentFrom
+import com.cmi.presentation.ktx.fullLinkToBottom
+import com.cmi.presentation.ui.theme.CmiAppTheme
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
 @Composable
 fun PictureLoader(contentType: PictureLoaderContentType) {
 
-    val viewModel: PictureLoaderViewModel = koinViewModel{
+    val viewModel: PictureLoaderViewModel = koinViewModel {
         parametersOf(contentType)
     }
 
-
-    MaterialTheme {
+    CmiAppTheme {
         val state = viewModel.uiState.collectAsState().value
         PictureLoaderContent(
             modifier = Modifier.fillMaxSize(),
@@ -45,47 +45,70 @@ fun PictureLoader(contentType: PictureLoaderContentType) {
     }
 }
 
+//TODO: Move Constraints to PictureLoaderConstraints.kt
 @Composable
 private fun PictureLoaderContent(
     modifier: Modifier = Modifier,
     state: PictureLoaderState,
     handleEvent: (event: PictureLoaderEvent) -> Unit,
 ) {
-    Column(
-        modifier = modifier
-            .verticalScroll(rememberScrollState())
-            .background(color = MaterialTheme.colors.background)
+
+    ConstraintLayout(
+        modifier = modifier.fillMaxSize()
     ) {
 
-        PictureLoaderTitle(title = state.contentType.title)
+        val (title, pictureName, pictureImageSources, picturePreview, submitButton) = createRefs()
+        val (titleSpacer, pictureNameSpacer) = createRefs()
+        val middleGuideline = createGuidelineFromStart(0.5f)
 
-        DefaultVerticalSpacer()
-
-        PictureLoaderSubTitle(subTitle = state.contentType.subTitle)
-
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    vertical = dimensionResource(id = R.dimen.margin_4dp),
-                    horizontal = dimensionResource(id = R.dimen.margin_high)
-                )
+        DefaultTitle(
+            modifier = applyTitleConstraints(title),
+            title = state.contentType.title
         )
 
-        DefaultVerticalSpacer()
-
-        PictureLoaderInformation(
-            modifier = modifier,
-            state = state,
-            handleEvent = handleEvent
+        DefaultVerticalSpacer(
+            modifier = applyTitleSpacerConstraints(titleSpacer, title),
+            height = 32.dp
         )
 
-        if(state.contentType.isSingleImage()) {
+        PictureNameTextField(
+            modifier = applyPictureNameConstraints(pictureName, middleGuideline, titleSpacer),
+            pictureName = state.pictureName,
+            onPictureNameChange = {
+                handleEvent(PictureLoaderEvent.NameChanged(it))
+            }
+        )
+
+        DefaultVerticalSpacer(
+            modifier = applyPictureNameSpacerConstraints(pictureNameSpacer, middleGuideline, pictureName),
+            height = 32.dp
+        )
+
+        PictureImageSources(
+            modifier = applyPictureImageResourcesConstraints(pictureImageSources, middleGuideline, pictureNameSpacer),
+            onPictureTaken = {
+                handleEvent(PictureLoaderEvent.ImageUriUpdated(it))
+            }
+        )
+
+        PicturePreview(
+            modifier = Modifier.constrainAs(picturePreview){
+                this@constrainAs.centerHorizontallyToParentFrom(middleGuideline)
+                top.linkTo(titleSpacer.bottom)
+            },
+            imageUri = state.imageUri
+        )
+
+        if (state.contentType.isSingleImage()) {
             CarouselWithButtons(items = state.categories)
         }
 
-        PictureLoaderSubmit(modifier = modifier, state = state)
+        PictureLoaderUploadButton(
+            modifier = applySubmitButtonConstraints(submitButton).padding(bottom = 16.dp),
+            text = state.contentType.uploadText
+        ) {
 
+        }
     }
 }
 

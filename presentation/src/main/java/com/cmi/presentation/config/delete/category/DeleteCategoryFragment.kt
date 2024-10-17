@@ -49,30 +49,30 @@ class DeleteCategoryFragment : Fragment(), SelectableCategoryAdapter.ItemListene
 
         val context = context
         if (context != null) {
-            lyToolbar.txtTitle.text =
-                getString(R.string.text_delete_format, getString(R.string.text_category))
-            lyToolbar.txtAction.text = getString(R.string.text_delete)
-            lyToolbar.toolbar.setUpNavigation {
-                findNavController().popBackStack()
-            }
-
-            txtSelectDescription.text =
-                getString(R.string.text_delete_categories_description)
-
-            selectableCategoryAdapter = SelectableCategoryAdapter()
-            selectableCategoryAdapter?.setListener(this@DeleteCategoryFragment)
-
-            val layoutManager = GridLayoutManager(context, SELECT_CATEGORY_SPAN_COUNT)
-            recyclerView.layoutManager = layoutManager
-            recyclerView.setHasFixedSize(true)
-            recyclerView.addItemDecoration(
-                MarginItemDecorator(context = context, marginInDp = R.dimen.margin_4dp)
-            )
-            recyclerView.adapter = selectableCategoryAdapter
-
-            lyToolbar.txtAction.setSafeOnClickListener {
-                deleteCategoryViewModel.deleteCategories(selectableCategoryAdapter?.selectedItems.orEmpty())
-            }
+//            lyToolbar.txtTitle.text =
+//                getString(R.string.text_delete_format, getString(R.string.text_category))
+//            lyToolbar.txtAction.text = getString(R.string.text_delete)
+//            lyToolbar.toolbar.setUpNavigation {
+//                findNavController().popBackStack()
+//            }
+//
+//            txtSelectDescription.text =
+//                getString(R.string.text_delete_categories_description)
+//
+//            selectableCategoryAdapter = SelectableCategoryAdapter()
+//            selectableCategoryAdapter?.setListener(this@DeleteCategoryFragment)
+//
+//            val layoutManager = GridLayoutManager(context, SELECT_CATEGORY_SPAN_COUNT)
+//            recyclerView.layoutManager = layoutManager
+//            recyclerView.setHasFixedSize(true)
+//            recyclerView.addItemDecoration(
+//                MarginItemDecorator(context = context, marginInDp = R.dimen.margin_4dp)
+//            )
+//            recyclerView.adapter = selectableCategoryAdapter
+//
+//            lyToolbar.txtAction.setSafeOnClickListener {
+//                deleteCategoryViewModel.deleteCategories(selectableCategoryAdapter?.selectedItems.orEmpty())
+//            }
         }
     }
 
@@ -108,8 +108,8 @@ class DeleteCategoryFragment : Fragment(), SelectableCategoryAdapter.ItemListene
                 }
             )
         }
-        binding.shimmerContainer.hideShimmer()
-        binding.shimmerContainer.visibility = View.GONE
+//        binding.shimmerContainer.hideShimmer()
+//        binding.shimmerContainer.visibility = View.GONE
     }
 
     override fun onItemClick(data: CategorySelectableModel) {
@@ -122,11 +122,11 @@ class DeleteCategoryFragment : Fragment(), SelectableCategoryAdapter.ItemListene
         var title = getString(R.string.text_delete_format, getString(R.string.text_category))
         if (itemsSelected > 0) {
             title += getString(R.string.text_select_category_size_format, itemsSelected.toString())
-            binding.lyToolbar.txtAction.isEnabled = true
+//            binding.lyToolbar.txtAction.isEnabled = true
         } else {
-            binding.lyToolbar.txtAction.isEnabled = false
+//            binding.lyToolbar.txtAction.isEnabled = false
         }
-        binding.lyToolbar.txtTitle.text = title
+//        binding.lyToolbar.txtTitle.text = title
     }
 
     override fun onDestroyView() {

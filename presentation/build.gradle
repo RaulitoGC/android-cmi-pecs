@@ -10,11 +10,11 @@ android {
 
     namespace 'com.cmi.presentation'
 
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         minSdkVersion 26
-        targetSdkVersion 34
+        targetSdkVersion 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -86,6 +86,7 @@ dependencies {
     implementation libs.androidx.compose.ui
     implementation libs.androidx.compose.material
     implementation libs.google.accompanist.permissions
+    implementation libs.androidx.compose.constraintlayout
     implementation libs.coil.compose
 
     kapt libs.bumptech.glide.compiler

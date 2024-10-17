@@ -7,6 +7,7 @@ import com.cmi.presentation.components.category.CategorySelectableViewModel
 import com.cmi.presentation.config.add.PictureLoaderViewModel
 import com.cmi.presentation.config.add.category.AddCategoryViewModel
 import com.cmi.presentation.config.add.pictogram.AddPictogramViewModel
+import com.cmi.presentation.config.category.select.SelectCategoriesForPecsViewModel
 import com.cmi.presentation.config.delete.category.DeleteCategoryViewModel
 import com.cmi.presentation.config.delete.pictogram.DeletePictogramViewModel
 import com.cmi.presentation.config.edit.SelectCategoryViewModel
@@ -16,6 +17,8 @@ import com.cmi.presentation.config.edit.pictogram.select.SelectPictogramViewMode
 import com.cmi.presentation.config.select.category.SelectCategoryForPecsViewModel
 import com.cmi.presentation.config.select.pictogram.SelectPictogramForPecsViewModel
 import com.cmi.presentation.intro.SurveyValidator
+import com.cmi.presentation.manager.DefaultStringResourceManager
+import com.cmi.presentation.manager.StringResourceManager
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.pecs.category.CategoryViewModel
 import com.cmi.presentation.pecs.pictogram.PictogramViewModel
@@ -175,6 +178,12 @@ val presentationModule = module {
         )
     }
 
+    single<StringResourceManager> {
+        DefaultStringResourceManager(
+            context = androidContext()
+        )
+    }
+
     // Category Selectable
     viewModel {
         CategorySelectableViewModel(
@@ -191,6 +200,19 @@ val presentationModule = module {
             getCategoriesUseCase = GetCategoriesUseCase(
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
+        )
+    }
+
+    // Category Selectable for Pecs
+    viewModel {
+        SelectCategoriesForPecsViewModel(
+            getCategoriesUseCase = GetCategoriesUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            ),
+            updateCategoriesUseCase = UpdateCategoriesUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            ),
+            stringResourceManager = get<StringResourceManager>()
         )
     }
 }

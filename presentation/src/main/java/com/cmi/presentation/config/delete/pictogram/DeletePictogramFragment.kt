@@ -51,30 +51,30 @@ class DeletePictogramFragment : Fragment(), SelectablePictogramAdapter.ItemListe
 
         val context = context
         if (context != null) {
-            lyToolbar.txtTitle.text =
-                getString(R.string.text_delete_format, getString(R.string.text_pictogram))
-            lyToolbar.txtAction.text = getString(R.string.text_delete)
-            lyToolbar.toolbar.setUpNavigation {
-                findNavController().popBackStack()
-            }
-
-            txtSelectDescription.text =
-                getString(R.string.text_delete_pictograms_description)
-
-            selectablPictogramAdapter = SelectablePictogramAdapter()
-            selectablPictogramAdapter?.setListener(this@DeletePictogramFragment)
-
-            val layoutManager = GridLayoutManager(context, SELECT_PICTOGRAM_SPAN_COUNT)
-            recyclerView.layoutManager = layoutManager
-            recyclerView.setHasFixedSize(true)
-            recyclerView.addItemDecoration(
-                MarginItemDecorator(context = context, marginInDp = R.dimen.margin_4dp)
-            )
-            recyclerView.adapter = selectablPictogramAdapter
-
-            lyToolbar.txtAction.setSafeOnClickListener {
-                deletePictogramViewModel.deletePictograms(selectablPictogramAdapter?.selectedItems.orEmpty())
-            }
+//            lyToolbar.txtTitle.text =
+//                getString(R.string.text_delete_format, getString(R.string.text_pictogram))
+//            lyToolbar.txtAction.text = getString(R.string.text_delete)
+//            lyToolbar.toolbar.setUpNavigation {
+//                findNavController().popBackStack()
+//            }
+//
+//            txtSelectDescription.text =
+//                getString(R.string.text_delete_pictograms_description)
+//
+//            selectablPictogramAdapter = SelectablePictogramAdapter()
+//            selectablPictogramAdapter?.setListener(this@DeletePictogramFragment)
+//
+//            val layoutManager = GridLayoutManager(context, SELECT_PICTOGRAM_SPAN_COUNT)
+//            recyclerView.layoutManager = layoutManager
+//            recyclerView.setHasFixedSize(true)
+//            recyclerView.addItemDecoration(
+//                MarginItemDecorator(context = context, marginInDp = R.dimen.margin_4dp)
+//            )
+//            recyclerView.adapter = selectablPictogramAdapter
+//
+//            lyToolbar.txtAction.setSafeOnClickListener {
+//                deletePictogramViewModel.deletePictograms(selectablPictogramAdapter?.selectedItems.orEmpty())
+//            }
         }
     }
 
@@ -110,8 +110,8 @@ class DeletePictogramFragment : Fragment(), SelectablePictogramAdapter.ItemListe
                 }
             )
         }
-        binding.shimmerContainer.hideShimmer()
-        binding.shimmerContainer.visibility = View.GONE
+//        binding.shimmerContainer.hideShimmer()
+//        binding.shimmerContainer.visibility = View.GONE
     }
 
     override fun onItemClick(data: PictogramSelectableModel) {
@@ -122,16 +122,16 @@ class DeletePictogramFragment : Fragment(), SelectablePictogramAdapter.ItemListe
 
     private fun setupToolbar(itemsSelected: Int) {
         var title = getString(R.string.text_delete_format, getString(R.string.text_pictogram))
-        if (itemsSelected > 0) {
-            title += getString(
-                R.string.text_select_pictograms_size_format,
-                itemsSelected.toString()
-            )
-            binding.lyToolbar.txtAction.isEnabled = true
-        } else {
-            binding.lyToolbar.txtAction.isEnabled = false
-        }
-        binding.lyToolbar.txtTitle.text = title
+//        if (itemsSelected > 0) {
+//            title += getString(
+//                R.string.text_select_pictograms_size_format,
+//                itemsSelected.toString()
+//            )
+//            binding.lyToolbar.txtAction.isEnabled = true
+//        } else {
+//            binding.lyToolbar.txtAction.isEnabled = false
+//        }
+//        binding.lyToolbar.txtTitle.text = title
     }
 
     override fun onDestroyView() {

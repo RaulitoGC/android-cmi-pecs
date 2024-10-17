@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "8.3.2"
+androidGradlePlugin = "8.6.1"
 kotlin = "1.9.23"
 navigationComponent = "2.6.0"
 
@@ -17,6 +17,7 @@ composeBom = "2023.01.00"
 composeRuntime = "1.0.0"
 composeActivity = "1.6.1"
 composeViewmodel = "2.5.1"
+composeConstraintLayout = "1.1.0-beta01"
 
 googleAccompanistPermissions = "0.34.0"
 
@@ -67,6 +68,7 @@ androidx-compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-v
 androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui" }
+androidx-compose-constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "composeConstraintLayout" }
 androidx-compose-material = { module = "androidx.compose.material:material" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }

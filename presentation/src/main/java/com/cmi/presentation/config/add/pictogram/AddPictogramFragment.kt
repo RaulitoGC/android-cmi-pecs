@@ -7,13 +7,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.cmi.presentation.R
 import com.cmi.presentation.common.PickitFragment
 import com.cmi.presentation.config.add.PictureLoader
-import com.cmi.presentation.config.add.model.PictureLoaderContentType
+import com.cmi.presentation.components.common.add.PictureLoaderContentType
 import com.cmi.presentation.config.contract.ChoosePictureContract
 import com.cmi.presentation.config.contract.TakePictureContract
 import com.cmi.presentation.databinding.FragmentAddPictogramBinding
@@ -22,7 +20,6 @@ import com.cmi.presentation.manager.DexterManager
 import com.cmi.presentation.model.CategorySelectableModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 
 class AddPictogramFragment : PickitFragment(), CategoryAdapter.ItemListener {
 

@@ -39,10 +39,11 @@ import timber.log.Timber
 
 @Composable
 fun PicturePreview(
+    modifier: Modifier = Modifier,
     imageUri: Uri?
 ) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .size(
                 width = dimensionResource(id = R.dimen.picture_preview_size_width),
                 height = dimensionResource(id = R.dimen.picture_preview_size_height)
