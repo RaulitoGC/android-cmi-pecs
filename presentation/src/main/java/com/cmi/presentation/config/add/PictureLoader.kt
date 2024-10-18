@@ -105,9 +105,9 @@ private fun PictureLoaderContent(
 
         PictureLoaderUploadButton(
             modifier = applySubmitButtonConstraints(submitButton).padding(bottom = 16.dp),
-            text = state.contentType.uploadText
+            text = state.contentType.submitButtonText
         ) {
-
+            handleEvent(PictureLoaderEvent.UploadCategory())
         }
     }
 }

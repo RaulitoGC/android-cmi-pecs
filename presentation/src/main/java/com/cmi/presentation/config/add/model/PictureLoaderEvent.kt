@@ -10,6 +10,8 @@ sealed class PictureLoaderEvent {
 
     class ImageUriUpdated(val imageUri: Uri): PictureLoaderEvent()
 
+    class UploadCategory(): PictureLoaderEvent()
+
 //    class PasswordChanged(val password: String): AuthenticationEvent()
 //
 //    object Authenticate: AuthenticationEvent()

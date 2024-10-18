@@ -9,7 +9,7 @@ data class PictureLoaderState(
     val contentType: PictureLoaderContentType = PictureLoaderContentType.SingleImage,
     val pictureName: String = "",
     val imageUri: Uri? = null,
-    val showErrorMessage: Boolean = false,
+    val showMessage: String? = null,
     val categories: List<CategorySelectableModel> = emptyList()
 )
 

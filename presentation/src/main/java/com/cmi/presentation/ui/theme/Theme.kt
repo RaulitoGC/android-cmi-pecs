@@ -8,6 +8,8 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.sp
 import com.cmi.presentation.R
 
 
@@ -20,10 +22,16 @@ fun CmiAppTheme(
         primarySurface = colorResource(R.color.colorPrimaryDark),
         primaryText = colorResource(R.color.colorPrimaryText),
         primaryTextDisabled = colorResource(R.color.colorPrimaryTextDisable),
-        primaryColorDark = colorResource(R.color.colorPrimaryDark)
+        primaryColorDark = colorResource(R.color.colorPrimaryDark),
+        textButton = colorResource(R.color.colorTextButton),
+        primaryButtonSurface = colorResource(R.color.colorPrimaryButton),
     )
 
-    val cmiTypography = CmiTypography()
+    val cmiTypography = CmiTypography(
+        button = DefaultCmiTypography.button.copy(
+            fontSize = dimensionResource(id = R.dimen.button_text_size).value.sp
+        )
+    )
 
     CompositionLocalProvider(
         LocalCmiColors provides cmiColors,

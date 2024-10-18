@@ -5,8 +5,7 @@ import com.cmi.presentation.R
 
 sealed class PictureLoaderContentType(
     @StringRes val title: Int,
-    @StringRes val subTitle: Int,
-    @StringRes val uploadText: Int
+    @StringRes val submitButtonText: Int
 ) {
 
     fun isSingleImage() = this is SingleImage
@@ -14,13 +13,11 @@ sealed class PictureLoaderContentType(
 
     data object  SingleImage : PictureLoaderContentType(
         title = R.string.text_add_pictogram,
-        subTitle = R.string.text_upload_pictogram,
-        uploadText = R.string.text_upload_pictogram
+        submitButtonText = R.string.text_upload_pictogram
     )
 
     data object  CategoryImage : PictureLoaderContentType(
         title = R.string.text_add_category,
-        subTitle = R.string.text_upload_category,
-        uploadText = R.string.text_upload_category
+        submitButtonText = R.string.text_add_category
     )
 }
