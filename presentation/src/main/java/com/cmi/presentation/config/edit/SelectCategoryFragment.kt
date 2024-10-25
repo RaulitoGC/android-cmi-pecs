@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cmi.presentation.Constants
 import com.cmi.presentation.R
+import com.cmi.presentation.config.category.common.CategoryChooser
 import com.cmi.presentation.databinding.FragmentSelectCategoryBinding
 import com.cmi.presentation.ktx.setUpNavigation
 import com.cmi.presentation.model.CategoryModel
@@ -54,6 +55,8 @@ class SelectCategoryFragment : Fragment(), SelectCategoryAdapter.ItemListener {
 
     private fun initView() = with(binding) {
         val context = context
+
+
         if (context != null) {
             lyToolbar.txtTitle.text = when (args.categorySelectOptions) {
                 CategorySelectOptions.SELECT_PICTOGRAM_FOR_PECS -> {

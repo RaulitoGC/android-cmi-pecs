@@ -51,7 +51,7 @@ class SelectableCategoryAdapter : RecyclerView.Adapter<SelectableCategoryViewHol
 
     fun updateItem(data: CategorySelectableModel) {
         val idx =
-            items.indexOfFirst { it.categoryModel.categoryId == data.categoryModel.categoryId }
+            items.indexOfFirst { it.categoryModel.id == data.categoryModel.id }
         if (idx != -1) {
             notifyItemChanged(idx)
         }

@@ -34,7 +34,7 @@ class SelectPictogramViewModel(
             delay(Constants.SHIMMER_EFFECT_DELAY) //Delay for show shimmer effect
         }
 
-        getPictogramsByCategoryUseCase(categoryId = categoryModel.categoryId ?: 0)
+        getPictogramsByCategoryUseCase(categoryId = categoryModel.id ?: 0)
             .catch { exception ->
                 Timber.e(exception)
             }

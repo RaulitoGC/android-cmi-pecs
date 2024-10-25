@@ -73,8 +73,8 @@ class AddPictogramViewModel(
                 name = pictogramName.toString(),
                 priority = 0,
                 isExternal = true,
-                categoryId = categorySelected?.categoryModel?.categoryId,
-                isSelected = true
+                categoryId = categorySelected?.categoryModel?.id,
+                isSelectedForPecs = true
             )
 
             addPictogramUseCase(pictogram = pictogramModel.toPictogram())

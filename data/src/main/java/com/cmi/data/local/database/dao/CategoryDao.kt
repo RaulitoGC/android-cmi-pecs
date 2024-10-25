@@ -15,6 +15,9 @@ interface CategoryDao {
     @Query("UPDATE category SET priority=:newPriority WHERE categoryId=:categoryId")
     suspend fun updateCategoryPriority(categoryId: Int, newPriority: Int)
 
+    @Query("SELECT * FROM category WHERE categoryId = :categoryId")
+    suspend fun getCategoryById(categoryId: Int): CategoryEntity
+
     @Update
     suspend fun updateCategory(categoryEntity: CategoryEntity)
 

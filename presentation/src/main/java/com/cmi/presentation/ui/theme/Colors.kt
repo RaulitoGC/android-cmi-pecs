@@ -2,7 +2,6 @@ package com.cmi.presentation.ui.theme
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 
 data class CmiColors(
     val primarySurface: Color,
@@ -16,7 +15,9 @@ data class CmiColors(
     /**
      * colorPrimaryButton = primaryButtonSurface
      */
-    val primaryButtonSurface: Color
+    val primaryButtonSurface: Color,
+    val windowBackground: Color,
+    val dividerColor: Color
 )
 
 val LocalCmiColors = staticCompositionLocalOf {
@@ -26,6 +27,8 @@ val LocalCmiColors = staticCompositionLocalOf {
         primaryTextDisabled = Color.Unspecified,
         primaryColorDark = Color.Unspecified,
         textButton = Color.Unspecified,
-        primaryButtonSurface = Color.Unspecified
+        primaryButtonSurface = Color.Unspecified,
+        windowBackground = Color.Unspecified,
+        dividerColor = Color.Unspecified
     )
 }

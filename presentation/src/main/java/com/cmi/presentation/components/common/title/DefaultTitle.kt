@@ -20,14 +20,34 @@ import com.cmi.presentation.ui.theme.CmiThemeExtensions
 @Composable
 fun DefaultTitle(
     modifier: Modifier = Modifier,
-    @StringRes title: Int
+    @StringRes title: Int,
+    onBackClick: () -> Unit
+) {
+    Title(modifier = modifier, stringRestTitle = title, onBackClick = onBackClick)
+}
+
+@Composable
+fun DefaultTitle(
+    modifier: Modifier = Modifier,
+    title: String,
+    onBackClick: () -> Unit
+) {
+    Title(modifier = modifier, title = title, onBackClick = onBackClick)
+}
+
+@Composable
+private fun Title(
+    modifier: Modifier = Modifier,
+    @StringRes stringRestTitle: Int = 0,
+    onBackClick: () -> Unit,
+    title: String = ""
 ) {
     TopAppBar(
         modifier = modifier.fillMaxWidth().height(56.dp),
         backgroundColor = CmiThemeExtensions.colors.primarySurface,
     ) {
         DefaultHorizontalSpacer(12.dp)
-        ArrowIcon()
+        ArrowIcon(onBackClick)
         DefaultHorizontalSpacer(12.dp)
         Image(
             modifier = Modifier.padding(vertical = 8.dp),
@@ -36,7 +56,7 @@ fun DefaultTitle(
         )
         DefaultHorizontalSpacer()
         Text(
-            text = stringResource(id = title),
+            text = if(stringRestTitle == 0 ) title else stringResource(id = stringRestTitle),
             style = CmiThemeExtensions.typography.h1,
             color = CmiThemeExtensions.colors.primaryText,
         )

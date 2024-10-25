@@ -32,14 +32,14 @@ class EditPictogramViewModel(private val updatePictogramUseCase: UpdatePictogram
         viewModelScope.launch {
             if (isValidForm(name = name, imagePath = imagePath)) {
                 val pictogramModelToUpdate = PictogramModel(
-                    pictogramId = pictogramModel.pictogramId,
+                    id = pictogramModel.id,
                     folder = pictogramModel.folder,
                     path = imagePath.toString(),
                     name = name.toString(),
                     priority = pictogramModel.priority,
                     isExternal = isExternal,
                     categoryId = pictogramModel.categoryId,
-                    isSelected = pictogramModel.isSelected
+                    isSelectedForPecs = pictogramModel.isSelectedForPecs
                 )
                 updatePictogramUseCase(pictogram = pictogramModelToUpdate.toPictogram())
                     .catch { exception ->

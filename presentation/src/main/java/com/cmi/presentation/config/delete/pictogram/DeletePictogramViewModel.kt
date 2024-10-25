@@ -36,7 +36,7 @@ class DeletePictogramViewModel(
 
     fun getExternalPictogramsByCategory(categoryModel: CategoryModel) = viewModelScope.launch {
         delay(Constants.SHIMMER_EFFECT_DELAY) //Delay for show shimmer effect
-        getPictogramsByCategoryUseCase(categoryId = categoryModel.categoryId ?: 0)
+        getPictogramsByCategoryUseCase(categoryId = categoryModel.id ?: 0)
             .catch { throwable ->
                 Timber.e(throwable)
             }

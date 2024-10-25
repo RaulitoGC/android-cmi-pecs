@@ -33,13 +33,13 @@ class EditCategoryViewModel(private val updateCategoryUseCase: UpdateCategoryUse
 
             if (isValidForm(name = name, imagePath = imagePath)) {
                 val categoryModelToUpdate = CategoryModel(
-                    categoryId = categoryModel.categoryId,
+                    id = categoryModel.id,
                     folder = categoryModel.folder,
                     path = imagePath.toString(),
                     name = name.toString(),
                     priority = categoryModel.priority,
                     isExternal = isExternal,
-                    isSelected = categoryModel.isSelected
+                    isSelectedForPecs = categoryModel.isSelectedForPecs
                 )
                 updateCategoryUseCase(category = categoryModelToUpdate.toCategory())
                     .catch { exception ->

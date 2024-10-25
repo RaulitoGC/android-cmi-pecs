@@ -9,33 +9,33 @@ import timber.log.Timber
 
 suspend fun Category.toCategoryModel(): CategoryModel = withContext(Dispatchers.IO) {
     return@withContext CategoryModel(
-        categoryId = categoryId,
+        id = categoryId,
         folder = folder,
         path = path,
         name = name,
         priority = priority,
         isExternal = isExternal,
-        isSelected = isSelected
+        isSelectedForPecs = isSelected
     )
 }
 
 suspend fun Pictogram.toPictogramModel(): PictogramModel = withContext(Dispatchers.IO) {
     return@withContext PictogramModel(
-        pictogramId = pictogramId,
+        id = pictogramId,
         folder = folder,
         path = path,
         name = name,
         priority = priority,
         isExternal = isExternal,
         categoryId = categoryId,
-        isSelected = isSelected
+        isSelectedForPecs = isSelected
     )
 }
 
 suspend fun PictogramModel.toPictogramSelectableModel(): PictogramSelectableModel = withContext(Dispatchers.IO){
     return@withContext PictogramSelectableModel(
         pictogramModel = this@toPictogramSelectableModel,
-        isSelected = this@toPictogramSelectableModel.isSelected == true
+        isSelected = this@toPictogramSelectableModel.isSelectedForPecs == true
     )
 }
 
@@ -49,7 +49,7 @@ suspend fun PictogramModel.toPictogramSelectableModelUnChecked(): PictogramSelec
 suspend fun CategoryModel.toCategorySelectableModel(): CategorySelectableModel = withContext(Dispatchers.IO){
     return@withContext CategorySelectableModel(
         categoryModel = this@toCategorySelectableModel,
-        isSelected = this@toCategorySelectableModel.isSelected == true
+        isSelected = this@toCategorySelectableModel.isSelectedForPecs == true
     )
 }
 

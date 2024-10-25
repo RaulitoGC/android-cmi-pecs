@@ -10,7 +10,7 @@ class CategoryDiffCallback(private val oldCategories: List<CategoryModel>, priva
     override fun getNewListSize(): Int = newCategories.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldCategories[oldItemPosition].categoryId == newCategories[newItemPosition].categoryId
+        return oldCategories[oldItemPosition].id == newCategories[newItemPosition].id
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

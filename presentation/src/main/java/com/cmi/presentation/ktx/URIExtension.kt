@@ -14,3 +14,7 @@ fun getUriFromPath(data: CategoryModel): Uri? {
         Uri.parse(absolutePath)
     }
 }
+
+fun Uri?.toStringOrEmpty(): String {
+    return this?.toString() ?: ""
+}

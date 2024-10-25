@@ -70,9 +70,9 @@ class CategoryAdapter(private var items: Map<Int, List<CategorySelectableModel>>
         val lastAdapterPosition = lastAdapterPositionSelected
 
         if (lastItem != null && lastAdapterPosition != null) {
-            if (lastItem.categoryModel.categoryId != categorySelectableModel.categoryModel.categoryId) {
+            if (lastItem.categoryModel.id != categorySelectableModel.categoryModel.id) {
                 val unSelectedIdx =
-                    items[lastAdapterPosition]?.indexOfFirst { it.categoryModel.categoryId == lastItem.categoryModel.categoryId }
+                    items[lastAdapterPosition]?.indexOfFirst { it.categoryModel.id == lastItem.categoryModel.id }
                         ?: -1
 
                 if (unSelectedIdx != -1) {

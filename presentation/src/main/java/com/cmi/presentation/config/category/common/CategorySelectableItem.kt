@@ -1,4 +1,4 @@
-package com.cmi.presentation.components.category
+package com.cmi.presentation.config.category.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -26,14 +26,13 @@ import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.ktx.getUriFromPath
 import com.cmi.presentation.ktx.isTrue
 import com.cmi.presentation.ktx.orFalse
-import com.cmi.presentation.ktx.orZero
 import com.cmi.presentation.model.CategoryModel
 
 @Composable
 fun CategorySelectableItem(
     isLoading: Boolean,
     categoryModel: CategoryModel?,
-    onItemSelected: (isSelected: Boolean, categoryId: Int) -> Unit
+    onItemSelected: (categoryModel: CategoryModel) -> Unit
 ) {
 
     PictureShimmerItem(
@@ -53,7 +52,7 @@ fun CategorySelectableItem(
 fun CategorySelectableItemContent(
     modifier: Modifier = Modifier,
     categoryModel: CategoryModel,
-    onItemSelected: (isSelected: Boolean, categoryId: Int) -> Unit
+    onItemSelected: (categoryModel: CategoryModel) -> Unit
 ) {
 
     val cardViewConfig = CardViewConfig(
@@ -72,7 +71,7 @@ fun CategorySelectableItemContent(
         ){
             if(categoryModel.isSelectedUiEnabled.isTrue) {
                 RadioButton(
-                    selected = categoryModel.isSelected.orFalse,
+                    selected = categoryModel.isSelectedForPecs.orFalse,
                     onClick = {
 
                     },
@@ -116,15 +115,15 @@ fun CategorySelectableItemContent(
 fun Preview_CategorySelectable() {
     CategorySelectableItemContent(
         categoryModel = CategoryModel(
-            categoryId = 1,
+            id = 1,
             name = "Category 1",
             folder = null,
             path = null,
             priority = 1,
             isExternal = false,
-            isSelected = false
+            isSelectedForPecs = false
         ),
-        onItemSelected = {_,_ ->
+        onItemSelected = {_ ->
 
         }
     )

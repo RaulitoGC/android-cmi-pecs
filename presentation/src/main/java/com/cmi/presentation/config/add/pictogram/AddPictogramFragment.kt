@@ -10,8 +10,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.cmi.presentation.R
 import com.cmi.presentation.common.PickitFragment
-import com.cmi.presentation.config.add.PictureLoader
-import com.cmi.presentation.components.common.add.PictureLoaderContentType
 import com.cmi.presentation.config.contract.ChoosePictureContract
 import com.cmi.presentation.config.contract.TakePictureContract
 import com.cmi.presentation.databinding.FragmentAddPictogramBinding
@@ -20,6 +18,7 @@ import com.cmi.presentation.manager.DexterManager
 import com.cmi.presentation.model.CategorySelectableModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 
 class AddPictogramFragment : PickitFragment(), CategoryAdapter.ItemListener {
 
@@ -53,67 +52,64 @@ class AddPictogramFragment : PickitFragment(), CategoryAdapter.ItemListener {
         val context = context
         if (context != null) {
 
-            pictureLoaderScreen.setContent {
-                PictureLoader(PictureLoaderContentType.SingleImage)
+
+            lyToolbar.txtTitle.text = getString(R.string.text_add_pictogram)
+            lyToolbar.toolbar.setUpNavigation {
+                findNavController().popBackStack()
             }
 
-//            lyToolbar.txtTitle.text = getString(R.string.text_add_pictogram)
-//            lyToolbar.toolbar.setUpNavigation {
-//                findNavController().popBackStack()
-//            }
-//
-//            if (TakePictureContract.resolveActivity(context)) {
-//                imgCamera.visibility = View.VISIBLE
-//                txtCameraLabel.visibility = View.VISIBLE
-//                imgCamera.setSafeOnClickListener {
-//                    requestCameraPermission()
-//                }
-//            } else {
-//                imgCamera.visibility = View.GONE
-//                txtCameraLabel.visibility = View.GONE
-//            }
-//
-//            Timber.d(" chooser picture -> ${ChoosePictureContract.resolveActivity(context.applicationContext)}")
-//
-//            if (ChoosePictureContract.resolveActivity(context)) {
-//                imgGallery.visibility = View.VISIBLE
-//                txtGalleryLabel.visibility = View.VISIBLE
-//                imgGallery.setSafeOnClickListener {
-//                    requestStoragePermission()
-//                }
-//            } else {
-//                imgGallery.visibility = View.GONE
-//                txtGalleryLabel.visibility = View.GONE
-//            }
-//
-//            if (!ChoosePictureContract.resolveActivity(context) &&
-//                !TakePictureContract.resolveActivity(context)
-//            ) {
-//                cardViewPreview.visibility = View.GONE
-//            }
-//
-//            fbBack.setOnClickListener {
-//                val currentItem = viewPager.currentItem
-//                if (currentItem - 1 >= 0) {
-//                    viewPager.currentItem = currentItem - 1
-//                }
-//            }
-//
-//            fbFront.setOnClickListener {
-//                val currentItem = viewPager.currentItem
-//                val size = categoryAdapter?.itemCount ?: 0
-//                if (currentItem + 1 < size) {
-//                    viewPager.currentItem = currentItem + 1
-//                }
-//            }
-//
-//            btnAddPictogram.setSafeOnClickListener {
-//                addPictogramViewModel.addPictogram(
-//                    pictogramName = etName.text,
-//                    pictureFileName = lastUriPathUploaded,
-//                    categorySelected = categoryAdapter?.getCategorySelected()
-//                )
-//            }
+            if (TakePictureContract.resolveActivity(context)) {
+                imgCamera.visibility = View.VISIBLE
+                txtCameraLabel.visibility = View.VISIBLE
+                imgCamera.setSafeOnClickListener {
+                    requestCameraPermission()
+                }
+            } else {
+                imgCamera.visibility = View.GONE
+                txtCameraLabel.visibility = View.GONE
+            }
+
+            Timber.d(" chooser picture -> ${ChoosePictureContract.resolveActivity(context.applicationContext)}")
+
+            if (ChoosePictureContract.resolveActivity(context)) {
+                imgGallery.visibility = View.VISIBLE
+                txtGalleryLabel.visibility = View.VISIBLE
+                imgGallery.setSafeOnClickListener {
+                    requestStoragePermission()
+                }
+            } else {
+                imgGallery.visibility = View.GONE
+                txtGalleryLabel.visibility = View.GONE
+            }
+
+            if (!ChoosePictureContract.resolveActivity(context) &&
+                !TakePictureContract.resolveActivity(context)
+            ) {
+                cardViewPreview.visibility = View.GONE
+            }
+
+            fbBack.setOnClickListener {
+                val currentItem = viewPager.currentItem
+                if (currentItem - 1 >= 0) {
+                    viewPager.currentItem = currentItem - 1
+                }
+            }
+
+            fbFront.setOnClickListener {
+                val currentItem = viewPager.currentItem
+                val size = categoryAdapter?.itemCount ?: 0
+                if (currentItem + 1 < size) {
+                    viewPager.currentItem = currentItem + 1
+                }
+            }
+
+            btnAddPictogram.setSafeOnClickListener {
+                addPictogramViewModel.addPictogram(
+                    pictogramName = etName.text,
+                    pictureFileName = lastUriPathUploaded,
+                    categorySelected = categoryAdapter?.getCategorySelected()
+                )
+            }
         }
     }
 

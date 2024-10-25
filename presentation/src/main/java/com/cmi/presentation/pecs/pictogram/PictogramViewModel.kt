@@ -46,7 +46,7 @@ open class PictogramViewModel(
     }
 
     private fun getPictogramsByCategory() = viewModelScope.launch {
-        getPictogramsByCategoryUseCase(categoryId = categoryModel.categoryId ?: 0)
+        getPictogramsByCategoryUseCase(categoryId = categoryModel.id ?: 0)
             .catch { throwable ->
                 Timber.e(throwable)
             }.collect { pictograms ->
@@ -67,7 +67,7 @@ open class PictogramViewModel(
     fun saveMainPictogram(pictogramModel: PictogramModel) = viewModelScope.launch {
         savePictogramPecsIdUseCase(
             PICTOGRAM_MAIN,
-            pictogramId = pictogramModel.pictogramId ?: PICTOGRAM_INVALID_ID
+            pictogramId = pictogramModel.id ?: PICTOGRAM_INVALID_ID
         ).collect()
     }
 
@@ -79,7 +79,7 @@ open class PictogramViewModel(
     fun saveFirstActionPictogram(pictogramModel: PictogramModel) = viewModelScope.launch {
         savePictogramPecsIdUseCase(
             SavePictogramPecsIdUseCase.PICTOGRAM_FIRST_ACTION,
-            pictogramId = pictogramModel.pictogramId ?: PICTOGRAM_INVALID_ID
+            pictogramId = pictogramModel.id ?: PICTOGRAM_INVALID_ID
         ).collect()
     }
 
@@ -93,7 +93,7 @@ open class PictogramViewModel(
     fun saveSecondActionPictogram(pictogramModel: PictogramModel) = viewModelScope.launch {
         savePictogramPecsIdUseCase(
             SavePictogramPecsIdUseCase.PICTOGRAM_SECOND_ACTION,
-            pictogramId = pictogramModel.pictogramId ?: PICTOGRAM_INVALID_ID
+            pictogramId = pictogramModel.id ?: PICTOGRAM_INVALID_ID
         ).collect()
     }
 
@@ -109,7 +109,7 @@ open class PictogramViewModel(
     fun saveFirstAttributePictogram(pictogramModel: PictogramModel) = viewModelScope.launch {
         savePictogramPecsIdUseCase(
             SavePictogramPecsIdUseCase.PICTOGRAM_ATTRIBUTE,
-            pictogramId = pictogramModel.pictogramId ?: PICTOGRAM_INVALID_ID
+            pictogramId = pictogramModel.id ?: PICTOGRAM_INVALID_ID
         ).collect()
     }
 
@@ -123,7 +123,7 @@ open class PictogramViewModel(
     fun saveSecondAttributePictogram(pictogramModel: PictogramModel) = viewModelScope.launch {
         savePictogramPecsIdUseCase(
             SavePictogramPecsIdUseCase.PICTOGRAM_SECOND_ATTRIBUTE,
-            pictogramId = pictogramModel.pictogramId ?: PICTOGRAM_INVALID_ID
+            pictogramId = pictogramModel.id ?: PICTOGRAM_INVALID_ID
         ).collect()
     }
 

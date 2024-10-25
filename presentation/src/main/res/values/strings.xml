@@ -70,6 +70,7 @@
     <string name="text_edit_category">Editar Categoría</string>
     <string name="text_update_category">Actualizar Categoría</string>
     <string name="text_edit_category_success">Categoría actualizada con éxito</string>
+    <string name="text_delete_pictogram">Eliminar Pictograma</string>
 
     <string name="text_select_format">Seleccionar %1$s</string>
     <string name="text_add_format">Agregar %1$s</string>

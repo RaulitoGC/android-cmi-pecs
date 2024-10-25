@@ -38,7 +38,7 @@ class AddCategoryViewModel(private val addCategoryUseCase: AddCategoryUseCase) :
                 name = pictogramName,
                 priority = 0,
                 isExternal = true,
-                isSelected = true
+                isSelectedForPecs = true
             )
             addCategoryUseCase(category = categoryModel.toCategory())
                 .catch {

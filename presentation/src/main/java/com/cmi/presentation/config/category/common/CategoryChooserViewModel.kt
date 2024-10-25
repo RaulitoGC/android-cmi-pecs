@@ -1,28 +1,30 @@
-package com.cmi.presentation.components.category
+package com.cmi.presentation.config.category.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cmi.domain.usecase.GetCategoriesUseCase
 import com.cmi.presentation.Constants.SHIMMER_EFFECT_DELAY
+import com.cmi.presentation.common.navigation.CategoryChooserHost
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.mapper.toCategoryModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class CategorySelectableViewModel(
+class CategoryChooserViewModel(
+    categoryChooserHost: CategoryChooserHost,
     private val getCategoriesUseCase: GetCategoriesUseCase
 ): ViewModel() {
 
-    val uiState = MutableStateFlow(CategorySelectableState())
+    val uiState = MutableStateFlow(CategoryChooserState(categoryChooserHost))
 
     init {
         getCategories()
     }
 
-    fun handleEvent(event: CategorySelectableEvent) {
+    fun handleEvent(event: CategoryChooserEvent) {
         when (event) {
-            is CategorySelectableEvent.ShowLoading -> showLoading(
+            is CategoryChooserEvent.ShowLoading -> showLoading(
                 isLoading = event.isLoading
             )
         }

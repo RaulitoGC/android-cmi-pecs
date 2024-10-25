@@ -7,11 +7,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.cmi.presentation.R
 import com.cmi.presentation.common.PickitFragment
-import com.cmi.presentation.config.add.PictureLoader
-import com.cmi.presentation.components.common.add.PictureLoaderContentType
 import com.cmi.presentation.config.contract.ChoosePictureContract
 import com.cmi.presentation.config.contract.TakePictureContract
 import com.cmi.presentation.databinding.FragmentAddCategoryBinding
@@ -44,54 +44,50 @@ class AddCategoryFragment : PickitFragment() {
     }
 
     private fun initView() = with(binding) {
-        pictureLoaderScreen.setContent {
-            PictureLoader(
-                contentType = PictureLoaderContentType.CategoryImage,
-            )
+
+        val context = context
+        if (context != null) {
+
+            lyToolbar.txtTitle.text = getString(R.string.text_add_category)
+            lyToolbar.toolbar.setUpNavigation {
+                findNavController().popBackStack()
+            }
+
+            if (TakePictureContract.resolveActivity(context)) {
+                imgCamera.visibility = View.VISIBLE
+                txtCameraLabel.visibility = View.VISIBLE
+                imgCamera.setSafeOnClickListener {
+                    requestCameraPermission()
+                }
+            } else {
+                imgCamera.visibility = View.GONE
+                txtCameraLabel.visibility = View.GONE
+            }
+
+            if (ChoosePictureContract.resolveActivity(context)) {
+                imgGallery.visibility = View.VISIBLE
+                txtGalleryLabel.visibility = View.VISIBLE
+                imgGallery.setSafeOnClickListener {
+                    requestStoragePermission()
+                }
+            } else {
+                imgGallery.visibility = View.GONE
+                txtGalleryLabel.visibility = View.GONE
+            }
+
+            if (!ChoosePictureContract.resolveActivity(context)
+                && !TakePictureContract.resolveActivity(context)
+            ) {
+                cardViewPreview.visibility = View.GONE
+            }
+
+            btnAddCategory.setSafeOnClickListener {
+                addCategoryViewModel.addCategory(
+                    pictogramName = etName.text.toString(),
+                    pictureFileName = lastUriPathUploaded
+                )
+            }
         }
-//        val context = context
-//        if (context != null) {
-//
-//            lyToolbar.txtTitle.text = getString(R.string.text_add_category)
-//            lyToolbar.toolbar.setUpNavigation {
-//                findNavController().popBackStack()
-//            }
-//
-//            if (TakePictureContract.resolveActivity(context)) {
-//                imgCamera.visibility = View.VISIBLE
-//                txtCameraLabel.visibility = View.VISIBLE
-//                imgCamera.setSafeOnClickListener {
-//                    requestCameraPermission()
-//                }
-//            } else {
-//                imgCamera.visibility = View.GONE
-//                txtCameraLabel.visibility = View.GONE
-//            }
-//
-//            if (ChoosePictureContract.resolveActivity(context)) {
-//                imgGallery.visibility = View.VISIBLE
-//                txtGalleryLabel.visibility = View.VISIBLE
-//                imgGallery.setSafeOnClickListener {
-//                    requestStoragePermission()
-//                }
-//            } else {
-//                imgGallery.visibility = View.GONE
-//                txtGalleryLabel.visibility = View.GONE
-//            }
-//
-//            if (!ChoosePictureContract.resolveActivity(context)
-//                && !TakePictureContract.resolveActivity(context)
-//            ) {
-//                cardViewPreview.visibility = View.GONE
-//            }
-//
-//            btnAddCategory.setSafeOnClickListener {
-//                addCategoryViewModel.addCategory(
-//                    pictogramName = etName.text.toString(),
-//                    pictureFileName = lastUriPathUploaded
-//                )
-//            }
-//        }
     }
 
     private fun initViewModel() = with(addCategoryViewModel) {
@@ -135,32 +131,32 @@ class AddCategoryFragment : PickitFragment() {
     }
 
     override fun onStartLoadingImage() {
-//        val context = context
-//        if (context != null) {
-//            binding.imgPreview.setBackgroundColor(
-//                ContextCompat.getColor(context, R.color.windowBackground)
-//            )
-//            binding.progressIndicator.visibility = View.VISIBLE
-//        }
+        val context = context
+        if (context != null) {
+            binding.imgPreview.setBackgroundColor(
+                ContextCompat.getColor(context, R.color.windowBackground)
+            )
+            binding.progressIndicator.visibility = View.VISIBLE
+        }
     }
 
     override fun onProgressUpdate(progress: Int) {
-//        binding.progressIndicator.progress = progress
+        binding.progressIndicator.progress = progress
     }
 
     override fun onImageLoaded(wasSuccessful: Boolean, path: String?) {
-//        val context = context
-//        if (context != null) {
-//            binding.progressIndicator.visibility = View.GONE
-//            if (wasSuccessful) {
-//                lastUriPathUploaded = path
-//                binding.imgPreview.background = null
-//                Glide.with(context).load(path).into(binding.imgPreview)
-//            } else {
-//                binding.imgPreview.background =
-//                    ContextCompat.getDrawable(context, R.drawable.ic_image_preview)
-//            }
-//        }
+        val context = context
+        if (context != null) {
+            binding.progressIndicator.visibility = View.GONE
+            if (wasSuccessful) {
+                lastUriPathUploaded = path
+                binding.imgPreview.background = null
+                Glide.with(context).load(path).into(binding.imgPreview)
+            } else {
+                binding.imgPreview.background =
+                    ContextCompat.getDrawable(context, R.drawable.ic_image_preview)
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -9,12 +9,18 @@ import com.cmi.data.local.preferences.CmiPreferences
 import com.cmi.domain.entity.Category
 import com.cmi.domain.entity.Pictogram
 import com.cmi.domain.system.LocalDataSource
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class DefaultLocalDataSource(
     private val cmiDataBase: CmiDataBase,
     private val cmiPreferences: CmiPreferences
 ) : LocalDataSource {
+
+    override suspend fun getCategoryById(categoryId: Int) = flow {
+        val category = cmiDataBase.categoryDao.getCategoryById(categoryId = categoryId)
+        emit(category.toCategory())
+    }
 
     override suspend fun getCategories() = flow {
         val categories = cmiDataBase
@@ -49,6 +55,15 @@ class DefaultLocalDataSource(
 
     override suspend fun getPictogram(pictogramId: Int): Pictogram {
         return cmiDataBase.pictogramDao.getPictogramEntity(pictogramId = pictogramId).toPictogram()
+    }
+
+    override suspend fun getPictogramById(pictogramId: Int) = flow {
+        val pictogram = cmiDataBase
+            .pictogramDao
+            .getPictogramEntity(pictogramId = pictogramId)
+
+
+        emit(pictogram.toPictogram())
     }
 
     override suspend fun addPictogram(pictogram: Pictogram) = flow {

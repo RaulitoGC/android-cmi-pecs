@@ -50,7 +50,7 @@ class SelectablePictogramAdapter : RecyclerView.Adapter<SelectablePictogramViewH
 
     fun updateItem(data: PictogramSelectableModel) {
         val idx =
-            items.indexOfFirst { it.pictogramModel.pictogramId == data.pictogramModel.pictogramId }
+            items.indexOfFirst { it.pictogramModel.id == data.pictogramModel.id }
         if (idx != -1) {
             notifyItemChanged(idx)
         }

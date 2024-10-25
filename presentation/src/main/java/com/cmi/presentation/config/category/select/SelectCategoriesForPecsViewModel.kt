@@ -8,6 +8,7 @@ import com.cmi.presentation.Constants.SHIMMER_EFFECT_DELAY
 import com.cmi.presentation.R
 import com.cmi.presentation.config.add.model.SelectableTitleConfig
 import com.cmi.presentation.ktx.orFalse
+import com.cmi.presentation.ktx.orZero
 import com.cmi.presentation.manager.StringResourceManager
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.mapper.toCategory
@@ -39,12 +40,12 @@ class SelectCategoriesForPecsViewModel(
         getCategories()
     }
 
-    fun handleEvent(selectCategoriesForPecsEvent: SelectCategoriesForPecsEvent) {
-        when (selectCategoriesForPecsEvent) {
+    fun handleEvent(event: SelectCategoriesForPecsEvent) {
+        when (event) {
             is SelectCategoriesForPecsEvent.CategorySelection -> {
                 updateCategory(
-                    categoryId = selectCategoriesForPecsEvent.categoryId,
-                    isSelected = selectCategoriesForPecsEvent.isSelected
+                    categoryId = event.categoryModel?.id.orZero,
+                    isSelected = event.categoryModel?.isSelectedForPecs.orFalse
                 )
             }
 
@@ -98,8 +99,8 @@ class SelectCategoriesForPecsViewModel(
     private fun updateCategory(categoryId: Int, isSelected: Boolean) {
         val currentCategories = uiState.value.categories
         val updatedCategories = currentCategories.map { category ->
-            if (category.categoryId == categoryId) {
-                category.copy(isSelected = isSelected)
+            if (category.id == categoryId) {
+                category.copy(isSelectedForPecs = isSelected)
             } else {
                 category
             }
@@ -111,11 +112,11 @@ class SelectCategoriesForPecsViewModel(
     }
 
     private fun getTitleConfig(categories: List<CategoryModel>): SelectableTitleConfig {
-        val isEnabled = categories.any { it.isSelected.orFalse }
+        val isEnabled = categories.any { it.isSelectedForPecs.orFalse }
         val titleBuilder = StringBuilder().apply {
             append(stringResourceManager.getString(R.string.text_select_category_for_pecs))
             if (isEnabled) {
-                val itemsSelected = categories.filter { it.isSelected.orFalse }.size
+                val itemsSelected = categories.filter { it.isSelectedForPecs.orFalse }.size
                 append(" ${
                     stringResourceManager.getString(
                         R.string.text_select_category_size_format,

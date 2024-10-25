@@ -1,17 +1,14 @@
 package com.cmi.presentation.components.common
 
 import android.net.Uri
-import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,20 +24,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 import coil.imageLoader
 import coil.request.ImageRequest
 import coil.util.DebugLogger
 import com.cmi.presentation.R
-import com.cmi.presentation.config.add.model.PictureLoaderEvent
-import com.cmi.presentation.ktx.shimmerEffect
 import timber.log.Timber
 
 @Composable
 fun PicturePreview(
     modifier: Modifier = Modifier,
-    imageUri: Uri?
+    imagePath: String?
 ) {
     Card(
         modifier = modifier
@@ -54,7 +47,7 @@ fun PicturePreview(
     ) {
 
         PreviewImage(
-            imageUri = imageUri
+            imagePath = imagePath
         )
 
     }
@@ -62,9 +55,9 @@ fun PicturePreview(
 
 @Composable
 fun PreviewImage(
-    imageUri: Uri?
+    imagePath: String?
 ) {
-    Timber.d("Preview ImageUri $imageUri")
+    Timber.d("Preview ImageUri $imagePath")
     val borderColor = colorResource(id = R.color.colorPictogramBorder)
     val imageModifier = Modifier
         .border(BorderStroke(2.dp, borderColor))
@@ -79,14 +72,14 @@ fun PreviewImage(
         mutableStateOf(false)
     }
 
-    if (imageUri != null) {
+    if (imagePath != null) {
         if(showErrorMessage) {
             ShowErrorToastMessage()
         } else {
             AsyncImage(
                 imageLoader = imageLoader,
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(Uri.parse(imageUri.toString()))
+                    .data(Uri.parse(imagePath))
                     .crossfade(true)
                     .build(),
                 placeholder = painterResource(R.drawable.ic_image_preview),

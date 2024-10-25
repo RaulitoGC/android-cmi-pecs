@@ -1,29 +1,31 @@
 package com.cmi.presentation.config.add.component
 
-import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.cmi.presentation.R
+import androidx.compose.ui.unit.dp
 import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
 @Composable
 fun PictureLoaderSubTitle(
-    @StringRes subTitle: Int,
-    @DimenRes horizontalSpacer: Int = R.dimen.margin_normal
+    modifier: Modifier = Modifier,
+    @StringRes subTitle: Int
 ) {
-    Text(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                horizontal = dimensionResource(id = horizontalSpacer)
-            ),
-        text = stringResource(id = subTitle),
-        style = CmiThemeExtensions.typography.body
-    )
+    Column {
+        Text(
+            modifier = modifier.fillMaxWidth().padding(horizontal = 24.dp),
+            text = stringResource(id = subTitle),
+            style = CmiThemeExtensions.typography.body
+        )
+        Divider(
+            color = CmiThemeExtensions.colors.dividerColor,
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
+        )
+    }
 }

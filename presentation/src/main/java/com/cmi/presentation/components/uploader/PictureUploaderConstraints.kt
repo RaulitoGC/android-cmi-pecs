@@ -1,4 +1,4 @@
-package com.cmi.presentation.config.add
+package com.cmi.presentation.components.uploader
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.padding
@@ -9,29 +9,8 @@ import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayoutBaseScope
 import androidx.constraintlayout.compose.ConstraintLayoutScope
 import com.cmi.presentation.ktx.centerHorizontallyFromParentTo
-import com.cmi.presentation.ktx.centerHorizontallyToParent
+import com.cmi.presentation.ktx.centerHorizontallyToParentFrom
 import com.cmi.presentation.ktx.fullLinkToBottom
-import com.cmi.presentation.ktx.fullLinkToTop
-
-
-@SuppressLint("ModifierFactoryExtensionFunction")
-fun ConstraintLayoutScope.applyTitleConstraints(title: ConstrainedLayoutReference): Modifier {
-    return Modifier.constrainAs(title) {
-        this@constrainAs.fullLinkToTop()
-    }
-}
-
-
-@SuppressLint("ModifierFactoryExtensionFunction")
-fun ConstraintLayoutScope.applyTitleSpacerConstraints(
-    titleSpacer: ConstrainedLayoutReference,
-    title: ConstrainedLayoutReference
-): Modifier {
-    return Modifier.constrainAs(titleSpacer){
-        this@constrainAs.centerHorizontallyToParent()
-        top.linkTo(title.bottom)
-    }
-}
 
 // TODO: Fix sizing from resources
 @SuppressLint("ModifierFactoryExtensionFunction")
@@ -76,5 +55,17 @@ fun ConstraintLayoutScope.applyPictureImageResourcesConstraints(
     return Modifier.constrainAs(pictureImageSources){
         this@constrainAs.centerHorizontallyFromParentTo(middleGuideline)
         top.linkTo(pictureNameSpacer.bottom)
+    }
+}
+
+@SuppressLint("ModifierFactoryExtensionFunction")
+fun ConstraintLayoutScope.applyPicturePreviewConstraints(
+    picturePreview: ConstrainedLayoutReference,
+    middleGuideline: ConstraintLayoutBaseScope.VerticalAnchor,
+    titleSpacer: ConstrainedLayoutReference
+): Modifier {
+    return Modifier.constrainAs(picturePreview) {
+        this@constrainAs.centerHorizontallyToParentFrom(middleGuideline)
+        top.linkTo(titleSpacer.bottom)
     }
 }

@@ -3,10 +3,12 @@ package com.cmi.presentation.di
 import com.cmi.data.di.DataServiceLocator
 import com.cmi.data.local.preferences.SurveyPreferences
 import com.cmi.domain.usecase.*
-import com.cmi.presentation.components.category.CategorySelectableViewModel
-import com.cmi.presentation.config.add.PictureLoaderViewModel
+import com.cmi.presentation.components.uploader.CategoryPictureUploaderViewModel
+import com.cmi.presentation.components.uploader.PictogramPictureUploaderViewModel
+import com.cmi.presentation.components.uploader.PictureUploaderViewModel
 import com.cmi.presentation.config.add.category.AddCategoryViewModel
 import com.cmi.presentation.config.add.pictogram.AddPictogramViewModel
+import com.cmi.presentation.config.category.common.CategoryChooserViewModel
 import com.cmi.presentation.config.category.select.SelectCategoriesForPecsViewModel
 import com.cmi.presentation.config.delete.category.DeleteCategoryViewModel
 import com.cmi.presentation.config.delete.pictogram.DeletePictogramViewModel
@@ -23,6 +25,7 @@ import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.pecs.category.CategoryViewModel
 import com.cmi.presentation.pecs.pictogram.PictogramViewModel
 import com.cmi.presentation.pecs.tape.TapeViewModel
+import com.cmi.presentation.utils.MessageBuilder
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -184,22 +187,39 @@ val presentationModule = module {
         )
     }
 
-    // Category Selectable
-    viewModel {
-        CategorySelectableViewModel(
-            getCategoriesUseCase = GetCategoriesUseCase(
-                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
-            )
+    single<MessageBuilder> {
+        MessageBuilder(
+            context = androidContext(),
         )
     }
 
     // Picture Loader
     viewModel { parameters ->
-        PictureLoaderViewModel(
+        CategoryPictureUploaderViewModel(
+            contentType = parameters.get(),
+            addCategoryUseCase = AddCategoryUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            ),
+            getCategoryByIdUseCase = GetCategoryByIdUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            ),
+            messageBuilder = get<MessageBuilder>()
+        )
+    }
+
+    viewModel { parameters ->
+        PictogramPictureUploaderViewModel(
             contentType = parameters.get(),
             getCategoriesUseCase = GetCategoriesUseCase(
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
-            )
+            ),
+            getPictogramByIdUseCase = GetPictogramByIdUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            ),
+            addPictogramUseCase = AddPictogramUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            ),
+            messageBuilder = get<MessageBuilder>()
         )
     }
 
@@ -213,6 +233,15 @@ val presentationModule = module {
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             stringResourceManager = get<StringResourceManager>()
+        )
+    }
+
+    viewModel { parameters ->
+        CategoryChooserViewModel(
+            categoryChooserHost = parameters.get(),
+            getCategoriesUseCase = GetCategoriesUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
         )
     }
 }

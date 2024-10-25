@@ -7,6 +7,9 @@ import kotlinx.coroutines.flow.Flow
 sealed interface DataSource
 
 interface LocalDataSource : DataSource {
+
+    suspend fun getCategoryById(categoryId: Int): Flow<Category>
+
     suspend fun getCategories(): Flow<List<Category>>
 
     suspend fun getPictogramsByCategory(categoryId: Int): Flow<List<Pictogram>>
@@ -14,6 +17,8 @@ interface LocalDataSource : DataSource {
     suspend fun getPictograms(): Flow<List<Pictogram>>
 
     suspend fun getPictogram(pictogramId: Int): Pictogram
+
+    suspend fun getPictogramById(pictogramId: Int): Flow<Pictogram>
 
     suspend fun addPictogram(pictogram: Pictogram): Flow<Unit>
 

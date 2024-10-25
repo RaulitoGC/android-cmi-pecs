@@ -12,7 +12,7 @@ class PictogramDiffCallback(
     override fun getNewListSize(): Int = newPictograms.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldPictograms[oldItemPosition].pictogramId == newPictograms[newItemPosition].pictogramId
+        return oldPictograms[oldItemPosition].id == newPictograms[newItemPosition].id
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

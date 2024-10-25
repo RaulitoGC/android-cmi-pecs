@@ -14,33 +14,37 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.cmi.presentation.R
-import com.cmi.presentation.components.category.CategorySelectableItem
+import com.cmi.presentation.config.category.common.CategorySelectableItem
 import com.cmi.presentation.config.add.component.PictureLoaderSelectableToolbar
 import com.cmi.presentation.config.add.component.PictureLoaderSubTitle
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
+import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.ui.theme.CmiAppTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SelectCategoryForPecs(
     viewModel: SelectCategoriesForPecsViewModel = koinViewModel(),
+    navController: NavController
 ) {
-
-        CmiAppTheme {
-            val state = viewModel.uiState.collectAsState().value
-            SelectCategoryForPecsContent(
-                modifier = Modifier.fillMaxSize(),
-                state = state,
-                handleEvent = viewModel::handleEvent
-            )
-        }
+    CmiAppTheme {
+        val state = viewModel.uiState.collectAsState().value
+        SelectCategoryForPecsContent(
+            modifier = Modifier.fillMaxSize(),
+            state = state,
+            navController = navController,
+            handleEvent = viewModel::handleEvent
+        )
+    }
 }
 
 @Composable
 fun SelectCategoryForPecsContent(
     modifier: Modifier = Modifier,
     state: SelectCategoriesForPecsState,
+    navController: NavController,
     handleEvent: (event: SelectCategoriesForPecsEvent) -> Unit
 ) {
 
@@ -51,6 +55,9 @@ fun SelectCategoryForPecsContent(
 
         PictureLoaderSelectableToolbar(
             titleConfig = state.titleConfig,
+            onBackClick = {
+                navController.popBackStack()
+            },
             onUpdate = {
                 handleEvent(SelectCategoriesForPecsEvent.UpdateCategories)
             }
@@ -64,11 +71,10 @@ fun SelectCategoryForPecsContent(
 
         CategorySelectableGrid(
             state = state,
-            onItemSelected = { isSelected, categoryId ->
+            onItemSelected = { categoryModel ->
                 handleEvent(
                     SelectCategoriesForPecsEvent.CategorySelection(
-                        isSelected = isSelected,
-                        categoryId = categoryId
+                        categoryModel = categoryModel
                     )
                 )
             }
@@ -94,7 +100,7 @@ fun SelectCategoryForPecsContent(
 @Composable
 fun CategorySelectableGrid(
     state: SelectCategoriesForPecsState,
-    onItemSelected: (isSelected: Boolean, categoryId: Int) -> Unit
+    onItemSelected: (categoryModel: CategoryModel?) -> Unit
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(5),

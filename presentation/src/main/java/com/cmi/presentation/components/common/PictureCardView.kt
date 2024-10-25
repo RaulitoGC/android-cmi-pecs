@@ -21,8 +21,8 @@ import com.cmi.presentation.model.CategoryModel
 fun PictureCardView(
     modifier: Modifier,
     cardViewConfig: CardViewConfig,
-    categoryModel: CategoryModel? = null,
-    onItemSelected: (isSelected: Boolean, categoryId: Int) -> Unit,
+    categoryModel: CategoryModel,
+    onItemSelected: (categoryModel: CategoryModel) -> Unit,
     content: @Composable () -> Unit
 ) {
     Card(
@@ -47,8 +47,7 @@ fun PictureCardView(
             )
             .clickable {
                 onItemSelected(
-                    categoryModel?.isSelected.orFalse.not(),
-                    categoryModel?.categoryId.orZero
+                    categoryModel.copy(isSelectedForPecs = categoryModel.isSelectedForPecs.orFalse.not())
                 )
             }
     ) {

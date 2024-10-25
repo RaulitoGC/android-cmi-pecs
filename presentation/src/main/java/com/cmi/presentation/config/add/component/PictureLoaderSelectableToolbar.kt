@@ -25,6 +25,7 @@ import com.cmi.presentation.ui.theme.CmiThemeExtensions
 @Composable
 fun PictureLoaderSelectableToolbar(
     titleConfig: SelectableTitleConfig,
+    onBackClick: () -> Unit,
     onUpdate: () -> Unit
 ) {
 
@@ -35,7 +36,7 @@ fun PictureLoaderSelectableToolbar(
         backgroundColor = CmiThemeExtensions.colors.primarySurface
     ) {
         DefaultHorizontalSpacer(12.dp)
-        ArrowIcon()
+        ArrowIcon(onBackClick)
         DefaultHorizontalSpacer(12.dp)
         Image(
             modifier = Modifier.padding(vertical = 8.dp),

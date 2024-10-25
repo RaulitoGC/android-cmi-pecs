@@ -145,7 +145,7 @@ class PictogramFragment : Fragment(), PictogramAdapter.ItemListener {
         pictogramViewModel.updatePictogramPriority(pictogramModel = data)
         when {
             GetPictogramsByCategoryUseCase.isAction(data.categoryId) -> {
-                if (GetLastPecsPictogramsUseCase.isWantPictogram(data.pictogramId ?: -1)) {
+                if (GetLastPecsPictogramsUseCase.isWantPictogram(data.id ?: -1)) {
                     loadFirstActionPictogram(data = data)
                     pictogramViewModel.saveFirstActionPictogram(pictogramModel = data)
                 } else {

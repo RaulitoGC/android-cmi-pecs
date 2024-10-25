@@ -11,39 +11,39 @@ import kotlinx.coroutines.withContext
 
 suspend fun CategoryModel.toCategory(): Category = withContext(Dispatchers.IO) {
     return@withContext Category(
-        categoryId = categoryId,
+        categoryId = id,
         folder = folder,
         path = path,
         name = name,
         priority = priority,
         isExternal = isExternal,
-        isSelected = isSelected
+        isSelected = isSelectedForPecs
     )
 }
 
 suspend fun PictogramModel.toPictogram(): Pictogram = withContext(Dispatchers.IO){
     return@withContext Pictogram(
-        pictogramId = pictogramId,
+        pictogramId = id,
         folder = folder,
         path = path,
         name = name,
         priority = priority,
         isExternal = isExternal,
         categoryId = categoryId,
-        isSelected = isSelected
+        isSelected = isSelectedForPecs
     )
 }
 
 suspend fun PictogramSelectableModel.toPictogramModel(): PictogramModel = withContext(Dispatchers.IO){
     return@withContext PictogramModel(
-        pictogramId = pictogramModel.pictogramId,
+        id = pictogramModel.id,
         folder = pictogramModel.folder,
         path = pictogramModel.path,
         name = pictogramModel.name,
         priority = pictogramModel.priority,
         isExternal = pictogramModel.isExternal,
         categoryId = pictogramModel.categoryId,
-        isSelected = isSelected
+        isSelectedForPecs = isSelected
     )
 }
 
@@ -54,7 +54,7 @@ suspend fun CategorySelectableModel.toCategoryModel(): CategoryModel = withConte
         name = categoryModel.name,
         priority = categoryModel.priority,
         isExternal = categoryModel.isExternal,
-        categoryId = categoryModel.categoryId,
-        isSelected = isSelected
+        id = categoryModel.id,
+        isSelectedForPecs = isSelected
     )
 }

@@ -13,6 +13,7 @@ import com.cmi.presentation.R
 import com.cmi.presentation.content.CardViewConfig
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.ktx.shimmerEffect
+import com.cmi.presentation.model.CategoryModel
 
 @Composable
 fun PictureShimmerItem(
@@ -30,7 +31,8 @@ fun PictureShimmerItem(
         PictureCardView(
             modifier = modifier,
             cardViewConfig = cardViewConfig,
-            onItemSelected = { _, _ ->
+            categoryModel = emptyCategoryModel,
+            onItemSelected = { _ ->
 
             }
         ) {
@@ -72,3 +74,14 @@ fun Preview_ShimmerEffectItem() {
         contentAfterLoading = {}
     )
 }
+
+private val emptyCategoryModel = CategoryModel(
+    id = 0,
+    name = "",
+    isSelectedForPecs = false,
+    isSelectedUiEnabled = false,
+    folder = null,
+    path = null,
+    priority = 0,
+    isExternal = false
+)
