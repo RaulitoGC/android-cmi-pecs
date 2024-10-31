@@ -1,4 +1,4 @@
-package com.cmi.presentation.components.common.title
+package com.cmi.presentation.components.common.header
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image

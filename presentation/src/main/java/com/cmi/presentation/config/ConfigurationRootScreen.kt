@@ -25,8 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.cmi.presentation.R
-import com.cmi.presentation.components.common.title.DefaultTitle
-import com.cmi.presentation.config.add.component.PictureLoaderSubTitle
+import com.cmi.presentation.components.common.header.DefaultSubTitle
+import com.cmi.presentation.components.common.header.DefaultTitle
+
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
@@ -42,7 +43,7 @@ fun ConfigurationRootScreen(
             onBackClick = onBack
         )
         DefaultVerticalSpacer(height = 8.dp)
-        PictureLoaderSubTitle(subTitle = R.string.text_configuration_option_message)
+        DefaultSubTitle(subTitle = R.string.text_configuration_option_message)
         DefaultVerticalSpacer(height = 8.dp)
         Row {
             ConfigurationTypeCard(

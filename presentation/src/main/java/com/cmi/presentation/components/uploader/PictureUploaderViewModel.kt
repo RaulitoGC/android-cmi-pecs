@@ -3,20 +3,17 @@ package com.cmi.presentation.components.uploader
 import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
-import com.cmi.presentation.R
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
-import com.cmi.presentation.config.add.model.PictureUploaderEvent
-import com.cmi.presentation.config.add.model.PictureUploaderState
+import com.cmi.presentation.components.uploader.type.CategoryPictureUploaderViewModel
+import com.cmi.presentation.components.uploader.type.PictogramPictureUploaderViewModel
 import com.cmi.presentation.ktx.toStringOrEmpty
 import com.cmi.presentation.model.CategorySelectableModel
-import com.cmi.presentation.model.PictogramModel
 import com.cmi.presentation.model.PictureModel
 import com.cmi.presentation.utils.MessageBuilder
 import com.cmi.presentation.utils.MessageType
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 
 abstract class PictureUploaderViewModel(
     contentType: PictureUploaderContentType,
@@ -59,7 +56,14 @@ abstract class PictureUploaderViewModel(
     }
 
     protected fun updateImageUri(imageUri: Uri) {
-        uiState.value = uiState.value.copy(pictureModel = uiState.value.pictureModel.copyPath(imageUri.toStringOrEmpty()))
+        uiState.value = uiState.value.copy(
+            pictureModel = uiState.value.pictureModel.copyPath(imageUri.toString()),
+            uriImage = imageUri
+        )
+    }
+
+    protected fun updatePictureModel(pictureModel: PictureModel){
+        uiState.value = uiState.value.copy(pictureModel = pictureModel)
     }
 
     protected fun showMessage(messageType: MessageType) {

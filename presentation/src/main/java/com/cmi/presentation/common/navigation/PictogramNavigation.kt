@@ -37,9 +37,10 @@ fun NavGraphBuilder.pictogramConfigurationNavGraph(navController: NavController)
 
         composable<PictogramConfigurationTypeHost.Add> {
             PictureUploader(
-                navController = navController,
                 contentType = PictureUploaderContentType.PictogramEntry
-            )
+            ){
+                navController.popBackStack()
+            }
         }
 
         composable<PictogramConfigurationTypeHost.Edit> {

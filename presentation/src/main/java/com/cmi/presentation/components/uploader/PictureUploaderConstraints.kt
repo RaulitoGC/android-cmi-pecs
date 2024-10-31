@@ -12,7 +12,7 @@ import com.cmi.presentation.ktx.centerHorizontallyFromParentTo
 import com.cmi.presentation.ktx.centerHorizontallyToParentFrom
 import com.cmi.presentation.ktx.fullLinkToBottom
 
-// TODO: Fix sizing from resources
+// RGC: Fix sizing from resources
 @SuppressLint("ModifierFactoryExtensionFunction")
 fun ConstraintLayoutScope.applyPictureNameConstraints(
     pictureName: ConstrainedLayoutReference,

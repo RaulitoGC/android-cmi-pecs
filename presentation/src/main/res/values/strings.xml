@@ -71,6 +71,7 @@
     <string name="text_update_category">Actualizar Categoría</string>
     <string name="text_edit_category_success">Categoría actualizada con éxito</string>
     <string name="text_delete_pictogram">Eliminar Pictograma</string>
+    <string name="text_delete_category">Eliminar Categoría</string>
 
     <string name="text_select_format">Seleccionar %1$s</string>
     <string name="text_add_format">Agregar %1$s</string>
@@ -92,6 +93,7 @@
 
     <string name="text_select_pictograms_size_format">(%1$s)</string>
     <string name="text_select_category_size_format">(%1$s)</string>
+    <string name="text_select_picture_size_format">(%1$s)</string>
 
     <string name="text_update">Actualizar</string>
 

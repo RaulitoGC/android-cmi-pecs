@@ -1,4 +1,5 @@
-package com.cmi.presentation.components.uploader
+package com.cmi.presentation.components.uploader.type
+
 
 import android.net.Uri
 import androidx.lifecycle.viewModelScope
@@ -7,6 +8,7 @@ import com.cmi.domain.usecase.GetCategoriesUseCase
 import com.cmi.domain.usecase.GetPictogramByIdUseCase
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
+import com.cmi.presentation.components.uploader.PictureUploaderViewModel
 import com.cmi.presentation.ktx.orNegative
 import com.cmi.presentation.model.PictogramModel
 import com.cmi.presentation.model.PictureModel

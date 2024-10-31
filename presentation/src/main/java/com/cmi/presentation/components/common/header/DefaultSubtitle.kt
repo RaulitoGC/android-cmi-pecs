@@ -1,4 +1,4 @@
-package com.cmi.presentation.config.add.component
+package com.cmi.presentation.components.common.header
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
 @Composable
-fun PictureLoaderSubTitle(
+fun DefaultSubTitle(
     modifier: Modifier = Modifier,
     @StringRes subTitle: Int
 ) {

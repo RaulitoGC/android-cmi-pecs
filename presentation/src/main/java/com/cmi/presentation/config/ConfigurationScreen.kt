@@ -11,9 +11,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cmi.presentation.R
-import com.cmi.presentation.common.navigation.CategoryConfigurationTypeHost
 import com.cmi.presentation.common.navigation.ConfigurationFlowType
-import com.cmi.presentation.components.common.title.DefaultTitle
+import com.cmi.presentation.components.common.header.DefaultTitle
 import com.cmi.presentation.ktx.DefaultHorizontalSpacer
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 

@@ -62,7 +62,3 @@ fun NavGraphBuilder.categoryChooserNavGraph(navController: NavController) {
         }
     }
 }
-
-fun NavController.navigateToCategoryChooserEdit() {
-    navigate(CategoryChooserHost.EditCategory)
-}

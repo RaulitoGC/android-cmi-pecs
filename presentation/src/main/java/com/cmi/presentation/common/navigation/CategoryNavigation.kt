@@ -6,9 +6,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.toRoute
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
-import com.cmi.presentation.config.ConfigurationRootScreen
+import com.cmi.presentation.components.remover.PictureRemoverForPecs
+import com.cmi.presentation.components.remover.type.PictureRemoverContentType
 import com.cmi.presentation.components.uploader.PictureUploader
-import com.cmi.presentation.config.category.select.SelectCategoryForPecs
+import com.cmi.presentation.components.selecter.PictureSelecterForPecs
+import com.cmi.presentation.components.selecter.type.PictureSelecterContentType
 import com.cmi.presentation.ktx.orZero
 import com.cmi.presentation.model.CategoryModel
 import kotlinx.serialization.Serializable
@@ -35,29 +37,39 @@ fun NavGraphBuilder.categoryConfigurationNavGraph(navController: NavController) 
     navigation<CategoryConfigurationScreens>(startDestination = CategoryConfigurationTypeHost.Select) {
 
         composable<CategoryConfigurationTypeHost.Select> {
-            SelectCategoryForPecs(navController = navController)
+            PictureSelecterForPecs(
+                pictureSelecterContentType = PictureSelecterContentType.Category
+            ) {
+                navController.popBackStack()
+            }
         }
 
         composable<CategoryConfigurationTypeHost.Add> {
             PictureUploader(
-                navController = navController,
                 contentType = PictureUploaderContentType.CategoryEntry
-            )
+            ){
+                navController.popBackStack()
+            }
         }
 
         composable<CategoryConfigurationTypeHost.Edit> {
             val categoryConfigurationTypeHost = it.toRoute<CategoryConfigurationTypeHost.Edit>()
             val categoryId = categoryConfigurationTypeHost.categoryId
             PictureUploader(
-                navController = navController,
                 contentType = PictureUploaderContentType.CategoryEditable(
                     pictureId = categoryId
                 )
-            )
+            ) {
+                navController.popBackStack()
+            }
         }
 
         composable<CategoryConfigurationTypeHost.Remove> {
-            SelectCategoryForPecs(navController = navController)
+            PictureRemoverForPecs(
+                contentType = PictureRemoverContentType.Category
+            ) {
+                navController.popBackStack()
+            }
         }
     }
 }

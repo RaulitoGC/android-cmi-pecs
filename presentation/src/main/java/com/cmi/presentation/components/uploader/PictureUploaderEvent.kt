@@ -1,4 +1,4 @@
-package com.cmi.presentation.config.add.model
+package com.cmi.presentation.components.uploader
 
 import android.net.Uri
 

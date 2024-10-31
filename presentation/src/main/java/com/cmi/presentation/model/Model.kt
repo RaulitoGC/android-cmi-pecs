@@ -12,8 +12,21 @@ sealed interface PictureModel{
     val isExternal: Boolean?
     val isSelectedForPecs: Boolean?
 
+    /**
+     * [isSelectedForUiEnabled] is used to enable or disable Radio button in UI
+     */
+    val isSelectedForUiEnabled: Boolean?
+
+    /**
+     * [isSelectedForRemoval] is used to know if this items was selected for deletion
+     */
+    val isSelectedForRemoval: Boolean?
+
     fun copyName(name: String?): PictureModel
     fun copyPath(path: String?): PictureModel
+    fun copyIsExternal(isExternal: Boolean): PictureModel
+    fun copySelectedForPecs(isSelected: Boolean): PictureModel
+    fun copySelectedForRemoval(isSelected: Boolean): PictureModel
     fun reset(): PictureModel
 }
 
@@ -27,7 +40,8 @@ data class CategoryModel(
     override val priority: Int? = 0,
     override val isExternal: Boolean? = false,
     override val isSelectedForPecs: Boolean? = false,
-    val isSelectedUiEnabled: Boolean = false
+    override val isSelectedForRemoval: Boolean? = false,
+    override val isSelectedForUiEnabled: Boolean = false
 ): PictureModel {
 
     override fun copyName(name: String?): PictureModel {
@@ -36,6 +50,18 @@ data class CategoryModel(
 
     override fun copyPath(path: String?): PictureModel {
         return this.copy(path = path)
+    }
+
+    override fun copyIsExternal(isExternal: Boolean): PictureModel {
+        return this.copy(isExternal = isExternal)
+    }
+
+    override fun copySelectedForPecs(isSelected: Boolean): PictureModel {
+        return this.copy(isSelectedForPecs = isSelected)
+    }
+
+    override fun copySelectedForRemoval(isSelected: Boolean): PictureModel {
+        return this.copy(isSelectedForRemoval = isSelected)
     }
 
     override fun reset(): PictureModel {
@@ -52,6 +78,8 @@ data class PictogramModel(
     override val priority: Int? = 0,
     override val isExternal: Boolean? = false,
     override val isSelectedForPecs: Boolean? = false,
+    override val isSelectedForRemoval: Boolean? = false,
+    override val isSelectedForUiEnabled: Boolean = false,
     val categoryId: Int? = null,
     val categoryName: String? = null
 ): PictureModel {
@@ -60,6 +88,18 @@ data class PictogramModel(
     }
     override fun copyPath(path: String?): PictureModel {
         return this.copy(path = path)
+    }
+
+    override fun copyIsExternal(isExternal: Boolean): PictureModel {
+        return this.copy(isExternal = isExternal)
+    }
+
+    override fun copySelectedForPecs(isSelected: Boolean): PictureModel {
+        return this.copy(isSelectedForPecs = isSelected)
+    }
+
+    override fun copySelectedForRemoval(isSelected: Boolean): PictureModel {
+        return this.copy(isSelectedForRemoval = isSelected)
     }
 
     override fun reset(): PictureModel {

@@ -3,8 +3,9 @@ package com.cmi.presentation.ktx
 import android.net.Uri
 import com.bumptech.glide.Glide
 import com.cmi.presentation.model.CategoryModel
+import com.cmi.presentation.model.PictureModel
 
-fun getUriFromPath(data: CategoryModel): Uri? {
+fun getUriFromPath(data: PictureModel): Uri? {
     return if (data.isExternal == true) {
         Uri.parse(data.path)
     } else {

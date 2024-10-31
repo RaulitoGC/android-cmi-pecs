@@ -1,6 +1,5 @@
-package com.cmi.presentation.config.add.component
+package com.cmi.presentation.components.common.header
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,9 +20,8 @@ import com.cmi.presentation.ktx.DefaultHorizontalSpacer
 import com.cmi.presentation.ktx.RemainingSpacer
 import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
-@SuppressLint("ResourceType")
 @Composable
-fun PictureLoaderSelectableToolbar(
+fun PictureSelectableToolbar(
     titleConfig: SelectableTitleConfig,
     onBackClick: () -> Unit,
     onUpdate: () -> Unit

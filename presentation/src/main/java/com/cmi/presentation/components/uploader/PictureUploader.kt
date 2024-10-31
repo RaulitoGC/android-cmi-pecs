@@ -8,7 +8,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.navigation.NavController
 import com.cmi.presentation.components.common.PictureImageSources
 import com.cmi.presentation.components.common.PictureNameTextField
 import com.cmi.presentation.components.common.PicturePreview
@@ -16,26 +15,24 @@ import com.cmi.presentation.components.common.add.PictureLoaderUploadButton
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
 import com.cmi.presentation.components.common.applyTitleConstraints
 import com.cmi.presentation.components.common.applyTitleSpacerConstraints
-import com.cmi.presentation.components.common.title.DefaultTitle
+import com.cmi.presentation.components.common.header.DefaultTitle
 import com.cmi.presentation.config.add.component.CarouselWithButtons
-import com.cmi.presentation.config.add.model.PictureUploaderEvent
-import com.cmi.presentation.config.add.model.PictureUploaderState
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.ktx.ShowToast
+import com.cmi.presentation.ktx.getImagePath
 import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
 @Composable
 fun PictureUploader(
-    navController: NavController,
-    contentType: PictureUploaderContentType
+    contentType: PictureUploaderContentType,
+    viewModel: PictureUploaderViewModel = PictureUploaderViewModel.create(contentType),
+    onBack: () -> Unit
 ) {
-
-    val viewModel: PictureUploaderViewModel = PictureUploaderViewModel.create(contentType)
 
     val state = viewModel.uiState.collectAsState().value
     PictureLoaderContent(
         modifier = Modifier.fillMaxSize(),
-        navController = navController,
+        onBack = onBack,
         state = state,
         handleEvent = viewModel::handleEvent
     )
@@ -44,14 +41,14 @@ fun PictureUploader(
 @Composable
 private fun PictureLoaderContent(
     modifier: Modifier = Modifier,
-    navController: NavController,
     state: PictureUploaderState,
+    onBack: () -> Unit,
     handleEvent: (event: PictureUploaderEvent) -> Unit,
 ) {
     state.showMessage?.let {
         ShowToast(it)
         handleEvent(PictureUploaderEvent.MessageShown)
-        navController.popBackStack()
+        onBack.invoke()
     }
 
     ConstraintLayout(
@@ -66,10 +63,9 @@ private fun PictureLoaderContent(
 
         DefaultTitle(
             modifier = applyTitleConstraints(title),
-            title = state.contentType.title
-        ) {
-            navController.popBackStack()
-        }
+            title = state.contentType.title,
+            onBackClick = onBack
+        )
 
         DefaultVerticalSpacer(
             modifier = applyTitleSpacerConstraints(titleSpacer, title),
@@ -78,7 +74,7 @@ private fun PictureLoaderContent(
 
         PictureNameTextField(
             modifier = applyPictureNameConstraints(pictureName, middleGuideline, titleSpacer),
-            pictureName = state.pictureModel?.name.orEmpty(),
+            pictureName = state.pictureModel.name.orEmpty(),
             onPictureNameChange = {
                 handleEvent(PictureUploaderEvent.NameChanged(it))
             }
@@ -106,7 +102,7 @@ private fun PictureLoaderContent(
 
         PicturePreview(
             modifier = applyPicturePreviewConstraints(picturePreview, middleGuideline, titleSpacer),
-            imagePath = state.pictureModel.path
+            imagePath = state.uriImage
         )
 
         if (state.contentType.showCategoriesCarousel()) {

@@ -15,11 +15,11 @@ import androidx.navigation.NavController
 import com.cmi.presentation.R
 import com.cmi.presentation.common.navigation.CategoryChooserHost
 import com.cmi.presentation.common.navigation.navigateToCategoryEdit
-import com.cmi.presentation.components.common.title.DefaultTitle
-import com.cmi.presentation.config.add.component.PictureLoaderSubTitle
+import com.cmi.presentation.components.common.header.DefaultDescription
+import com.cmi.presentation.components.common.header.DefaultTitle
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.model.CategoryModel
-import com.cmi.presentation.ui.theme.CmiAppTheme
+import com.cmi.presentation.model.getOrEmpty
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -70,7 +70,7 @@ fun CategorySelectableContent(
 
         DefaultVerticalSpacer(height = 8.dp)
 
-        PictureLoaderSubTitle(subTitle = R.string.text_select_category)
+        DefaultDescription(description = R.string.text_select_category)
 
         DefaultVerticalSpacer(height = 8.dp)
 
@@ -95,10 +95,13 @@ fun CategorySelectableGrid(
             val categories = state.categories
             val size = state.getCategoriesSize()
             items(size) { index ->
-                CategorySelectableItem(
+                PictureSelectableItem(
                     isLoading = state.isLoading,
-                    categoryModel = categories.getOrNull(index),
-                    onItemSelected = onItemSelected
+                    pictureModel = categories.getOrEmpty(index),
+                    onItemSelected = { pictureModel ->
+                        if (pictureModel !is CategoryModel) return@PictureSelectableItem
+                        onItemSelected(pictureModel)
+                    }
                 )
             }
         }

@@ -15,7 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.cmi.presentation.R
@@ -26,33 +25,31 @@ import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.ktx.getUriFromPath
 import com.cmi.presentation.ktx.isTrue
 import com.cmi.presentation.ktx.orFalse
-import com.cmi.presentation.model.CategoryModel
+import com.cmi.presentation.model.PictureModel
 
 @Composable
-fun CategorySelectableItem(
+fun PictureSelectableItem(
     isLoading: Boolean,
-    categoryModel: CategoryModel?,
-    onItemSelected: (categoryModel: CategoryModel) -> Unit
+    pictureModel: PictureModel,
+    onItemSelected: (pictureModel: PictureModel) -> Unit
 ) {
 
     PictureShimmerItem(
         isLoading = isLoading,
         contentAfterLoading = {
-            categoryModel?.let {
-                CategorySelectableItemContent(
-                    categoryModel = categoryModel,
-                    onItemSelected = onItemSelected
-                )
-            }
+            PictureSelectableItemContent(
+                pictureModel = pictureModel,
+                onItemSelected = onItemSelected
+            )
         }
     )
 }
 
 @Composable
-fun CategorySelectableItemContent(
+fun PictureSelectableItemContent(
     modifier: Modifier = Modifier,
-    categoryModel: CategoryModel,
-    onItemSelected: (categoryModel: CategoryModel) -> Unit
+    pictureModel: PictureModel,
+    onItemSelected: (pictureModel: PictureModel) -> Unit
 ) {
 
     val cardViewConfig = CardViewConfig(
@@ -62,16 +59,16 @@ fun CategorySelectableItemContent(
     PictureCardView(
         modifier = modifier,
         cardViewConfig = cardViewConfig,
-        categoryModel = categoryModel,
+        pictureModel = pictureModel,
         onItemSelected = onItemSelected
     ) {
         Box(
             modifier = modifier
                 .fillMaxWidth()
         ){
-            if(categoryModel.isSelectedUiEnabled.isTrue) {
+            if(pictureModel.isSelectedForUiEnabled.isTrue) {
                 RadioButton(
-                    selected = categoryModel.isSelectedForPecs.orFalse,
+                    selected = pictureModel.isSelectedForPecs.orFalse,
                     onClick = {
 
                     },
@@ -95,36 +92,17 @@ fun CategorySelectableItemContent(
                 Image(
                     modifier = modifier
                         .weight(0.8f),
-                    painter = rememberAsyncImagePainter(getUriFromPath(categoryModel)),
-                    contentDescription = categoryModel.name.orEmpty(),
+                    painter = rememberAsyncImagePainter(getUriFromPath(pictureModel)),
+                    contentDescription = pictureModel.name.orEmpty(),
                 )
                 DefaultVerticalSpacer(height = 2.dp)
                 Text(
                     modifier = modifier
                         .weight(0.2f),
-                    text = categoryModel.name.orEmpty()
+                    text = pictureModel.name.orEmpty()
                 )
                 DefaultVerticalSpacer(height = 4.dp)
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun Preview_CategorySelectable() {
-    CategorySelectableItemContent(
-        categoryModel = CategoryModel(
-            id = 1,
-            name = "Category 1",
-            folder = null,
-            path = null,
-            priority = 1,
-            isExternal = false,
-            isSelectedForPecs = false
-        ),
-        onItemSelected = {_ ->
-
-        }
-    )
 }

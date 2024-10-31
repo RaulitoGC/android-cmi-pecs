@@ -1,9 +1,9 @@
 package com.cmi.presentation.ktx
 
-val Boolean.isTrue
-    get() = this
-val Boolean.isFalse
-    get() = !this
+val Boolean?.isTrue
+    get() = this == true
+val Boolean?.isFalse
+    get() = this == false
 
 val Boolean?.orFalse
     get() = this ?: false

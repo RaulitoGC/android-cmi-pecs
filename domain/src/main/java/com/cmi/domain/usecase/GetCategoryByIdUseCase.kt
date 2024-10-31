@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.flowOn
 class GetCategoryByIdUseCase(private val localDataSource: LocalDataSource) {
 
     suspend operator fun invoke(categoryId: Int) = flow {
-        return@flow localDataSource.getPictogramById(categoryId).collect { pictogram ->
+        return@flow localDataSource.getCategoryById(categoryId).collect { pictogram ->
             emit(pictogram)
         }
     }.flowOn(Dispatchers.IO)

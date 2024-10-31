@@ -1,14 +1,15 @@
-package com.cmi.presentation.components.uploader
+package com.cmi.presentation.components.uploader.type
 
-import android.net.Uri
 import androidx.lifecycle.viewModelScope
 import com.cmi.domain.usecase.AddCategoryUseCase
 import com.cmi.domain.usecase.GetCategoryByIdUseCase
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
+import com.cmi.presentation.components.uploader.PictureUploaderViewModel
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.PictureModel
 import com.cmi.presentation.model.mapper.toCategory
+import com.cmi.presentation.model.mapper.toCategoryModel
 import com.cmi.presentation.utils.MessageBuilder
 import com.cmi.presentation.utils.MessageType
 import kotlinx.coroutines.flow.catch
@@ -26,6 +27,10 @@ class CategoryPictureUploaderViewModel(
         if (contentType is PictureUploaderContentType.CategoryEditable) {
             getCategoryById(contentType.pictureId)
         }
+
+        if(contentType is PictureUploaderContentType.CategoryEntry) {
+            updatePictureModel(uiState.value.pictureModel.copyIsExternal(isExternal = true))
+        }
     }
 
     private fun getCategoryById(categoryId: Int) = viewModelScope.launch {
@@ -35,10 +40,7 @@ class CategoryPictureUploaderViewModel(
                 showMessage(MessageType.GeneralError)
             }
             .collect { category ->
-                category.name?.let {
-                    updatePictureName(it)
-                }
-                updateImageUri(Uri.parse(category.path))
+                updatePictureModel(category.toCategoryModel())
             }
     }
 

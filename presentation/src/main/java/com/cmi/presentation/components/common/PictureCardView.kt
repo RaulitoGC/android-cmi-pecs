@@ -16,13 +16,14 @@ import com.cmi.presentation.content.CardViewConfig
 import com.cmi.presentation.ktx.orFalse
 import com.cmi.presentation.ktx.orZero
 import com.cmi.presentation.model.CategoryModel
+import com.cmi.presentation.model.PictureModel
 
 @Composable
 fun PictureCardView(
     modifier: Modifier,
     cardViewConfig: CardViewConfig,
-    categoryModel: CategoryModel,
-    onItemSelected: (categoryModel: CategoryModel) -> Unit,
+    pictureModel: PictureModel,
+    onItemSelected: (pictureModel: PictureModel) -> Unit,
     content: @Composable () -> Unit
 ) {
     Card(
@@ -46,9 +47,7 @@ fun PictureCardView(
                 shape = RoundedCornerShape(dimensionResource(id = cardViewConfig.cornerRadius))
             )
             .clickable {
-                onItemSelected(
-                    categoryModel.copy(isSelectedForPecs = categoryModel.isSelectedForPecs.orFalse.not())
-                )
+                onItemSelected(pictureModel)
             }
     ) {
         content()

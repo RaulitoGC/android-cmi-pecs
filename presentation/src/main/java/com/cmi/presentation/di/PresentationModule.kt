@@ -3,13 +3,16 @@ package com.cmi.presentation.di
 import com.cmi.data.di.DataServiceLocator
 import com.cmi.data.local.preferences.SurveyPreferences
 import com.cmi.domain.usecase.*
-import com.cmi.presentation.components.uploader.CategoryPictureUploaderViewModel
-import com.cmi.presentation.components.uploader.PictogramPictureUploaderViewModel
-import com.cmi.presentation.components.uploader.PictureUploaderViewModel
+import com.cmi.presentation.components.remover.type.CategoryRemoverForPecsViewmodel
+import com.cmi.presentation.components.remover.type.PictogramRemoverForPecsViewModel
+import com.cmi.presentation.components.uploader.type.CategoryPictureUploaderViewModel
+import com.cmi.presentation.components.uploader.type.PictogramPictureUploaderViewModel
 import com.cmi.presentation.config.add.category.AddCategoryViewModel
 import com.cmi.presentation.config.add.pictogram.AddPictogramViewModel
 import com.cmi.presentation.config.category.common.CategoryChooserViewModel
-import com.cmi.presentation.config.category.select.SelectCategoriesForPecsViewModel
+import com.cmi.presentation.components.selecter.PictureSelecterForPecsViewModel
+import com.cmi.presentation.components.selecter.type.CategorySelecterForPecsViewModel
+import com.cmi.presentation.components.selecter.type.PictogramSelecterForPecsViewModel
 import com.cmi.presentation.config.delete.category.DeleteCategoryViewModel
 import com.cmi.presentation.config.delete.pictogram.DeletePictogramViewModel
 import com.cmi.presentation.config.edit.SelectCategoryViewModel
@@ -193,7 +196,7 @@ val presentationModule = module {
         )
     }
 
-    // Picture Loader
+    // Picture Uploader
     viewModel { parameters ->
         CategoryPictureUploaderViewModel(
             contentType = parameters.get(),
@@ -223,16 +226,57 @@ val presentationModule = module {
         )
     }
 
-    // Category Selectable for Pecs
+    // Picture Selecter For PECS
     viewModel {
-        SelectCategoriesForPecsViewModel(
+        CategorySelecterForPecsViewModel(
+            stringResourceManager = get<StringResourceManager>(),
             getCategoriesUseCase = GetCategoriesUseCase(
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
             updateCategoriesUseCase = UpdateCategoriesUseCase(
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
+        )
+    }
+
+    viewModel{ parameters ->
+        PictogramSelecterForPecsViewModel(
+            categoryId = parameters.get(),
+            stringResourceManager = get<StringResourceManager>(),
+            getPictogramsByCategoryUseCase = GetPictogramsByCategoryUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
-            stringResourceManager = get<StringResourceManager>()
+            updatePictogramsUseCase = UpdatePictogramsUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
+        )
+    }
+
+    // Picture Deleter
+    viewModel {
+        CategoryRemoverForPecsViewmodel(
+            messageBuilder = get<MessageBuilder>(),
+            stringResourceManager = get<StringResourceManager>(),
+            getCategoriesUseCase = GetCategoriesUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            ),
+            deleteCategoriesUseCase = DeleteCategoriesUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
+        )
+    }
+
+    viewModel{ parameters ->
+        PictogramRemoverForPecsViewModel(
+            categoryId = parameters.get(),
+            messageBuilder = get<MessageBuilder>(),
+            stringResourceManager = get<StringResourceManager>(),
+            getPictogramsByCategoryUseCase = GetPictogramsByCategoryUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            ),
+            deletePictogramsUseCase = DeletePictogramsUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
         )
     }
 
