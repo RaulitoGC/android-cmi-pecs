@@ -16,6 +16,7 @@ import com.cmi.presentation.model.mapper.getCategoriesSelectableMapFormat
 import com.cmi.presentation.model.mapper.toCategoryModel
 import com.cmi.presentation.model.mapper.toCategorySelectableModelUnChecked
 import com.cmi.presentation.model.mapper.toPictogram
+import com.cmi.presentation.model.mapper.toPictogramModel
 import com.cmi.presentation.utils.MessageBuilder
 import com.cmi.presentation.utils.MessageType
 import kotlinx.coroutines.flow.catch
@@ -46,10 +47,7 @@ class PictogramPictureUploaderViewModel(
                 showMessage(MessageType.GeneralError)
             }
             .collect { pictogram ->
-                pictogram.name?.let {
-                    updatePictureName(it)
-                }
-                updateImageUri(Uri.parse(pictogram.path))
+                updatePictureModel(pictureModel = pictogram.toPictogramModel())
             }
     }
 

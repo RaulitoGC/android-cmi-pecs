@@ -12,14 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.alert.DefaultAlertDialog
 import com.cmi.presentation.components.common.header.DefaultDescription
 import com.cmi.presentation.components.remover.type.PictureRemoverContentType
 import com.cmi.presentation.components.common.header.PictureSelectableToolbar
-import com.cmi.presentation.config.category.common.PictureSelectableItem
+import com.cmi.presentation.components.common.PictureSelectableItem
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.model.PictureModel
 import com.cmi.presentation.model.getOrEmpty

@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.header.DefaultDescription
 import com.cmi.presentation.components.selecter.type.PictureSelecterContentType
-import com.cmi.presentation.config.category.common.PictureSelectableItem
+import com.cmi.presentation.components.common.PictureSelectableItem
 import com.cmi.presentation.components.common.header.PictureSelectableToolbar
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.model.PictureModel

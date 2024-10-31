@@ -6,10 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.cmi.presentation.R
-import com.cmi.presentation.config.ConfigurationRootScreen
-import com.cmi.presentation.config.ConfigurationScreen
-import com.cmi.presentation.config.FLOW
-import com.cmi.presentation.config.category.common.CategoryChooser
+import com.cmi.presentation.components.chooser.category.CategoryChooser
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -22,7 +19,7 @@ sealed class CategoryChooserHost(@StringRes val title: Int){
     data object EditCategory : CategoryChooserHost(R.string.text_edit_category)
 
     @Serializable
-    data object DeletePictogram: CategoryChooserHost(R.string.text_delete_pictogram)
+    data object RemovePictogram: CategoryChooserHost(R.string.text_delete_pictogram)
 
     @Serializable
     data object SelectPictogramForPecs: CategoryChooserHost(R.string.text_select_pictogram_for_pecs)
@@ -36,28 +33,48 @@ fun NavGraphBuilder.categoryChooserNavGraph(navController: NavController) {
         composable<CategoryChooserHost.EditCategory> { _ ->
             CategoryChooser(
                 categoryChooserHost = CategoryChooserHost.EditCategory,
-                navController = navController
+                onBack = {
+                    navController.popBackStack()
+                },
+                onItemSelected = { categoryModel ->
+                    navController.navigateToCategoryEdit(categoryModel)
+                }
             )
         }
 
         composable<CategoryChooserHost.EditPictogram> { _ ->
             CategoryChooser(
                 categoryChooserHost = CategoryChooserHost.EditPictogram,
-                navController = navController
+                onBack = {
+                    navController.popBackStack()
+                },
+                onItemSelected = { categoryModel ->
+                    navController.navigateToPictogramChooser(categoryModel)
+                }
             )
         }
 
-        composable<CategoryChooserHost.DeletePictogram> { _ ->
+        composable<CategoryChooserHost.RemovePictogram> { _ ->
             CategoryChooser(
-                categoryChooserHost = CategoryChooserHost.DeletePictogram,
-                navController = navController
+                categoryChooserHost = CategoryChooserHost.RemovePictogram,
+                onBack = {
+                    navController.popBackStack()
+                },
+                onItemSelected = { categoryModel ->
+                    navController.navigateToCategoryEdit(categoryModel)
+                }
             )
         }
 
         composable<CategoryChooserHost.SelectPictogramForPecs> { _ ->
             CategoryChooser(
                 categoryChooserHost = CategoryChooserHost.SelectPictogramForPecs,
-                navController = navController
+                onBack = {
+                    navController.popBackStack()
+                },
+                onItemSelected = { categoryModel ->
+                    navController.navigateToSelectPictogramForPecs(categoryModel)
+                }
             )
         }
     }

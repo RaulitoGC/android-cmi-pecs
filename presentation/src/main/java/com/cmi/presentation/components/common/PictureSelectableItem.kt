@@ -1,4 +1,4 @@
-package com.cmi.presentation.config.category.common
+package com.cmi.presentation.components.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -18,8 +18,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.cmi.presentation.R
-import com.cmi.presentation.components.common.PictureCardView
-import com.cmi.presentation.components.common.PictureShimmerItem
 import com.cmi.presentation.content.CardViewConfig
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.ktx.getUriFromPath

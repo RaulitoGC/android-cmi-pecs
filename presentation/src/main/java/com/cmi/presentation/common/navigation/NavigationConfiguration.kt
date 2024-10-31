@@ -7,7 +7,6 @@ import androidx.navigation.compose.navigation
 import com.cmi.presentation.config.ConfigurationRootScreen
 import com.cmi.presentation.config.ConfigurationScreen
 import com.cmi.presentation.config.FLOW
-import com.cmi.presentation.config.category.common.CategoryChooser
 import kotlinx.serialization.Serializable
 
 
@@ -75,10 +74,10 @@ fun NavGraphBuilder.configurationNavGraph(navController: NavController) {
                 },
                 onItemSelected = { configurationFlowType ->
                     when(configurationFlowType){
-                        ConfigurationFlowType.SELECT -> navController.navigate(PictogramConfigurationTypeHost.Select)
+                        ConfigurationFlowType.SELECT -> navController.navigate(CategoryChooserHost.SelectPictogramForPecs)
                         ConfigurationFlowType.ADD -> navController.navigate(PictogramConfigurationTypeHost.Add)
                         ConfigurationFlowType.EDIT -> navController.navigate(CategoryChooserHost.EditPictogram)
-                        ConfigurationFlowType.REMOVE -> navController.navigate(PictogramConfigurationTypeHost.Remove)
+                        ConfigurationFlowType.REMOVE -> navController.navigate(CategoryChooserHost.RemovePictogram)
                     }
                 }
             )

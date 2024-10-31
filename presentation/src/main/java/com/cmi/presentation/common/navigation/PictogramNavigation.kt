@@ -5,9 +5,17 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import androidx.navigation.toRoute
+import com.cmi.presentation.components.chooser.pictogram.PictogramChooser
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
+import com.cmi.presentation.components.remover.PictureRemoverForPecs
+import com.cmi.presentation.components.remover.type.PictureRemoverContentType
+import com.cmi.presentation.components.selecter.PictureSelecterForPecs
+import com.cmi.presentation.components.selecter.type.PictureSelecterContentType
 import com.cmi.presentation.components.uploader.PictureUploader
-import com.cmi.presentation.config.ConfigurationRootScreen
+import com.cmi.presentation.ktx.orZero
+import com.cmi.presentation.model.CategoryModel
+import com.cmi.presentation.model.PictogramModel
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -15,24 +23,34 @@ object PictogramConfigurationScreens
 
 @Serializable
 sealed class PictogramConfigurationTypeHost {
+
     @Serializable
-    data object Select : PictogramConfigurationTypeHost()
+    data class Select(val categoryId: Int) : PictogramConfigurationTypeHost()
 
     @Serializable
     data object Add : PictogramConfigurationTypeHost()
 
     @Serializable
-    data object Edit : PictogramConfigurationTypeHost()
+    data class Edit(val pictogramId: Int) : PictogramConfigurationTypeHost()
 
     @Serializable
-    data object Remove : PictogramConfigurationTypeHost()
+    data class Remove(val categoryId: Int) : PictogramConfigurationTypeHost()
+
+    @Serializable
+    data class Chooser(val categoryId: Int) : PictogramConfigurationTypeHost()
 }
 
 fun NavGraphBuilder.pictogramConfigurationNavGraph(navController: NavController) {
-    navigation<PictogramConfigurationScreens>(startDestination = PictogramConfigurationTypeHost.Select) {
+    navigation<PictogramConfigurationScreens>(startDestination = PictogramConfigurationTypeHost.Select(0)) {
 
         composable<PictogramConfigurationTypeHost.Select> {
-            Text("not implemented yet")
+            val pictogramConfigurationTypeHost = it.toRoute<PictogramConfigurationTypeHost.Select>()
+            val categoryId = pictogramConfigurationTypeHost.categoryId
+            PictureSelecterForPecs(
+                pictureSelecterContentType = PictureSelecterContentType.Pictogram(categoryId)
+            ) {
+                navController.popBackStack()
+            }
         }
 
         composable<PictogramConfigurationTypeHost.Add> {
@@ -44,11 +62,49 @@ fun NavGraphBuilder.pictogramConfigurationNavGraph(navController: NavController)
         }
 
         composable<PictogramConfigurationTypeHost.Edit> {
-            Text("not implemented yet")
+            val pictogramConfigurationTypeHost = it.toRoute<PictogramConfigurationTypeHost.Edit>()
+            val pictogramId = pictogramConfigurationTypeHost.pictogramId
+            PictureUploader(
+                contentType = PictureUploaderContentType.PictogramEditable(
+                    pictureId = pictogramId
+                )
+            ){
+                navController.popBackStack()
+            }
+
         }
 
         composable<PictogramConfigurationTypeHost.Remove> {
-            Text("not implemented yet")
+            val pictogramConfigurationTypeHost = it.toRoute<PictogramConfigurationTypeHost.Select>()
+            val categoryId = pictogramConfigurationTypeHost.categoryId
+            PictureRemoverForPecs(
+                contentType = PictureRemoverContentType.Pictogram(categoryId)
+            ) {
+                navController.popBackStack()
+            }
+        }
+
+        composable<PictogramConfigurationTypeHost.Chooser> {
+            val pictogramConfigurationTypeHost = it.toRoute<PictogramConfigurationTypeHost.Chooser>()
+            val categoryId = pictogramConfigurationTypeHost.categoryId
+
+            PictogramChooser(
+                categoryId = categoryId,
+                onBack = {
+                    navController.popBackStack()
+                },
+                onItemSelected = { pictogramModel ->
+                    navController.navigate(PictogramConfigurationTypeHost.Edit(pictogramModel.id.orZero))
+                }
+            )
         }
     }
+}
+
+fun NavController.navigateToSelectPictogramForPecs(categoryModel: CategoryModel) {
+    navigate(PictogramConfigurationTypeHost.Select(categoryModel.id.orZero))
+}
+
+fun NavController.navigateToPictogramChooser(categoryModel: CategoryModel) {
+    navigate(PictogramConfigurationTypeHost.Chooser(categoryModel.id.orZero))
 }

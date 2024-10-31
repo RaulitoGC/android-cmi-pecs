@@ -62,7 +62,7 @@ abstract class PictureUploaderViewModel(
         )
     }
 
-    protected fun updateIsExternal(isExternal: Boolean) {
+    private fun updateIsExternal(isExternal: Boolean) {
         uiState.value = uiState.value.copy(pictureModel = uiState.value.pictureModel.copyIsExternal(isExternal))
     }
 

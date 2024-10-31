@@ -1,4 +1,4 @@
-package com.cmi.presentation.config.category.common
+package com.cmi.presentation.components.chooser.category
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,14 +20,6 @@ class CategoryChooserViewModel(
 
     init {
         getCategories()
-    }
-
-    fun handleEvent(event: CategoryChooserEvent) {
-        when (event) {
-            is CategoryChooserEvent.ShowLoading -> showLoading(
-                isLoading = event.isLoading
-            )
-        }
     }
 
     private fun getCategories() = viewModelScope.launch{

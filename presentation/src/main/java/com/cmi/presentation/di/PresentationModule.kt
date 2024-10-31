@@ -9,8 +9,8 @@ import com.cmi.presentation.components.uploader.type.CategoryPictureUploaderView
 import com.cmi.presentation.components.uploader.type.PictogramPictureUploaderViewModel
 import com.cmi.presentation.config.add.category.AddCategoryViewModel
 import com.cmi.presentation.config.add.pictogram.AddPictogramViewModel
-import com.cmi.presentation.config.category.common.CategoryChooserViewModel
-import com.cmi.presentation.components.selecter.PictureSelecterForPecsViewModel
+import com.cmi.presentation.components.chooser.category.CategoryChooserViewModel
+import com.cmi.presentation.components.chooser.pictogram.PictogramChooserViewModel
 import com.cmi.presentation.components.selecter.type.CategorySelecterForPecsViewModel
 import com.cmi.presentation.components.selecter.type.PictogramSelecterForPecsViewModel
 import com.cmi.presentation.config.delete.category.DeleteCategoryViewModel
@@ -284,6 +284,16 @@ val presentationModule = module {
         CategoryChooserViewModel(
             categoryChooserHost = parameters.get(),
             getCategoriesUseCase = GetCategoriesUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
+        )
+    }
+
+    // Pictogram Chooser
+    viewModel{ parameters ->
+        PictogramChooserViewModel(
+            categoryId = parameters.get(),
+            getPictogramsByCategoryUseCase = GetPictogramsByCategoryUseCase(
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )

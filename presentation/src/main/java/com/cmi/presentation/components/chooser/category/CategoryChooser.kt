@@ -1,4 +1,4 @@
-package com.cmi.presentation.config.category.common
+package com.cmi.presentation.components.chooser.category
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -11,12 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.cmi.presentation.R
 import com.cmi.presentation.common.navigation.CategoryChooserHost
-import com.cmi.presentation.common.navigation.navigateToCategoryEdit
 import com.cmi.presentation.components.common.header.DefaultDescription
 import com.cmi.presentation.components.common.header.DefaultTitle
+import com.cmi.presentation.components.common.PictureSelectableItem
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.getOrEmpty
@@ -26,28 +25,19 @@ import org.koin.core.parameter.parametersOf
 @Composable
 fun CategoryChooser(
     categoryChooserHost: CategoryChooserHost,
-    navController: NavController
-) {
-    val viewModel: CategoryChooserViewModel = koinViewModel {
+    viewModel: CategoryChooserViewModel = koinViewModel {
         parametersOf(categoryChooserHost)
-    }
+    },
+    onBack: () -> Unit,
+    onItemSelected: (categoryModel: CategoryModel) -> Unit
+) {
 
     val state = viewModel.uiState.collectAsState().value
     CategorySelectableContent(
         modifier = Modifier.fillMaxSize(),
         state = state,
-        onBackClick = {
-            navController.popBackStack()
-        },
-        onItemSelected = { categoryModel ->
-            when(categoryChooserHost){
-                is CategoryChooserHost.EditCategory -> navController.navigateToCategoryEdit(categoryModel)
-                else -> {
-
-                }
-            }
-
-        }
+        onBackClick = onBack,
+        onItemSelected = onItemSelected
     )
 }
 

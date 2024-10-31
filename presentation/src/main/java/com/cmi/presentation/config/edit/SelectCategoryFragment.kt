@@ -8,15 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.cmi.presentation.Constants
 import com.cmi.presentation.R
-import com.cmi.presentation.config.category.common.CategoryChooser
 import com.cmi.presentation.databinding.FragmentSelectCategoryBinding
 import com.cmi.presentation.ktx.setUpNavigation
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.utils.MarginItemDecorator
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 enum class CategorySelectOptions {
     DELETE_PICTOGRAM,
