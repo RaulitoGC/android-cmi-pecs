@@ -3,6 +3,7 @@ package com.cmi.presentation.components.remover.type
 import androidx.lifecycle.viewModelScope
 import com.cmi.domain.usecase.DeleteCategoriesUseCase
 import com.cmi.domain.usecase.GetCategoriesUseCase
+import com.cmi.presentation.Constants.SHIMMER_EFFECT_DELAY
 import com.cmi.presentation.R
 import com.cmi.presentation.components.remover.PictureRemoverForPecsViewModel
 import com.cmi.presentation.manager.StringResourceManager
@@ -12,6 +13,7 @@ import com.cmi.presentation.model.mapper.toCategory
 import com.cmi.presentation.model.mapper.toCategoryModel
 import com.cmi.presentation.utils.MessageBuilder
 import com.cmi.presentation.utils.MessageType
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -29,10 +31,18 @@ class CategoryRemoverForPecsViewmodel(
     }
 
     private fun getExternalCategories() = viewModelScope.launch {
+        showLoading(isLoading = true)
+        val timeForDelay = uiState.value.pictureModels.size
+        if(timeForDelay == 0){
+            delay(SHIMMER_EFFECT_DELAY) //Delay for show shimmer effect
+        }
+
         getCategoriesUseCase().catch { throwable ->
                 Timber.e(throwable)
+                showLoading(isLoading = false)
                 showToastMessage(MessageType.GeneralError)
             }.collect { list ->
+                showLoading(isLoading = false)
                 val pictureModels = list.filter {
                     it.isExternal == true
                 }.map {

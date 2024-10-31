@@ -33,7 +33,7 @@ import timber.log.Timber
 @Composable
 fun PicturePreview(
     modifier: Modifier = Modifier,
-    imagePath: Uri?
+    imagePath: String?
 ) {
     Card(
         modifier = modifier
@@ -55,7 +55,7 @@ fun PicturePreview(
 
 @Composable
 fun PreviewImage(
-    imagePath: Uri?
+    imagePath: String?
 ) {
     Timber.d("Preview ImageUri $imagePath")
     val borderColor = colorResource(id = R.color.colorPictogramBorder)
@@ -80,7 +80,7 @@ fun PreviewImage(
             AsyncImage(
                 imageLoader = imageLoader,
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(imagePath)
+                    .data(Uri.parse(imagePath.toString()))
                     .crossfade(true)
                     .build(),
                 placeholder = painterResource(R.drawable.ic_image_preview),

@@ -102,7 +102,7 @@ private fun PictureLoaderContent(
 
         PicturePreview(
             modifier = applyPicturePreviewConstraints(picturePreview, middleGuideline, titleSpacer),
-            imagePath = state.uriImage
+            imagePath = state.pictureModel.getImagePath()
         )
 
         if (state.contentType.showCategoriesCarousel()) {

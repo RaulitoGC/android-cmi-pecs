@@ -110,6 +110,10 @@ abstract class PictureRemoverForPecsViewModel(
         )
     }
 
+    protected fun showLoading(isLoading: Boolean) {
+        uiState.value = uiState.value.copy(isLoading = isLoading)
+    }
+
     companion object {
         @Composable
         fun create(contentType: PictureRemoverContentType): PictureRemoverForPecsViewModel {

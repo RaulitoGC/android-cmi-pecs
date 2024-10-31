@@ -22,6 +22,7 @@ import com.cmi.presentation.components.common.header.PictureSelectableToolbar
 import com.cmi.presentation.config.category.common.PictureSelectableItem
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.model.PictureModel
+import com.cmi.presentation.model.getOrEmpty
 
 @Composable
 fun PictureRemoverForPecs(
@@ -30,7 +31,7 @@ fun PictureRemoverForPecs(
     onBack: () -> Unit
 ) {
     val state = viewModel.uiState.collectAsState().value
-    DeleteCategoryForPecsContent(
+    PictureRemoverForPecsContent(
         modifier = Modifier.fillMaxSize(),
         state = state,
         onBack = onBack,
@@ -39,7 +40,7 @@ fun PictureRemoverForPecs(
 }
 
 @Composable
-fun DeleteCategoryForPecsContent(
+fun PictureRemoverForPecsContent(
     modifier: Modifier = Modifier,
     state: PictureRemoverState,
     onBack: () -> Unit,
@@ -65,7 +66,7 @@ fun DeleteCategoryForPecsContent(
 
         DefaultVerticalSpacer(height = 8.dp)
 
-        CategoryDeletableGrid(
+        PictureRemoverGrid(
             state = state,
             onItemSelected = { pictureModel ->
                 handleEvent(
@@ -97,7 +98,7 @@ fun DeleteCategoryForPecsContent(
 }
 
 @Composable
-fun CategoryDeletableGrid(
+fun PictureRemoverGrid(
     state: PictureRemoverState,
     onItemSelected: (pictureModel: PictureModel) -> Unit
 ) {
@@ -106,11 +107,11 @@ fun CategoryDeletableGrid(
         contentPadding = PaddingValues(16.dp),
         content = {
             val pictures = state.pictureModels
-            val size = pictures.size
+            val size = state.getPictureSize()
             items(size) { index ->
                 PictureSelectableItem(
                     isLoading = state.isLoading,
-                    pictureModel = pictures[index],
+                    pictureModel = pictures.getOrEmpty(index),
                     onItemSelected = onItemSelected
                 )
             }

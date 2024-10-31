@@ -9,4 +9,6 @@ object Constants {
 
     const val START_SURVEY_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeEZ37j2jWc2Oft1XSOz1gOa8Hi2wZO9EI-73wKAXjWqUkg0A/viewform?usp=sf_link"
     const val END_SURVEY_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf11qF7fqSQqICL1EhdNwuOvYWQNGb_l4Th18_mPutsZ647Tw/viewform?usp=sf_link"
+
+    const val DEFAULT_PICTURE_SIZE_SHIMMER = 20
 }

@@ -3,6 +3,7 @@ package com.cmi.presentation.components.remover.type
 import androidx.lifecycle.viewModelScope
 import com.cmi.domain.usecase.DeletePictogramsUseCase
 import com.cmi.domain.usecase.GetPictogramsByCategoryUseCase
+import com.cmi.presentation.Constants.SHIMMER_EFFECT_DELAY
 import com.cmi.presentation.R
 import com.cmi.presentation.components.remover.PictureRemoverForPecsViewModel
 import com.cmi.presentation.manager.StringResourceManager
@@ -12,6 +13,7 @@ import com.cmi.presentation.model.mapper.toPictogram
 import com.cmi.presentation.model.mapper.toPictogramModel
 import com.cmi.presentation.utils.MessageBuilder
 import com.cmi.presentation.utils.MessageType
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -30,12 +32,20 @@ class PictogramRemoverForPecsViewModel(
     }
 
     private fun getExternalPictogramsByCategory(categoryId: Int) = viewModelScope.launch {
+        showLoading(isLoading = true)
+        val timeForDelay = uiState.value.pictureModels.size
+        if(timeForDelay == 0){
+            delay(SHIMMER_EFFECT_DELAY) //Delay for show shimmer effect
+        }
+
         getPictogramsByCategoryUseCase(categoryId = categoryId)
             .catch { throwable ->
+                showLoading(isLoading = false)
                 Timber.e(throwable)
                 showToastMessage(MessageType.GeneralError)
             }
             .collect { pictograms ->
+                showLoading(isLoading = false)
                 val pictureModels = pictograms.filter {
                     it.isExternal == true
                 }.map {

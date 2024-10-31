@@ -46,11 +46,13 @@ class CategoryPictureUploaderViewModel(
 
     override fun uploadPicture(pictureModel: PictureModel?) {
         viewModelScope.launch {
-            if (isValidForm(pictureModel?.name, pictureModel?.path)) {
+            val name = pictureModel?.name
+            val path = pictureModel?.path
+            if (isValidForm(name, path)) {
                 val categoryModel = CategoryModel(
-                    folder = pictureModel?.name?.replace("\\s".toRegex(), ""),
-                    path = pictureModel?.name,
-                    name = pictureModel?.path,
+                    folder = name?.replace("\\s".toRegex(), ""),
+                    path = path,
+                    name = name,
                     priority = 0,
                     isExternal = true,
                     isSelectedForPecs = true
