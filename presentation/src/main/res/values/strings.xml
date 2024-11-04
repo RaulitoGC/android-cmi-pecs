@@ -55,11 +55,13 @@
 
     <string name="text_add_pictogram">Agregar Pictograma</string>
     <string name="text_upload_pictogram">Cargar Pictograma</string>
+    <string name="text_pictogram_data">Datos del pictograma</string>
     <string name="text_pictogram_added_success">Pictograma agregado con éxito</string>
     <string name="text_select_category">Seleccionar Categoría</string>
 
     <string name="text_add_category">Agregar Categoría</string>
     <string name="text_upload_category">Cargar Categoría</string>
+    <string name="text_category_data">Datos de la categoría</string>
     <string name="text_category_add_success">Categoría agregada con éxito</string>
 
     <string name="text_edit_pictogram">Editar Pictograma</string>

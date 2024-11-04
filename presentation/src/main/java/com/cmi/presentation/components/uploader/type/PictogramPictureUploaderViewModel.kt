@@ -8,6 +8,7 @@ import com.cmi.domain.usecase.GetCategoriesUseCase
 import com.cmi.domain.usecase.GetPictogramByIdUseCase
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
+import com.cmi.presentation.components.uploader.PictureUploaderEvent
 import com.cmi.presentation.components.uploader.PictureUploaderViewModel
 import com.cmi.presentation.ktx.orNegative
 import com.cmi.presentation.model.PictogramModel
@@ -39,6 +40,38 @@ class PictogramPictureUploaderViewModel(
         }
     }
 
+    override fun handleEvent(event: PictureUploaderEvent) {
+        when (event) {
+            is PictureUploaderEvent.CategorySelected -> {
+                onCategorySelected(event)
+            }
+            else -> {
+                super.handleEvent(event)
+            }
+        }
+    }
+
+    private fun onCategorySelected(event: PictureUploaderEvent.CategorySelected) {
+        val categoryModelSelected = event.categoryModel
+        val categories = uiState.value.categories
+        (uiState.value.pictureModel as? PictogramModel)?.let { pictogramModel ->
+            updatePictureModel(
+                pictogramModel.copy(
+                    categoryId = categoryModelSelected.id,
+                    categoryName = categoryModelSelected.name
+                )
+            )
+            updateCategories(
+                categories = categories.map { category ->
+                    if(category.id == categoryModelSelected.id){
+                        category.copy(isSelected = true)
+                    } else {
+                        category.copy(isSelected = false)
+                    }
+                }
+            )
+        }
+    }
 
     private fun getPictogramById(pictogramId: Int) = viewModelScope.launch {
         getPictogramByIdUseCase.invoke(pictogramId)
@@ -58,13 +91,11 @@ class PictogramPictureUploaderViewModel(
                 showMessage(MessageType.GeneralError)
             }
             .collect { list ->
-                val categories = getCategoriesSelectableMapFormat(
-                    itemsPerScreen = 3,
-                    items = list.map {
-                        it.toCategoryModel().toCategorySelectableModelUnChecked()
+                updateCategories(
+                    list.map {
+                        it.toCategoryModel().copy(isSelectedForUiEnabled = true, isSelected = false)
                     }
                 )
-                updateCategories(categories.flatMap { it.value })
             }
     }
 

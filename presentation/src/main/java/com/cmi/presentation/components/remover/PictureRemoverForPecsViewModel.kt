@@ -46,7 +46,7 @@ abstract class PictureRemoverForPecsViewModel(
             is PictureRemoverEvent.RemovePictures -> {
                 removePictures(
                     picturesSelected = uiState.value.pictureModels.filter {
-                        it.isSelectedForRemoval.orFalse
+                        it.isSelected.orFalse
                     }
                 )
             }
@@ -60,7 +60,7 @@ abstract class PictureRemoverForPecsViewModel(
     private fun pictureSelectedForRemoval(pictureModel: PictureModel) {
         uiState.value = uiState.value.copy(pictureModels = uiState.value.pictureModels.map {
             if (it.id == pictureModel.id) {
-                it.copySelectedForRemoval(isSelected = it.isSelectedForRemoval.orFalse.not())
+                it.copyIsSelected(isSelected = it.isSelected.orFalse.not())
             } else {
                 it
             }
@@ -91,11 +91,11 @@ abstract class PictureRemoverForPecsViewModel(
     }
 
     private fun getTitleConfig(pictureModels: List<PictureModel>): SelectableTitleConfig {
-        val isEnabled = pictureModels.any { it.isSelectedForRemoval.orFalse }
+        val isEnabled = pictureModels.any { it.isSelected.orFalse }
         val titleBuilder = StringBuilder().apply {
             append(getPrincipalTitle())
             if (isEnabled) {
-                val itemsSelected = pictureModels.filter { it.isSelectedForRemoval.orFalse }.size
+                val itemsSelected = pictureModels.filter { it.isSelected.orFalse }.size
                 append(" ${
                     stringResourceManager.getString(
                         R.string.text_select_picture_size_format,

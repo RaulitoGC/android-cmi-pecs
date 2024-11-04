@@ -7,6 +7,7 @@ import com.cmi.presentation.components.common.add.PictureUploaderContentType
 import com.cmi.presentation.components.uploader.type.CategoryPictureUploaderViewModel
 import com.cmi.presentation.components.uploader.type.PictogramPictureUploaderViewModel
 import com.cmi.presentation.ktx.toStringOrEmpty
+import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.CategorySelectableModel
 import com.cmi.presentation.model.PictureModel
 import com.cmi.presentation.utils.MessageBuilder
@@ -28,7 +29,7 @@ abstract class PictureUploaderViewModel(
         )
     )
 
-    fun handleEvent(event: PictureUploaderEvent) {
+    open fun handleEvent(event: PictureUploaderEvent) {
         when (event) {
 
             is PictureUploaderEvent.NameChanged -> {
@@ -47,16 +48,23 @@ abstract class PictureUploaderViewModel(
             is PictureUploaderEvent.MessageShown -> {
                 uiState.value = uiState.value.copy(showMessage = null)
             }
+
+            else -> {
+                throw IllegalArgumentException("Event $event is not supported")
+            }
         }
     }
 
+    // region Abstract Methods
     abstract fun uploadPicture(pictureModel: PictureModel?)
+    // endregion
 
-    protected fun updatePictureName(pictureName: String) {
+    // region Private Methods
+    private fun updatePictureName(pictureName: String) {
         uiState.value = uiState.value.copy(pictureModel = uiState.value.pictureModel.copyName(pictureName))
     }
 
-    protected fun updateImageUri(imageUri: Uri) {
+    private fun updateImageUri(imageUri: Uri) {
         uiState.value = uiState.value.copy(
             pictureModel = uiState.value.pictureModel.copyPath(imageUri.toString())
         )
@@ -66,6 +74,9 @@ abstract class PictureUploaderViewModel(
         uiState.value = uiState.value.copy(pictureModel = uiState.value.pictureModel.copyIsExternal(isExternal))
     }
 
+    // endregion
+
+    // region Protected Methods
     protected fun updatePictureModel(pictureModel: PictureModel){
         uiState.value = uiState.value.copy(pictureModel = pictureModel)
     }
@@ -74,13 +85,14 @@ abstract class PictureUploaderViewModel(
         uiState.value = uiState.value.copy(showMessage = messageBuilder.build(messageType))
     }
 
-    protected fun updateCategories(categories: List<CategorySelectableModel>) {
+    protected fun updateCategories(categories: List<CategoryModel>) {
         uiState.value = uiState.value.copy(categories = categories)
     }
 
     protected fun cleanFields(){
         uiState.value = uiState.value.copy(pictureModel = uiState.value.pictureModel.reset())
     }
+    // endregion
 
     companion object {
         @Composable

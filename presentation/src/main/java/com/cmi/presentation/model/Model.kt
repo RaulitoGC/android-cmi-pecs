@@ -18,15 +18,15 @@ sealed interface PictureModel{
     val isSelectedForUiEnabled: Boolean?
 
     /**
-     * [isSelectedForRemoval] is used to know if this items was selected for deletion
+     * [isSelected] is used to know if this items was selected for specific action
      */
-    val isSelectedForRemoval: Boolean?
+    val isSelected: Boolean?
 
     fun copyName(name: String?): PictureModel
     fun copyPath(path: String?): PictureModel
     fun copyIsExternal(isExternal: Boolean): PictureModel
     fun copySelectedForPecs(isSelected: Boolean): PictureModel
-    fun copySelectedForRemoval(isSelected: Boolean): PictureModel
+    fun copyIsSelected(isSelected: Boolean): PictureModel
     fun reset(): PictureModel
 }
 
@@ -40,7 +40,7 @@ data class CategoryModel(
     override val priority: Int? = 0,
     override val isExternal: Boolean? = false,
     override val isSelectedForPecs: Boolean? = false,
-    override val isSelectedForRemoval: Boolean? = false,
+    override val isSelected: Boolean? = false,
     override val isSelectedForUiEnabled: Boolean = false
 ): PictureModel {
 
@@ -60,8 +60,8 @@ data class CategoryModel(
         return this.copy(isSelectedForPecs = isSelected)
     }
 
-    override fun copySelectedForRemoval(isSelected: Boolean): PictureModel {
-        return this.copy(isSelectedForRemoval = isSelected)
+    override fun copyIsSelected(isSelected: Boolean): PictureModel {
+        return this.copy(isSelected = isSelected)
     }
 
     override fun reset(): PictureModel {
@@ -78,7 +78,7 @@ data class PictogramModel(
     override val priority: Int? = 0,
     override val isExternal: Boolean? = false,
     override val isSelectedForPecs: Boolean? = false,
-    override val isSelectedForRemoval: Boolean? = false,
+    override val isSelected: Boolean? = false,
     override val isSelectedForUiEnabled: Boolean = false,
     val categoryId: Int? = null,
     val categoryName: String? = null
@@ -98,8 +98,8 @@ data class PictogramModel(
         return this.copy(isSelectedForPecs = isSelected)
     }
 
-    override fun copySelectedForRemoval(isSelected: Boolean): PictureModel {
-        return this.copy(isSelectedForRemoval = isSelected)
+    override fun copyIsSelected(isSelected: Boolean): PictureModel {
+        return this.copy(isSelected = isSelected)
     }
 
     override fun reset(): PictureModel {

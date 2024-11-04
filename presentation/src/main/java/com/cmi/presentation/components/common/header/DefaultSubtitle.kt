@@ -9,23 +9,25 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
 @Composable
 fun DefaultSubTitle(
     modifier: Modifier = Modifier,
-    @StringRes subTitle: Int
+    @StringRes subTitle: Int,
+    padding: Dp = 24.dp
 ) {
     Column {
         Text(
-            modifier = modifier.fillMaxWidth().padding(horizontal = 24.dp),
+            modifier = modifier.fillMaxWidth().padding(horizontal = padding),
             text = stringResource(id = subTitle),
             style = CmiThemeExtensions.typography.body
         )
         Divider(
             color = CmiThemeExtensions.colors.dividerColor,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = padding)
         )
     }
 }

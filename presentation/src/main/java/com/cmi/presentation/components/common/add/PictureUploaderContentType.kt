@@ -5,6 +5,7 @@ import com.cmi.presentation.R
 
 sealed class PictureUploaderContentType(
     @StringRes val title: Int,
+    @StringRes val subTitle: Int,
     @StringRes val submitButtonText: Int
 ) {
 
@@ -14,11 +15,13 @@ sealed class PictureUploaderContentType(
         override val pictureId: Int
     ) : PictureUploaderContentType(
         title = R.string.text_add_pictogram,
+        subTitle = R.string.text_pictogram_data,
         submitButtonText = R.string.text_upload_pictogram,
     ), PictureEditable
 
     data object  PictogramEntry: PictureUploaderContentType(
         title = R.string.text_add_pictogram,
+        subTitle = R.string.text_upload_pictogram,
         submitButtonText = R.string.text_upload_pictogram,
     )
 
@@ -26,11 +29,13 @@ sealed class PictureUploaderContentType(
         override val pictureId: Int
     ) : PictureUploaderContentType(
         title = R.string.text_add_category,
+        subTitle = R.string.text_category_data,
         submitButtonText = R.string.text_add_category
     ), PictureEditable
 
     data object  CategoryEntry: PictureUploaderContentType(
         title = R.string.text_add_category,
+        subTitle = R.string.text_upload_category,
         submitButtonText = R.string.text_add_category
     )
 }

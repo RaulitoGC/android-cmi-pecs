@@ -19,7 +19,7 @@ suspend fun Category.toCategoryModel(
         priority = priority,
         isExternal = isExternal,
         isSelectedForPecs = isSelected,
-        isSelectedForRemoval = isSelectedForRemoval,
+        isSelected = isSelectedForRemoval,
         isSelectedForUiEnabled = isSelectedForUiEnabled
     )
 }
@@ -37,7 +37,7 @@ suspend fun Pictogram.toPictogramModel(
         isExternal = isExternal,
         categoryId = categoryId,
         isSelectedForPecs = isSelected,
-        isSelectedForRemoval = isSelectedForRemoval,
+        isSelected = isSelectedForRemoval,
         isSelectedForUiEnabled = isSelectedForUiEnabled
     )
 }

@@ -17,7 +17,8 @@ data class CmiColors(
      */
     val primaryButtonSurface: Color,
     val windowBackground: Color,
-    val dividerColor: Color
+    val dividerColor: Color,
+    val colorPecsNavigation: Color
 )
 
 val LocalCmiColors = staticCompositionLocalOf {
@@ -29,6 +30,7 @@ val LocalCmiColors = staticCompositionLocalOf {
         textButton = Color.Unspecified,
         primaryButtonSurface = Color.Unspecified,
         windowBackground = Color.Unspecified,
-        dividerColor = Color.Unspecified
+        dividerColor = Color.Unspecified,
+        colorPecsNavigation = Color.Unspecified
     )
 }

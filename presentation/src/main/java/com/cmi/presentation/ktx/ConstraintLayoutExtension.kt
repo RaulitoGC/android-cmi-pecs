@@ -30,5 +30,5 @@ fun ConstrainScope.centerHorizontallyToParentFrom(from: ConstraintLayoutBaseScop
 
 fun ConstrainScope.fullLinkToBottom() {
     centerHorizontallyToParent()
-    bottom.linkTo(parent.bottom)
+    bottom.linkTo(parent.bottom,)
 }

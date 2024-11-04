@@ -27,6 +27,7 @@ fun CmiAppTheme(
         primaryButtonSurface = colorResource(R.color.colorPrimaryButton),
         windowBackground = colorResource(R.color.windowBackground),
         dividerColor = colorResource(R.color.colorDivider),
+        colorPecsNavigation = colorResource(R.color.colorPecsNavigation)
     )
 
     val cmiTypography = CmiTypography(

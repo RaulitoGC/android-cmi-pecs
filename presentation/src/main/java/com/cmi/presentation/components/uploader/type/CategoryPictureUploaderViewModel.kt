@@ -5,8 +5,10 @@ import com.cmi.domain.usecase.AddCategoryUseCase
 import com.cmi.domain.usecase.GetCategoryByIdUseCase
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
+import com.cmi.presentation.components.uploader.PictureUploaderEvent
 import com.cmi.presentation.components.uploader.PictureUploaderViewModel
 import com.cmi.presentation.model.CategoryModel
+import com.cmi.presentation.model.PictogramModel
 import com.cmi.presentation.model.PictureModel
 import com.cmi.presentation.model.mapper.toCategory
 import com.cmi.presentation.model.mapper.toCategoryModel

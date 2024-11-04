@@ -7,8 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayoutBaseScope
+import androidx.constraintlayout.compose.ConstraintLayoutBaseScope.HorizontalAnchor
 import androidx.constraintlayout.compose.ConstraintLayoutScope
 import com.cmi.presentation.ktx.centerHorizontallyFromParentTo
+import com.cmi.presentation.ktx.centerHorizontallyToParent
 import com.cmi.presentation.ktx.centerHorizontallyToParentFrom
 import com.cmi.presentation.ktx.fullLinkToBottom
 
@@ -40,9 +42,16 @@ fun ConstraintLayoutScope.applyPictureNameSpacerConstraints(
 @SuppressLint("ModifierFactoryExtensionFunction")
 fun ConstraintLayoutScope.applySubmitButtonConstraints(
     submitButton: ConstrainedLayoutReference,
+    topItemsBarrier: HorizontalAnchor
 ): Modifier {
     return Modifier.constrainAs(submitButton){
-        fullLinkToBottom()
+        top.linkTo(topItemsBarrier)
+        linkTo(
+            start = parent.start,
+            end = parent.end,
+            bias = 0.5f
+        )
+        bottom.linkTo(parent.bottom)
     }
 }
 
@@ -68,4 +77,15 @@ fun ConstraintLayoutScope.applyPicturePreviewConstraints(
         this@constrainAs.centerHorizontallyToParentFrom(middleGuideline)
         top.linkTo(titleSpacer.bottom)
     }
+}
+
+@SuppressLint("ModifierFactoryExtensionFunction")
+fun ConstraintLayoutScope.applyCategoryCarouselConstraints(
+    carouselRef: ConstrainedLayoutReference,
+    bottomBarrier: HorizontalAnchor,
+): Modifier {
+    return Modifier.constrainAs(carouselRef) {
+        top.linkTo(bottomBarrier)
+        this@constrainAs.centerHorizontallyToParent()
+    }.padding(horizontal = 64.dp, vertical = 16.dp)
 }
