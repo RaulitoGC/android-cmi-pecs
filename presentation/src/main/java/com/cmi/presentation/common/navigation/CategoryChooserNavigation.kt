@@ -5,8 +5,11 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import androidx.navigation.toRoute
 import com.cmi.presentation.R
 import com.cmi.presentation.components.chooser.category.CategoryChooser
+import com.cmi.presentation.components.chooser.pictogram.PictogramChooser
+import com.cmi.presentation.ktx.orZero
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -54,14 +57,14 @@ fun NavGraphBuilder.categoryChooserNavGraph(navController: NavController) {
             )
         }
 
-        composable<CategoryChooserHost.RemovePictogram> { _ ->
+        composable<CategoryChooserHost.RemovePictogram> {
             CategoryChooser(
                 categoryChooserHost = CategoryChooserHost.RemovePictogram,
                 onBack = {
                     navController.popBackStack()
                 },
                 onItemSelected = { categoryModel ->
-                    navController.navigateToCategoryEdit(categoryModel)
+                    navController.navigateToRemovePictogram(categoryModel)
                 }
             )
         }

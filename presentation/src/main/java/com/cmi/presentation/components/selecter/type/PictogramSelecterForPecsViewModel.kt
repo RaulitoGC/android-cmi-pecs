@@ -43,7 +43,11 @@ class PictogramSelecterForPecsViewModel(
                 showLoading(isLoading = false)
                 showPictures(
                     pictureModels = list.map {
-                        it.toPictogramModel(isSelectedForUiEnabled = true)
+                        val pictogramModel = it.toPictogramModel()
+                        pictogramModel.copy(
+                            isSelectedForUiEnabled = true,
+                            isSelected = pictogramModel.isSelectedForPecs
+                        )
                     }
                 )
             }

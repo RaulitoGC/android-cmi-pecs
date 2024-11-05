@@ -2,6 +2,7 @@ package com.cmi.presentation.components.remover
 
 import com.cmi.presentation.Constants.DEFAULT_PICTURE_SIZE_SHIMMER
 import com.cmi.presentation.config.add.model.SelectableTitleConfig
+import com.cmi.presentation.content.CardViewConfig
 import com.cmi.presentation.model.PictureModel
 
 data class PictureRemoverState(
@@ -13,7 +14,8 @@ data class PictureRemoverState(
         title = "",
         isActionEnabled = false
     ),
-    val pictureModels: List<PictureModel> = emptyList()
+    val pictureModels: List<PictureModel> = emptyList(),
+    val cardViewConfig: CardViewConfig = CardViewConfig()
 ){
 
     fun getPictureSize() = pictureModels.size.takeIf { it > 0} ?: DEFAULT_PICTURE_SIZE_SHIMMER

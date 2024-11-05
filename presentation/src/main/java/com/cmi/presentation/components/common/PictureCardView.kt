@@ -26,6 +26,9 @@ fun PictureCardView(
     onItemSelected: (pictureModel: PictureModel) -> Unit,
     content: @Composable () -> Unit
 ) {
+
+    val size = dimensionResource(id = cardViewConfig.size)
+
     Card(
         shape = RoundedCornerShape(dimensionResource(id = cardViewConfig.cornerRadius)),
         border = BorderStroke(
@@ -33,11 +36,10 @@ fun PictureCardView(
             colorResource(id = R.color.colorPictogramBorder)
         ),
         elevation = dimensionResource(id = cardViewConfig.elevation),
+
+
         modifier = modifier
-            .size(
-                width = cardViewConfig.size,
-                height = cardViewConfig.size
-            )
+            .size(size)
             .padding(dimensionResource(id = R.dimen.margin_4dp))
             .border(
                 border = BorderStroke(

@@ -1,5 +1,6 @@
 package com.cmi.presentation.components.common.header
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,6 +24,7 @@ import com.cmi.presentation.ui.theme.CmiThemeExtensions
 @Composable
 fun PictureSelectableToolbar(
     titleConfig: SelectableTitleConfig,
+    @StringRes actionTitle: Int = R.string.text_update,
     onBackClick: () -> Unit,
     onUpdate: () -> Unit
 ) {
@@ -50,7 +52,7 @@ fun PictureSelectableToolbar(
 
         RemainingSpacer(Modifier.weight(1f))
         Text(
-            text = stringResource(R.string.text_update),
+            text = stringResource(actionTitle),
             style = CmiThemeExtensions.typography.h1,
             color = CmiThemeExtensions.colors.primaryText,
             modifier = Modifier

@@ -105,6 +105,7 @@ fun CategorySelectableGrid(
                 PictureSelectableItem(
                     isLoading = state.isLoading,
                     pictureModel = pictureModels.getOrEmpty(index),
+                    cardViewConfig = state.cardViewConfig,
                     onItemSelected = onItemSelected
                 )
             }

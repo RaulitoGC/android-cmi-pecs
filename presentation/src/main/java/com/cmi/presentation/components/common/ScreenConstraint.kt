@@ -21,7 +21,7 @@ fun ConstraintLayoutScope.applyTitleSpacerConstraints(
     title: ConstrainedLayoutReference
 ): Modifier {
     return Modifier.constrainAs(titleSpacer) {
-        this@constrainAs.centerHorizontallyToParent()
+        //this@constrainAs.centerHorizontallyToParent()
         top.linkTo(title.bottom)
     }
 }

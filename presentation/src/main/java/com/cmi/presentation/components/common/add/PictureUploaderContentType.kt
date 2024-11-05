@@ -9,7 +9,7 @@ sealed class PictureUploaderContentType(
     @StringRes val submitButtonText: Int
 ) {
 
-    fun showCategoriesCarousel(): Boolean = this is PictogramEditable || this is PictogramEntry
+    fun showCategoriesCarousel(): Boolean = this is PictogramEntry
 
     data class  PictogramEditable(
         override val pictureId: Int

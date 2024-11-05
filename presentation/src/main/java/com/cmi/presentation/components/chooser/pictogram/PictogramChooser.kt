@@ -88,6 +88,7 @@ fun PictogramSelectableGrid(
                 PictureSelectableItem(
                     isLoading = state.isLoading,
                     pictureModel = categories.getOrEmpty(index),
+                    cardViewConfig = state.cardViewConfig,
                     onItemSelected = { pictureModel ->
                         if (pictureModel !is PictogramModel) return@PictureSelectableItem
                         onItemSelected(pictureModel)

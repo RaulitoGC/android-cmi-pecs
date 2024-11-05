@@ -46,9 +46,7 @@ class CategoryRemoverForPecsViewmodel(
                 val pictureModels = list.filter {
                     it.isExternal == true
                 }.map {
-                    it.toCategoryModel(
-                        isSelectedForUiEnabled = true
-                    )
+                    it.toCategoryModel().copy(isSelectedForUiEnabled = true)
                 }
                 showPictures(pictureModels)
             }

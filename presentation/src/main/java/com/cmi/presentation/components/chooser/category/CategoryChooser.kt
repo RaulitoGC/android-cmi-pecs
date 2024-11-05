@@ -62,8 +62,6 @@ fun CategorySelectableContent(
 
         DefaultDescription(description = R.string.text_select_category)
 
-        DefaultVerticalSpacer(height = 8.dp)
-
         CategorySelectableGrid(
             state = state,
             onItemSelected = onItemSelected
@@ -88,6 +86,7 @@ fun CategorySelectableGrid(
                 PictureSelectableItem(
                     isLoading = state.isLoading,
                     pictureModel = categories.getOrEmpty(index),
+                    cardViewConfig = state.cardViewConfig,
                     onItemSelected = { pictureModel ->
                         if (pictureModel !is CategoryModel) return@PictureSelectableItem
                         onItemSelected(pictureModel)

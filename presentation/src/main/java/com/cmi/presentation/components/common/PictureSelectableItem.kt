@@ -34,14 +34,17 @@ import com.cmi.presentation.model.PictureModel
 fun PictureSelectableItem(
     isLoading: Boolean,
     pictureModel: PictureModel,
+    cardViewConfig: CardViewConfig,
     onItemSelected: (pictureModel: PictureModel) -> Unit
 ) {
 
     PictureShimmerItem(
         isLoading = isLoading,
+        cardViewConfig = cardViewConfig,
         contentAfterLoading = {
             PictureSelectableItemContent(
                 pictureModel = pictureModel,
+                cardViewConfig = cardViewConfig,
                 onItemSelected = onItemSelected
             )
         }
@@ -52,12 +55,9 @@ fun PictureSelectableItem(
 fun PictureSelectableItemContent(
     modifier: Modifier = Modifier,
     pictureModel: PictureModel,
+    cardViewConfig: CardViewConfig,
     onItemSelected: (pictureModel: PictureModel) -> Unit
 ) {
-
-    val cardViewConfig = CardViewConfig(
-        size = dimensionResource(id = R.dimen.picture_card_size),
-    )
 
     PictureCardView(
         modifier = modifier,
@@ -93,10 +93,14 @@ fun PictureSelectableItemContent(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 DefaultVerticalSpacer(height = 4.dp)
+
+                val imageSize = dimensionResource(cardViewConfig.imageSize)
+                val fontSize = dimensionResource(cardViewConfig.fontSize)
+
                 Image(
                     modifier = modifier.size(
-                        if(pictureModel.isSelectedForUiEnabled.isTrue) cardViewConfig.size * 0.5f
-                        else cardViewConfig.size * 0.75f
+                        if(pictureModel.isSelectedForUiEnabled.isTrue) imageSize * 0.9f
+                        else imageSize
                     ),
                     painter = rememberAsyncImagePainter(getUriFromPath(pictureModel)),
                     contentDescription = pictureModel.name.orEmpty(),
@@ -105,7 +109,7 @@ fun PictureSelectableItemContent(
                 Text(
                     modifier = modifier,
                     text = pictureModel.name.orEmpty(),
-                    fontSize = if(pictureModel.isSelectedForUiEnabled.isTrue) 12.sp else 14.sp
+                    fontSize = if(pictureModel.isSelectedForUiEnabled.isTrue) fontSize.value.sp else ((fontSize.value + 4).sp)
                 )
                 DefaultVerticalSpacer(height = 4.dp)
             }

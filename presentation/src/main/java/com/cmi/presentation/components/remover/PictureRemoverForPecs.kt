@@ -53,6 +53,7 @@ fun PictureRemoverForPecsContent(
 
         PictureSelectableToolbar(
             titleConfig = state.titleConfig,
+            actionTitle = R.string.text_delete,
             onBackClick = onBack,
             onUpdate = {
                 handleEvent(PictureRemoverEvent.RemovePictures)
@@ -111,6 +112,7 @@ fun PictureRemoverGrid(
                 PictureSelectableItem(
                     isLoading = state.isLoading,
                     pictureModel = pictures.getOrEmpty(index),
+                    cardViewConfig = state.cardViewConfig,
                     onItemSelected = onItemSelected
                 )
             }

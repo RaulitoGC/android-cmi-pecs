@@ -54,8 +54,8 @@
 
     <!-- Picture -->
     <dimen name="picture_card_size">120dp</dimen>
-    <dimen name="picture_card_image_height_size">50dp</dimen>
-    <dimen name="picture_card_text_height_size">16dp</dimen>
+    <dimen name="picture_card_image_size">80dp</dimen>
+    <dimen name="picture_card_text_size">14sp</dimen>
 
     <!-- Shimmer -->
     <dimen name="picture_shimmer_size">120dp</dimen>

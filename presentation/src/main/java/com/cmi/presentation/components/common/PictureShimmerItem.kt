@@ -20,14 +20,11 @@ import com.cmi.presentation.model.getEmptyPictureModel
 fun PictureShimmerItem(
     modifier: Modifier = Modifier,
     isLoading: Boolean,
+    cardViewConfig: CardViewConfig,
     contentAfterLoading: @Composable () -> Unit,
 ) {
 
     if (isLoading) {
-
-        val cardViewConfig = CardViewConfig(
-            size = dimensionResource(id = R.dimen.picture_shimmer_size)
-        )
 
         PictureCardView(
             modifier = modifier,

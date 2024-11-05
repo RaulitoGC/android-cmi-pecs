@@ -7,10 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-suspend fun Category.toCategoryModel(
-    isSelectedForRemoval: Boolean = false,
-    isSelectedForUiEnabled: Boolean = false
-): CategoryModel = withContext(Dispatchers.IO) {
+suspend fun Category.toCategoryModel(): CategoryModel = withContext(Dispatchers.IO) {
     return@withContext CategoryModel(
         id = categoryId,
         folder = folder,
@@ -18,16 +15,11 @@ suspend fun Category.toCategoryModel(
         name = name,
         priority = priority,
         isExternal = isExternal,
-        isSelectedForPecs = isSelected,
-        isSelected = isSelectedForRemoval,
-        isSelectedForUiEnabled = isSelectedForUiEnabled
+        isSelectedForPecs = isSelected
     )
 }
 
-suspend fun Pictogram.toPictogramModel(
-    isSelectedForRemoval: Boolean = false,
-    isSelectedForUiEnabled: Boolean = false
-): PictogramModel = withContext(Dispatchers.IO) {
+suspend fun Pictogram.toPictogramModel(): PictogramModel = withContext(Dispatchers.IO) {
     return@withContext PictogramModel(
         id = pictogramId,
         folder = folder,
@@ -36,9 +28,7 @@ suspend fun Pictogram.toPictogramModel(
         priority = priority,
         isExternal = isExternal,
         categoryId = categoryId,
-        isSelectedForPecs = isSelected,
-        isSelected = isSelectedForRemoval,
-        isSelectedForUiEnabled = isSelectedForUiEnabled
+        isSelectedForPecs = isSelected
     )
 }
 

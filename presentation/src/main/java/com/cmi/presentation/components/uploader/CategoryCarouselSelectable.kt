@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.PictureSelectableItem
 import com.cmi.presentation.components.common.header.DefaultSubTitle
+import com.cmi.presentation.content.CardViewConfig
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.ui.theme.CmiThemeExtensions
@@ -30,6 +31,7 @@ import kotlinx.coroutines.launch
 fun CategoryCarouselSelectable(
     modifier: Modifier = Modifier,
     items: List<CategoryModel>,
+    cardViewConfig: CardViewConfig,
     onItemSelected: (categoryModel: CategoryModel) -> Unit
 ) {
     Column(
@@ -70,6 +72,7 @@ fun CategoryCarouselSelectable(
                     PictureSelectableItem(
                         isLoading = false,
                         pictureModel = categoryModel,
+                        cardViewConfig = cardViewConfig,
                         onItemSelected = { pictureModel ->
                             if (pictureModel !is CategoryModel) return@PictureSelectableItem
                             onItemSelected(pictureModel)

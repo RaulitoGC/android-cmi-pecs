@@ -108,3 +108,7 @@ fun NavController.navigateToSelectPictogramForPecs(categoryModel: CategoryModel)
 fun NavController.navigateToPictogramChooser(categoryModel: CategoryModel) {
     navigate(PictogramConfigurationTypeHost.Chooser(categoryModel.id.orZero))
 }
+
+fun NavController.navigateToRemovePictogram(categoryModel: CategoryModel) {
+    navigate(PictogramConfigurationTypeHost.Remove(categoryModel.id.orZero))
+}

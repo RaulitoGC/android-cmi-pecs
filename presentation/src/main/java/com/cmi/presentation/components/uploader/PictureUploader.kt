@@ -67,7 +67,7 @@ private fun PictureLoaderContent(
         )
 
         DefaultVerticalSpacer(
-            height = if(showCategories) 8.dp else 32.dp
+            height = 8.dp
         )
 
         ConstraintLayout(
@@ -77,19 +77,19 @@ private fun PictureLoaderContent(
                 .verticalScroll(rememberScrollState()),
         ) {
 
-            val (title, pictureName, pictureImageSources, picturePreview, submitButton) = createRefs()
+            val (subTitle, pictureName, pictureImageSources, picturePreview, submitButton) = createRefs()
             val (titleSpacer, pictureNameSpacer) = createRefs()
             val middleGuideline = createGuidelineFromStart(0.5f)
 
             DefaultSubTitle(
-                modifier = applyTitleConstraints(title),
+                modifier = applyTitleConstraints(subTitle),
                 padding = 64.dp,
                 subTitle = state.contentType.subTitle
             )
 
             DefaultVerticalSpacer(
-                modifier = applyTitleSpacerConstraints(titleSpacer, title),
-                height = 32.dp
+                modifier = applyTitleSpacerConstraints(titleSpacer, subTitle),
+                height = 48.dp
             )
 
             PictureNameTextField(
@@ -134,6 +134,7 @@ private fun PictureLoaderContent(
                         carouselRef,
                         bottomBarrier
                     ),
+                    cardViewConfig = state.cardViewConfig,
                     items = state.categories
                 ) {
                     handleEvent(PictureUploaderEvent.CategorySelected(it))

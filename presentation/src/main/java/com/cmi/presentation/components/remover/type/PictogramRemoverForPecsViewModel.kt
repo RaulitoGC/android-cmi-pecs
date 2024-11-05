@@ -49,9 +49,7 @@ class PictogramRemoverForPecsViewModel(
                 val pictureModels = pictograms.filter {
                     it.isExternal == true
                 }.map {
-                    it.toPictogramModel(
-                        isSelectedForUiEnabled = true
-                    )
+                    it.toPictogramModel().copy(isSelectedForUiEnabled = true)
                 }
                 showPictures(pictureModels)
             }

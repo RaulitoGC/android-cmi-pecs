@@ -58,13 +58,18 @@ abstract class PictureRemoverForPecsViewModel(
     abstract fun getDescription(): String
 
     private fun pictureSelectedForRemoval(pictureModel: PictureModel) {
-        uiState.value = uiState.value.copy(pictureModels = uiState.value.pictureModels.map {
+        val pictureModels = uiState.value.pictureModels
+        val pictureModelUpdated=  pictureModels.map {
             if (it.id == pictureModel.id) {
                 it.copyIsSelected(isSelected = it.isSelected.orFalse.not())
             } else {
                 it
             }
-        })
+        }
+        uiState.value = uiState.value.copy(
+            pictureModels = pictureModelUpdated,
+            titleConfig = getTitleConfig(pictureModelUpdated)
+        )
     }
 
     private fun showAlertMessage(messageType: MessageType) {

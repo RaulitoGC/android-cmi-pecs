@@ -99,24 +99,23 @@ fun ConfigurationTypeCard(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            DefaultVerticalSpacer(modifier = Modifier.weight(0.07f), height = 4.dp)
+            DefaultVerticalSpacer(height = 8.dp)
             Image(
                 modifier = Modifier
-                    .weight(0.7f),
+                    .weight(0.8f),
                 painter = rememberAsyncImagePainter(image),
                 contentDescription = title,
             )
-            DefaultVerticalSpacer(modifier = Modifier.weight(0.01f), height = 0.dp)
             Text(
                 text = title,
                 modifier = Modifier
-                    .weight(0.15f),
+                    .weight(0.20f),
                 textAlign = TextAlign.Center,
                 color = CmiThemeExtensions.colors.primaryColorDark,
                 style = CmiThemeExtensions.typography.body,
                 fontSize = textFontSize,
             )
-            DefaultVerticalSpacer(modifier = Modifier.weight(0.07f), height = 4.dp)
+            DefaultVerticalSpacer(height = 8.dp)
         }
     }
 }

@@ -42,7 +42,11 @@ class CategorySelecterForPecsViewModel(
                 showLoading(isLoading = false)
                 showPictures(
                     pictureModels = list.map {
-                        it.toCategoryModel(isSelectedForUiEnabled = true)
+                        val categoryModel = it.toCategoryModel()
+                        categoryModel.copy(
+                            isSelectedForUiEnabled = true,
+                            isSelected = categoryModel.isSelectedForPecs
+                        )
                     }
                 )
         }
