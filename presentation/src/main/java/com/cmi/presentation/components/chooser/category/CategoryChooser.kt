@@ -11,11 +11,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.cmi.presentation.R
 import com.cmi.presentation.common.navigation.CategoryChooserHost
+import com.cmi.presentation.components.chooser.PictureChooserEvent
 import com.cmi.presentation.components.common.header.DefaultDescription
 import com.cmi.presentation.components.common.header.DefaultTitle
 import com.cmi.presentation.components.common.PictureSelectableItem
+import com.cmi.presentation.components.remover.PictureRemoverEvent
+import com.cmi.presentation.components.uploader.PictureUploaderEvent
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.getOrEmpty
@@ -37,6 +41,7 @@ fun CategoryChooser(
         modifier = Modifier.fillMaxSize(),
         state = state,
         onBackClick = onBack,
+        handleEvent = viewModel::handleEvent,
         onItemSelected = onItemSelected
     )
 }
@@ -46,8 +51,16 @@ fun CategorySelectableContent(
     modifier: Modifier = Modifier,
     state: CategoryChooserState,
     onBackClick: () -> Unit,
+    handleEvent: (event: PictureChooserEvent) -> Unit,
     onItemSelected: (categoryModel: CategoryModel) -> Unit
 ) {
+
+    LifecycleResumeEffect(Unit) {
+        handleEvent(PictureChooserEvent.Reload)
+        onPauseOrDispose {
+
+        }
+    }
 
     Column(
         modifier = modifier

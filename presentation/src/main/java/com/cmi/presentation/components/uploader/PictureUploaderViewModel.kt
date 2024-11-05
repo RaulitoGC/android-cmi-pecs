@@ -37,7 +37,7 @@ abstract class PictureUploaderViewModel(
             }
 
             is PictureUploaderEvent.ImageUriUpdated -> {
-                updateIsExternal(isExternal = true)
+                updateFoundationPathAsFalse()
                 updateImageUri(event.imageUri)
             }
 
@@ -70,13 +70,14 @@ abstract class PictureUploaderViewModel(
         )
     }
 
-    private fun updateIsExternal(isExternal: Boolean) {
-        uiState.value = uiState.value.copy(pictureModel = uiState.value.pictureModel.copyIsExternal(isExternal))
-    }
-
     // endregion
 
     // region Protected Methods
+
+    protected fun updateFoundationPathAsFalse() {
+        uiState.value = uiState.value.copy(pictureModel = uiState.value.pictureModel.copyIsFoundationPath(false))
+    }
+
     protected fun updatePictureModel(pictureModel: PictureModel){
         uiState.value = uiState.value.copy(pictureModel = pictureModel)
     }

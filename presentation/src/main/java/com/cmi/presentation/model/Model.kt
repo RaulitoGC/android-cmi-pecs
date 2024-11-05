@@ -10,6 +10,7 @@ sealed interface PictureModel{
     val name: String?
     val priority: Int?
     val isExternal: Boolean?
+    val isFoundationPath: Boolean?
     val isSelectedForPecs: Boolean?
 
     /**
@@ -24,7 +25,7 @@ sealed interface PictureModel{
 
     fun copyName(name: String?): PictureModel
     fun copyPath(path: String?): PictureModel
-    fun copyIsExternal(isExternal: Boolean): PictureModel
+    fun copyIsFoundationPath(isFoundationPath: Boolean): PictureModel
     fun copySelectedForPecs(isSelected: Boolean): PictureModel
     fun copyIsSelected(isSelected: Boolean): PictureModel
     fun reset(): PictureModel
@@ -41,8 +42,9 @@ data class CategoryModel(
     override val isExternal: Boolean? = false,
     override val isSelectedForPecs: Boolean? = false,
     override val isSelected: Boolean? = false,
-    override val isSelectedForUiEnabled: Boolean = false
-): PictureModel {
+    override val isSelectedForUiEnabled: Boolean = false,
+    override val isFoundationPath: Boolean? = false
+): PictureModel, java.io.Serializable {
 
     override fun copyName(name: String?): PictureModel {
         return this.copy(name = name)
@@ -52,8 +54,8 @@ data class CategoryModel(
         return this.copy(path = path)
     }
 
-    override fun copyIsExternal(isExternal: Boolean): PictureModel {
-        return this.copy(isExternal = isExternal)
+    override fun copyIsFoundationPath(isFoundationPath: Boolean): PictureModel {
+        return this.copy(isFoundationPath = isFoundationPath)
     }
 
     override fun copySelectedForPecs(isSelected: Boolean): PictureModel {
@@ -80,18 +82,15 @@ data class PictogramModel(
     override val isSelectedForPecs: Boolean? = false,
     override val isSelected: Boolean? = false,
     override val isSelectedForUiEnabled: Boolean = false,
+    override val isFoundationPath: Boolean? = false,
     val categoryId: Int? = null,
     val categoryName: String? = null
-): PictureModel {
+): PictureModel, java.io.Serializable {
     override fun copyName(name: String?): PictureModel {
         return this.copy(name = name)
     }
     override fun copyPath(path: String?): PictureModel {
         return this.copy(path = path)
-    }
-
-    override fun copyIsExternal(isExternal: Boolean): PictureModel {
-        return this.copy(isExternal = isExternal)
     }
 
     override fun copySelectedForPecs(isSelected: Boolean): PictureModel {
@@ -100,6 +99,10 @@ data class PictogramModel(
 
     override fun copyIsSelected(isSelected: Boolean): PictureModel {
         return this.copy(isSelected = isSelected)
+    }
+
+    override fun copyIsFoundationPath(isFoundationPath: Boolean): PictureModel {
+        return this.copy(isFoundationPath = isFoundationPath)
     }
 
     override fun reset(): PictureModel {

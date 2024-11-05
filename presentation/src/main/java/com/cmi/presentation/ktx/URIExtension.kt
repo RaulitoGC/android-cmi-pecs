@@ -6,13 +6,14 @@ import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.PictureModel
 
 fun getUriFromPath(data: PictureModel): Uri? {
-    return if (data.isExternal == true) {
-        Uri.parse(data.path)
-    } else {
+    return if (data.isFoundationPath == true) {
         val folder = data.folder
         val path = data.path
         val absolutePath = "$ANDROID_ASSET_PATH/$folder/$path"
         Uri.parse(absolutePath)
+
+    } else {
+        Uri.parse(data.path)
     }
 }
 

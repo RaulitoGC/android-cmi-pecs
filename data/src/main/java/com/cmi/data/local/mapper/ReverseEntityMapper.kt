@@ -13,8 +13,9 @@ fun Category.toCategoryEntity(): CategoryEntity {
         path = path,
         name = name,
         priority = priority,
-        isSelected = if(isSelected == true) 1 else 0,
-        external = if(isExternal == true) 1 else 0
+        isSelectedForPecs = if(isSelectedForPecs == true) 1 else 0,
+        isExternal = if(isExternal == true) 1 else 0,
+        isFoundationPath = if(isFoundationPath == true) 1 else 0
     )
 }
 
@@ -25,8 +26,9 @@ fun Pictogram.toPictogramEntity(): PictogramEntity {
         path = path,
         name = name,
         priority = priority,
-        external = if(isExternal == true) 1 else 0,
-        isSelected = if(isSelected == true) 1 else 0,
-        categoryId = categoryId
+        isExternal = if(isExternal == true) 1 else 0,
+        isSelectedForPecs = if(isSelectedForPecs == true) 1 else 0,
+        categoryId = categoryId,
+        isFoundationPath = if(isFoundationPath == true) 1 else 0
     )
 }

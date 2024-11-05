@@ -5,6 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.cmi.domain.usecase.GetCategoriesUseCase
 import com.cmi.presentation.Constants.SHIMMER_EFFECT_DELAY
 import com.cmi.presentation.common.navigation.CategoryChooserHost
+import com.cmi.presentation.components.chooser.PictureChooserEvent
+import com.cmi.presentation.components.remover.PictureRemoverEvent
+import com.cmi.presentation.ktx.orFalse
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.mapper.toCategoryModel
 import kotlinx.coroutines.delay
@@ -20,6 +23,14 @@ class CategoryChooserViewModel(
 
     init {
         getCategories()
+    }
+
+    fun handleEvent(event: PictureChooserEvent) {
+        when(event){
+            is PictureChooserEvent.Reload -> {
+                getCategories()
+            }
+        }
     }
 
     private fun getCategories() = viewModelScope.launch{

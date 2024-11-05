@@ -5,10 +5,8 @@ import com.cmi.domain.usecase.AddCategoryUseCase
 import com.cmi.domain.usecase.GetCategoryByIdUseCase
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
-import com.cmi.presentation.components.uploader.PictureUploaderEvent
 import com.cmi.presentation.components.uploader.PictureUploaderViewModel
 import com.cmi.presentation.model.CategoryModel
-import com.cmi.presentation.model.PictogramModel
 import com.cmi.presentation.model.PictureModel
 import com.cmi.presentation.model.mapper.toCategory
 import com.cmi.presentation.model.mapper.toCategoryModel
@@ -19,19 +17,15 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class CategoryPictureUploaderViewModel(
-    contentType: PictureUploaderContentType,
+    private val contentType: PictureUploaderContentType,
     messageBuilder: MessageBuilder,
     private val getCategoryByIdUseCase: GetCategoryByIdUseCase,
     private val addCategoryUseCase: AddCategoryUseCase,
-) : PictureUploaderViewModel(contentType, CategoryModel(), messageBuilder) {
+) : PictureUploaderViewModel(contentType, CategoryModel(isExternal = true), messageBuilder) {
 
     init {
         if (contentType is PictureUploaderContentType.CategoryEditable) {
             getCategoryById(contentType.pictureId)
-        }
-
-        if(contentType is PictureUploaderContentType.CategoryEntry) {
-            updatePictureModel(uiState.value.pictureModel.copyIsExternal(isExternal = true))
         }
     }
 
@@ -51,7 +45,7 @@ class CategoryPictureUploaderViewModel(
             val name = pictureModel?.name
             val path = pictureModel?.path
             if (isValidForm(name, path)) {
-                val categoryModel = CategoryModel(
+                val categoryModel = (pictureModel as? CategoryModel) ?: CategoryModel(
                     folder = name?.replace("\\s".toRegex(), ""),
                     path = path,
                     name = name,
@@ -63,11 +57,20 @@ class CategoryPictureUploaderViewModel(
                     .catch {
                         showMessage(MessageType.GeneralError)
                     }.collect {
-                        showMessage(MessageType.Success(R.string.text_category_add_success))
+                        showMessage(getSuccessMessageType())
                         cleanFields()
                     }
             }
         }
+    }
+
+    private fun getSuccessMessageType(): MessageType.Success {
+        val successResString = if (contentType is PictureUploaderContentType.CategoryEntry) {
+            R.string.text_category_add_success
+        } else {
+            R.string.text_edit_category_success
+        }
+        return MessageType.Success(successResString)
     }
 
     private fun isValidForm(pictureName: String?, pictureFileName: String?): Boolean {

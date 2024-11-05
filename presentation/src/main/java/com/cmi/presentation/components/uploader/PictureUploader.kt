@@ -11,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.cmi.presentation.components.common.PictureImageSources
 import com.cmi.presentation.components.common.PictureNameTextField
 import com.cmi.presentation.components.common.PicturePreview

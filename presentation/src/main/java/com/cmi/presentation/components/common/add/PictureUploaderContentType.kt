@@ -14,9 +14,9 @@ sealed class PictureUploaderContentType(
     data class  PictogramEditable(
         override val pictureId: Int
     ) : PictureUploaderContentType(
-        title = R.string.text_add_pictogram,
+        title = R.string.text_update_pictogram,
         subTitle = R.string.text_pictogram_data,
-        submitButtonText = R.string.text_upload_pictogram,
+        submitButtonText = R.string.text_update_pictogram,
     ), PictureEditable
 
     data object  PictogramEntry: PictureUploaderContentType(
@@ -28,9 +28,9 @@ sealed class PictureUploaderContentType(
     data class  CategoryEditable(
         override val pictureId: Int
     ) : PictureUploaderContentType(
-        title = R.string.text_add_category,
+        title = R.string.text_update_category,
         subTitle = R.string.text_category_data,
-        submitButtonText = R.string.text_add_category
+        submitButtonText = R.string.text_update_category
     ), PictureEditable
 
     data object  CategoryEntry: PictureUploaderContentType(

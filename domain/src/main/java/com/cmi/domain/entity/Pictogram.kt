@@ -7,6 +7,7 @@ data class Pictogram(
     val name: String?,
     val priority: Int?,
     val isExternal: Boolean?,
-    val isSelected: Boolean?,
+    val isSelectedForPecs: Boolean?,
     val categoryId: Int?,
+    val isFoundationPath: Boolean?
 )

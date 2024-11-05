@@ -19,11 +19,12 @@ fun PictureModel.getImagePath(): String? {
         return null
     }
 
-    if (isExternal == true) {
-        return fullPath
-    } else {
+    return if (isFoundationPath == true) {
         val folder = folder
         val absolutePath = "$ANDROID_ASSET_PATH/$folder/$fullPath"
-        return absolutePath
+        absolutePath
+
+    } else {
+        fullPath
     }
 }

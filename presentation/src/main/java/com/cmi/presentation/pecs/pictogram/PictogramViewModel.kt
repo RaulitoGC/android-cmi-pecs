@@ -52,7 +52,7 @@ open class PictogramViewModel(
             }.collect { pictograms ->
                 _pictograms.value = getPictogramsMapFormat(
                     screenItems = PECS.PICTOGRAMS_IN_SCREEN,
-                    items = pictograms.filter { it.isSelected == true }
+                    items = pictograms.filter { it.isSelectedForPecs == true }
                         .map { it.toPictogramModel() }
                 )
             }

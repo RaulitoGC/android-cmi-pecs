@@ -12,8 +12,9 @@ fun CategoryEntity.toCategory(): Category {
         path = path,
         name = name,
         priority = priority,
-        isSelected = isSelected?.let { it > 0 } ?: false,
-        isExternal = external?.let { it > 0 } ?: false
+        isSelectedForPecs = isSelectedForPecs?.let { it > 0 } ?: false,
+        isExternal = isExternal?.let { it > 0 } ?: false,
+        isFoundationPath = isFoundationPath?.let { it > 0 } ?: false,
     )
 }
 
@@ -24,8 +25,9 @@ fun PictogramEntity.toPictogram(): Pictogram {
         path = path,
         name = name,
         priority = priority,
-        isExternal = external?.let { it > 0 } ?: false,
-        isSelected = isSelected?.let { it > 0 } ?: false,
-        categoryId = categoryId
+        isExternal = isExternal?.let { it > 0 } ?: false,
+        isSelectedForPecs = isSelectedForPecs?.let { it > 0 } ?: false,
+        categoryId = categoryId,
+        isFoundationPath = isFoundationPath?.let { it > 0 } ?: false,
     )
 }

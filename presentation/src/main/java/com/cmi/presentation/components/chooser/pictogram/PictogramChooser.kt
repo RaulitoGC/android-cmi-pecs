@@ -12,7 +12,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.cmi.presentation.R
+import com.cmi.presentation.components.chooser.PictureChooserEvent
 import com.cmi.presentation.components.common.PictureSelectableItem
 import com.cmi.presentation.components.common.header.DefaultDescription
 import com.cmi.presentation.components.common.header.DefaultTitle
@@ -37,6 +39,7 @@ fun PictogramChooser(
         modifier = Modifier.fillMaxSize(),
         state = state,
         onBackClick = onBack,
+        handleEvent = viewModel::handleEvent,
         onItemSelected = onItemSelected
     )
 }
@@ -46,8 +49,16 @@ fun PictogramSelectableContent(
     modifier: Modifier = Modifier,
     state: PictogramChooserState,
     onBackClick: () -> Unit,
+    handleEvent: (event: PictureChooserEvent) -> Unit,
     onItemSelected: (pictogramModel: PictogramModel) -> Unit
 ) {
+
+    LifecycleResumeEffect(Unit) {
+        handleEvent(PictureChooserEvent.Reload)
+        onPauseOrDispose {
+
+        }
+    }
 
     Column(
         modifier = modifier

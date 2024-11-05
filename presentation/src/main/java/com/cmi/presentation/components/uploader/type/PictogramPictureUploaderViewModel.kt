@@ -25,12 +25,12 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PictogramPictureUploaderViewModel(
-    contentType: PictureUploaderContentType,
+    private val contentType: PictureUploaderContentType,
     messageBuilder: MessageBuilder,
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val getPictogramByIdUseCase: GetPictogramByIdUseCase,
     private val addPictogramUseCase: AddPictogramUseCase,
-): PictureUploaderViewModel(contentType, PictogramModel(), messageBuilder) {
+): PictureUploaderViewModel(contentType, PictogramModel(isExternal = true), messageBuilder) {
 
     init {
         getCategories()
@@ -121,12 +121,21 @@ class PictogramPictureUploaderViewModel(
                         .catch {
                             showMessage(MessageType.GeneralError)
                         }.collect {
-                            showMessage(MessageType.Success(R.string.text_category_add_success))
+                            showMessage(getSuccessMessageType())
                             cleanFields()
                         }
                 }
             }
         }
+    }
+
+    private fun getSuccessMessageType(): MessageType.Success {
+        val successResString = if(contentType is PictureUploaderContentType.CategoryEntry) {
+            R.string.text_pictogram_added_success
+        } else {
+            R.string.text_edit_pictogram_success
+        }
+        return MessageType.Success(successResString)
     }
 
     private fun isValidForm(pictogramName: String?, pictureFileName: String?, categoryId: Int?, categoryName: String?): Boolean{

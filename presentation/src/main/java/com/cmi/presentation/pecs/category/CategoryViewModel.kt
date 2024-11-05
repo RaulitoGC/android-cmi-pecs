@@ -43,7 +43,7 @@ class CategoryViewModel(
             .collect { list ->
                 _categories.value = getCategoriesMapFormat(
                     itemsPerScreen = itemsPerScreen,
-                    items = list.filter { it.isSelected ==  true }.map {
+                    items = list.filter { it.isSelectedForPecs ==  true }.map {
                         it.toCategoryModel()
                     }
                 )

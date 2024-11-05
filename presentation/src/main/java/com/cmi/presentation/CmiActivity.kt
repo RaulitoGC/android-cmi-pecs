@@ -16,8 +16,8 @@ class CmiActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_cmi)
-        setContent {
+        setContentView(R.layout.activity_cmi)
+//        setContent {
 //            CmiAppTheme {
 //                PictureUploader(
 //                    contentType = PictureUploaderContentType.PictogramEntry,
@@ -27,8 +27,8 @@ class CmiActivity : AppCompatActivity() {
 //                )
 //            }
 
-            Navigation()
-        }
+//            Navigation()
+//        }
         textToSpeechManager = TextToSpeechManager(this)
     }
 

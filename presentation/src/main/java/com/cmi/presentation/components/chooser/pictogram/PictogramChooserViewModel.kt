@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cmi.domain.usecase.GetPictogramsByCategoryUseCase
 import com.cmi.presentation.Constants.SHIMMER_EFFECT_DELAY
+import com.cmi.presentation.components.chooser.PictureChooserEvent
 import com.cmi.presentation.model.PictogramModel
 import com.cmi.presentation.model.mapper.toPictogramModel
 import kotlinx.coroutines.delay
@@ -12,7 +13,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class PictogramChooserViewModel(
-    categoryId: Int,
+    private val categoryId: Int,
     private val getPictogramsByCategoryUseCase: GetPictogramsByCategoryUseCase
 ) : ViewModel() {
 
@@ -20,6 +21,14 @@ class PictogramChooserViewModel(
 
     init {
         getPictograms(categoryId)
+    }
+
+    fun handleEvent(event: PictureChooserEvent) {
+        when(event){
+            is PictureChooserEvent.Reload -> {
+                getPictograms(categoryId)
+            }
+        }
     }
 
     private fun getPictograms(categoryId: Int) = viewModelScope.launch {

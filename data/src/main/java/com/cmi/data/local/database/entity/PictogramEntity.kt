@@ -10,7 +10,8 @@ data class PictogramEntity(
     val path: String?,
     val name: String?,
     val priority: Int?,
-    val external: Int?,
-    val isSelected: Int?,
-    val categoryId: Int?
+    val isExternal: Int?,
+    val isSelectedForPecs: Int?,
+    val categoryId: Int?,
+    val isFoundationPath: Int?
 )
