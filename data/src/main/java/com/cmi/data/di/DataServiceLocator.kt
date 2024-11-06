@@ -59,7 +59,7 @@ object DataServiceLocator {
 
     private fun createDataBase(context: Context): CmiDataBase {
         return Room.databaseBuilder(context, CmiDataBase::class.java, "cmi_pecs_db")
-            .createFromAsset("database/pecs_categories_testing.db")
+            .createFromAsset("database/pecs_categories.db")
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
