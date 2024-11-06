@@ -10,7 +10,7 @@ data class CategoryEntity(
     val path: String?,
     val name: String?,
     val priority: Int?,
-    val isExternal: Int?,
+    val external: Int?,
     val isSelectedForPecs: Int?,
     val isFoundationPath: Int?
 )
