@@ -63,12 +63,12 @@ object DataServiceLocator {
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
-                    Timber.d("onCreateDataBase create DB")
+                    Timber.d("Data Base Created")
                 }
 
                 override fun onOpen(db: SupportSQLiteDatabase) {
                     super.onOpen(db)
-                    Timber.d("onCreateDataBase open DB")
+                    Timber.d("Data Base open")
                 }
             }).build().also {
                 cmiDataBase = it
