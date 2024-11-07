@@ -5,6 +5,8 @@ import androidx.compose.ui.graphics.Color
 
 data class CmiColors(
     val primarySurface: Color,
+    val primaryColor: Color,
+    val secondaryColor: Color,
     val primaryText: Color,
     val primaryTextDisabled: Color,
     val primaryColorDark: Color,
@@ -24,6 +26,8 @@ data class CmiColors(
 val LocalCmiColors = staticCompositionLocalOf {
     CmiColors(
         primarySurface = Color.Unspecified,
+        primaryColor = Color.Unspecified,
+        secondaryColor = Color.Unspecified,
         primaryText = Color.Unspecified,
         primaryTextDisabled = Color.Unspecified,
         primaryColorDark = Color.Unspecified,

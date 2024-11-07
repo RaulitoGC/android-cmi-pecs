@@ -87,7 +87,7 @@
     <dimen name="text_size_short_name">32sp</dimen>
     <dimen name="text_size_large_name">16sp</dimen>
 
-    <dimen name="settings_size">32dp</dimen>
+    <dimen name="settings_size">48dp</dimen>
 
     <!-- Commons margins and paddings -->
     <dimen name="margin_normal">16dp</dimen>

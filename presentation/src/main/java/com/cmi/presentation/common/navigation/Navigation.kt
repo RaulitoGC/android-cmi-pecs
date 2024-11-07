@@ -10,7 +10,8 @@ fun Navigation() {
     CmiAppTheme {
         val navController = rememberNavController()
 
-        NavHost(navController = navController, startDestination = ConfigurationScreens) {
+        NavHost(navController = navController, startDestination = IntroNavigationScreens) {
+            introNavGraph(navController)
             configurationNavGraph(navController)
             categoryChooserNavGraph(navController)
             categoryConfigurationNavGraph(navController)

@@ -11,11 +11,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.cmi.presentation.components.common.PictureImageSources
 import com.cmi.presentation.components.common.PictureNameTextField
 import com.cmi.presentation.components.common.PicturePreview
-import com.cmi.presentation.components.common.add.PictureLoaderUploadButton
+import com.cmi.presentation.components.common.add.DefaultButton
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
 import com.cmi.presentation.components.common.applyTitleConstraints
 import com.cmi.presentation.components.common.applyTitleSpacerConstraints
@@ -144,7 +143,7 @@ private fun PictureLoaderContent(
 
             val topItemsBarrier = createBottomBarrier(pictureImageSources, picturePreview, carouselRef)
 
-            PictureLoaderUploadButton(
+            DefaultButton(
                 modifier = applySubmitButtonConstraints(submitButton, topItemsBarrier).padding(bottom = 16.dp),
                 text = state.contentType.submitButtonText
             ) {

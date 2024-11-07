@@ -20,6 +20,8 @@ fun CmiAppTheme(
 ) {
     val cmiColors = CmiColors(
         primarySurface = colorResource(R.color.colorPrimaryDark),
+        primaryColor = colorResource(R.color.colorPrimary),
+        secondaryColor = colorResource(R.color.colorSecondary),
         primaryText = colorResource(R.color.colorPrimaryText),
         primaryTextDisabled = colorResource(R.color.colorPrimaryTextDisable),
         primaryColorDark = colorResource(R.color.colorPrimaryDark),

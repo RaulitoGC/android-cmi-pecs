@@ -17,7 +17,7 @@ import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
 
 @Composable
-fun PictureLoaderUploadButton(
+fun DefaultButton(
     modifier: Modifier = Modifier,
     @StringRes text: Int,
     onClick: () -> Unit

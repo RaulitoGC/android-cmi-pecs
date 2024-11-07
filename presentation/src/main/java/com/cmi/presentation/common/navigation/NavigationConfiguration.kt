@@ -84,3 +84,7 @@ fun NavGraphBuilder.configurationNavGraph(navController: NavController) {
         }
     }
 }
+
+fun NavController.navigateToConfiguration(){
+    navigate(ConfigurationHost)
+}

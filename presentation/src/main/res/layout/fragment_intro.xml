@@ -91,9 +91,10 @@
         android:text="@string/text_start"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintEnd_toStartOf="@id/btn_guide"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_long_name" />
 
     <com.google.android.material.button.MaterialButton
