@@ -11,4 +11,7 @@ object Constants {
     const val END_SURVEY_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf11qF7fqSQqICL1EhdNwuOvYWQNGb_l4Th18_mPutsZ647Tw/viewform?usp=sf_link"
 
     const val DEFAULT_PICTURE_SIZE_SHIMMER = 20
+
+    const val ATTRIBUTE_CATEGORY_ID = 2
+    const val ACTION_CATEGORY_ID = 18
 }

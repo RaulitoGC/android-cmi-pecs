@@ -20,6 +20,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.PictureSelectableItem
+import com.cmi.presentation.components.common.button.NextButton
+import com.cmi.presentation.components.common.button.PreviousButton
 import com.cmi.presentation.components.common.header.DefaultSubTitle
 import com.cmi.presentation.content.CardViewConfig
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
@@ -91,43 +93,5 @@ fun CategoryCarouselSelectable(
             }
 
         }
-    }
-}
-
-@Composable
-private fun RowScope.PreviousButton(
-    onClick: () -> Unit
-) {
-    FloatingActionButton(
-        modifier = Modifier
-            .align(alignment = Alignment.CenterVertically)
-            .padding(horizontal = 16.dp),
-        backgroundColor = CmiThemeExtensions.colors.colorPecsNavigation,
-        onClick = onClick
-    ) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_navigation_arrow_back),
-            tint = Color.White,
-            contentDescription = "Previous"
-        )
-    }
-}
-
-@Composable
-private fun RowScope.NextButton(
-    onClick: () -> Unit
-) {
-    FloatingActionButton(
-        modifier = Modifier
-            .align(alignment = Alignment.CenterVertically)
-            .padding(horizontal = 16.dp),
-        backgroundColor = CmiThemeExtensions.colors.colorPecsNavigation,
-        onClick = onClick
-    ) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_navigation_arrow_front),
-            tint = Color.White,
-            contentDescription = "Previous"
-        )
     }
 }

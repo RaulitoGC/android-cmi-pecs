@@ -1,5 +1,7 @@
 package com.cmi.presentation.components.chooser.category
 
+import com.cmi.presentation.Constants.ACTION_CATEGORY_ID
+import com.cmi.presentation.Constants.ATTRIBUTE_CATEGORY_ID
 import com.cmi.presentation.Constants.DEFAULT_PICTURE_SIZE_SHIMMER
 import com.cmi.presentation.common.navigation.CategoryChooserHost
 import com.cmi.presentation.content.CardViewConfig
@@ -12,6 +14,19 @@ data class CategoryChooserState(
     val categories: List<CategoryModel> = emptyList(),
     val cardViewConfig: CardViewConfig = CardViewConfig()
 ){
-    fun getCategoriesSize() = categories.size.takeIf { it > 0} ?: DEFAULT_PICTURE_SIZE_SHIMMER
+    fun getCategoriesSize() = categories.size.takeIf { it > 0 } ?: DEFAULT_PICTURE_SIZE_SHIMMER
 
+    fun getNonActionNorAttributeCategoriesSize(): Int {
+        val size  = categories.size
+        val result = size.takeIf { it > 2 } ?: DEFAULT_PICTURE_SIZE_SHIMMER
+        return  result - 2
+    }
+
+    fun getNonActionNorAttributeCategories(): List<CategoryModel> {
+        return categories.filterNot {
+            it.id == ACTION_CATEGORY_ID || it.id == ATTRIBUTE_CATEGORY_ID
+        }
+    }
+
+    fun showAsHorizontalGrid() = categoryChooserHost is CategoryChooserHost.PecsFlow
 }

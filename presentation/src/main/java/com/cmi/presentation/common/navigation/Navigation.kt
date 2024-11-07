@@ -12,6 +12,7 @@ fun Navigation() {
 
         NavHost(navController = navController, startDestination = IntroNavigationScreens) {
             introNavGraph(navController)
+            pecsFlowNavGraph(navController)
             configurationNavGraph(navController)
             categoryChooserNavGraph(navController)
             categoryConfigurationNavGraph(navController)

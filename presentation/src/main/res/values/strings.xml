@@ -4,6 +4,7 @@
     <string name="text_app_short_name">CMI-PECS</string>
     <string name="text_app_long_name">Comunicándonos Mediante Imágenes</string>
     <string name="text_toolbar_name_format">%1$s | %2$s</string>
+    <string name="text_toolbar_pecs_flow_category_selection">CMI-PECS | Categorías</string>
 
     <!-- Intro -->
     <string name="text_start">Comenzar</string>

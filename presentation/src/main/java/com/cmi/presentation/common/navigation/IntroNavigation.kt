@@ -37,7 +37,7 @@ fun NavGraphBuilder.introNavGraph(navController: NavController) {
                     navController.navigateToSurveyScreen()
                 },
                 onStartPecsFlow = {
-
+                    navController.navigateToCategoryChooserPecsFlow()
                 },
                 onOpenGuide = {
                     openURL(uriHandler, YOUTUBE_GUIDE)

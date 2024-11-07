@@ -29,6 +29,9 @@ sealed class CategoryChooserHost(@StringRes val title: Int){
 
     @Serializable
     data object EditPictogram: CategoryChooserHost(R.string.text_edit_pictogram)
+
+    @Serializable
+    data object PecsFlow: CategoryChooserHost(R.string.text_toolbar_pecs_flow_category_selection)
 }
 
 fun NavGraphBuilder.categoryChooserNavGraph(navController: NavController) {
@@ -80,5 +83,21 @@ fun NavGraphBuilder.categoryChooserNavGraph(navController: NavController) {
                 }
             )
         }
+
+        composable<CategoryChooserHost.PecsFlow> {
+            CategoryChooser(
+                categoryChooserHost = CategoryChooserHost.PecsFlow,
+                onBack = {
+                    navController.popBackStack()
+                },
+                onItemSelected = { categoryModel ->
+                    navController.navigateToPecsPictogramSelection(categoryModel)
+                }
+            )
+        }
     }
+}
+
+fun NavController.navigateToCategoryChooserPecsFlow(){
+    navigate(CategoryChooserHost.PecsFlow)
 }

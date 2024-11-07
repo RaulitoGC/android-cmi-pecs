@@ -15,7 +15,8 @@ suspend fun Category.toCategoryModel(): CategoryModel = withContext(Dispatchers.
         name = name,
         priority = priority,
         isExternal = isExternal,
-        isSelectedForPecs = isSelectedForPecs
+        isSelectedForPecs = isSelectedForPecs,
+        isFoundationPath = isFoundationPath
     )
 }
 
@@ -28,7 +29,8 @@ suspend fun Pictogram.toPictogramModel(): PictogramModel = withContext(Dispatche
         priority = priority,
         isExternal = isExternal,
         categoryId = categoryId,
-        isSelectedForPecs = isSelectedForPecs
+        isSelectedForPecs = isSelectedForPecs,
+        isFoundationPath = isFoundationPath
     )
 }
 
