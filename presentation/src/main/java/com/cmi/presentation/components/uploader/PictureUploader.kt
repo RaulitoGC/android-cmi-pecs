@@ -17,7 +17,7 @@ import com.cmi.presentation.components.common.PicturePreview
 import com.cmi.presentation.components.common.add.DefaultButton
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
 import com.cmi.presentation.components.common.applyTitleConstraints
-import com.cmi.presentation.components.common.applyTitleSpacerConstraints
+import com.cmi.presentation.components.common.applyVerticalSpacerConstraints
 import com.cmi.presentation.components.common.header.DefaultSubTitle
 import com.cmi.presentation.components.common.header.DefaultTitle
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
@@ -88,7 +88,7 @@ private fun PictureLoaderContent(
             )
 
             DefaultVerticalSpacer(
-                modifier = applyTitleSpacerConstraints(titleSpacer, subTitle),
+                modifier = applyVerticalSpacerConstraints(titleSpacer, subTitle),
                 height = 48.dp
             )
 

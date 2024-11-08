@@ -194,7 +194,6 @@ private fun CategoryChooserHorizontalGrid(
             state = lazyGridState,
             contentPadding = PaddingValues(16.dp),
             content = {
-                println(" Size -> $size")
                 items(size) { index ->
                     PictureSelectableItem(
                         isLoading = state.isLoading,

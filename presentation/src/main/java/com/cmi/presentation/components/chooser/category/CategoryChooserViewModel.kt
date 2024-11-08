@@ -10,18 +10,23 @@ import com.cmi.presentation.components.remover.PictureRemoverEvent
 import com.cmi.presentation.ktx.orFalse
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.mapper.toCategoryModel
+import com.cmi.presentation.pecs.PecsFlowContentHolder
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class CategoryChooserViewModel(
     categoryChooserHost: CategoryChooserHost,
-    private val getCategoriesUseCase: GetCategoriesUseCase
+    private val getCategoriesUseCase: GetCategoriesUseCase,
+    pecsFlowContentHolder: PecsFlowContentHolder
 ): ViewModel() {
 
     val uiState = MutableStateFlow(CategoryChooserState(categoryChooserHost))
 
     init {
+        if(categoryChooserHost is CategoryChooserHost.PecsFlow) {
+            pecsFlowContentHolder.init()
+        }
         getCategories()
     }
 

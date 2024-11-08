@@ -16,12 +16,11 @@ fun ConstraintLayoutScope.applyTitleConstraints(title: ConstrainedLayoutReferenc
 
 
 @SuppressLint("ModifierFactoryExtensionFunction")
-fun ConstraintLayoutScope.applyTitleSpacerConstraints(
+fun ConstraintLayoutScope.applyVerticalSpacerConstraints(
     titleSpacer: ConstrainedLayoutReference,
-    title: ConstrainedLayoutReference
+    topReference: ConstrainedLayoutReference
 ): Modifier {
     return Modifier.constrainAs(titleSpacer) {
-        //this@constrainAs.centerHorizontallyToParent()
-        top.linkTo(title.bottom)
+        top.linkTo(topReference.bottom)
     }
 }

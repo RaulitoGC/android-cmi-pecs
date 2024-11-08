@@ -1,12 +1,13 @@
 package com.cmi.presentation.common.navigation
 
-import androidx.compose.material.Text
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import androidx.navigation.toRoute
 import com.cmi.presentation.ktx.orZero
 import com.cmi.presentation.model.CategoryModel
+import com.cmi.presentation.pecs.pictogram.PecsFlowPictogramSelection
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -18,28 +19,22 @@ sealed class PecsFlowTypeHost {
     @Serializable
     data class PictogramSelection(val categoryId: Int) : PecsFlowTypeHost()
 
-    @Serializable
-    data object Tape : PecsFlowTypeHost()
 }
 
 fun NavGraphBuilder.pecsFlowNavGraph(navController: NavController) {
     navigation<PecsFlowScreens>(startDestination = PecsFlowTypeHost.PictogramSelection(0)) {
 
         composable<PecsFlowTypeHost.PictogramSelection> {
-            Text("In developemnt")
-        }
+            val pictogramSelectionFlowHost = it.toRoute<PecsFlowTypeHost.PictogramSelection>()
+            val categoryId = pictogramSelectionFlowHost.categoryId
 
-        composable<PecsFlowTypeHost.Tape> {
-            Text("In developemnt")
+            PecsFlowPictogramSelection(categoryId = categoryId) {
+                navController.popBackStack()
+            }
         }
-
     }
 }
 
 fun NavController.navigateToPecsPictogramSelection(categoryModel: CategoryModel) {
     navigate(PecsFlowTypeHost.PictogramSelection(categoryModel.id.orZero))
-}
-
-fun NavController.navigateToTape() {
-    navigate(PecsFlowTypeHost.Tape)
 }

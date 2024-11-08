@@ -25,7 +25,10 @@ import com.cmi.presentation.intro.SurveyValidator
 import com.cmi.presentation.manager.DefaultStringResourceManager
 import com.cmi.presentation.manager.StringResourceManager
 import com.cmi.presentation.model.CategoryModel
+import com.cmi.presentation.model.PictogramModel
+import com.cmi.presentation.pecs.PecsFlowContentHolder
 import com.cmi.presentation.pecs.category.CategoryViewModel
+import com.cmi.presentation.pecs.pictogram.PecsFlowPictogramSelectionViewModel
 import com.cmi.presentation.pecs.pictogram.PictogramViewModel
 import com.cmi.presentation.pecs.tape.TapeViewModel
 import com.cmi.presentation.utils.MessageBuilder
@@ -285,7 +288,8 @@ val presentationModule = module {
             categoryChooserHost = parameters.get(),
             getCategoriesUseCase = GetCategoriesUseCase(
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
-            )
+            ),
+            pecsFlowContentHolder = get<PecsFlowContentHolder>()
         )
     }
 
@@ -294,6 +298,26 @@ val presentationModule = module {
         PictogramChooserViewModel(
             categoryId = parameters.get(),
             getPictogramsByCategoryUseCase = GetPictogramsByCategoryUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
+        )
+    }
+
+    // Pictogram Pecs Selection Flow
+
+    single<PecsFlowContentHolder> {
+        PecsFlowContentHolder(mutableListOf())
+    }
+
+    viewModel { parameters ->
+        PecsFlowPictogramSelectionViewModel(
+            categoryId = parameters.get(),
+            getPictogramsByCategoryUseCase = GetPictogramsByCategoryUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            ),
+            stringResourceManager = get<StringResourceManager>(),
+            pecsFlowContentHolder = get<PecsFlowContentHolder>(),
+            updatePictogramPriorityUseCase = UpdatePictogramPriorityUseCase(
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             )
         )

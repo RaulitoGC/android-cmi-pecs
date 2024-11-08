@@ -5,6 +5,7 @@
     <string name="text_app_long_name">Comunicándonos Mediante Imágenes</string>
     <string name="text_toolbar_name_format">%1$s | %2$s</string>
     <string name="text_toolbar_pecs_flow_category_selection">CMI-PECS | Categorías</string>
+    <string name="text_toolbar_pecs_flow_pictogram_selection">CMI-PECS | Pictogramas</string>
 
     <!-- Intro -->
     <string name="text_start">Comenzar</string>
@@ -40,6 +41,7 @@
     <string name="text_cancel">Cancel</string>
 
     <!-- Generic Error Messages -->
+    <string name="text_action_nor_attribute_unselected">No se permite deseleccionar acciones o atributos</string>
     <string name="text_generic_error">Un error ha ocurrido, inténtalo en unos minutos :)</string>
 
     <!-- Configuration -->

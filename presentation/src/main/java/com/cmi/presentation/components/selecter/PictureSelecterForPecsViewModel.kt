@@ -1,7 +1,10 @@
 package com.cmi.presentation.components.selecter
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
+import com.cmi.presentation.Constants.ACTION_CATEGORY_ID
+import com.cmi.presentation.Constants.ATTRIBUTE_CATEGORY_ID
 import com.cmi.presentation.R
 import com.cmi.presentation.components.remover.type.PictogramRemoverForPecsViewModel
 import com.cmi.presentation.components.selecter.type.CategorySelecterForPecsViewModel
@@ -69,11 +72,21 @@ abstract class PictureSelecterForPecsViewModel(
         uiState.value = uiState.value.copy(showSuccessToastMessage = getSuccessMessage())
     }
 
-    protected fun showErrorMessage() {
-        uiState.value = uiState.value.copy(showErrorToastMessage = stringResourceManager.getString(R.string.text_generic_error))
+    protected fun showErrorMessage(
+        @StringRes message: Int = R.string.text_generic_error
+    ) {
+        uiState.value = uiState.value.copy(showErrorToastMessage = stringResourceManager.getString(message))
     }
 
     private fun onPictureSelected(pictureModel: PictureModel){
+
+        if(pictureModel.id != ATTRIBUTE_CATEGORY_ID || pictureModel.id != ACTION_CATEGORY_ID) {
+            showErrorMessage(
+                message = R.string.text_action_nor_attribute_unselected
+            )
+            return
+        }
+
         val currentPictures = uiState.value.pictureModels
         val updatedPictures = currentPictures.map {
             if (it.id == pictureModel.id) {

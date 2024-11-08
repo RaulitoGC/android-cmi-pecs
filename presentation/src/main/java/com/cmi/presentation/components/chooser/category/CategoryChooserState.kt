@@ -25,6 +25,8 @@ data class CategoryChooserState(
     fun getNonActionNorAttributeCategories(): List<CategoryModel> {
         return categories.filterNot {
             it.id == ACTION_CATEGORY_ID || it.id == ATTRIBUTE_CATEGORY_ID
+        }.filter {
+            it.isSelectedForPecs.orFalse
         }
     }
 
