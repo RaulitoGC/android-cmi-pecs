@@ -49,12 +49,17 @@ class PecsFlowPictogramSelectionViewModel(
                 savePictogramModelInContentHolder(pictogramSelected)
             }
 
-            is PecsFlowPictogramSelectionEvent.ExecuteSound -> {
-
+            is PecsFlowPictogramSelectionEvent.OnPictogramRemoved -> {
+                val pictogramSelected = event.pictogramModel
+                removePictogramModelInContentHolder(pictogramSelected)
             }
 
             PecsFlowPictogramSelectionEvent.GetPictogramModels -> {
                 uiState.value = uiState.value.copy(pictograms = pecsFlowContentHolder.getPictureModels())
+            }
+
+            is PecsFlowPictogramSelectionEvent.ExecuteSound -> {
+
             }
         }
     }
@@ -82,6 +87,12 @@ class PecsFlowPictogramSelectionViewModel(
 
     private fun savePictogramModelInContentHolder(pictogramModel: PictogramModel) = viewModelScope.launch {
         pecsFlowContentHolder.save(pictogramModel){ pictogramsModel ->
+            updatePictogramForPecs(pictogramsModel)
+        }
+    }
+
+    private fun removePictogramModelInContentHolder(pictogramModel: PictogramModel) = viewModelScope.launch {
+        pecsFlowContentHolder.remove(pictogramModel){ pictogramsModel ->
             updatePictogramForPecs(pictogramsModel)
         }
     }

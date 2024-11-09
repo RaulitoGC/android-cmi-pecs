@@ -30,7 +30,7 @@
     <dimen name="pictogram_stripe_phrase_action">96dp</dimen>
     <dimen name="pictogram_stripe_phrase_attribute">78dp</dimen>
 
-    <dimen name="pictogram_stripe_phrase_close">24dp</dimen>
+    <dimen name="pictogram_stripe_phrase_close">32dp</dimen>
     <dimen name="pecs_text_size">12sp</dimen>
     <dimen name="pecs_stripe_size_height">16dp</dimen>
     <dimen name="pecs_play_icon_size">48dp</dimen>

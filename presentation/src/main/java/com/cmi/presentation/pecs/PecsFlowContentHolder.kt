@@ -6,29 +6,48 @@ class PecsFlowContentHolder(
     private val pictogramModels: MutableList<PictogramModel>
 ){
 
-    fun save(pictogramModel: PictogramModel, onCompleted: (pictograms : List<PictogramModel>) -> Unit){
+    fun save(pictogramModel: PictogramModel, onComplete: (pictograms : List<PictogramModel>) -> Unit){
+        onUpdate(pictogramModel, PecsFlowContentUpdater.Add, onComplete)
+    }
+
+    fun remove(pictogramModel: PictogramModel, onComplete: (pictograms : List<PictogramModel>) -> Unit) {
+        onUpdate(pictogramModel, PecsFlowContentUpdater.Remove, onComplete)
+    }
+
+    private fun onUpdate(pictogramModel: PictogramModel, type: PecsFlowContentUpdater, onComplete: (pictograms : List<PictogramModel>) -> Unit) {
+        val pictogramToUpdate = when(type){
+            is PecsFlowContentUpdater.Add -> {
+                pictogramModel
+            }
+
+            is PecsFlowContentUpdater.Remove -> {
+                PictogramModel()
+            }
+        }
+
         when{
             pictogramModel.isAction() -> {
                 if(pictogramModel.isPrimaryAction()){
-                    pictogramModels[PRIMARY_ACTION_IDX] = pictogramModel
+                    pictogramModels[PRIMARY_ACTION_IDX] = pictogramToUpdate
                 } else {
-                    pictogramModels[SECONDARY_ACTION_IDX] = pictogramModel
+                    pictogramModels[SECONDARY_ACTION_IDX] = pictogramToUpdate
                 }
             }
 
             pictogramModel.isAttribute() -> {
                 if(isPrimaryAttributeAvailable()) {
-                    pictogramModels[PRIMARY_ATTRIBUTE_IDX] = pictogramModel
+                    pictogramModels[PRIMARY_ATTRIBUTE_IDX] = pictogramToUpdate
                 } else {
-                    pictogramModels[SECONDARY_ATTRIBUTE_IDX] = pictogramModel
+                    pictogramModels[SECONDARY_ATTRIBUTE_IDX] = pictogramToUpdate
                 }
             }
 
             else  -> {
-                pictogramModels[MAIN_PICTOGRAM_IDX] = pictogramModel
+                pictogramModels[MAIN_PICTOGRAM_IDX] = pictogramToUpdate
             }
         }
-        onCompleted(getPictureModels())
+
+        onComplete(getPictureModels())
     }
 
     fun init(){
@@ -82,4 +101,9 @@ class PecsFlowContentHolder(
         private const val PRIMARY_ATTRIBUTE_IDX = 3
         private const val SECONDARY_ATTRIBUTE_IDX = 4
     }
+}
+
+sealed class PecsFlowContentUpdater{
+    data object Remove: PecsFlowContentUpdater()
+    data object Add: PecsFlowContentUpdater()
 }
