@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class CategoryChooserViewModel(
-    categoryChooserHost: CategoryChooserHost,
+    private val categoryChooserHost: CategoryChooserHost,
     private val getCategoriesUseCase: GetCategoriesUseCase,
     pecsFlowContentHolder: PecsFlowContentHolder
 ): ViewModel() {
@@ -33,7 +33,9 @@ class CategoryChooserViewModel(
     fun handleEvent(event: PictureChooserEvent) {
         when(event){
             is PictureChooserEvent.Reload -> {
-                getCategories()
+                if(categoryChooserHost !is CategoryChooserHost.PecsFlow){
+                    getCategories()
+                }
             }
         }
     }

@@ -212,7 +212,8 @@ fun ViewStripPhrase(
     handleEvent: (event: PecsFlowPictogramSelectionEvent) -> Unit,
 ) {
     Box(
-        modifier = modifier
+        modifier = modifier,
+        contentAlignment = Alignment.Center
     ) {
         Box(
             modifier = Modifier
@@ -225,18 +226,18 @@ fun ViewStripPhrase(
                         dimensionResource(R.dimen.stripe_view_corner_radius)
                     )
                 )
-        ) {
+        )
 
-        }
+        Row {
+            picturesForPecs.forEach { pictogramModel ->
+                PictogramCloseableItemContent(
+                    pictogramModel = pictogramModel,
+                    cardViewConfig = cardViewConfig,
+                    onItemSelected = {
 
-        picturesForPecs.filter { it.id != null }.forEach { pictogramModel ->
-            PictogramCloseableItemContent(
-                pictogramModel = pictogramModel,
-                cardViewConfig = cardViewConfig,
-                onItemSelected = {
-
-                }
-            )
+                    }
+                )
+            }
         }
     }
 }

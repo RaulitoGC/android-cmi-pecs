@@ -6,7 +6,7 @@ class PecsFlowContentHolder(
     private val pictogramModels: MutableList<PictogramModel>
 ){
 
-    fun save(pictogramModel: PictogramModel){
+    fun save(pictogramModel: PictogramModel, onCompleted: (pictograms : List<PictogramModel>) -> Unit){
         when{
             pictogramModel.isAction() -> {
                 if(pictogramModel.isPrimaryAction()){
@@ -17,7 +17,7 @@ class PecsFlowContentHolder(
             }
 
             pictogramModel.isAttribute() -> {
-                if(pictogramModel.isPrimaryAttribute()) {
+                if(isPrimaryAttributeAvailable()) {
                     pictogramModels[PRIMARY_ATTRIBUTE_IDX] = pictogramModel
                 } else {
                     pictogramModels[SECONDARY_ATTRIBUTE_IDX] = pictogramModel
@@ -28,6 +28,7 @@ class PecsFlowContentHolder(
                 pictogramModels[MAIN_PICTOGRAM_IDX] = pictogramModel
             }
         }
+        onCompleted(getPictureModels())
     }
 
     fun init(){
@@ -42,19 +43,19 @@ class PecsFlowContentHolder(
     }
 
     private fun PictogramModel.isAction(): Boolean {
-        return id == ACTION_CATEGORY_ID
+        return categoryId == ACTION_CATEGORY_ID
     }
 
     private fun PictogramModel.isAttribute(): Boolean {
-        return id == ATTRIBUTE_CATEGORY_ID
+        return categoryId == ATTRIBUTE_CATEGORY_ID
     }
 
-    private fun PictogramModel.isPrimaryAttribute(): Boolean {
-        val currentPrimaryAttributePictogram = pictogramModels[PRIMARY_ATTRIBUTE_IDX]
-        return currentPrimaryAttributePictogram.id != null
+    private fun isPrimaryAttributeAvailable(): Boolean {
+        val primaryAttribute = pictogramModels[PRIMARY_ATTRIBUTE_IDX]
+        return  primaryAttribute.id == null
     }
 
-    fun getPictureModels() = pictogramModels
+    fun getPictureModels() = pictogramModels.filter { it.id != null }
 
     companion object {
         /**

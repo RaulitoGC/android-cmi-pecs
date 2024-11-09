@@ -47,7 +47,6 @@ class PecsFlowPictogramSelectionViewModel(
                 val pictogramSelected = event.pictogramModel
                 updatePictogramPriority(pictogramSelected)
                 savePictogramModelInContentHolder(pictogramSelected)
-                updatePictogramForPecs(pecsFlowContentHolder.getPictureModels())
             }
 
             is PecsFlowPictogramSelectionEvent.ExecuteSound -> {
@@ -82,7 +81,9 @@ class PecsFlowPictogramSelectionViewModel(
     }
 
     private fun savePictogramModelInContentHolder(pictogramModel: PictogramModel) = viewModelScope.launch {
-        pecsFlowContentHolder.save(pictogramModel)
+        pecsFlowContentHolder.save(pictogramModel){ pictogramsModel ->
+            updatePictogramForPecs(pictogramsModel)
+        }
     }
 
     private fun updatePictograms(pictograms: List<PictogramModel>) {
@@ -90,7 +91,7 @@ class PecsFlowPictogramSelectionViewModel(
     }
 
     private fun updatePictogramForPecs( pictograms: List<PictogramModel>){
-        uiState.value = uiState.value.copy(pictogramsForPecs = pictograms)
+        uiState.value = uiState.value.copy(pictogramsForPecs = pictograms.toList())
     }
 
     private fun showMessage(
