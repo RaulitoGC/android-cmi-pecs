@@ -6,7 +6,9 @@ import androidx.core.os.bundleOf
 import timber.log.Timber
 import java.util.*
 
-class TextToSpeechManager(context: Context) {
+class TextToSpeechManager(
+    private val context: Context
+) {
 
     companion object {
         private const val LANGUAGE = "es"
@@ -24,7 +26,7 @@ class TextToSpeechManager(context: Context) {
     private var pendingSound = false
     private var pendingTextToSpeech = ""
 
-    init {
+    fun init(){
         listener = TextToSpeech.OnInitListener { status ->
             if (status == TextToSpeech.SUCCESS) {
                 loaded = true

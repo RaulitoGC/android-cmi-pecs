@@ -24,6 +24,7 @@ import com.cmi.presentation.config.select.pictogram.SelectPictogramForPecsViewMo
 import com.cmi.presentation.intro.SurveyValidator
 import com.cmi.presentation.manager.DefaultStringResourceManager
 import com.cmi.presentation.manager.StringResourceManager
+import com.cmi.presentation.manager.TextToSpeechManager
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.PictogramModel
 import com.cmi.presentation.pecs.PecsFlowContentHolder
@@ -309,6 +310,10 @@ val presentationModule = module {
         PecsFlowContentHolder(mutableListOf())
     }
 
+    single<TextToSpeechManager> {
+        TextToSpeechManager(androidContext())
+    }
+
     viewModel { parameters ->
         PecsFlowPictogramSelectionViewModel(
             categoryId = parameters.get(),
@@ -319,7 +324,8 @@ val presentationModule = module {
             pecsFlowContentHolder = get<PecsFlowContentHolder>(),
             updatePictogramPriorityUseCase = UpdatePictogramPriorityUseCase(
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
-            )
+            ),
+            textToSpeechManager = get<TextToSpeechManager>()
         )
     }
 }

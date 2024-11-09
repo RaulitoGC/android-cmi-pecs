@@ -3,12 +3,11 @@ package com.cmi.presentation.pecs.pictogram
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cmi.domain.usecase.GetLastPecsPictogramsUseCase
 import com.cmi.domain.usecase.GetPictogramsByCategoryUseCase
-import com.cmi.domain.usecase.SavePictogramPecsIdUseCase
 import com.cmi.domain.usecase.UpdatePictogramPriorityUseCase
 import com.cmi.presentation.R
 import com.cmi.presentation.manager.StringResourceManager
+import com.cmi.presentation.manager.TextToSpeechManager
 import com.cmi.presentation.model.PictogramModel
 import com.cmi.presentation.model.mapper.toPictogram
 import com.cmi.presentation.model.mapper.toPictogramModel
@@ -24,10 +23,12 @@ class PecsFlowPictogramSelectionViewModel(
     private val stringResourceManager: StringResourceManager,
     private val getPictogramsByCategoryUseCase: GetPictogramsByCategoryUseCase,
     private val updatePictogramPriorityUseCase: UpdatePictogramPriorityUseCase,
-    private val pecsFlowContentHolder: PecsFlowContentHolder
+    private val pecsFlowContentHolder: PecsFlowContentHolder,
+    private val textToSpeechManager: TextToSpeechManager
 ) : ViewModel() {
 
     init {
+        textToSpeechManager.init()
         getPictogramByCategoryId(categoryId)
     }
 
@@ -59,9 +60,18 @@ class PecsFlowPictogramSelectionViewModel(
             }
 
             is PecsFlowPictogramSelectionEvent.ExecuteSound -> {
-
+                launchSound()
             }
         }
+    }
+
+    private fun launchSound(){
+        val text = pecsFlowContentHolder
+            .getPictureModels()
+            .joinToString {
+                "${it.name.orEmpty()} "
+            }
+        textToSpeechManager.speak(text)
     }
 
     private fun getPictogramByCategoryId(categoryId: Int) = viewModelScope.launch {
@@ -109,5 +119,10 @@ class PecsFlowPictogramSelectionViewModel(
         @StringRes message: Int
     ) {
         uiState.value = uiState.value.copy(showMessage = stringResourceManager.getString(message))
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        textToSpeechManager.shutdown()
     }
 }
