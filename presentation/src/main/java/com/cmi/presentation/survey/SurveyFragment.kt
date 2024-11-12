@@ -27,9 +27,7 @@ class SurveyFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
-        composeSurveyScreen.setContent {
-            SurveyScreen()
-        }
+
 //        btnStartSurvey.setSafeOnClickListener {
 //            openURL(URL = START_SURVEY_URL)
 //        }

@@ -1,5 +1,10 @@
 package com.cmi.presentation.common.navigation
 
+import androidx.compose.animation.core.EaseIn
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -45,8 +50,29 @@ fun NavGraphBuilder.introNavGraph(navController: NavController) {
             )
         }
 
-        composable<DefaultIntroTypeHost.Survey> {
-            SurveyScreen()
+        composable<DefaultIntroTypeHost.Survey>(
+            enterTransition = {
+                slideInVertically(
+                    initialOffsetY = { it },
+                    animationSpec = tween(durationMillis = 1000, easing = EaseIn)
+                )
+            },
+            popExitTransition = {
+                slideOutVertically(
+                    targetOffsetY = { -it },
+                    animationSpec = tween(durationMillis = 1000, easing = LinearEasing)
+                )
+            },
+            exitTransition = {
+                slideOutVertically(
+                    targetOffsetY = { it },
+                    animationSpec = tween(durationMillis = 1000)
+                )
+            }
+        ) {
+            SurveyScreen{
+                navController.popBackStack()
+            }
         }
     }
 }

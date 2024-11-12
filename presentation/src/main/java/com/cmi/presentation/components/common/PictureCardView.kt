@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import com.cmi.presentation.R
@@ -28,16 +29,14 @@ fun PictureCardView(
 ) {
 
     val size = dimensionResource(id = cardViewConfig.size)
-
+    val roundedCornerShape = RoundedCornerShape(dimensionResource(id = cardViewConfig.cornerRadius))
     Card(
-        shape = RoundedCornerShape(dimensionResource(id = cardViewConfig.cornerRadius)),
+        shape = roundedCornerShape,
         border = BorderStroke(
             dimensionResource(id = cardViewConfig.borderStroke),
             colorResource(id = R.color.colorPictogramBorder)
         ),
         elevation = dimensionResource(id = cardViewConfig.elevation),
-
-
         modifier = modifier
             .size(size)
             .padding(dimensionResource(id = R.dimen.margin_4dp))
@@ -46,8 +45,9 @@ fun PictureCardView(
                     dimensionResource(id = cardViewConfig.borderStroke),
                     colorResource(id = R.color.colorPictogramBorder)
                 ),
-                shape = RoundedCornerShape(dimensionResource(id = cardViewConfig.cornerRadius))
+                shape = roundedCornerShape
             )
+            .clip(shape = roundedCornerShape)
             .clickable {
                 onItemSelected(pictureModel)
             }

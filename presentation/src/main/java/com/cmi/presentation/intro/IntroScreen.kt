@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.add.DefaultButton
@@ -29,7 +30,6 @@ fun IntroScreen(
         val middleGuideline = createGuidelineFromTop(0.5f)
         val (bottomImage, iconSettings, iconSurvey, imageBoy) = createRefs()
         val (title, subtitle, startButton, guideButton) = createRefs()
-        val context = LocalContext.current
 
         DefaultIcon(
             modifier = applyIconSettingsConstraints(iconSettings)
@@ -58,6 +58,7 @@ fun IntroScreen(
             modifier = applyIntroTitleConstraints(title, imageBoy),
             text = stringResource(R.string.text_app_short_name),
             style = CmiThemeExtensions.typography.h1,
+            fontSize = 32.sp,
             color = CmiThemeExtensions.colors.primaryText
         )
 
@@ -65,6 +66,7 @@ fun IntroScreen(
             modifier = applyIntroSubTitleConstraints(subtitle, title),
             text = stringResource(R.string.text_app_long_name),
             style = CmiThemeExtensions.typography.body,
+            fontSize = 16.sp,
             color = CmiThemeExtensions.colors.primaryText
         )
 

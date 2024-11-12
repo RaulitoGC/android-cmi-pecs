@@ -2,6 +2,8 @@ package com.cmi.presentation.survey
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -11,11 +13,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,95 +28,126 @@ import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cmi.presentation.Constants
 import com.cmi.presentation.R
+import com.cmi.presentation.components.common.add.DefaultButton
+import com.cmi.presentation.components.common.image.DefaultImage
 import com.cmi.presentation.ktx.openURL
+import com.cmi.presentation.ui.theme.CmiAppTheme
+import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
 @Composable
-fun SurveyScreen() {
+@NonRestartableComposable
+fun SurveyScreen(
+    onBack: () -> Unit
+) {
     Surface(
-        color = Color.White,
+        color = CmiThemeExtensions.colors.primaryColor,
         modifier = Modifier.fillMaxSize()
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.img_author),
-                contentScale = ContentScale.Crop,
-                contentDescription = stringResource(id = R.string.content_description_img_author),
-                modifier = Modifier
-                    .padding(top = 32.dp, bottom = 32.dp)
-                    .size(96.dp)
-                    .clip(CircleShape)
-                    .border(2.dp, colorResource(id = R.color.colorPrimaryDark), CircleShape)
-            )
-            Text(
-                text = stringResource(id = R.string.text_author_presentation),
-                modifier = Modifier.padding(start = 32.dp, end = 32.dp),
-                textAlign = TextAlign.Center
-            )
-            Row(modifier = Modifier
-                .padding(start = 32.dp, end = 32.dp, top = 16.dp)
+        Box {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                Image(
+                    painter = painterResource(id = R.drawable.img_author),
+                    contentScale = ContentScale.Crop,
+                    contentDescription = stringResource(id = R.string.content_description_img_author),
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f),
+                        .padding(top = 32.dp, bottom = 16.dp)
+                        .size(96.dp)
+                        .clip(CircleShape)
+                        .border(2.dp, colorResource(id = R.color.colorPrimaryDark), CircleShape)
+                )
+                Text(
+                    text = stringResource(id = R.string.text_author_presentation),
+                    modifier = Modifier.padding(start = 32.dp, end = 32.dp),
+                    style = CmiThemeExtensions.typography.body,
+                    fontSize = 14.sp,
+                    color = CmiThemeExtensions.colors.primaryText,
+                    textAlign = TextAlign.Center
+                )
+                Row(
+                    modifier = Modifier
+                        .padding(start = 32.dp, end = 32.dp, top = 16.dp)
                 ) {
-                    val localUriHandler = LocalUriHandler.current
-                    Text(
-                        text = stringResource(id = R.string.text_title_start_survey)
-                    )
-                    Text(
-                        text = stringResource(id = R.string.text_message_start_survey),
-                        textAlign = TextAlign.Center
-                    )
-                    Button(
-                        onClick = {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1f),
+                    ) {
+                        val localUriHandler = LocalUriHandler.current
+                        Text(
+                            text = stringResource(id = R.string.text_title_start_survey),
+                            style = CmiThemeExtensions.typography.body,
+                            color = CmiThemeExtensions.colors.primaryText,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = stringResource(id = R.string.text_message_start_survey),
+                            textAlign = TextAlign.Center,
+                            style = CmiThemeExtensions.typography.body,
+                            fontSize = 14.sp,
+                            color = CmiThemeExtensions.colors.primaryText
+                        )
+                        DefaultButton(text = R.string.text_btn_start_survey) {
                             openStartSurvey(localUriHandler)
                         }
-                    ) {
-                        Text(text = stringResource(id = R.string.text_btn_start_survey))
                     }
-                }
-                Divider(
-                    color = Color.Transparent,
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .width(10.dp)
-                )
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f),
-                ) {
-                    val localUriHandler = LocalUriHandler.current
-                    Text(
-                        text = stringResource(id = R.string.text_title_end_survey)
+                    Divider(
+                        color = Color.Transparent,
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .width(10.dp)
                     )
-                    Text(
-                        text = stringResource(id = R.string.text_message_end_survey),
-                        textAlign = TextAlign.Center
-                    )
-                    Button(
-                        onClick = { openEndSurvey(localUriHandler)
-                        }
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1f),
                     ) {
-                        Text(text = stringResource(id = R.string.text_btn_end_survey))
+                        val localUriHandler = LocalUriHandler.current
+                        Text(
+                            text = stringResource(id = R.string.text_title_end_survey),
+                            style = CmiThemeExtensions.typography.body,
+                            color = CmiThemeExtensions.colors.primaryText,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = stringResource(id = R.string.text_message_end_survey),
+                            textAlign = TextAlign.Center,
+                            fontSize = 14.sp,
+                            style = CmiThemeExtensions.typography.body,
+                            color = CmiThemeExtensions.colors.primaryText
+                        )
+                        DefaultButton(text = R.string.text_btn_end_survey) {
+                            openEndSurvey(localUriHandler)
+                        }
                     }
                 }
             }
+
+            DefaultImage(
+                modifier = Modifier
+                    .size(72.dp)
+                    .align(Alignment.TopEnd)
+                    .padding(16.dp)
+                    .clickable {
+                        onBack()
+                    },
+                drawableRes = R.drawable.ic_close,
+            )
         }
     }
 }
 
-private fun openStartSurvey(uriHandler: UriHandler){
+private fun openStartSurvey(uriHandler: UriHandler) {
     openURL(uriHandler, Constants.END_SURVEY_URL)
 }
 
@@ -128,6 +161,10 @@ private fun openEndSurvey(uriHandler: UriHandler) {
     widthDp = 800
 )
 @Composable
-fun SurveyScreenPreview(){
-    SurveyScreen()
+fun SurveyScreenPreview() {
+    CmiAppTheme {
+        SurveyScreen{
+
+        }
+    }
 }
