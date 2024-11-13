@@ -2,15 +2,15 @@ package com.cmi.presentation.common.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.toRoute
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
 import com.cmi.presentation.components.remover.PictureRemoverForPecs
 import com.cmi.presentation.components.remover.type.PictureRemoverContentType
-import com.cmi.presentation.components.uploader.PictureUploader
 import com.cmi.presentation.components.selecter.PictureSelecterForPecs
 import com.cmi.presentation.components.selecter.type.PictureSelecterContentType
+import com.cmi.presentation.components.uploader.PictureUploader
+import com.cmi.presentation.ktx.defaultLeftToRightComposable
 import com.cmi.presentation.ktx.orZero
 import com.cmi.presentation.model.CategoryModel
 import kotlinx.serialization.Serializable
@@ -36,7 +36,7 @@ sealed class CategoryConfigurationTypeHost {
 fun NavGraphBuilder.categoryConfigurationNavGraph(navController: NavController) {
     navigation<CategoryConfigurationScreens>(startDestination = CategoryConfigurationTypeHost.Select) {
 
-        composable<CategoryConfigurationTypeHost.Select> {
+        defaultLeftToRightComposable<CategoryConfigurationTypeHost.Select> {
             PictureSelecterForPecs(
                 pictureSelecterContentType = PictureSelecterContentType.Category
             ) {
@@ -44,15 +44,15 @@ fun NavGraphBuilder.categoryConfigurationNavGraph(navController: NavController) 
             }
         }
 
-        composable<CategoryConfigurationTypeHost.Add> {
+        defaultLeftToRightComposable<CategoryConfigurationTypeHost.Add> {
             PictureUploader(
                 contentType = PictureUploaderContentType.CategoryEntry
-            ){
+            ) {
                 navController.popBackStack()
             }
         }
 
-        composable<CategoryConfigurationTypeHost.Edit> {
+        defaultLeftToRightComposable<CategoryConfigurationTypeHost.Edit> {
             val categoryConfigurationTypeHost = it.toRoute<CategoryConfigurationTypeHost.Edit>()
             val categoryId = categoryConfigurationTypeHost.categoryId
             PictureUploader(
@@ -64,7 +64,7 @@ fun NavGraphBuilder.categoryConfigurationNavGraph(navController: NavController) 
             }
         }
 
-        composable<CategoryConfigurationTypeHost.Remove> {
+        defaultLeftToRightComposable<CategoryConfigurationTypeHost.Remove> {
             PictureRemoverForPecs(
                 contentType = PictureRemoverContentType.Category
             ) {

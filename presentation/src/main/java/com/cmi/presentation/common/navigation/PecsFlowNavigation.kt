@@ -5,6 +5,11 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.toRoute
+import com.cmi.presentation.ktx.defaultLeftToRightComposable
+import com.cmi.presentation.ktx.enterSlidingToLeft
+import com.cmi.presentation.ktx.existSlidingToRight
+import com.cmi.presentation.ktx.noEnterTransition
+import com.cmi.presentation.ktx.noExitTransition
 import com.cmi.presentation.ktx.orZero
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.pecs.pictogram.PecsFlowPictogramSelection
@@ -24,7 +29,7 @@ sealed class PecsFlowTypeHost {
 fun NavGraphBuilder.pecsFlowNavGraph(navController: NavController) {
     navigation<PecsFlowScreens>(startDestination = PecsFlowTypeHost.PictogramSelection(0)) {
 
-        composable<PecsFlowTypeHost.PictogramSelection> {
+        defaultLeftToRightComposable<PecsFlowTypeHost.PictogramSelection> {
             val pictogramSelectionFlowHost = it.toRoute<PecsFlowTypeHost.PictogramSelection>()
             val categoryId = pictogramSelectionFlowHost.categoryId
 

@@ -1,6 +1,7 @@
 package com.cmi.presentation.config
 
 import android.content.Context
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +16,7 @@ import com.cmi.presentation.common.navigation.ConfigurationFlowType
 import com.cmi.presentation.components.common.header.DefaultTitle
 import com.cmi.presentation.ktx.DefaultHorizontalSpacer
 import com.cmi.presentation.ktx.DefaultVerticalSpacer
+import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
 @Composable
 fun ConfigurationScreen(
@@ -22,7 +24,9 @@ fun ConfigurationScreen(
     onBack: () -> Unit,
     onItemSelected: (configurationFlowType: ConfigurationFlowType) -> Unit
 ) {
-    Column {
+    Column(
+        modifier = Modifier.background(CmiThemeExtensions.colors.windowBackground)
+    ) {
         val context = LocalContext.current
         DefaultTitle(
             title = getTitleByFlow(context, configurationFlow),

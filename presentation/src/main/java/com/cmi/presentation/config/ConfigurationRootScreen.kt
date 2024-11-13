@@ -3,6 +3,7 @@ package com.cmi.presentation.config
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -37,7 +38,9 @@ fun ConfigurationRootScreen(
     onBack: () -> Unit,
     onItemSelected: (flow: FLOW) -> Unit
 ) {
-    Column {
+    Column(
+        modifier = modifier.background(CmiThemeExtensions.colors.windowBackground),
+    ) {
         DefaultTitle(
             title = R.string.text_settings,
             onBackClick = onBack

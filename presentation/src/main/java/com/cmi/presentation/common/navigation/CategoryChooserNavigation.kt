@@ -9,6 +9,11 @@ import androidx.navigation.toRoute
 import com.cmi.presentation.R
 import com.cmi.presentation.components.chooser.category.CategoryChooser
 import com.cmi.presentation.components.chooser.pictogram.PictogramChooser
+import com.cmi.presentation.ktx.defaultLeftToRightComposable
+import com.cmi.presentation.ktx.enterSlidingToLeft
+import com.cmi.presentation.ktx.existSlidingToRight
+import com.cmi.presentation.ktx.noEnterTransition
+import com.cmi.presentation.ktx.noExitTransition
 import com.cmi.presentation.ktx.orZero
 import kotlinx.serialization.Serializable
 
@@ -36,7 +41,7 @@ sealed class CategoryChooserHost(@StringRes val title: Int){
 
 fun NavGraphBuilder.categoryChooserNavGraph(navController: NavController) {
     navigation<CategoryChooserFlows>(startDestination = CategoryChooserHost.EditCategory) {
-        composable<CategoryChooserHost.EditCategory> { _ ->
+        defaultLeftToRightComposable<CategoryChooserHost.EditCategory> {
             CategoryChooser(
                 categoryChooserHost = CategoryChooserHost.EditCategory,
                 onBack = {
@@ -48,7 +53,7 @@ fun NavGraphBuilder.categoryChooserNavGraph(navController: NavController) {
             )
         }
 
-        composable<CategoryChooserHost.EditPictogram> { _ ->
+        defaultLeftToRightComposable<CategoryChooserHost.EditPictogram> {
             CategoryChooser(
                 categoryChooserHost = CategoryChooserHost.EditPictogram,
                 onBack = {
@@ -60,7 +65,7 @@ fun NavGraphBuilder.categoryChooserNavGraph(navController: NavController) {
             )
         }
 
-        composable<CategoryChooserHost.RemovePictogram> {
+        defaultLeftToRightComposable<CategoryChooserHost.RemovePictogram> {
             CategoryChooser(
                 categoryChooserHost = CategoryChooserHost.RemovePictogram,
                 onBack = {
@@ -72,7 +77,7 @@ fun NavGraphBuilder.categoryChooserNavGraph(navController: NavController) {
             )
         }
 
-        composable<CategoryChooserHost.SelectPictogramForPecs> { _ ->
+        defaultLeftToRightComposable<CategoryChooserHost.SelectPictogramForPecs> {
             CategoryChooser(
                 categoryChooserHost = CategoryChooserHost.SelectPictogramForPecs,
                 onBack = {
@@ -84,7 +89,7 @@ fun NavGraphBuilder.categoryChooserNavGraph(navController: NavController) {
             )
         }
 
-        composable<CategoryChooserHost.PecsFlow> {
+        defaultLeftToRightComposable<CategoryChooserHost.PecsFlow> {
             CategoryChooser(
                 categoryChooserHost = CategoryChooserHost.PecsFlow,
                 onBack = {

@@ -1,10 +1,5 @@
 package com.cmi.presentation.common.navigation
 
-import androidx.compose.animation.core.EaseIn
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -12,7 +7,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.cmi.presentation.Constants.YOUTUBE_GUIDE
 import com.cmi.presentation.intro.IntroScreen
+import com.cmi.presentation.ktx.enterSlidingToUp
+import com.cmi.presentation.ktx.noEnterTransition
+import com.cmi.presentation.ktx.noExitTransition
 import com.cmi.presentation.ktx.openURL
+import com.cmi.presentation.ktx.popExistSlidingToDown
 import com.cmi.presentation.survey.SurveyScreen
 import kotlinx.serialization.Serializable
 
@@ -32,7 +31,14 @@ sealed class DefaultIntroTypeHost {
 fun NavGraphBuilder.introNavGraph(navController: NavController) {
     navigation<IntroNavigationScreens>(startDestination = DefaultIntroTypeHost.Default) {
 
-        composable<DefaultIntroTypeHost.Default> {
+        composable<DefaultIntroTypeHost.Default>(
+            exitTransition = {
+                noExitTransition()
+            },
+            popEnterTransition = {
+                noEnterTransition()
+            }
+        ) {
             val uriHandler = LocalUriHandler.current
             IntroScreen(
                 onSettingsSelected = {
@@ -52,31 +58,19 @@ fun NavGraphBuilder.introNavGraph(navController: NavController) {
 
         composable<DefaultIntroTypeHost.Survey>(
             enterTransition = {
-                slideInVertically(
-                    initialOffsetY = { it },
-                    animationSpec = tween(durationMillis = 1000, easing = EaseIn)
-                )
+                enterSlidingToUp()
             },
             popExitTransition = {
-                slideOutVertically(
-                    targetOffsetY = { -it },
-                    animationSpec = tween(durationMillis = 1000, easing = LinearEasing)
-                )
-            },
-            exitTransition = {
-                slideOutVertically(
-                    targetOffsetY = { it },
-                    animationSpec = tween(durationMillis = 1000)
-                )
+                popExistSlidingToDown()
             }
         ) {
-            SurveyScreen{
+            SurveyScreen {
                 navController.popBackStack()
             }
         }
     }
 }
 
-private fun NavController.navigateToSurveyScreen(){
+private fun NavController.navigateToSurveyScreen() {
     navigate(DefaultIntroTypeHost.Survey)
 }

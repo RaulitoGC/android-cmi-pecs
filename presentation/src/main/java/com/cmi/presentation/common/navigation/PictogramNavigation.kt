@@ -13,6 +13,7 @@ import com.cmi.presentation.components.remover.type.PictureRemoverContentType
 import com.cmi.presentation.components.selecter.PictureSelecterForPecs
 import com.cmi.presentation.components.selecter.type.PictureSelecterContentType
 import com.cmi.presentation.components.uploader.PictureUploader
+import com.cmi.presentation.ktx.defaultLeftToRightComposable
 import com.cmi.presentation.ktx.orZero
 import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.PictogramModel
@@ -43,7 +44,7 @@ sealed class PictogramConfigurationTypeHost {
 fun NavGraphBuilder.pictogramConfigurationNavGraph(navController: NavController) {
     navigation<PictogramConfigurationScreens>(startDestination = PictogramConfigurationTypeHost.Select(0)) {
 
-        composable<PictogramConfigurationTypeHost.Select> {
+        defaultLeftToRightComposable<PictogramConfigurationTypeHost.Select> {
             val pictogramConfigurationTypeHost = it.toRoute<PictogramConfigurationTypeHost.Select>()
             val categoryId = pictogramConfigurationTypeHost.categoryId
             PictureSelecterForPecs(
@@ -53,7 +54,7 @@ fun NavGraphBuilder.pictogramConfigurationNavGraph(navController: NavController)
             }
         }
 
-        composable<PictogramConfigurationTypeHost.Add> {
+        defaultLeftToRightComposable<PictogramConfigurationTypeHost.Add> {
             PictureUploader(
                 contentType = PictureUploaderContentType.PictogramEntry
             ){
@@ -61,7 +62,7 @@ fun NavGraphBuilder.pictogramConfigurationNavGraph(navController: NavController)
             }
         }
 
-        composable<PictogramConfigurationTypeHost.Edit> {
+        defaultLeftToRightComposable<PictogramConfigurationTypeHost.Edit> {
             val pictogramConfigurationTypeHost = it.toRoute<PictogramConfigurationTypeHost.Edit>()
             val pictogramId = pictogramConfigurationTypeHost.pictogramId
             PictureUploader(
@@ -74,7 +75,7 @@ fun NavGraphBuilder.pictogramConfigurationNavGraph(navController: NavController)
 
         }
 
-        composable<PictogramConfigurationTypeHost.Remove> {
+        defaultLeftToRightComposable<PictogramConfigurationTypeHost.Remove> {
             val pictogramConfigurationTypeHost = it.toRoute<PictogramConfigurationTypeHost.Select>()
             val categoryId = pictogramConfigurationTypeHost.categoryId
             PictureRemoverForPecs(
@@ -84,7 +85,7 @@ fun NavGraphBuilder.pictogramConfigurationNavGraph(navController: NavController)
             }
         }
 
-        composable<PictogramConfigurationTypeHost.Chooser> {
+        defaultLeftToRightComposable<PictogramConfigurationTypeHost.Chooser> {
             val pictogramConfigurationTypeHost = it.toRoute<PictogramConfigurationTypeHost.Chooser>()
             val categoryId = pictogramConfigurationTypeHost.categoryId
 

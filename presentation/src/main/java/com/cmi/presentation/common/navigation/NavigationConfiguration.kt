@@ -7,6 +7,10 @@ import androidx.navigation.compose.navigation
 import com.cmi.presentation.config.ConfigurationRootScreen
 import com.cmi.presentation.config.ConfigurationScreen
 import com.cmi.presentation.config.FLOW
+import com.cmi.presentation.ktx.enterSlidingToUp
+import com.cmi.presentation.ktx.noEnterTransition
+import com.cmi.presentation.ktx.noExitTransition
+import com.cmi.presentation.ktx.popExistSlidingToDown
 import kotlinx.serialization.Serializable
 
 
@@ -34,7 +38,20 @@ enum class ConfigurationFlowType {
 
 fun NavGraphBuilder.configurationNavGraph(navController: NavController) {
     navigation<ConfigurationScreens>(startDestination = ConfigurationHost) {
-        composable<ConfigurationHost> {
+        composable<ConfigurationHost>(
+            exitTransition = {
+                noExitTransition()
+            },
+            popEnterTransition = {
+                noEnterTransition()
+            },
+            enterTransition = {
+                enterSlidingToUp()
+            },
+            popExitTransition = {
+                popExistSlidingToDown()
+            }
+        ) {
             ConfigurationRootScreen(
                 onBack = {
                     navController.popBackStack()
@@ -44,12 +61,24 @@ fun NavGraphBuilder.configurationNavGraph(navController: NavController) {
                         FLOW.CATEGORY -> navController.navigate(ConfigurationTypeHost.Category)
                         FLOW.PICTOGRAM -> navController.navigate(ConfigurationTypeHost.Pictogram)
                     }
-
                 }
             )
         }
 
-        composable<ConfigurationTypeHost.Category> { _ ->
+        composable<ConfigurationTypeHost.Category>(
+            exitTransition = {
+                noExitTransition()
+            },
+            popEnterTransition = {
+                noEnterTransition()
+            },
+            enterTransition = {
+                enterSlidingToUp()
+            },
+            popExitTransition = {
+                popExistSlidingToDown()
+            }
+        ) { _ ->
             ConfigurationScreen(
                 configurationFlow = FLOW.CATEGORY,
                 onBack = {
@@ -66,7 +95,20 @@ fun NavGraphBuilder.configurationNavGraph(navController: NavController) {
             )
         }
 
-        composable<ConfigurationTypeHost.Pictogram> { _ ->
+        composable<ConfigurationTypeHost.Pictogram>(
+            exitTransition = {
+                noExitTransition()
+            },
+            popEnterTransition = {
+                noEnterTransition()
+            },
+            enterTransition = {
+                enterSlidingToUp()
+            },
+            popExitTransition = {
+                popExistSlidingToDown()
+            }
+        ) { _ ->
             ConfigurationScreen(
                 configurationFlow = FLOW.PICTOGRAM,
                 onBack = {
