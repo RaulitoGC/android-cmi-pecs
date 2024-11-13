@@ -49,6 +49,10 @@ abstract class PictureUploaderViewModel(
                 uiState.value = uiState.value.copy(showMessage = null)
             }
 
+            is PictureUploaderEvent.NavigateBackDone -> {
+                uiState.value = uiState.value.copy(navigateBack = null)
+            }
+
             else -> {
                 throw IllegalArgumentException("Event $event is not supported")
             }
@@ -73,6 +77,10 @@ abstract class PictureUploaderViewModel(
     // endregion
 
     // region Protected Methods
+
+    protected fun navigateBack() {
+        uiState.value = uiState.value.copy(navigateBack = true)
+    }
 
     protected fun updateFoundationPathAsFalse() {
         uiState.value = uiState.value.copy(pictureModel = uiState.value.pictureModel.copyIsFoundationPath(false))

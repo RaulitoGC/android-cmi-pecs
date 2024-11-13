@@ -14,4 +14,6 @@ sealed class PictureUploaderEvent {
     data object UploadPicture : PictureUploaderEvent()
 
     data object MessageShown: PictureUploaderEvent()
+
+    data object NavigateBackDone: PictureUploaderEvent()
 }

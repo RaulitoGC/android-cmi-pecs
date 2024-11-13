@@ -51,7 +51,11 @@ private fun PictureLoaderContent(
     state.showMessage?.let {
         ShowToast(it)
         handleEvent(PictureUploaderEvent.MessageShown)
+    }
+
+    state.navigateBack?.let {
         onBack.invoke()
+        handleEvent(PictureUploaderEvent.NavigateBackDone)
     }
 
     Column(

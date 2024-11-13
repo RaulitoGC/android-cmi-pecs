@@ -58,6 +58,7 @@ class CategoryPictureUploaderViewModel(
                         showMessage(MessageType.GeneralError)
                     }.collect {
                         showMessage(getSuccessMessageType())
+                        navigateBack()
                         cleanFields()
                     }
             }

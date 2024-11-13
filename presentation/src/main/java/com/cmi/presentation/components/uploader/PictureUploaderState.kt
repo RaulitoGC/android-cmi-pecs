@@ -12,6 +12,7 @@ data class PictureUploaderState(
     val pictureModel: PictureModel,
     val showMessage: String? = null,
     val categories: List<CategoryModel> = emptyList(),
-    val cardViewConfig: CardViewConfig = CardViewConfig()
+    val cardViewConfig: CardViewConfig = CardViewConfig(),
+    val navigateBack: Boolean? = null
 )
 

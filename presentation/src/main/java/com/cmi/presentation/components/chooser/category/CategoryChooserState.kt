@@ -17,9 +17,9 @@ data class CategoryChooserState(
     fun getCategoriesSize() = categories.size.takeIf { it > 0 } ?: DEFAULT_PICTURE_SIZE_SHIMMER
 
     fun getNonActionNorAttributeCategoriesSize(): Int {
-        val size  = categories.size
-        val result = size.takeIf { it > 2 } ?: DEFAULT_PICTURE_SIZE_SHIMMER
-        return  result - 2
+        val size  = getNonActionNorAttributeCategories().size
+        val result = size.takeIf { it > 0 } ?: DEFAULT_PICTURE_SIZE_SHIMMER
+        return  result
     }
 
     fun getNonActionNorAttributeCategories(): List<CategoryModel> {

@@ -110,6 +110,33 @@ data class PictogramModel(
     }
 }
 
+fun PictureModel.isCategory(): Boolean {
+    return this is CategoryModel
+}
+
+private const val ATTRIBUTE_CATEGORY_ID = 2
+private const val ACTION_CATEGORY_ID = 18
+
+fun PictogramModel.isAction(): Boolean {
+    return categoryId == ACTION_CATEGORY_ID
+}
+
+fun PictogramModel.isAttribute(): Boolean {
+    return categoryId == ATTRIBUTE_CATEGORY_ID
+}
+
+fun CategoryModel.isAttribute(): Boolean {
+    return id == ATTRIBUTE_CATEGORY_ID
+}
+
+fun CategoryModel.isAction(): Boolean {
+    return id == ACTION_CATEGORY_ID
+}
+
+fun PictureModel.isPictogram(): Boolean {
+    return this is PictogramModel
+}
+
 // RGC Validate to remove below code
 interface SelectableItem {
     var isSelected: Boolean

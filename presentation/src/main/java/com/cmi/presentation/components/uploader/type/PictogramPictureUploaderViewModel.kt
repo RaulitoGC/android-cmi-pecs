@@ -123,6 +123,7 @@ class PictogramPictureUploaderViewModel(
                         }.collect {
                             showMessage(getSuccessMessageType())
                             cleanFields()
+                            navigateBack()
                         }
                 }
             }

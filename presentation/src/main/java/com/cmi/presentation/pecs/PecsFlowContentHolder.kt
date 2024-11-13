@@ -1,6 +1,8 @@
 package com.cmi.presentation.pecs
 
 import com.cmi.presentation.model.PictogramModel
+import com.cmi.presentation.model.isAction
+import com.cmi.presentation.model.isAttribute
 
 class PecsFlowContentHolder(
     private val pictogramModels: MutableList<PictogramModel>
@@ -61,14 +63,6 @@ class PecsFlowContentHolder(
         return id == PICTOGRAM_WANT_ID
     }
 
-    private fun PictogramModel.isAction(): Boolean {
-        return categoryId == ACTION_CATEGORY_ID
-    }
-
-    private fun PictogramModel.isAttribute(): Boolean {
-        return categoryId == ATTRIBUTE_CATEGORY_ID
-    }
-
     private fun isPrimaryAttributeAvailable(): Boolean {
         val primaryAttribute = pictogramModels[PRIMARY_ATTRIBUTE_IDX]
         return  primaryAttribute.id == null
@@ -83,9 +77,6 @@ class PecsFlowContentHolder(
          * as a first action
          */
         private const val PICTOGRAM_WANT_ID = 186
-
-        private const val ATTRIBUTE_CATEGORY_ID = 2
-        private const val ACTION_CATEGORY_ID = 18
 
         /**
          * Max number of pictograms that are allowed in Stripe

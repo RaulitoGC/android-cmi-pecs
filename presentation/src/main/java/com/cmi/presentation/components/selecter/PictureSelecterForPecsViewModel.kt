@@ -13,7 +13,11 @@ import com.cmi.presentation.components.selecter.type.PictureSelecterContentType
 import com.cmi.presentation.config.add.model.SelectableTitleConfig
 import com.cmi.presentation.ktx.orFalse
 import com.cmi.presentation.manager.StringResourceManager
+import com.cmi.presentation.model.CategoryModel
 import com.cmi.presentation.model.PictureModel
+import com.cmi.presentation.model.isAction
+import com.cmi.presentation.model.isAttribute
+import com.cmi.presentation.model.isCategory
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -43,7 +47,9 @@ abstract class PictureSelecterForPecsViewModel(
 
             is PictureSelecterForPecsEvent.UpdatePictures -> {
                 onUpdatePicturesSelected(
-                    pictureModels = uiState.value.pictureModels.filter { it.isSelectedForPecs.orFalse }
+                    pictureModels = uiState.value.pictureModels.map {
+                        it.copySelectedForPecs(it.isSelected.orFalse)
+                    }
                 )
             }
 
@@ -80,7 +86,7 @@ abstract class PictureSelecterForPecsViewModel(
 
     private fun onPictureSelected(pictureModel: PictureModel){
 
-        if(pictureModel.id != ATTRIBUTE_CATEGORY_ID || pictureModel.id != ACTION_CATEGORY_ID) {
+        if(pictureModel.isCategory() && ((pictureModel as CategoryModel).isAttribute() || pictureModel.isAction())){
             showErrorMessage(
                 message = R.string.text_action_nor_attribute_unselected
             )
@@ -91,7 +97,7 @@ abstract class PictureSelecterForPecsViewModel(
         val updatedPictures = currentPictures.map {
             if (it.id == pictureModel.id) {
                 val isSelectedForPecs = it.isSelectedForPecs.orFalse
-                it.copyIsSelected(isSelected = isSelectedForPecs.not()).copySelectedForPecs(isSelected = isSelectedForPecs.not())
+                it.copyIsSelected(isSelected = isSelectedForPecs.not())
             } else {
                 it
             }
