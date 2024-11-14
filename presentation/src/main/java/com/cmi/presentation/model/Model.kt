@@ -39,12 +39,12 @@ data class CategoryModel(
     override val path: String? = null,
     override val name: String? = null,
     override val priority: Int? = 0,
-    override val isExternal: Boolean? = false,
-    override val isSelectedForPecs: Boolean? = false,
-    override val isSelected: Boolean? = false,
-    override val isSelectedForUiEnabled: Boolean = false,
-    override val isFoundationPath: Boolean? = false
-): PictureModel, java.io.Serializable {
+    override val isExternal: Boolean? = null,
+    override val isSelectedForPecs: Boolean? = null,
+    override val isSelected: Boolean? = null,
+    override val isSelectedForUiEnabled: Boolean? = null,
+    override val isFoundationPath: Boolean? = null
+): PictureModel {
 
     override fun copyName(name: String?): PictureModel {
         return this.copy(name = name)
@@ -78,11 +78,11 @@ data class PictogramModel(
     override val path: String? = null,
     override val name: String? = null,
     override val priority: Int? = 0,
-    override val isExternal: Boolean? = false,
-    override val isSelectedForPecs: Boolean? = false,
-    override val isSelected: Boolean? = false,
-    override val isSelectedForUiEnabled: Boolean = false,
-    override val isFoundationPath: Boolean? = false,
+    override val isExternal: Boolean? = null,
+    override val isSelectedForPecs: Boolean? = null,
+    override val isSelected: Boolean? = null,
+    override val isSelectedForUiEnabled: Boolean? = null,
+    override val isFoundationPath: Boolean? = null,
     val categoryId: Int? = null,
     val categoryName: String? = null
 ): PictureModel, java.io.Serializable {

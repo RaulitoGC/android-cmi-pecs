@@ -87,13 +87,13 @@ private fun PictureLoaderContent(
 
             DefaultSubTitle(
                 modifier = applyTitleConstraints(subTitle),
-                padding = 64.dp,
+                padding = 32.dp,
                 subTitle = state.contentType.subTitle
             )
 
             DefaultVerticalSpacer(
                 modifier = applyVerticalSpacerConstraints(titleSpacer, subTitle),
-                height = 48.dp
+                height = 32.dp
             )
 
             PictureNameTextField(

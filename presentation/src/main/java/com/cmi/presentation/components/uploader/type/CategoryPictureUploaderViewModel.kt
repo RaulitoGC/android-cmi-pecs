@@ -3,6 +3,7 @@ package com.cmi.presentation.components.uploader.type
 import androidx.lifecycle.viewModelScope
 import com.cmi.domain.usecase.AddCategoryUseCase
 import com.cmi.domain.usecase.GetCategoryByIdUseCase
+import com.cmi.domain.usecase.UpdateCategoryUseCase
 import com.cmi.presentation.R
 import com.cmi.presentation.components.common.add.PictureUploaderContentType
 import com.cmi.presentation.components.uploader.PictureUploaderViewModel
@@ -21,6 +22,7 @@ class CategoryPictureUploaderViewModel(
     messageBuilder: MessageBuilder,
     private val getCategoryByIdUseCase: GetCategoryByIdUseCase,
     private val addCategoryUseCase: AddCategoryUseCase,
+    private val updateCategoryUseCase: UpdateCategoryUseCase
 ) : PictureUploaderViewModel(contentType, CategoryModel(isExternal = true), messageBuilder) {
 
     init {
@@ -28,6 +30,8 @@ class CategoryPictureUploaderViewModel(
             getCategoryById(contentType.pictureId)
         }
     }
+
+    private val isEditable = contentType is PictureUploaderContentType.CategoryEditable
 
     private fun getCategoryById(categoryId: Int) = viewModelScope.launch {
         getCategoryByIdUseCase.invoke(categoryId)
@@ -41,29 +45,47 @@ class CategoryPictureUploaderViewModel(
     }
 
     override fun uploadPicture(pictureModel: PictureModel?) {
-        viewModelScope.launch {
-            val name = pictureModel?.name
-            val path = pictureModel?.path
-            if (isValidForm(name, path)) {
-                val categoryModel = (pictureModel as? CategoryModel) ?: CategoryModel(
-                    folder = name?.replace("\\s".toRegex(), ""),
-                    path = path,
-                    name = name,
-                    priority = 0,
-                    isExternal = true,
-                    isSelectedForPecs = true
-                )
-                addCategoryUseCase(category = categoryModel.toCategory())
-                    .catch {
-                        showMessage(MessageType.GeneralError)
-                    }.collect {
-                        showMessage(getSuccessMessageType())
-                        navigateBack()
-                        cleanFields()
-                    }
-            }
+        val name = pictureModel?.name
+        val path = pictureModel?.path
+        if (isValidForm(name, path)) {
+            val categoryModel = CategoryModel(
+                id = pictureModel?.id,
+                folder = name?.replace("\\s".toRegex(), ""),
+                path = path,
+                name = name,
+                priority = pictureModel?.priority ?: 0,
+                isExternal = pictureModel?.isExternal ?: true,
+                isSelectedForPecs = pictureModel?.isSelectedForPecs ?: true,
+                isFoundationPath = pictureModel?.isFoundationPath ?: false
+            )
+            insertOrUpdate(categoryModel)
         }
     }
+
+    private fun insertOrUpdate(categoryModel: CategoryModel) = viewModelScope.launch {
+        val category = categoryModel.toCategory()
+
+        if (isEditable) {
+            updateCategoryUseCase.invoke(category = category)
+                .catch {
+                    showMessage(MessageType.GeneralError)
+                }.collect{
+                    showMessage(getSuccessMessageType())
+                    navigateBack()
+                    cleanFields()
+                }
+        } else {
+            addCategoryUseCase.invoke(category = category)
+                .catch {
+                    showMessage(MessageType.GeneralError)
+                }.collect{
+                    showMessage(getSuccessMessageType())
+                    navigateBack()
+                    cleanFields()
+                }
+        }
+    }
+
 
     private fun getSuccessMessageType(): MessageType.Success {
         val successResString = if (contentType is PictureUploaderContentType.CategoryEntry) {

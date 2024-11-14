@@ -210,7 +210,10 @@ val presentationModule = module {
             getCategoryByIdUseCase = GetCategoryByIdUseCase(
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
-            messageBuilder = get<MessageBuilder>()
+            messageBuilder = get<MessageBuilder>(),
+            updateCategoryUseCase = UpdateCategoryUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
         )
     }
 
@@ -226,7 +229,10 @@ val presentationModule = module {
             addPictogramUseCase = AddPictogramUseCase(
                 localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
             ),
-            messageBuilder = get<MessageBuilder>()
+            messageBuilder = get<MessageBuilder>(),
+            updatePictogramUseCase = UpdatePictogramUseCase(
+                localDataSource = DataServiceLocator.provideLocalDataSource(androidContext())
+            )
         )
     }
 
