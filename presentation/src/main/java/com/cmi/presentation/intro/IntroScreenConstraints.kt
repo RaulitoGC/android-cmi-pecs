@@ -1,7 +1,10 @@
 package com.cmi.presentation.intro
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -19,6 +22,7 @@ fun ConstraintLayoutScope.applyIconSettingsConstraints(
     iconSettings: ConstrainedLayoutReference
 ): Modifier {
     return Modifier
+        .padding(top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding())
         .size(dimensionResource(R.dimen.settings_size))
         .constrainAs(iconSettings) {
             top.linkTo(parent.top)
@@ -33,6 +37,7 @@ fun ConstraintLayoutScope.applyIconSurveyConstraints(
     iconSettings: ConstrainedLayoutReference
 ): Modifier {
     return Modifier
+        .padding(top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding())
         .size(dimensionResource(R.dimen.settings_size))
         .constrainAs(iconSurvey) {
             top.linkTo(parent.top)

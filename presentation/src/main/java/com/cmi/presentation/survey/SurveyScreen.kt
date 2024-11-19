@@ -1,16 +1,20 @@
 package com.cmi.presentation.survey
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
@@ -48,11 +52,14 @@ fun SurveyScreen(
 ) {
     Surface(
         color = CmiThemeExtensions.colors.primaryColor,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .background(CmiThemeExtensions.colors.primaryColor)
+            .fillMaxSize()
+            .padding(WindowInsets.systemBars.asPaddingValues())
     ) {
         Box {
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.img_author),
@@ -135,9 +142,9 @@ fun SurveyScreen(
 
             DefaultImage(
                 modifier = Modifier
-                    .size(72.dp)
+                    .size(84.dp)
                     .align(Alignment.TopEnd)
-                    .padding(16.dp)
+                    .padding(WindowInsets.systemBars.asPaddingValues())
                     .clickable {
                         onBack()
                     },
@@ -148,7 +155,7 @@ fun SurveyScreen(
 }
 
 private fun openStartSurvey(uriHandler: UriHandler) {
-    openURL(uriHandler, Constants.END_SURVEY_URL)
+    openURL(uriHandler, Constants.START_SURVEY_URL)
 }
 
 private fun openEndSurvey(uriHandler: UriHandler) {

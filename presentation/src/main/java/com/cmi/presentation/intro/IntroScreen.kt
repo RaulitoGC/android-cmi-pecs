@@ -28,7 +28,7 @@ fun IntroScreen(
 ) {
     ConstraintLayout(
         modifier = Modifier
-            .background(CmiThemeExtensions.colors.primaryColor)
+            .background(CmiThemeExtensions.colors.primarySurface)
     ) {
 
         val middleGuideline = createGuidelineFromTop(0.5f)

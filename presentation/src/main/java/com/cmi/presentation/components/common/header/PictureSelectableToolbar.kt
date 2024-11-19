@@ -2,10 +2,14 @@ package com.cmi.presentation.components.common.header
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
@@ -31,6 +35,8 @@ fun PictureSelectableToolbar(
 
     TopAppBar(
         modifier = Modifier
+            .background(CmiThemeExtensions.colors.primarySurface)
+            .padding(top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding())
             .fillMaxWidth()
             .height(56.dp),
         backgroundColor = CmiThemeExtensions.colors.primarySurface

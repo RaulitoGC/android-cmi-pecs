@@ -96,7 +96,7 @@ abstract class PictureSelecterForPecsViewModel(
         val currentPictures = uiState.value.pictureModels
         val updatedPictures = currentPictures.map {
             if (it.id == pictureModel.id) {
-                val isSelectedForPecs = it.isSelectedForPecs.orFalse
+                val isSelectedForPecs = it.isSelected.orFalse
                 it.copyIsSelected(isSelected = isSelectedForPecs.not())
             } else {
                 it
