@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
@@ -107,8 +108,10 @@ fun PictureSelectableItemContent(
                 )
                 DefaultVerticalSpacer(height = 2.dp)
                 Text(
-                    modifier = modifier,
+                    modifier = modifier.padding(horizontal = 4.dp),
                     text = pictureModel.name.orEmpty(),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                     fontSize = if(pictureModel.isSelectedForUiEnabled.isTrue) fontSize.value.sp else ((fontSize.value + 4).sp)
                 )
                 DefaultVerticalSpacer(height = 4.dp)
