@@ -60,6 +60,7 @@ private fun PictureLoaderContent(
 
     Column(
         modifier = modifier
+            .background(CmiThemeExtensions.colors.windowBackground)
             .fillMaxSize()
     ) {
 

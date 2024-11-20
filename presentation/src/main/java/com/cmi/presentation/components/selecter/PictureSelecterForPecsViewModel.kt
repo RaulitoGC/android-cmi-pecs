@@ -3,10 +3,7 @@ package com.cmi.presentation.components.selecter
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
-import com.cmi.presentation.Constants.ACTION_CATEGORY_ID
-import com.cmi.presentation.Constants.ATTRIBUTE_CATEGORY_ID
 import com.cmi.presentation.R
-import com.cmi.presentation.components.remover.type.PictogramRemoverForPecsViewModel
 import com.cmi.presentation.components.selecter.type.CategorySelecterForPecsViewModel
 import com.cmi.presentation.components.selecter.type.PictogramSelecterForPecsViewModel
 import com.cmi.presentation.components.selecter.type.PictureSelecterContentType
@@ -23,10 +20,9 @@ import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
 abstract class PictureSelecterForPecsViewModel(
-    private val stringResourceManager: StringResourceManager
+    private val stringResourceManager: StringResourceManager,
+    private val initialTitle: String
 ) : ViewModel() {
-
-    private val initialTitle = stringResourceManager.getString(R.string.text_select_category_for_pecs)
 
     val uiState = MutableStateFlow(
         PictureSelecterForPecsState(
@@ -56,6 +52,7 @@ abstract class PictureSelecterForPecsViewModel(
             PictureSelecterForPecsEvent.ErrorMessageShown -> {
                 uiState.value = uiState.value.copy(showErrorToastMessage = null)
             }
+
             PictureSelecterForPecsEvent.SuccessMessageShown -> {
                 uiState.value = uiState.value.copy(showSuccessToastMessage = null)
             }
@@ -81,12 +78,13 @@ abstract class PictureSelecterForPecsViewModel(
     protected fun showErrorMessage(
         @StringRes message: Int = R.string.text_generic_error
     ) {
-        uiState.value = uiState.value.copy(showErrorToastMessage = stringResourceManager.getString(message))
+        uiState.value =
+            uiState.value.copy(showErrorToastMessage = stringResourceManager.getString(message))
     }
 
-    private fun onPictureSelected(pictureModel: PictureModel){
+    private fun onPictureSelected(pictureModel: PictureModel) {
 
-        if(pictureModel.isCategory() && ((pictureModel as CategoryModel).isAttribute() || pictureModel.isAction())){
+        if (pictureModel.isCategory() && ((pictureModel as CategoryModel).isAttribute() || pictureModel.isAction())) {
             showErrorMessage(
                 message = R.string.text_action_nor_attribute_unselected
             )
@@ -115,15 +113,17 @@ abstract class PictureSelecterForPecsViewModel(
     private fun getTitleConfig(pictureModels: List<PictureModel>): SelectableTitleConfig {
         val isEnabled = pictureModels.any { it.isSelectedForPecs.orFalse }
         val titleBuilder = StringBuilder().apply {
-            append(stringResourceManager.getString(R.string.text_select_category_for_pecs))
+            append(initialTitle)
             if (isEnabled) {
                 val itemsSelected = pictureModels.filter { it.isSelectedForPecs.orFalse }.size
-                append(" ${
-                    stringResourceManager.getString(
-                        R.string.text_select_category_size_format,
-                        itemsSelected
-                    )
-                }")
+                append(
+                    " ${
+                        stringResourceManager.getString(
+                            R.string.text_select_category_size_format,
+                            itemsSelected
+                        )
+                    }"
+                )
             }
         }
         return SelectableTitleConfig(
@@ -137,7 +137,7 @@ abstract class PictureSelecterForPecsViewModel(
         fun create(contentType: PictureSelecterContentType): PictureSelecterForPecsViewModel {
             return when (contentType) {
                 is PictureSelecterContentType.Category -> {
-                    koinViewModel<CategorySelecterForPecsViewModel>{
+                    koinViewModel<CategorySelecterForPecsViewModel> {
                         parametersOf(contentType)
                     }
                 }

@@ -15,10 +15,9 @@ class CmiActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.dark(scrim = getColor(R.color.colorPrimaryDark)),
+            statusBarStyle = SystemBarStyle.dark(scrim = getColor(R.color.colorPrimaryDark))
         )
         setContent {
-
             Navigation()
         }
         textToSpeechManager = TextToSpeechManager(this)

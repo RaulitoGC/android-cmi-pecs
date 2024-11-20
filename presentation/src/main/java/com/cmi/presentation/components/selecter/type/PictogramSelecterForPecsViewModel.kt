@@ -21,7 +21,10 @@ class PictogramSelecterForPecsViewModel(
     private val stringResourceManager: StringResourceManager,
     private val getPictogramsByCategoryUseCase: GetPictogramsByCategoryUseCase,
     private val updatePictogramsUseCase: UpdatePictogramsUseCase
-) : PictureSelecterForPecsViewModel(stringResourceManager) {
+) : PictureSelecterForPecsViewModel(
+    stringResourceManager = stringResourceManager,
+    initialTitle = stringResourceManager.getString(R.string.text_select_pictogram_for_pecs)
+) {
 
     init {
         getPictogramsByCategory(categoryId)

@@ -34,21 +34,25 @@ class CategoryChooserViewModel(
         when(event){
             is PictureChooserEvent.Reload -> {
                 if(categoryChooserHost !is CategoryChooserHost.PecsFlow){
-                    getCategories()
+                    getCategories(withLoading = false)
                 }
             }
         }
     }
 
-    private fun getCategories() = viewModelScope.launch{
-        showLoading(isLoading = true)
-        val timeForDelay = uiState.value.categories.size
-        if(timeForDelay == 0){
-            delay(SHIMMER_EFFECT_DELAY) //Delay for show shimmer effect
+    private fun getCategories(withLoading: Boolean = true) = viewModelScope.launch{
+        if(withLoading) {
+            showLoading(isLoading = true)
+            val timeForDelay = uiState.value.categories.size
+            if(timeForDelay == 0){
+                delay(SHIMMER_EFFECT_DELAY) //Delay for show shimmer effect
+            }
         }
 
         getCategoriesUseCase().collect { list ->
-            showLoading(isLoading = false)
+            if(withLoading) {
+                showLoading(isLoading = false)
+            }
             showCategories(categories = list.map { it.toCategoryModel() })
         }
     }

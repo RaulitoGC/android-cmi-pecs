@@ -9,7 +9,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -39,7 +42,9 @@ fun ConfigurationRootScreen(
     onItemSelected: (flow: FLOW) -> Unit
 ) {
     Column(
-        modifier = modifier.background(CmiThemeExtensions.colors.windowBackground),
+        modifier = modifier
+            .padding(WindowInsets.navigationBars.asPaddingValues())
+            .background(CmiThemeExtensions.colors.windowBackground),
     ) {
         DefaultTitle(
             title = R.string.text_settings,

@@ -48,15 +48,17 @@ class CategoryPictureUploaderViewModel(
         val name = pictureModel?.name
         val path = pictureModel?.path
         if (isValidForm(name, path)) {
+            val isFoundationPath = pictureModel?.isFoundationPath ?: false
+            val folderName = if(isFoundationPath) pictureModel?.folder else name?.replace("\\s".toRegex(), "")
             val categoryModel = CategoryModel(
                 id = pictureModel?.id,
-                folder = name?.replace("\\s".toRegex(), ""),
+                folder = folderName,
                 path = path,
                 name = name,
                 priority = pictureModel?.priority ?: 0,
                 isExternal = pictureModel?.isExternal ?: true,
                 isSelectedForPecs = pictureModel?.isSelectedForPecs ?: true,
-                isFoundationPath = pictureModel?.isFoundationPath ?: false
+                isFoundationPath = isFoundationPath
             )
             insertOrUpdate(categoryModel)
         }

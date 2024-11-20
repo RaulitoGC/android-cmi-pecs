@@ -3,7 +3,11 @@ package com.cmi.presentation.pecs.pictogram
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
@@ -62,6 +66,7 @@ private fun PecsFlowPictogramSelectionContent(
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
+            .padding(WindowInsets.navigationBars.asPaddingValues())
             .background(CmiThemeExtensions.colors.windowBackground)
             .verticalScroll(rememberScrollState())
     ) {

@@ -108,16 +108,19 @@ class PictogramPictureUploaderViewModel(
             val categoryId = it.categoryId
             val categoryName = it.categoryName
             if (isValidForm(it.name, it.path, it.categoryId, it.categoryName)) {
+                val isFoundationPath = pictureModel.isFoundationPath ?: false
+                val folderName = if(isFoundationPath) pictureModel.folder else categoryName
+
                 val pictogramModel = PictogramModel(
                     id = pictureModel.id,
-                    folder = categoryName,
+                    folder = folderName,
                     path = path,
                     name = name,
                     priority = pictureModel.priority ?: 0,
                     isExternal = pictureModel.isExternal ?: true,
                     categoryId = categoryId,
                     isSelectedForPecs = pictureModel.isSelectedForPecs ?: true,
-                    isFoundationPath = pictureModel.isFoundationPath ?: false,
+                    isFoundationPath = isFoundationPath,
                     categoryName = pictureModel.categoryName
                 )
                 insertOrUpdate(pictogramModel)

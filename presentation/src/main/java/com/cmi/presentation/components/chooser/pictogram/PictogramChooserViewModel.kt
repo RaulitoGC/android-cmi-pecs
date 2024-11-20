@@ -26,24 +26,31 @@ class PictogramChooserViewModel(
     fun handleEvent(event: PictureChooserEvent) {
         when(event){
             is PictureChooserEvent.Reload -> {
-                getPictograms(categoryId)
+                getPictograms(categoryId = categoryId, withLoading = false)
             }
         }
     }
 
-    private fun getPictograms(categoryId: Int) = viewModelScope.launch {
-        showLoading(isLoading = true)
-        val timeForDelay = uiState.value.pictograms.size
-        if (timeForDelay == 0) {
-            delay(SHIMMER_EFFECT_DELAY) //Delay for show shimmer effect
+    private fun getPictograms(categoryId: Int, withLoading: Boolean = true) = viewModelScope.launch {
+        if(withLoading) {
+            showLoading(isLoading = true)
+            val timeForDelay = uiState.value.pictograms.size
+            if (timeForDelay == 0) {
+                delay(SHIMMER_EFFECT_DELAY) //Delay for show shimmer effect
+            }
         }
+
 
         getPictogramsByCategoryUseCase(categoryId)
             .catch {
-                showLoading(isLoading = false)
+                if(withLoading) {
+                    showLoading(isLoading = false)
+                }
             }
             .collect { list ->
-                showLoading(isLoading = false)
+                if(withLoading) {
+                    showLoading(isLoading = false)
+                }
                 showPictograms(
                     pictograms = list.map {
                         it.toPictogramModel()

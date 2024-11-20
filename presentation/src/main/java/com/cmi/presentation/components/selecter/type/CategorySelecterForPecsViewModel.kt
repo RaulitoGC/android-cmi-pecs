@@ -20,7 +20,10 @@ class CategorySelecterForPecsViewModel(
     private val stringResourceManager: StringResourceManager,
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val updateCategoriesUseCase: UpdateCategoriesUseCase,
-): PictureSelecterForPecsViewModel(stringResourceManager) {
+): PictureSelecterForPecsViewModel(
+    stringResourceManager = stringResourceManager,
+    initialTitle = stringResourceManager.getString(R.string.text_select_category_for_pecs)
+) {
 
     init {
         getCategories()
