@@ -37,11 +37,20 @@ class PecsFlowContentHolder(
             }
 
             pictogramModel.isAttribute() -> {
-                if(isPrimaryAttributeAvailable()) {
-                    pictogramModels[PRIMARY_ATTRIBUTE_IDX] = pictogramToUpdate
+                if(type == PecsFlowContentUpdater.Add ) {
+                    if(isPrimaryAttributeAvailable()) {
+                        pictogramModels[PRIMARY_ATTRIBUTE_IDX] = pictogramToUpdate
+                    } else if(isSecondaryAttributeDifferentFromPrimary(pictogramToUpdate)){
+                        pictogramModels[SECONDARY_ATTRIBUTE_IDX] = pictogramToUpdate
+                    }
                 } else {
-                    pictogramModels[SECONDARY_ATTRIBUTE_IDX] = pictogramToUpdate
+                    if(isPrimaryAttributeSelected(pictogramModel)) {
+                        pictogramModels[PRIMARY_ATTRIBUTE_IDX] = pictogramToUpdate
+                    } else if(isSecondaryAttributeSelected(pictogramModel)) {
+                        pictogramModels[SECONDARY_ATTRIBUTE_IDX] = pictogramToUpdate
+                    }
                 }
+
             }
 
             else  -> {
@@ -66,6 +75,21 @@ class PecsFlowContentHolder(
     private fun isPrimaryAttributeAvailable(): Boolean {
         val primaryAttribute = pictogramModels[PRIMARY_ATTRIBUTE_IDX]
         return  primaryAttribute.id == null
+    }
+
+    private fun isSecondaryAttributeDifferentFromPrimary(pictogramModel: PictogramModel): Boolean {
+        val primaryAttribute = pictogramModels[PRIMARY_ATTRIBUTE_IDX]
+        return primaryAttribute.id != pictogramModel.id
+    }
+
+    private fun isPrimaryAttributeSelected(pictogramModel: PictogramModel): Boolean {
+        val primaryAttribute = pictogramModels[PRIMARY_ATTRIBUTE_IDX]
+        return primaryAttribute.id == pictogramModel.id
+    }
+
+    private fun isSecondaryAttributeSelected(pictogramModel: PictogramModel): Boolean {
+        val secondaryAttribute = pictogramModels[SECONDARY_ATTRIBUTE_IDX]
+        return secondaryAttribute.id == pictogramModel.id
     }
 
     fun getPictureModels() = pictogramModels.filter { it.id != null }

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -35,10 +36,13 @@ fun PictogramCloseableItemContent(
     onItemSelectedForRemoval: (pictogramModel: PictogramModel) -> Unit
 ) {
 
-    Box {
+    Box(
+        modifier = modifier.wrapContentSize()
+    ) {
+        val containerModifier = Modifier
 
         PictureCardView(
-            modifier = modifier.padding(top = 4.dp, end = 4.dp),
+            modifier = containerModifier.padding(top = 4.dp, end = 4.dp),
             cardViewConfig = cardViewConfig,
             pictureModel = pictogramModel,
             onItemSelected = {
@@ -47,7 +51,7 @@ fun PictogramCloseableItemContent(
         ) {
 
             Column(
-                modifier = modifier
+                modifier = containerModifier
                     .fillMaxWidth()
                     .align(alignment = Alignment.Center),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -58,7 +62,7 @@ fun PictogramCloseableItemContent(
                 val fontSize = dimensionResource(cardViewConfig.fontSize)
 
                 Image(
-                    modifier = modifier.size(
+                    modifier = containerModifier.size(
                         if (pictogramModel.isSelectedForUiEnabled.isTrue) imageSize * 0.9f
                         else imageSize
                     ),
@@ -67,7 +71,7 @@ fun PictogramCloseableItemContent(
                 )
                 DefaultVerticalSpacer(height = 2.dp)
                 Text(
-                    modifier = modifier,
+                    modifier = containerModifier,
                     text = pictogramModel.name.orEmpty(),
                     fontSize = if (pictogramModel.isSelectedForUiEnabled.isTrue) fontSize.value.sp else ((fontSize.value + 4).sp)
                 )

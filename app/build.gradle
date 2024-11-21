@@ -3,6 +3,9 @@ plugins {
     id 'kotlin-android'
 }
 
+def props = new Properties()
+file("../signing/cmi-credentials.properties").withInputStream { props.load(it) }
+
 android {
 
     namespace 'com.rguzman.cmi'
@@ -19,10 +22,20 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file("../signing/cmi-android-keystore-signing.keystore")
+            storePassword props.getProperty("store-password")
+            keyAlias props.getProperty("alias")
+            keyPassword props.getProperty("alias-password")
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 

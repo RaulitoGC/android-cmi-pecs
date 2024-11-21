@@ -80,9 +80,12 @@ fun ViewStripPhraseContent(
                 )
         )
 
-        Row {
+        Row(
+            modifier = Modifier.align(Alignment.Center),
+        ) {
             picturesForPecs.forEach { pictogramModel ->
                 PictogramCloseableItemContent(
+                    modifier = Modifier.weight(1f),
                     pictogramModel = pictogramModel,
                     cardViewConfig = cardViewConfig,
                     onItemSelectedForRemoval = {
