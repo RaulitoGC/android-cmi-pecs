@@ -1,6 +1,6 @@
 ext {
     // Android Project Config
-    applicationId = "com.rguzman.cmi"
+    applicationId = "com.rguzmanc.cmi"
     compileVersion = 34
     minVersion = 26
     targetVersion = 34

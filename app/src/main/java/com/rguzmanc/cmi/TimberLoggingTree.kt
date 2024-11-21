@@ -1,4 +1,4 @@
-package com.rguzman.cmi
+package com.rguzmanc.cmi
 
 import timber.log.Timber
 

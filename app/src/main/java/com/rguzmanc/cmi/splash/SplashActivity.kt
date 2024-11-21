@@ -1,4 +1,4 @@
-package com.rguzman.cmi.splash
+package com.rguzmanc.cmi.splash
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.rguzman.cmi
+package com.rguzmanc.cmi
 
 import android.app.Application
 import com.cmi.presentation.di.presentationModule

@@ -8,11 +8,11 @@ file("../signing/cmi-credentials.properties").withInputStream { props.load(it) }
 
 android {
 
-    namespace 'com.rguzman.cmi'
+    namespace 'com.rguzmanc.cmi'
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.rguzman.cmi"
+        applicationId "com.rguzmanc.cmi"
         minSdkVersion 26
         targetSdkVersion 35
         versionCode 12

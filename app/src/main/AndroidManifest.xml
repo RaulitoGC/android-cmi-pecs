@@ -40,7 +40,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.rguzman.cmi.fileprovider"
+            android:authorities="com.rguzmanc.cmi.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
 
