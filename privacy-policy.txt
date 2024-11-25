@@ -1,0 +1,55 @@
+Privacy Policy for CMI Communication App
+
+Effective Date: 11/25/2024
+
+Introduction
+
+CMI (referred to as “the App”) is designed to help autistic children communicate using the Picture Exchange Communication System (PECS). We are committed to protecting your privacy and ensuring a secure experience for all users. This Privacy Policy explains what information we collect, how we use it, and your rights regarding your information.
+
+Information We Collect
+
+1. Information You Provide
+
+	•	Photos and Media: The App allows users to take pictures or select pictures from their device gallery. These pictures are saved locally on the user’s device and are not shared or transmitted to any server.
+
+2. Automatically Collected Information
+
+	•	The App does not collect or transmit any personal data to our servers or third parties.
+
+Permissions Used by the App
+
+1. Camera
+
+The App requires access to your device’s camera to enable users to take pictures for communication purposes.
+
+2. Storage
+
+The App requires access to your device’s storage to:
+	•	Save pictures taken with the camera.
+	•	Allow users to select pictures from the gallery.
+
+How We Use Your Information
+
+	•	All data, including photos, is stored locally on your device. The App does not upload, share, or transmit any data to external servers or third parties.
+
+Data Security
+
+We prioritize the security of your data. Since all data remains on your device, we recommend using your device’s security features (e.g., passwords, encryption) to safeguard your information.
+
+Third-Party Services
+
+This App does not use any third-party services, such as analytics or advertising networks.
+
+Children’s Privacy
+
+The App is designed for use by children under parental supervision. We encourage parents and guardians to monitor their children’s usage of the App to ensure a safe experience.
+
+Changes to This Privacy Policy
+
+We may update this Privacy Policy periodically. Any changes will be posted here, and the updated date will reflect at the top of this document. We encourage you to review this Privacy Policy regularly.
+
+Contact Us
+
+If you have any questions about this Privacy Policy or the App, please contact us at:
+
+rguzman.dev@gmail.com
