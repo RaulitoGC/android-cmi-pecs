@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cmi.presentation.R
 import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
@@ -33,6 +34,7 @@ fun DefaultButton(
     ) {
         Text(
             text = stringResource(id = text),
+            fontSize = dimensionResource(id = R.dimen.button_text_size).value.sp,
             color = CmiThemeExtensions.colors.textButton
         )
     }

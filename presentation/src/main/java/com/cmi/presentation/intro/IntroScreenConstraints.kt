@@ -2,9 +2,11 @@ package com.cmi.presentation.intro
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -98,12 +100,13 @@ fun ConstraintLayoutScope.applyStartButtonConstraints(
     guideButton: ConstrainedLayoutReference,
     subtitle: ConstrainedLayoutReference
 ): Modifier {
-    return Modifier.constrainAs(startButton) {
-        start.linkTo(parent.start)
-        bottom.linkTo(parent.bottom)
-        end.linkTo(guideButton.start)
-        top.linkTo(subtitle.bottom)
-    }
+    return Modifier
+        .constrainAs(startButton) {
+            start.linkTo(parent.start)
+            bottom.linkTo(parent.bottom)
+            end.linkTo(guideButton.start)
+            top.linkTo(subtitle.bottom)
+        }
 }
 
 @Composable
@@ -128,6 +131,7 @@ fun ConstraintLayoutScope.applyBottomImageConstraints(
     middleGuideline: HorizontalAnchor,
 ): Modifier {
     return Modifier
+        .fillMaxWidth()
         .constrainAs(bottomImage) {
             fullLinkToBottom()
             top.linkTo(middleGuideline)

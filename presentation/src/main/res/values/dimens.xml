@@ -82,6 +82,7 @@
     <dimen name="card_view_corner_radius">16dp</dimen>
     <dimen name="card_view_elevation">16dp</dimen>
 
+    <!-- Intro Screen -->
     <dimen name="image_boy_width_size">82dp</dimen>
     <dimen name="image_boy_height_size">106dp</dimen>
     <dimen name="text_size_short_name">32sp</dimen>

@@ -59,9 +59,12 @@
     <dimen name="button_width_size">424dp</dimen>
     <dimen name="button_text_size">24sp</dimen>
     <dimen name="floating_button_size">84dp</dimen>
+
+    <!-- Intro Screen -->
     <dimen name="image_boy_width_size">260dp</dimen>
     <dimen name="image_boy_height_size">330dp</dimen>
-    <dimen name="text_size_short_name">72sp</dimen>
+
+    <dimen name="text_size_short_name">64sp</dimen>
     <dimen name="text_size_large_name">48sp</dimen>
 
     <dimen name="settings_size">64dp</dimen>

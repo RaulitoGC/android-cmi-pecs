@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
@@ -11,7 +12,10 @@ import androidx.compose.foundation.layout.waterfall
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -30,6 +34,7 @@ fun IntroScreen(
 ) {
     ConstraintLayout(
         modifier = Modifier
+            .fillMaxSize()
             .padding(WindowInsets.navigationBars.asPaddingValues())
             .background(CmiThemeExtensions.colors.primarySurface)
     ) {
@@ -61,11 +66,17 @@ fun IntroScreen(
             drawableRes = R.drawable.ic_cmi_boy,
         )
 
+        DefaultImage(
+            modifier = applyBottomImageConstraints(bottomImage, middleGuideline),
+            contentScale = ContentScale.FillWidth,
+            drawableRes = R.drawable.ic_puzzle,
+        )
+
         Text(
             modifier = applyIntroTitleConstraints(title, imageBoy),
             text = stringResource(R.string.text_app_short_name),
             style = CmiThemeExtensions.typography.h1,
-            fontSize = 32.sp,
+            fontSize = dimensionResource(R.dimen.text_size_short_name).value.sp,
             color = CmiThemeExtensions.colors.primaryText
         )
 
@@ -73,7 +84,7 @@ fun IntroScreen(
             modifier = applyIntroSubTitleConstraints(subtitle, title),
             text = stringResource(R.string.text_app_long_name),
             style = CmiThemeExtensions.typography.body,
-            fontSize = 16.sp,
+            fontSize = dimensionResource(R.dimen.text_size_large_name).value.sp,
             color = CmiThemeExtensions.colors.primaryText
         )
 
@@ -92,11 +103,6 @@ fun IntroScreen(
         ) {
             onOpenGuide()
         }
-
-        DefaultImage(
-            modifier = applyBottomImageConstraints(bottomImage, middleGuideline),
-            drawableRes = R.drawable.ic_puzzle,
-        )
     }
 
 }
