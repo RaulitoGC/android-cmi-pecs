@@ -7,7 +7,8 @@
     <dimen name="toolbar_title_text_size">24sp</dimen>
 
     <!-- Survey -->
-    <dimen name="survey_text_size">20sp</dimen>
+    <dimen name="survey_text_size">18sp</dimen>
+    <dimen name="survey_author_size">120dp</dimen>
 
     <!-- Configuration -->
     <dimen name="configuration_subtitle_text_size">24sp</dimen>

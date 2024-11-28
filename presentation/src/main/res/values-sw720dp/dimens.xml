@@ -8,6 +8,7 @@
 
     <!-- Survey -->
     <dimen name="survey_text_size">24sp</dimen>
+    <dimen name="survey_author_size">172dp</dimen>
 
     <!-- Configuration -->
     <dimen name="configuration_subtitle_text_size">32sp</dimen>
