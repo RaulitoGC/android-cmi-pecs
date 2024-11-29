@@ -1,14 +1,11 @@
 package com.cmi.presentation.intro
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.cmi.presentation.Constants.SURVEY_URL
 import com.cmi.presentation.Constants.YOUTUBE_GUIDE
 import com.cmi.presentation.R
 import com.cmi.presentation.databinding.FragmentIntroBinding

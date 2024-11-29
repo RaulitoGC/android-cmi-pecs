@@ -25,6 +25,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import com.cmi.presentation.R
 import com.cmi.presentation.components.permission.PermissionExplainer
@@ -211,7 +212,8 @@ fun PictureImageSourceContent(
         Text(
             text = stringResource(id = imageSourceContent.title),
             color = CmiThemeExtensions.colors.primaryColorDark,
-            style = CmiThemeExtensions.typography.body
+            style = CmiThemeExtensions.typography.body,
+            fontSize = dimensionResource(R.dimen.subtitle_text_size).value.sp
         )
     }
 }

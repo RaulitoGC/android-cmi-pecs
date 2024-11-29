@@ -13,9 +13,11 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cmi.presentation.R
 import com.cmi.presentation.ktx.ArrowIcon
 import com.cmi.presentation.ktx.DefaultHorizontalSpacer
@@ -67,6 +69,7 @@ private fun Title(
             text = if(stringRestTitle == 0 ) title else stringResource(id = stringRestTitle),
             style = CmiThemeExtensions.typography.h1,
             color = CmiThemeExtensions.colors.primaryText,
+            fontSize = dimensionResource(R.dimen.toolbar_title_text_size).value.sp
         )
     }
 }

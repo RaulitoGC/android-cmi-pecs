@@ -9,8 +9,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.cmi.presentation.R
 import com.cmi.presentation.components.common.PictureImageSources
 import com.cmi.presentation.components.common.PictureNameTextField
 import com.cmi.presentation.components.common.PicturePreview
@@ -94,7 +96,7 @@ private fun PictureLoaderContent(
 
             DefaultVerticalSpacer(
                 modifier = applyVerticalSpacerConstraints(titleSpacer, subTitle),
-                height = 32.dp
+                height = dimensionResource(R.dimen.uploader_subtitle_spacer)
             )
 
             PictureNameTextField(

@@ -1,6 +1,7 @@
 package com.cmi.presentation.components.uploader
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.ui.Modifier
@@ -9,6 +10,7 @@ import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayoutBaseScope
 import androidx.constraintlayout.compose.ConstraintLayoutBaseScope.HorizontalAnchor
 import androidx.constraintlayout.compose.ConstraintLayoutScope
+import androidx.constraintlayout.compose.Dimension
 import com.cmi.presentation.ktx.centerHorizontallyFromParentTo
 import com.cmi.presentation.ktx.centerHorizontallyToParent
 import com.cmi.presentation.ktx.centerHorizontallyToParentFrom
@@ -24,7 +26,8 @@ fun ConstraintLayoutScope.applyPictureNameConstraints(
     return Modifier.constrainAs(pictureName){
         this@constrainAs.centerHorizontallyFromParentTo(middleGuideline)
         top.linkTo(titleSpacer.bottom)
-    }.padding(horizontal = 32.dp).width(312.dp)
+        width = Dimension.fillToConstraints
+    }.padding(horizontal = 32.dp)
 }
 
 @SuppressLint("ModifierFactoryExtensionFunction")
@@ -64,6 +67,7 @@ fun ConstraintLayoutScope.applyPictureImageResourcesConstraints(
     return Modifier.constrainAs(pictureImageSources){
         this@constrainAs.centerHorizontallyFromParentTo(middleGuideline)
         top.linkTo(pictureNameSpacer.bottom)
+        width = Dimension.fillToConstraints
     }
 }
 
@@ -76,7 +80,7 @@ fun ConstraintLayoutScope.applyPicturePreviewConstraints(
     return Modifier.constrainAs(picturePreview) {
         this@constrainAs.centerHorizontallyToParentFrom(middleGuideline)
         top.linkTo(titleSpacer.bottom)
-    }
+    }.padding(horizontal = 32.dp)
 }
 
 @SuppressLint("ModifierFactoryExtensionFunction")

@@ -5,7 +5,7 @@
     <!-- Toolbar Configuration -->
     <dimen name="toolbar_image_size">48dp</dimen>
     <dimen name="toolbar_title_text_size">24sp</dimen>
-    <dimen name="subtitle_text_size">22sp</dimen>
+    <dimen name="subtitle_text_size">20sp</dimen>
 
     <!-- Survey -->
     <dimen name="survey_text_size">18sp</dimen>
@@ -24,6 +24,11 @@
     <dimen name="card_view_config_size">150dp</dimen>
     <dimen name="card_view_config_image_size">100dp</dimen>
     <dimen name="card_view_config_text_size">16sp</dimen>
+
+    <!-- Uploader -->
+    <dimen name="uploader_subtitle_spacer">48dp</dimen>
+    <dimen name="upload_image_option_size_width">128dp</dimen>
+    <dimen name="upload_image_option_size_height">96dp</dimen>
 
     <!-- Add Category -->
     <dimen name="add_category_view_pager_size_height">256dp</dimen>
@@ -57,10 +62,6 @@
     <dimen name="item_category_text_size">18sp</dimen>
     <dimen name="item_select_category_text_size">18sp</dimen>
     <dimen name="item_select_pictogram_text_size">14sp</dimen>
-
-    <!-- Common Image Size -->
-    <dimen name="upload_image_option_size_width">84dp</dimen>
-    <dimen name="upload_image_option_size_height">64dp</dimen>
 
     <dimen name="upload_image_option_text_size">18sp</dimen>
 

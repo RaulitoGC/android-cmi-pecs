@@ -27,6 +27,11 @@
     <dimen name="card_view_config_image_size">80dp</dimen>
     <dimen name="card_view_config_text_size">14sp</dimen>
 
+    <!-- Uploader -->
+    <dimen name="uploader_subtitle_spacer">32dp</dimen>
+    <dimen name="upload_image_option_size_width">84dp</dimen>
+    <dimen name="upload_image_option_size_height">62dp</dimen>
+
     <!-- Add Category -->
     <dimen name="add_category_view_pager_size_height">128dp</dimen>
 
@@ -72,8 +77,7 @@
     <dimen name="picture_shimmer_size">120dp</dimen>
 
     <!-- Common Image Size  / Initial size = 64, 48-->
-    <dimen name="upload_image_option_size_width">84dp</dimen>
-    <dimen name="upload_image_option_size_height">62dp</dimen>
+
 
     <dimen name="upload_image_option_text_size">14sp</dimen>
 
