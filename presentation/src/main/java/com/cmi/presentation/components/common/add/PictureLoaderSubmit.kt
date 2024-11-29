@@ -1,6 +1,9 @@
 package com.cmi.presentation.components.common.add
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,7 +30,8 @@ fun DefaultButton(
     Button(
         modifier = modifier
             .padding(vertical = 12.dp)
-            .width(dimensionResource(id = R.dimen.button_width_size)),
+            .width(dimensionResource(id = R.dimen.button_width_size))
+            .padding(WindowInsets.navigationBars.asPaddingValues()),
         shape = RoundedCornerShape(24.dp),
         colors = ButtonDefaults.buttonColors(backgroundColor = CmiThemeExtensions.colors.primaryButtonSurface),
         onClick = onClick
