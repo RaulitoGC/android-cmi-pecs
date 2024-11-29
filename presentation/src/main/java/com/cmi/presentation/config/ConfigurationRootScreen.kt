@@ -11,9 +11,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -60,6 +62,7 @@ fun ConfigurationRootScreen(
                     .padding(vertical = 16.dp, horizontal = 32.dp),
                 image = R.drawable.img_category,
                 title = stringResource(id = R.string.text_configuration_category),
+                textFontSize = dimensionResource(R.dimen.configuration_root_title_text_size).value.sp,
                 onItemSelected = { onItemSelected(FLOW.CATEGORY) }
             )
             ConfigurationTypeCard(
@@ -68,6 +71,7 @@ fun ConfigurationRootScreen(
                     .padding(vertical = 16.dp, horizontal = 32.dp),
                 image = R.drawable.img_pictogram,
                 title = stringResource(id = R.string.text_configuration_pictogram),
+                textFontSize = dimensionResource(R.dimen.configuration_root_title_text_size).value.sp,
                 onItemSelected = { onItemSelected(FLOW.PICTOGRAM) }
             )
         }
@@ -110,6 +114,7 @@ fun ConfigurationTypeCard(
             DefaultVerticalSpacer(height = 8.dp)
             Image(
                 modifier = Modifier
+                    .fillMaxSize()
                     .weight(0.8f),
                 painter = rememberAsyncImagePainter(image),
                 contentDescription = title,
@@ -117,6 +122,8 @@ fun ConfigurationTypeCard(
             Text(
                 text = title,
                 modifier = Modifier
+                    .fillMaxSize()
+                    .wrapContentHeight()
                     .weight(0.20f),
                 textAlign = TextAlign.Center,
                 color = CmiThemeExtensions.colors.primaryColorDark,

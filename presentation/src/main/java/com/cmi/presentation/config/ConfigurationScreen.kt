@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cmi.presentation.R
@@ -104,7 +105,7 @@ private fun SelectCardType(
         modifier = modifier,
         title = title,
         image = image,
-        textFontSize = 16.sp,
+        textFontSize = dimensionResource(R.dimen.configuration_option_title_text_size).value.sp,
         onItemSelected = onItemSelected
     )
 }
@@ -121,7 +122,7 @@ private fun AddCardType(
         modifier = modifier,
         title = title,
         image = image,
-        textFontSize = 16.sp,
+        textFontSize = dimensionResource(R.dimen.configuration_option_title_text_size).value.sp,
         onItemSelected = onItemSelected
     )
 }
@@ -138,7 +139,7 @@ private fun EditCardType(
         modifier = modifier,
         title = title,
         image = image,
-        textFontSize = 16.sp,
+        textFontSize = dimensionResource(R.dimen.configuration_option_title_text_size).value.sp,
         onItemSelected = onItemSelected
     )
 }
@@ -155,7 +156,7 @@ private fun RemoveCardType(
         modifier = modifier,
         title = title,
         image = image,
-        textFontSize = 16.sp,
+        textFontSize = dimensionResource(R.dimen.configuration_option_title_text_size).value.sp,
         onItemSelected = onItemSelected
     )
 }

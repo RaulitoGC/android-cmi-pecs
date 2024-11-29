@@ -8,9 +8,12 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.cmi.presentation.R
 import com.cmi.presentation.ui.theme.CmiThemeExtensions
 
 @Composable
@@ -23,6 +26,7 @@ fun DefaultSubTitle(
         Text(
             modifier = modifier.fillMaxWidth().padding(horizontal = padding),
             text = stringResource(id = subTitle),
+            fontSize = dimensionResource(R.dimen.subtitle_text_size).value.sp,
             style = CmiThemeExtensions.typography.body
         )
         Divider(

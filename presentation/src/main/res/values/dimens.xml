@@ -7,15 +7,25 @@
     <!-- Toolbar Configuration -->
     <dimen name="toolbar_image_size">32dp</dimen>
     <dimen name="toolbar_title_text_size">18sp</dimen>
+    <dimen name="subtitle_text_size">16sp</dimen>
 
     <!-- Survey -->
     <dimen name="survey_text_size">14sp</dimen>
     <dimen name="survey_author_size">92dp</dimen>
+    <dimen name="survey_close_icon_size">84dp</dimen>
 
     <!-- Configuration -->
     <dimen name="configuration_subtitle_text_size">18sp</dimen>
     <dimen name="configuration_option_text_size">16sp</dimen>
     <dimen name="configuration_card_view_text_size">24sp</dimen>
+    <dimen name="configuration_root_title_text_size">24sp</dimen>
+    <dimen name="configuration_option_title_text_size">16sp</dimen>
+    <dimen name="configuration_description_text_size">16sp</dimen>
+
+    <!-- Card View Config -->
+    <dimen name="card_view_config_size">120dp</dimen>
+    <dimen name="card_view_config_image_size">80dp</dimen>
+    <dimen name="card_view_config_text_size">14sp</dimen>
 
     <!-- Add Category -->
     <dimen name="add_category_view_pager_size_height">128dp</dimen>

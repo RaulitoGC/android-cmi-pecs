@@ -67,7 +67,7 @@ fun ConstraintLayoutScope.applyCloseButtonConstraints(
     closeButton: ConstrainedLayoutReference
 ): Modifier {
     return Modifier
-        .size(84.dp)
+        .size(dimensionResource(R.dimen.survey_close_icon_size))
         .padding(WindowInsets.systemBars.asPaddingValues())
         .constrainAs(closeButton) {
             top.linkTo(parent.top)

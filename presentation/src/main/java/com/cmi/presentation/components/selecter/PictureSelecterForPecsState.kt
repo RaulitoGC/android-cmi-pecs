@@ -14,9 +14,7 @@ data class PictureSelecterForPecsState(
     ),
     val showSuccessToastMessage: String? = null,
     val showErrorToastMessage: String? = null,
-    val cardViewConfig: CardViewConfig = CardViewConfig(
-
-    )
+    val cardViewConfig: CardViewConfig = CardViewConfig()
 ) {
     fun getPicturesSize() = pictureModels.size.takeIf { it > 0} ?: DEFAULT_CATEGORY_SIZE_SHIMMER
 
