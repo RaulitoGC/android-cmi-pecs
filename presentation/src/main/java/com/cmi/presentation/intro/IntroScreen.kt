@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.cmi.presentation.R
@@ -35,8 +36,8 @@ fun IntroScreen(
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
-            .padding(WindowInsets.navigationBars.asPaddingValues())
             .background(CmiThemeExtensions.colors.primarySurface)
+            .padding(WindowInsets.navigationBars.asPaddingValues())
     ) {
 
         val middleGuideline = createGuidelineFromTop(0.5f)
