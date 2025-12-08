@@ -4,7 +4,7 @@ Android application that implements Picture Exchange Communication System (PECS)
 ### Description
 CMI is an application with the main objective of serving as a support to help you increase communication skills in children with Autism Spectrum Disorder (ASD).
 
-<a href="https://play.google.com/store/apps/details?id=com.rguzman.cmi">
+<a href="https://play.google.com/store/apps/details?id=com.rguzmanc.cmi">
   <img alt="Get it on Google Play" width="200"
         src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" />
 </a>
